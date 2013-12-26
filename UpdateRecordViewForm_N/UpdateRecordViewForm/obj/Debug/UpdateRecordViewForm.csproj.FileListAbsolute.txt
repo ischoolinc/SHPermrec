@@ -1,0 +1,10 @@
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\ResolveAssemblyReference.cache
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.CompleteForm.resources
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.UpdateRecordViewForm.resources
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.UpdateTypeForm.resources
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\GenerateResource.read.1.tlog
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\GenerateResource.write.1.tlog
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\bin\Debug\UpdateRecordViewForm_N.dll
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\bin\Debug\UpdateRecordViewForm_N.pdb
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm_N.dll
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm_N\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm_N.pdb

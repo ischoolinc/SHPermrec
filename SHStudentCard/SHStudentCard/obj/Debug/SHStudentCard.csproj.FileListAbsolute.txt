@@ -1,0 +1,11 @@
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\bin\Debug\SHStudentCard.dll
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\bin\Debug\SHStudentCard.pdb
+D:\FiscaAEAlpha\addmodules\SHStudentCard\SHStudentCard.dll
+D:\FiscaAEAlpha\addmodules\SHStudentCard\SHStudentCard.pdb
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\ResolveAssemblyReference.cache
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.Forms.StudentCardForm.resources
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.Properties.Resources.resources
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\GenerateResource.read.1.tlog
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\GenerateResource.write.1.tlog
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.dll
+D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.pdb
