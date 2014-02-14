@@ -436,33 +436,33 @@ namespace UpdateRecord_SH_N_Extend
         private void UpdateRecordItemForm_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-                IUpdateRecordInfo IU;
+                //IUpdateRecordInfo IU;
 
-                if (UpdateRecordEditorPanle.Controls.Count ==0)
-                    e.Cancel = true;
-
-
-                IU = UpdateRecordEditorPanle.Controls[0] as IUpdateRecordInfo;
-
-                //IU.GetStudUpdateRecord();
-
-                _StudUpdateRec = IU.GetStudUpdateRecord();
-                // 當資料有改變            
-                if (IU.GetLogData().GetDataHasChange() && _checkSave ==false || string.IsNullOrEmpty(IU.GetStudUpdateRecord().UpdateCode))
-                    if (FISCA.Presentation.Controls.MsgBox.Show("這個動作將放棄目前編輯中的資料，是否確定離開？", "提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                        e.Cancel = true;
+                //if (UpdateRecordEditorPanle.Controls.Count ==0)
+                //    e.Cancel = true;
 
 
+                //IU = UpdateRecordEditorPanle.Controls[0] as IUpdateRecordInfo;
 
-                // 當異動代碼是否存在問題，不存在不儲存。
-                if (IU.GetStudUpdateRecord() == null)
-                    return;
-                else
-                {
-                    List<string> xx = (from elm in _UpdateCode.Elements("異動") where elm.Element("代號").Value == IU.GetStudUpdateRecord().UpdateCode select elm.Element("代號").Value).ToList();
-                    if (xx.Count == 0)
-                        return;
-                }
+                ////IU.GetStudUpdateRecord();
+
+                //_StudUpdateRec = IU.GetStudUpdateRecord();
+                //// 當資料有改變            
+                //if (IU.GetLogData().GetDataHasChange() && _checkSave ==false || string.IsNullOrEmpty(IU.GetStudUpdateRecord().UpdateCode))
+                //    if (FISCA.Presentation.Controls.MsgBox.Show("這個動作將放棄目前編輯中的資料，是否確定離開？", "提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                //        e.Cancel = true;
+
+
+
+                //// 當異動代碼是否存在問題，不存在不儲存。
+                //if (IU.GetStudUpdateRecord() == null)
+                //    return;
+                //else
+                //{
+                //    List<string> xx = (from elm in _UpdateCode.Elements("異動") where elm.Element("代號").Value == IU.GetStudUpdateRecord().UpdateCode select elm.Element("代號").Value).ToList();
+                //    if (xx.Count == 0)
+                //        return;
+                //}
             
         }
 

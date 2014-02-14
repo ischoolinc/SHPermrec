@@ -48,6 +48,9 @@ namespace UpdateRecord_SH_N_Extend
             btnRemove.Visible = _permission.Editable;
             bthUpdate.Visible = _permission.Editable;
 
+            // 只允許看不能修改
+            this.btnAdd.Visible = this.btnView.Visible = this.btnRemove.Visible = false;
+
             btnView.Visible = !_permission.Editable;
             #endregion
 
