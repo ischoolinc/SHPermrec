@@ -133,5 +133,21 @@ namespace UpdateRecordModule_SH_D.DAL
             return retVal;
         }
 
+        /// <summary>
+        /// 透過學生ID取得學生異動部分資料，主要用在刪除異動資料畫面時使用
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetUpdateRecordInfoDTByStudentIDList(List<string> StudentIDList)
+        {
+            DataTable dt = null;
+            if (StudentIDList.Count > 0)
+            {
+                QueryHelper qh = new QueryHelper();
+                //-- 異動編號,學號、班級、座號、姓名、異動日期、異動代碼、原因及事項
+                string query = "select update_record.id,student.student_number,class.class_name,student.seat_no,student.name,update_record.update_date,update_record.update_code,update_record.update_desc,student.id as sid from student inner join update_record on student.id=update_record.ref_student_id left join class on student.ref_class_id=class.id where student.id in("+string.Join(",",StudentIDList.ToArray())+") order by student.student_number,class.class_name,student.seat_no,student.name,update_record.update_date,update_record.id;";
+                dt = qh.Select(query);            
+            }
+            return dt;
+        }
     }
 }

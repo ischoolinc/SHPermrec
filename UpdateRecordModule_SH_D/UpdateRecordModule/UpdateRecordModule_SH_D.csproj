@@ -204,6 +204,11 @@
       <HintPath>Library\SmartSchool.Customization.PlugIn.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="SmartSchool.ErrorReporting, Version=1.0.2.11, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\SmartSchool.ErrorReporting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -260,6 +265,12 @@
     <Compile Include="DAL\FDQuery.cs" />
     <Compile Include="DAL\SchoolData.cs" />
     <Compile Include="DAL\StudUpdateRecBatchCreator.cs" />
+    <Compile Include="DeleteUpdateRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteUpdateRecordForm.Designer.cs">
+      <DependentUpon>DeleteUpdateRecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\BuildWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -407,6 +418,9 @@
     <EmbeddedResource Include="BeforeEnrollmentItem.resx">
       <DependentUpon>BeforeEnrollmentItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DeleteUpdateRecordForm.resx">
+      <DependentUpon>DeleteUpdateRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\BuildWizard.resx">
       <DependentUpon>BuildWizard.cs</DependentUpon>
     </EmbeddedResource>
@@ -535,6 +549,9 @@
     <Content Include="Library\SmartSchool.Customization.Data.xml" />
     <Content Include="Library\SmartSchool.Customization.PlugIn.dll" />
     <Content Include="Library\SmartSchool.Customization.PlugIn.xml" />
+    <Content Include="Library\SmartSchool.ErrorReporting.dll" />
+    <Content Include="Library\SmartSchool.ErrorReporting.pdb" />
+    <Content Include="Library\SmartSchool.ErrorReporting.xml" />
     <Content Include="Resources\btnItemNameList.Image.png" />
     <Content Include="Resources\demographic_reload_64.png" />
     <Content Include="Resources\error.ico" />

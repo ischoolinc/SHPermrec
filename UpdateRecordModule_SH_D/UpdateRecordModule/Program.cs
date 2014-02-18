@@ -189,6 +189,23 @@ namespace UpdateRecordModule_SH_D
                 btnChangeDept.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1;
                 btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1;              
             };
+
+            // 加入權限代碼
+            ribbon2.Add(new RibbonFeature("SHSchool.Student.DeleteUpdateRecordForm", "刪除異動資料"));
+
+            // 刪除異動資料            
+            K12.Presentation.NLDPanels.Student.ListPaneContexMenu["刪除異動資料"].Enable = UserAcl.Current["SHSchool.Student.DeleteUpdateRecordForm"].Executable;
+            K12.Presentation.NLDPanels.Student.ListPaneContexMenu["刪除異動資料"].Click += delegate {
+                if (K12.Presentation.NLDPanels.Student.SelectedSource.Count > 0)
+                {
+                    DeleteUpdateRecordForm durf = new DeleteUpdateRecordForm(K12.Presentation.NLDPanels.Student.SelectedSource);
+                    durf.ShowDialog();
+                }
+                else
+                {
+                    FISCA.Presentation.Controls.MsgBox.Show("請選擇學生");
+                }
+            };
         }
 
         static void btnChangeInfo_Click(object sender, EventArgs e)
