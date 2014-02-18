@@ -27,6 +27,15 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             // 設定學年度學期
             cbxSemester.Items.Add("1");
             cbxSemester.Items.Add("2");
+
+            int scYear;
+            // 加入學年度初始值
+            if (int.TryParse(K12.Data.School.DefaultSchoolYear, out scYear))
+            {
+                for (int i = (scYear - 3); i <= (scYear + 3); i++)
+                    cbxSchoolYear.Items.Add(i);
+            }
+
             cbxSchoolYear.Text = K12.Data.School.DefaultSchoolYear;
             cbxSemester.Text = K12.Data.School.DefaultSemester;
 
