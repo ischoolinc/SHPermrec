@@ -40,6 +40,7 @@
             this.lblMsg = new DevComponents.DotNetBar.LabelX();
             this.btnDel = new DevComponents.DotNetBar.ButtonX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
+            this.btnExport = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.dgData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +130,7 @@
             // 
             this.lblMsg.BackgroundStyle.Class = "";
             this.lblMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMsg.Location = new System.Drawing.Point(8, 306);
+            this.lblMsg.Location = new System.Drawing.Point(98, 306);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(53, 21);
             this.lblMsg.TabIndex = 1;
@@ -165,11 +166,27 @@
             this.btnExit.Text = "離開";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.AutoSize = true;
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
+            this.btnExport.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnExport.Location = new System.Drawing.Point(8, 304);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 25);
+            this.btnExport.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnExport.TabIndex = 4;
+            this.btnExport.Text = "匯出";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // DeleteUpdateRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 337);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.lblMsg);
@@ -197,5 +214,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUpdateDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUpdateCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUpdateDesc;
+        private DevComponents.DotNetBar.ButtonX btnExport;
     }
 }

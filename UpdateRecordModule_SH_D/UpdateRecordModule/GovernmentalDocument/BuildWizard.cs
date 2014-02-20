@@ -132,7 +132,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             _UpdateType = (DAL.StudUpdateRecBatchCreator.UpdateRecBatchType)listView1.SelectedItems[0].Tag;
 
             // 名冊預設名稱
-            txtNameListName.Text = cbxSchoolYear.Text + "_" + cbxSemester.Text + "_" + _UpdateType.ToString();
+            setDefaultNameListName();
 
             listView2.Items.Clear();
 
@@ -141,6 +141,15 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             _BackgroundWorker.WorkerSupportsCancellation = true;
             _BackgroundWorker.RunWorkerAsync();
                         
+        }
+
+        /// <summary>
+        /// 設定新增名冊時名冊預設名稱
+        /// </summary>
+        /// <returns></returns>
+        private void setDefaultNameListName()
+        {
+            txtNameListName.Text = cbxSchoolYear.Text + "_" + cbxSemester.Text + "_" + _UpdateType.ToString();
         }
 
         void _BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -314,6 +323,16 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         
 
             lblMsg.Text = "已勾選" + _checkCount + "筆異動,共有" + _totalCount + "筆異動.";
+        }
+
+        private void cbxSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setDefaultNameListName();
+        }
+
+        private void cbxSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setDefaultNameListName();
         }
     }
 }

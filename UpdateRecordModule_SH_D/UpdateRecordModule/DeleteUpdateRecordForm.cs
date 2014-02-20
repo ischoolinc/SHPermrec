@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FISCA.LogAgent;
+using Aspose.Cells;
 
 namespace UpdateRecordModule_SH_D
 {
@@ -158,6 +159,45 @@ namespace UpdateRecordModule_SH_D
             {
                 SmartSchool.ErrorReporting.ErrorMessgae msg = new SmartSchool.ErrorReporting.ErrorMessgae(ex);
                 FISCA.Presentation.Controls.MsgBox.Show("刪除異動資料發生錯誤,"+ex.Message);
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dgData.Rows.Count > 0)
+            {
+                try
+                {
+                    Workbook wb = new Workbook();
+
+                    int col=0;
+                    // 欄位名稱
+                    foreach (DataColumn dc in dgData.Columns)
+                    {
+                        wb.Worksheets[0].Cells[0, col].PutValue(dc.Caption);
+                        col++;
+                    }
+
+                    int rowIdx = 1;
+                    foreach (DataGridViewRow drv in dgData.Rows)
+                    {
+                        if (drv.IsNewRow)
+                            continue;
+                        int colIdx=0;
+                        foreach (DataGridViewCell cell in drv.Cells)
+                        {
+                            if(cell.Value !=null)
+                                wb.Worksheets[0].Cells[rowIdx, colIdx].PutValue(cell.Value.ToString());
+                            colIdx++;
+                        }
+                        rowIdx++;
+                    }
+                    utility.ExportXls("異動資料(刪除)", wb);
+                }
+                catch (Exception ex)
+                {
+                    FISCA.Presentation.Controls.MsgBox.Show("匯出失敗," + ex.Message);
+                }
             }
         }
     }
