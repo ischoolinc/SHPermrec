@@ -126,7 +126,7 @@ namespace UpdateRecordModule_SH_D
                                 if (!_logDict.ContainsKey(sid))
                                 {
                                     _logDict = new Dictionary<string, StringBuilder>();
-                                    _logDict.Add(sid,new StringBuilder());
+                                    _logDict.Add(sid, new StringBuilder().AppendLine("刪除異動資料："));
                                 }
                                 //學號、班級、座號、姓名、異動日期、異動代碼、原因及事項
                                 string logdata = "學號：" + _dataRowDict[id]["student_number"].ToString() + ",班級：" + _dataRowDict[id]["class_name"].ToString() + ".座號：" + _dataRowDict[id]["seat_no"].ToString() + ",姓名：" + _dataRowDict[id]["name"].ToString() + ",異動日期：" + _dataRowDict[id]["update_date"].ToString() + ",異動代碼：" + _dataRowDict[id]["update_code"].ToString() + ",原因及事項：" + _dataRowDict[id]["update_desc"].ToString();
@@ -145,7 +145,7 @@ namespace UpdateRecordModule_SH_D
                     // 刪除異動 log
                     foreach (string sid in _logDict.Keys)
                     {
-                        ApplicationLog.Log("異動資料", "刪除異動", "student", sid, "刪除異動資料： "+ _logDict[sid].ToString());
+                        ApplicationLog.Log("異動資料", "刪除異動", "student", sid,_logDict[sid].ToString());
                     }
                     FISCA.Presentation.Controls.MsgBox.Show("共刪除 " + urList.Count + " 筆異動資料");
                     this.Close();
@@ -164,6 +164,7 @@ namespace UpdateRecordModule_SH_D
 
         private void btnExport_Click(object sender, EventArgs e)
         {
+            btnExport.Enabled = false;
             if (dgData.Rows.Count > 0)
             {
                 try
@@ -172,12 +173,13 @@ namespace UpdateRecordModule_SH_D
 
                     int col=0;
                     // 欄位名稱
-                    foreach (DataColumn dc in dgData.Columns)
+                    foreach (DataGridViewColumn dc in dgData.Columns)
                     {
-                        wb.Worksheets[0].Cells[0, col].PutValue(dc.Caption);
+                        wb.Worksheets[0].Cells[0, col].PutValue(dc.HeaderText);
                         col++;
                     }
 
+                    // 填入資料
                     int rowIdx = 1;
                     foreach (DataGridViewRow drv in dgData.Rows)
                     {
@@ -192,11 +194,15 @@ namespace UpdateRecordModule_SH_D
                         }
                         rowIdx++;
                     }
+                    wb.Worksheets[0].AutoFitColumns();
+
                     utility.ExportXls("異動資料(刪除)", wb);
+                    btnExport.Enabled = true;
                 }
                 catch (Exception ex)
                 {
                     FISCA.Presentation.Controls.MsgBox.Show("匯出失敗," + ex.Message);
+                    btnExport.Enabled = true;
                 }
             }
         }
