@@ -124,10 +124,8 @@ namespace UpdateRecordModule_SH_D
                                 // 取得學生ID
                                 string sid = _dataRowDict[id]["sid"].ToString();
                                 if (!_logDict.ContainsKey(sid))
-                                {
-                                    _logDict = new Dictionary<string, StringBuilder>();
                                     _logDict.Add(sid, new StringBuilder().AppendLine("刪除異動資料："));
-                                }
+                                
                                 //學號、班級、座號、姓名、異動日期、異動代碼、原因及事項
                                 string logdata = "學號：" + _dataRowDict[id]["student_number"].ToString() + ",班級：" + _dataRowDict[id]["class_name"].ToString() + ".座號：" + _dataRowDict[id]["seat_no"].ToString() + ",姓名：" + _dataRowDict[id]["name"].ToString() + ",異動日期：" + _dataRowDict[id]["update_date"].ToString() + ",異動代碼：" + _dataRowDict[id]["update_code"].ToString() + ",原因及事項：" + _dataRowDict[id]["update_desc"].ToString();
                                 _logDict[sid].AppendLine(logdata);
