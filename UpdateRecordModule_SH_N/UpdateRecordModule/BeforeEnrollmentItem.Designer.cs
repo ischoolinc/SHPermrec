@@ -56,6 +56,7 @@
             // 
             // 
             this.txtSchoolLocation.Border.Class = "TextBoxBorder";
+            this.txtSchoolLocation.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtSchoolLocation.Location = new System.Drawing.Point(331, 21);
             this.txtSchoolLocation.Margin = new System.Windows.Forms.Padding(4);
             this.txtSchoolLocation.Name = "txtSchoolLocation";
@@ -78,6 +79,7 @@
             // 
             // 
             this.txtSchool.Border.Class = "TextBoxBorder";
+            this.txtSchool.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtSchool.Location = new System.Drawing.Point(108, 21);
             this.txtSchool.Margin = new System.Windows.Forms.Padding(4);
             this.txtSchool.Name = "txtSchool";
@@ -100,6 +102,7 @@
             // 
             // 
             this.txtSeatNo.Border.Class = "TextBoxBorder";
+            this.txtSeatNo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtSeatNo.Location = new System.Drawing.Point(253, 53);
             this.txtSeatNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtSeatNo.Name = "txtSeatNo";
@@ -123,6 +126,7 @@
             // 
             // 
             this.txtClass.Border.Class = "TextBoxBorder";
+            this.txtClass.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtClass.Location = new System.Drawing.Point(108, 53);
             this.txtClass.Margin = new System.Windows.Forms.Padding(4);
             this.txtClass.Name = "txtClass";
@@ -135,6 +139,7 @@
             // 
             // 
             this.txtMemo.Border.Class = "TextBoxBorder";
+            this.txtMemo.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtMemo.Location = new System.Drawing.Point(108, 85);
             this.txtMemo.Margin = new System.Windows.Forms.Padding(4);
             this.txtMemo.Multiline = true;
@@ -168,6 +173,7 @@
             // 
             // 
             this.txtGraduateSchoolYear.Border.Class = "TextBoxBorder";
+            this.txtGraduateSchoolYear.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtGraduateSchoolYear.Location = new System.Drawing.Point(431, 53);
             this.txtGraduateSchoolYear.Margin = new System.Windows.Forms.Padding(4);
             this.txtGraduateSchoolYear.Name = "txtGraduateSchoolYear";
@@ -177,12 +183,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(341, 57);
+            this.label2.Location = new System.Drawing.Point(328, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 17);
+            this.label2.Size = new System.Drawing.Size(99, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "國中畢業年度";
+            this.label2.Text = "國中畢業學年度";
             // 
             // BeforeEnrollmentItem
             // 
