@@ -28,7 +28,6 @@ D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\UpdateRecordModule_SH_D
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.pdb
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.dll
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.pdb
-D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\ResolveAssemblyReference.cache
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchGraduateRecForm.resources
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchGraduateRec_WarningForm.resources
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchNewStudUpdateRecForm.resources
@@ -50,11 +49,10 @@ D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordM
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Wizards.ChangeDeptProcess.resources
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Wizards.ChangeInfoProcess.resources
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Wizards.UpdateRecordInfo.resources
-D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\GenerateResource.read.1.tlog
-D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\GenerateResource.write.1.tlog
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.dll
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.pdb
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.DeleteUpdateRecordForm.resources
+<<<<<<< HEAD
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.dll
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.pdb
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.csprojResolveAssemblyReference.cache
@@ -83,3 +81,7 @@ D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\De
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.csproj.GenerateResource.Cache
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.dll
 D:\GitHub2\SHPermrec\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.pdb
+=======
+D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.csprojResolveAssemblyReference.cache
+D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.csproj.GenerateResource.Cache
+>>>>>>> 104c4af... 新增異動代碼 373
