@@ -880,9 +880,11 @@ namespace UpdateRecordModule_KHSH_D.DAL
         {
             if (fuct.Contains("字"))
             {
-                return fuct.Remove(fuct.LastIndexOf("字"));
+                if (fuct.Remove(fuct.LastIndexOf("字")) != "")
+                    return fuct.Remove(fuct.LastIndexOf("字"));
             }
-            return fuct;
+
+            return GetNumAndSrt2(fuct);
         }
 
         #endregion
@@ -892,13 +894,16 @@ namespace UpdateRecordModule_KHSH_D.DAL
 
         private string GetNumAndSrt2(string fuct)
         {
-
             if (fuct.Contains("第") && fuct.Contains("號"))
             {
                 return fuct.Substring(fuct.LastIndexOf("第") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("第") - 1);
             }
-            return fuct;
 
+            if (fuct.Contains("字") && fuct.Contains("號"))
+            {
+                return fuct.Substring(fuct.LastIndexOf("字") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("字") - 1);
+            }
+            return fuct;
         }
 
         #endregion

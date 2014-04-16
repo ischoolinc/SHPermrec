@@ -482,7 +482,9 @@
     <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xls" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\UpdateCode_SHD.xml" />
+    <None Include="Resources\UpdateCode_SHD.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ImportExport\ImportEnrollmentListVal.xml" />
