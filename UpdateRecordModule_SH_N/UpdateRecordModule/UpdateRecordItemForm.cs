@@ -101,8 +101,8 @@ namespace UpdateRecordModule_SH_N
             // 加入 log
             _prlp.SetBeforeSaveText("學年度", intSchoolYear.Text);
             _prlp.SetBeforeSaveText("學期", intSemester.Text);
-            if (_StudUpdateRec.Student.Status == K12.Data.StudentRecord.StudentStatus.延修)
-                cbxGradeYear.Text = "延修生";
+            //if (_StudUpdateRec.Student.Status == K12.Data.StudentRecord.StudentStatus.延修)
+            //    cbxGradeYear.Text = "延修生";
         }
 
         private void UpdateRecordItemForm_Load(object sender, EventArgs e)
