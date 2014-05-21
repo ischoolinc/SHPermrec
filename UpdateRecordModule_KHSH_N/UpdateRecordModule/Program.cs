@@ -20,6 +20,8 @@ namespace UpdateRecordModule_KHSH_N
 
         public const string UpdateRecordGovDocsCode = "Button0630";
         public const string UpdateRecordContentCode = "Content0140";
+        public const string BeforeEnrollmentContentCode = "SHSchool.Student.BeforeEnrollmentItem";
+
         /// <summary>
         /// 高中學籍進校系統核心啟動
         /// </summary>        
@@ -31,10 +33,12 @@ namespace UpdateRecordModule_KHSH_N
             #endregion
 
             // 異動
-            K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<UpdateRecordItem>());
+            if (FISCA.Permission.UserAcl.Current[UpdateRecordContentCode].Editable || FISCA.Permission.UserAcl.Current[UpdateRecordContentCode].Viewable)
+                K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<UpdateRecordItem>());
 
             // 前籍畢業資訊
-            K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<BeforeEnrollmentItem>());
+            if (FISCA.Permission.UserAcl.Current[BeforeEnrollmentContentCode].Editable || FISCA.Permission.UserAcl.Current[BeforeEnrollmentContentCode].Viewable)
+                K12.Presentation.NLDPanels.Student.AddDetailBulider(new FISCA.Presentation.DetailBulider<BeforeEnrollmentItem>());
 
             Catalog detail = RoleAclSource.Instance["學生"]["資料項目"];
             detail.Add(new DetailItemFeature(typeof(UpdateRecordItem)));
@@ -173,6 +177,10 @@ namespace UpdateRecordModule_KHSH_N
             };
             //ribbon2.Add(new RibbonFeature("Button0095", "批次畢業異動"));
 
+            // 加入權限代碼
+            ribbon2.Add(new RibbonFeature("SHSchool.Student.UpdateRecordForm.Button01", "轉科"));
+            ribbon2.Add(new RibbonFeature("SHSchool.Student.UpdateRecordForm.Button02", "學籍更正"));
+
             var btnStudentUR = K12.Presentation.NLDPanels.Student.RibbonBarItems["教務"]["異動作業"];
             btnStudentUR.Image = Properties.Resources.demographic_reload_64;
             btnStudentUR.Size = RibbonBarButton.MenuButtonSize.Large;
@@ -185,8 +193,8 @@ namespace UpdateRecordModule_KHSH_N
 
             K12.Presentation.NLDPanels.Student.SelectedSourceChanged += delegate
             {
-                btnChangeDept.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1;
-                btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1;
+                btnChangeDept.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button01"].Executable;
+                btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button02"].Executable;
             };
         }
 
