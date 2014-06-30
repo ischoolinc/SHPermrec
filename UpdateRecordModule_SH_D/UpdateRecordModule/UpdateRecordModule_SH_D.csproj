@@ -408,6 +408,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Batch\BatchGraduateRec_WarningForm.resx">
       <DependentUpon>BatchGraduateRec_WarningForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Batch\BatchNewStudUpdateRecForm.resx">
       <DependentUpon>BatchNewStudUpdateRecForm.cs</DependentUpon>
