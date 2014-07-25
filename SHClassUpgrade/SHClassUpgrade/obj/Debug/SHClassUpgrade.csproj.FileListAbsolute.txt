@@ -1,0 +1,8 @@
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\bin\Debug\SHClassUpgrade.dll
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\bin\Debug\SHClassUpgrade.pdb
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.dll
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.pdb
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.ClassUpgradeForm.resources
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.csproj.GenerateResource.Cache
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.Properties.Resources.resources
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHClassUpgrade\SHClassUpgrade\obj\Debug\SHClassUpgrade.csprojResolveAssemblyReference.cache
