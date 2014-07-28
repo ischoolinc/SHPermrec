@@ -247,44 +247,36 @@ namespace SHClassUpgrade
         /// <returns></returns>
         public static List<ClassItem> getClassItems()
         {
-         
-            List<string> ClassIDList = new List<string>();
-            List<ClassRecord> classRecList = new List<ClassRecord>();
-
-            foreach (StudentRecord stud in Student.SelectAll())
-                if (stud.Status == K12.Data.StudentRecord.StudentStatus.一般)
-                    if (!string.IsNullOrEmpty(stud.RefClassID))
-                        if (!ClassIDList.Contains(stud.RefClassID))
-                        {
-                            ClassIDList.Add(stud.RefClassID);
-                            classRecList.Add(stud.Class);
-                        }
             List<ClassItem> ClassItems = new List<ClassItem>();
-            List<ClassItem> tmpCItems = new List<ClassItem>();
+            List<string> classIDList = new List<string>();
+
+            // 取得目前一般狀態學生班級年級
+            QueryHelper qh = new QueryHelper();
+            string strSQL = "select distinct class.id from student inner join class on student.ref_class_id = class.id where student.status=1 and class.grade_year is not null;";
+            DataTable dt = qh.Select(strSQL);
+            foreach (DataRow dr in dt.Rows)
+            {
+                classIDList.Add(dr[0].ToString());
+            }
+            // 透過班級ID取的班級資料
+            List<ClassRecord> classRecList = K12.Data.Class.SelectByIDs(classIDList);
+
+            // 填入 ClassItem
             foreach (ClassRecord cr in classRecList)
             {
-                if (cr.GradeYear.HasValue)
-                {
-                    ClassItem ci = new ClassItem();
-                    ci.ClassID = cr.ID;
-                    if (cr.GradeYear.HasValue)
-                        ci.GradeYear = cr.GradeYear.Value + "";
-                    ci.ClassName = cr.Name;
-                    ci.NamingRule = cr.NamingRule;
-                    ci.Class_Record = cr;
-                    tmpCItems.Add(ci);
-                    ci = null;
-                }
+                ClassItem ci = new ClassItem();
+                ci.ClassID = cr.ID;
+                ci.GradeYear = cr.GradeYear.Value.ToString();
+                ci.ClassName = cr.Name;
+                ci.NamingRule = cr.NamingRule;
+                ci.Class_Record = cr;
+                ClassItems.Add(ci);
             }
 
-           
+            // 依年級小至大排序
+            ClassItems = (from data in ClassItems orderby int.Parse(data.GradeYear) ascending select data).ToList();
 
             return ClassItems;
-        }
-
-        private static int tmpSortClassItem1(ClassItem x, ClassItem y)
-        {
-            return x.ClassName.CompareTo(y.ClassName);
         }
 
         public static string ParseClassName(string namingRule, int gradeYear)
@@ -336,5 +328,72 @@ namespace SHClassUpgrade
             return namingRule.IndexOf('{') < namingRule.IndexOf('}');
         }
 
+        /// <summary>
+        /// 更新所屬學生畢業級離校資訊(離校科別、離校班級)
+        /// </summary>
+        /// <param name="ClassItems"></param>
+        public static void UpdateStudentLeaveInfo(List<ClassItem> ClassItems)
+        {
+            List<string> classIDListt = new List<string>();
+            Dictionary<string, string> studClassNameDict = new Dictionary<string, string>();
+            Dictionary<string, string> classNameDict = new Dictionary<string, string>();
+            foreach (ClassItem ci in ClassItems)
+            {
+                classIDListt.Add(ci.ClassID);
+                classNameDict.Add(ci.ClassID, ci.ClassName);
+            }
+           // 取得學生ID
+            List<string> studentIDList = new List<string>();
+            QueryHelper qh1 = new QueryHelper();
+            string str1 = "select student.id,class.class_name from student inner join class on student.ref_class_id=class.id where student.status=1 and ref_class_id in("+string.Join(",",classIDListt.ToArray())+")";
+            DataTable dt1=qh1.Select(str1);
+            foreach (DataRow dr in dt1.Rows)
+            {
+                string id=dr["id"].ToString();
+                studentIDList.Add(id);
+                studClassNameDict.Add(id, dr["class_name"].ToString());
+            }
+            // 建立來自班級科別
+            Dictionary<string, string> deptByClassDict = new Dictionary<string, string>();
+            QueryHelper qh2 = new QueryHelper();
+            string str2 = "select student.id,dept.name from student inner join class on student.ref_class_id=class.id  inner join dept on class.ref_dept_id=dept.id where class.id in(" + string.Join(",", classIDListt.ToArray()) + ");";
+            DataTable dt2 = qh2.Select(str2);
+            foreach (DataRow dr in dt2.Rows)
+            {
+                deptByClassDict.Add(dr["id"].ToString(), dr["name"].ToString());
+            }
+
+            // 建立來自學生科別
+            Dictionary<string, string> deptrByStudDict = new Dictionary<string, string>();
+            QueryHelper qh3 = new QueryHelper();
+            string str3 = "select student.id,dept.name from student inner join dept on student.ref_dept_id=dept.id where student.id in("+string.Join(",",studentIDList.ToArray())+");";
+            DataTable dt3 =qh3.Select(str3);
+            foreach (DataRow dr in dt3.Rows)
+            {
+                deptrByStudDict.Add(dr["id"].ToString(), dr["name"].ToString());
+            }
+
+            // 取得畢業及離校資訊
+            List<LeaveInfoRecord> leaveInfoList = LeaveInfo.SelectByStudentIDs(studentIDList);
+            foreach (LeaveInfoRecord lif in leaveInfoList)
+            {
+
+                // 學生班級
+                if (studClassNameDict.ContainsKey(lif.RefStudentID))
+                    lif.ClassName = studClassNameDict[lif.RefStudentID];
+
+                // 學生班級科別
+                if (deptByClassDict.ContainsKey(lif.RefStudentID))
+                    lif.DepartmentName = deptByClassDict[lif.RefStudentID];
+
+                // 學生本身科別
+                if (deptrByStudDict.ContainsKey(lif.RefStudentID))
+                    lif.DepartmentName = deptrByStudDict[lif.RefStudentID];
+            }
+
+            // 更新畢業及離校資訊
+            LeaveInfo.Update(leaveInfoList);
+        
+        }
     }
 }

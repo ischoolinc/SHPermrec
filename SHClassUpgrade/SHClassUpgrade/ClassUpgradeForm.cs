@@ -91,7 +91,6 @@ namespace SHClassUpgrade
             //載入預設學年度
             txtSchoolYear.Text = K12.Data.School.DefaultSchoolYear;
 
-
             // 載入班級項目
             LoadClassItems();
         }
@@ -263,6 +262,10 @@ namespace SHClassUpgrade
         // 儲存升級班級項目
         private void SaveClassItems(List<ClassItem> ClassItems)
         {
+            // 更新學生畢業及離校資訊
+            UpgradeClassDAL.UpdateStudentLeaveInfo(ClassItems);
+
+            // 更新班級資訊
             UpgradeClassDAL.UpdateClassNameGradeYear(ClassItems);
         }
 
@@ -413,6 +416,7 @@ namespace SHClassUpgrade
             if (GraduateClassItems.Count == 0 && UpgradeClassItems.Count == 0)
             {
                 MessageBox.Show("請先設定升級或畢業");
+                btnSave.Enabled = true;
                 return;
 
             }
@@ -451,9 +455,11 @@ namespace SHClassUpgrade
             prlp.SetDescTitle("班級調整：");
             prlp.SaveLog("", "", "", "");
 
-            MessageBox.Show("完成");
+            MessageBox.Show("完成");            
             this.Close();
-
+            // 同步整理畫面
+            SmartSchool.StudentRelated.Student.Instance.SyncAllBackground();
+            SmartSchool.ClassRelated.Class.Instance.SyncAllBackground();
         }
 
         void bkWorkUpgrd_DoWork(object sender, DoWorkEventArgs e)
