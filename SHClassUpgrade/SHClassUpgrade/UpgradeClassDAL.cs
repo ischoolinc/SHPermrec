@@ -281,9 +281,9 @@ namespace SHClassUpgrade
 
         public static string ParseClassName(string namingRule, int gradeYear)
         {
-            if (gradeYear >= 6)
-                gradeYear -= 6;
-            gradeYear--;
+            //if (gradeYear >= 6)
+            //    gradeYear -= 6;
+            //gradeYear--;
             if (!ValidateNamingRule(namingRule))
                 return namingRule;
             string classlist_firstname = "", classlist_lastname = "";
@@ -311,10 +311,24 @@ namespace SHClassUpgrade
             string[] listArray = new string[tmp_convert.Split(',').Length];
             listArray = tmp_convert.Split(',');
 
+            int idx = 0;
+
+            if ((gradeYear - 1) >= 0)
+                idx = gradeYear - 1;
+
+            if (gradeYear - 4 >= 0)
+                idx = gradeYear - 4;
+
+            if (gradeYear - 7 >= 0)
+                idx = gradeYear - 7;
+
+            if (gradeYear - 10 >= 0)
+                idx = gradeYear - 10;
+
             // 檢查是否在清單範圍
-            if (gradeYear >= 0 && gradeYear < listArray.Length)
+            if (idx >= 0 && idx < listArray.Length)
             {
-                tmp_convert = classlist_firstname + listArray[gradeYear] + classlist_lastname;
+                tmp_convert = classlist_firstname + listArray[idx] + classlist_lastname;
             }
             else
             {

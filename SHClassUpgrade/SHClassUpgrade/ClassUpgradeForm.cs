@@ -190,8 +190,9 @@ namespace SHClassUpgrade
                     if (checkNew == true)
                     {
                         int.TryParse(dgv.Cells[1].Value.ToString(), out defGrYear);
+                        string strUpgradeGrYear;
                         upgradeGrYear = defGrYear + 1;
-                        dgv.Cells[3].Value = upgradeGrYear.ToString();
+                        dgv.Cells[3].Value = strUpgradeGrYear = upgradeGrYear.ToString();
 
                         // 檢查是否有命名規則
                         bool checkClassNamingRule = UpgradeClassDAL.ValidateNamingRule(ClassNamingRule);
@@ -207,9 +208,12 @@ namespace SHClassUpgrade
                         {
                             // 沒有命名規則
                             newClassName = ClassName;
-                            int.TryParse(ClassName.Substring(0, 1), out defClassYear);
-                            if (defClassYear > 0)
-                                newClassName = (defClassYear + 1).ToString() + ClassName.Substring(1, (ClassName.Length - 1));
+                            if (upgradeGrYear > 10)
+                            {
+                                newClassName = strUpgradeGrYear + ClassName.Substring(2, (ClassName.Length - 2));
+                            }
+                            else
+                                newClassName = strUpgradeGrYear + ClassName.Substring(1, (ClassName.Length - 1));
 
                             dgv.Cells[4].Value = newClassName;
 
