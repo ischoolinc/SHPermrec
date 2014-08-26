@@ -433,6 +433,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImportExport\ExportStudentV2.resx">
       <DependentUpon>ExportStudentV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportExport\ImportStudentV2.resx">
       <DependentUpon>ImportStudentV2.cs</DependentUpon>
