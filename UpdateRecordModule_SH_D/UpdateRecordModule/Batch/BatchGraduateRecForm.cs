@@ -71,6 +71,12 @@ namespace UpdateRecordModule_SH_D.Batch
                 int Semester = int.Parse(K12.Data.School.DefaultSemester);
 
 
+                // 學籍身分對照表
+                Dictionary<string, List<string>> StudPermCodeMappingDict = utility.GetPermCodeMappingDict();
+
+                // 取得學生類別對照
+                Dictionary<string, List<string>> StudentTagDict = utility.GetStudentFullNameDictByStudentIDs(_StudentIDList);
+
                 _bgWorkerRun.ReportProgress(10);
                 foreach (string sid in _StudentIDList)
                 {
@@ -129,7 +135,7 @@ namespace UpdateRecordModule_SH_D.Batch
                         rec.Birthdate = _StudentDict[sid].Birthday.Value.ToShortDateString();
 
                     // 性別
-                    rec.Gender = _StudentDict[sid].Gender;
+                    rec.Gender = _StudentDict[sid].Gender;                    
 
                     if (_StudLastupdateRecDict.ContainsKey(sid))
                     {
@@ -152,6 +158,28 @@ namespace UpdateRecordModule_SH_D.Batch
                         _LeaveInfoRecordDict[sid].ClassName = ClassName;
                         _LeaveInfoRecordDict[sid].DepartmentName = DeptName;
                     }
+
+                    // 學生特殊身分代碼
+                    if (StudentTagDict.ContainsKey(sid))
+                    {
+                        List<string> codeList = new List<string>();
+                        foreach (string fullName in StudentTagDict[sid])
+                        {
+                            if (StudPermCodeMappingDict.ContainsKey(fullName))
+                            {
+                                foreach (string code in StudPermCodeMappingDict[fullName])
+                                    if (!codeList.Contains(code))
+                                        codeList.Add(code);
+                            }
+                        }
+
+                        if (codeList.Count > 0)
+                        {
+                            codeList.Sort();
+                            rec.SpecialStatus = string.Join(",", codeList.ToArray());
+                        }
+                    }
+
                     _InsertDataList.Add(rec);
                     
                 }

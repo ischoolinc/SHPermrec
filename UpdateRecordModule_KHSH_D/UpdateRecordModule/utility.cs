@@ -170,5 +170,70 @@ namespace UpdateRecordModule_KHSH_D
 
             return retVal;
         }
+
+        /// <summary>
+        /// 學籍身分對照表
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, List<string>> GetPermCodeMappingDict()
+        {
+            Dictionary<string, List<string>> retValue = new Dictionary<string, List<string>>();
+            QueryHelper qh = new QueryHelper();
+            string strSQL = @"select content from list where name='SchoolConfig'";
+            DataTable dt = qh.Select(strSQL);
+            XElement elmRoot = null;
+
+            try
+            {
+                if (dt.Rows.Count == 1)
+                {
+                    elmRoot = XElement.Parse(dt.Rows[0][0].ToString());
+                    if (elmRoot.Element("學籍身分對照表") != null)
+                    {
+                        foreach (XElement elm1 in elmRoot.Element("學籍身分對照表").Elements("Identity"))
+                        {
+                            string Code = elm1.Attribute("Code").Value;
+                            foreach (XElement elm2 in elm1.Elements("Tag"))
+                            {
+                                string FullName = elm2.Attribute("FullName").Value;
+                                if (!retValue.ContainsKey(FullName))
+                                    retValue.Add(FullName, new List<string>());
+
+                                if (!retValue[FullName].Contains(Code))
+                                    retValue[FullName].Add(Code);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex
+                ) { }
+            return retValue;
+        }
+
+        /// <summary>
+        /// 透過學生ID取得學生類別 FullName
+        /// </summary>
+        /// <param name="StudentIDList"></param>
+        /// <returns></returns>
+        public static Dictionary<string, List<string>> GetStudentFullNameDictByStudentIDs(List<string> StudentIDList)
+        {
+            Dictionary<string, List<string>> retVal = new Dictionary<string, List<string>>();
+            if (StudentIDList.Count > 0)
+            {
+                QueryHelper qh = new QueryHelper();
+                string strSQL = @"select ref_student_id as sid,(case when prefix is null then name else prefix||':'||name end) as full_name from tag inner join tag_student on tag.id=tag_student.ref_tag_id where ref_student_id in(" + string.Join(",", StudentIDList.ToArray()) + ") order by ref_student_id";
+                DataTable dt = qh.Select(strSQL);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string sid = dr["sid"].ToString();
+                    if (!retVal.ContainsKey(sid))
+                        retVal.Add(sid, new List<string>());
+
+                    retVal[sid].Add(dr["full_name"].ToString());
+                }
+            }
+            return retVal;
+        }
     }
 }
