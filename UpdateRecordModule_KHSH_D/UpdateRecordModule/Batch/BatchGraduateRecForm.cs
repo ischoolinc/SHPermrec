@@ -101,13 +101,18 @@ namespace UpdateRecordModule_KHSH_D.Batch
                             // 班級名稱
                             ClassName = _ClassRecDict[_StudentDict[sid].RefClassID].Name;
 
-                            // 科別名稱
-                            if (_DeptRecDict.ContainsKey(_ClassRecDict[_StudentDict[sid].RefClassID].RefDepartmentID))
-                                DeptName = _DeptRecDict[_ClassRecDict[_StudentDict[sid].RefClassID].RefDepartmentID].FullName;
+                            //// 科別名稱
+                            //if (_DeptRecDict.ContainsKey(_ClassRecDict[_StudentDict[sid].RefClassID].RefDepartmentID))
+                            //    DeptName = _DeptRecDict[_ClassRecDict[_StudentDict[sid].RefClassID].RefDepartmentID].FullName;
                         }
                         else
                             rec.GradeYear = "";
                     }
+
+                    string depID = _StudentDict[sid].DepartmentID;
+                    // 科別名稱
+                    if (_DeptRecDict.ContainsKey(depID))
+                        DeptName = _DeptRecDict[depID].FullName;
 
                     // 畢業代碼
                     rec.UpdateCode = "501";

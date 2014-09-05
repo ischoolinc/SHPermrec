@@ -479,7 +479,9 @@
     <None Include="Resources\ExtendingStudentListTemplate.xls" />
     <None Include="Resources\ExtendingStudentUpdateRecordListTemplate.xls" />
     <None Include="Resources\GraduatingStudentListTemplate.xls" />
-    <None Include="Resources\JHSchoolList.xml" />
+    <None Include="Resources\JHSchoolList.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\StudentUpdateRecordListTemplate.xls" />
     <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xls" />
   </ItemGroup>
