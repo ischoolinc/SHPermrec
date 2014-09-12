@@ -235,5 +235,34 @@ namespace UpdateRecordModule_KHSH_D
             }
             return retVal;
         }
+
+        /// <summary>
+        /// 取得學生入學日期
+        /// </summary>
+        /// <param name="StudentIDList"></param>
+        /// <returns></returns>
+        public static Dictionary<string, DateTime> GetStudEnrollDateByStudentIDs(List<string> StudentIDList)
+        {
+            Dictionary<string, DateTime> retVal = new Dictionary<string, DateTime>();
+            if (StudentIDList.Count > 0)
+            {
+                QueryHelper qh = new QueryHelper();
+                string strSQL = "select ref_student_id as sid,max(update_date)  as date from update_record where  cast(update_code as int )<200 and ref_student_id in(" + string.Join(",", StudentIDList.ToArray()) + ")  group by ref_student_id";
+                DataTable dt = qh.Select(strSQL);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string sid = dr["sid"].ToString();
+                    if (!retVal.ContainsKey(sid))
+                    {
+                        DateTime dte;
+                        if (DateTime.TryParse(dr["date"].ToString(), out dte))
+                        {
+                            retVal.Add(sid, dte);
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
     }
 }

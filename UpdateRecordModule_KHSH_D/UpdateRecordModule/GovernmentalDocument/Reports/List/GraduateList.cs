@@ -71,6 +71,25 @@ namespace UpdateRecordModule_KHSH_D.GovernmentalDocument.Reports.List
                         tmpElmList[gStr][dStr].Add(elmE);
                     }
                 }
+
+                List<string> sidList = new List<string>();
+
+                foreach (string gS in tmpElmList.Keys)
+                {
+                    foreach (KeyValuePair<string, List<XElement>> data in tmpElmList[gS])
+                    {
+                        // 取得入學學年                        
+                        foreach (XElement elmE in data.Value)
+                        {
+                            sidList.Add(utility.GetXMLAttributeStr(elmE, "學生編號"));
+                        }
+                    }
+                }
+
+                // 入學年月索引
+                Dictionary<string, DateTime> NDateDict = utility.GetStudEnrollDateByStudentIDs(sidList);
+                
+
                 foreach (string gS in tmpElmList.Keys)
                 {
 
@@ -91,6 +110,7 @@ namespace UpdateRecordModule_KHSH_D.GovernmentalDocument.Reports.List
 
                         int sp_count = 0, PageCount = 1;
 
+                    
                         foreach (XElement elmE in data.Value)
                         {
                             if (sp_count > PageMaxStudent)
@@ -111,6 +131,8 @@ namespace UpdateRecordModule_KHSH_D.GovernmentalDocument.Reports.List
                             }
                             wst.Cells.CreateRange(rowIdx, 1, false).Copy(R_Line);
 
+                            string sid = utility.GetXMLAttributeStr(elmE, "學生編號");
+
                             // 學號
                             wst.Cells[rowIdx, 0].PutValue(utility.GetXMLAttributeStr(elmE, "學號"));
                             // 姓名
@@ -129,6 +151,25 @@ namespace UpdateRecordModule_KHSH_D.GovernmentalDocument.Reports.List
                                 }
                             }
 
+                            // 入學年月
+                            if (NDateDict.ContainsKey(sid))
+                            {
+                                wst.Cells[rowIdx, 6].PutValue(NDateDict[sid].Year - 1911);
+                                wst.Cells[rowIdx, 7].PutValue(NDateDict[sid].Month);
+                            }
+
+
+                            // 畢業年月,取得這筆異業異動日期，取年-1911
+                            DateTime dtG;
+                            if (DateTime.TryParse(utility.GetXMLAttributeStr(elmE, "異動日期"),out dtG))
+                            {
+                                // 畢業年
+                                wst.Cells[rowIdx, 8].PutValue(dtG.Year - 1911);
+
+                                // 畢業月
+                                wst.Cells[rowIdx, 9].PutValue(dtG.Month);
+                            }
+                            
 
                             // 畢業證書字號
                             wst.Cells[rowIdx, 10].PutValue(utility.GetXMLAttributeStr(elmE, "畢業證書字號"));
