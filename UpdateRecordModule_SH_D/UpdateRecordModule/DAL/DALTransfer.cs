@@ -34,11 +34,18 @@ namespace UpdateRecordModule_SH_D.DAL
         /// <returns></returns>
         public static List<string> GetClassTypeList()
         {
-            List<string> retValue = new List<string> ();         
-                retValue.Add("1-日間部");
-                retValue.Add("3-實用技能班");
-                retValue.Add("4-建教班");
-                retValue.Add("7-重點產業班與台德菁英班");
+            List<string> retValue = new List<string> ();
+            retValue.Add("1-日間部");
+            retValue.Add("2-夜間部");
+            retValue.Add("3-實用技能學程");
+            retValue.Add("4-建教班");
+            retValue.Add("7-重點產業班/台德菁英班/雙軌旗艦訓練計畫專班");
+            retValue.Add("01-核定班");
+            retValue.Add("02-編制班");
+            retValue.Add("03-自給自足班");
+            retValue.Add("04-員工進修班");
+            retValue.Add("05-重點產業班");
+            retValue.Add("06-產業人力套案專班");
          
             return retValue;
         }

@@ -23,6 +23,7 @@ namespace UpdateRecordModule_KHSH_D.Batch
             bnsuer = new BatchNewStudUpdateRecManager();
             LoadDefaultData();
             _StudentIDList = new List<string>();
+            cbxClassType.DropDownWidth = 300;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

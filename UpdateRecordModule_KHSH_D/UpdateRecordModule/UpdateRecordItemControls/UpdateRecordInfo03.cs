@@ -33,7 +33,7 @@ namespace UpdateRecordModule_KHSH_D.UpdateRecordItemControls
             InitializeComponent();
             cbxGender.Items.Add("男");
             cbxGender.Items.Add("女");
-
+            cbxClass.DropDownWidth = 300;
             _UpdateRec = UpdateRec;
             _prlp = prlp;
             _UpdateCodeElms = UpdateCodeElms;

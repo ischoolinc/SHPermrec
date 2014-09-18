@@ -82,7 +82,7 @@ namespace UpdateRecordModule_SH_D.Batch
 
             // 班別
             cbxClassType.Items.AddRange(bnsuer.GetClassTypeList().ToArray());
-
+            cbxClassType.DropDownWidth = 300;
             
         }      
     }
