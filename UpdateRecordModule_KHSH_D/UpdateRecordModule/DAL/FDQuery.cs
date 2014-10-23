@@ -72,7 +72,7 @@ namespace UpdateRecordModule_KHSH_D.DAL
         {
             Dictionary<string, string> retVal = new Dictionary<string, string>();
             QueryHelper qh = new QueryHelper();
-            string strSQL="select student.student_number,student.status,student.id from student inner join update_record on student.id=update_record.ref_student_id where to_number(update_code,'999') between "+beginCode+" and "+endCode+";";
+            string strSQL = "select student.student_number,student.status,student.id from student inner join update_record on student.id=update_record.ref_student_id where student.status<>256 and update_code<>'' and to_number(update_code,'999') between " + beginCode + " and " + endCode + ";";
             DataTable dt = qh.Select(strSQL);
             foreach (DataRow dr in dt.Rows)
             {
