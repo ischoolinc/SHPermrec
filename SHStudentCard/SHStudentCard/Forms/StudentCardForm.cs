@@ -41,6 +41,9 @@ namespace SHStudentCard.Forms
         // 畢業照片
         Dictionary<string, string> _PhotoGDict = new Dictionary<string, string>();
 
+        // 班級名稱
+        Dictionary<string, SHClassRecord> _ClassRecDict = new Dictionary<string, SHClassRecord>();
+
 
         DataTable _DataTable;
 
@@ -66,6 +69,7 @@ namespace SHStudentCard.Forms
             _DataTable.Columns.Add("學校名稱");
             _DataTable.Columns.Add("科別");
             _DataTable.Columns.Add("學號");
+            _DataTable.Columns.Add("班級");
             _DataTable.Columns.Add("姓名");
             _DataTable.Columns.Add("英文姓名");
             _DataTable.Columns.Add("性別");
@@ -163,6 +167,8 @@ namespace SHStudentCard.Forms
             Document doc = new Document();
             doc.Sections.Clear();            
 
+            
+
             // 取得資料
             _StudentRecDict.Clear();
             foreach (SHStudentRecord rec in SHStudent.SelectByIDs(_StudentIDList))
@@ -188,6 +194,10 @@ namespace SHStudentCard.Forms
             foreach (SHAddressRecord rec in SHAddress.SelectByStudentIDs(_StudentIDList))
                 _AddressRecDict.Add(rec.RefStudentID, rec);
 
+            _ClassRecDict.Clear();
+            foreach (SHClassRecord rec in SHClass.SelectAll())
+                _ClassRecDict.Add(rec.ID, rec);
+
             // 學校名稱
             string SchoolName = K12.Data.School.ChineseName;
 
@@ -206,6 +216,11 @@ namespace SHStudentCard.Forms
                     else
                         row["科別"] = "";
                     row["學號"] = _StudentRecDict[StudID].StudentNumber;
+
+                    // 處理班級                    
+                    if (_ClassRecDict.ContainsKey(_StudentRecDict[StudID].RefClassID))
+                        row["班級"] = _ClassRecDict[_StudentRecDict[StudID].RefClassID].Name;
+
                     row["條碼"] = _StudentRecDict[StudID].StudentNumber;
                     row["姓名"] = _StudentRecDict[StudID].Name;
                     row["英文姓名"] = _StudentRecDict[StudID].EnglishName;

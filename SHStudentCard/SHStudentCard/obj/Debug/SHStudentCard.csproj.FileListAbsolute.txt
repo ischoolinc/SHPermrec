@@ -9,3 +9,10 @@ D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudent
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\GenerateResource.write.1.tlog
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.dll
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.pdb
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\bin\debug\SHStudentCard.dll
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\bin\debug\SHStudentCard.pdb
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.Forms.StudentCardForm.resources
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.Properties.Resources.resources
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.csproj.GenerateResource.Cache
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.dll
+D:\GitProjModules\ischoolDesktop\SHPermrec\SHStudentCard\SHStudentCard\obj\Debug\SHStudentCard.pdb
