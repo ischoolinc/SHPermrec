@@ -260,7 +260,7 @@ namespace UpdateRecordModule_SH_D
 
                     // 檢查是否有畢業異動
                     List<SHUpdateRecordRecord> UpRec05List = (from data in SHUpdateRecord.SelectByStudentID(_StudentID) where int.Parse(data.UpdateCode) > 500 select data).ToList();
-                    if (UpRec05List.Count > 0 && codeInt >500)
+                    if (UpRec05List.Count > 0 && codeInt ==501)
                         if (FISCA.Presentation.Controls.MsgBox.Show("已有" + UpRec01List.Count + "筆畢業異動，是否覆蓋", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                             SHUpdateRecord.Delete(UpRec05List);
                         else

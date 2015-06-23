@@ -60,6 +60,14 @@ namespace UpdateRecordModule_SH_D.BL
                     case "轉入學生名冊":
                         rptBuild = new TransferringStudentUpdateRecordList();
                         break;
+
+                    case "新生保留錄取資格名冊":
+                        rptBuild = new RetaintoStudentList();
+                        break;
+
+                    case "借讀學生名冊":
+                        rptBuild= new TemporaryStudentList();
+                        break;
                 }
                 return rptBuild;
           
