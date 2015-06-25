@@ -167,7 +167,7 @@
     <Reference Include="SHSchool.Data, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\SHSchool.Data.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SmartSchool.API.PlugIn, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -486,6 +486,7 @@
     </None>
     <None Include="Resources\RetaintoStudentListTemplate.xls" />
     <None Include="Resources\StudentUpdateRecordListTemplate.xls" />
+    <None Include="Resources\TemporaryStudentListTemplate.xls" />
     <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xls" />
   </ItemGroup>
   <ItemGroup>

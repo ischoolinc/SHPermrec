@@ -141,6 +141,13 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.GradeYear = rec.GradeYear;
                 studUrec.Gender = rec.Gender;
 
+                studUrec.Code7SchoolCode = rec.Code7SchoolCode;
+                studUrec.Code7DeptCode = rec.Code7DeptCode;
+                studUrec.Code71BeginDate = rec.Code71BeginDate;
+                studUrec.Code71EndDate = rec.Code71EndDate;
+                studUrec.Code72BeginDate = rec.Code72BeginDate;
+                studUrec.Code72EndDate = rec.Code72EndDate;
+
                 if (rec.Gender == "男")
                     studUrec.GenderCode = "1";
                 else if (rec.Gender == "女")
@@ -399,6 +406,13 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "應畢業學年度":
                                 studUpdateRec.ExpectGraduateSchoolYear = val.Value;
                                 break;
+
+                            case "借讀學校代碼": studUpdateRec.Code7SchoolCode = val.Value; break;
+                            case "借讀科別代碼": studUpdateRec.Code7DeptCode = val.Value; break;
+                            case "申請開始日期": studUpdateRec.Code71BeginDate = val.Value; break;
+                            case "申請結束日期": studUpdateRec.Code71EndDate= val.Value; break;
+                            case "實際開始日期": studUpdateRec.Code72BeginDate = val.Value; break;
+                            case "實際結束日期": studUpdateRec.Code72EndDate = val.Value; break;
                                 
                         }
                     }
@@ -553,6 +567,13 @@ namespace UpdateRecordModule_SH_D.DAL
 
                     elm.SetAttributeValue("應畢業學年度", rec.ExpectGraduateSchoolYear);
 
+                    elm.SetAttributeValue("借讀學校代碼", rec.Code7SchoolCode);
+                    elm.SetAttributeValue("借讀科別代碼", rec.Code7DeptCode);
+                    elm.SetAttributeValue("申請開始日期", rec.Code71BeginDate);
+                    elm.SetAttributeValue("申請結束日期", rec.Code71EndDate);
+                    elm.SetAttributeValue("實際開始日期", rec.Code72BeginDate);
+                    elm.SetAttributeValue("實際結束日期", rec.Code72EndDate);
+
                     elmGrDept.Add(elm);
                 }
                 retVal.Add(elmGrDept);
@@ -661,6 +682,8 @@ namespace UpdateRecordModule_SH_D.DAL
             _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊);
             _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊);
             _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊);
+            _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊);
+            _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊);
 
            
 
@@ -821,7 +844,26 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 // 應畢業學年度
                  val.ExpectGraduateSchoolYear = Record.GetAttribute("應畢業學年度");
-                 retVal.Add(val);
+
+                 // 借讀學校代碼
+                 val.Code7SchoolCode= Record.GetAttribute("借讀學校代碼");
+
+                 // 借讀科別代碼
+                 val.Code7DeptCode = Record.GetAttribute("借讀科別代碼");
+
+                 // 申請開始日期
+                 val.Code71BeginDate = Record.GetAttribute("申請開始日期");
+
+                 // 申請結束日期
+                 val.Code71EndDate = Record.GetAttribute("申請結束日期");
+
+                 // 實際開始日期
+                 val.Code72BeginDate = Record.GetAttribute("實際開始日期");
+
+                 // 實際結束日期
+                 val.Code72EndDate = Record.GetAttribute("實際結束日期");
+                    
+                 retVal.Add(val);                
             }
 
             // 解析科別代碼用

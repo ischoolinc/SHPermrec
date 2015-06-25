@@ -313,6 +313,16 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
+        internal static byte[] TemporaryStudentListTemplate {
+            get {
+                object obj = ResourceManager.GetObject("TemporaryStudentListTemplate", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
         internal static byte[] TransferringStudentUpdateRecordListTemplate {
             get {
                 object obj = ResourceManager.GetObject("TransferringStudentUpdateRecordListTemplate", resourceCulture);
