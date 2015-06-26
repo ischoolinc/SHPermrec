@@ -46,8 +46,12 @@ namespace UpdateRecordModule_SH_D.ImportExport
             _ExportList.Add("核准文號");
             _ExportList.Add("應畢業學年度");
             _ExportList.Add("更正後身分證註記");
-
-
+            _ExportList.Add("借讀學校代碼");
+            _ExportList.Add("借讀科別代碼");
+            _ExportList.Add("申請開始日期");
+            _ExportList.Add("申請結束日期");
+            _ExportList.Add("實際開始日期");
+            _ExportList.Add("實際結束日期");
             _ExportList.Add("狀態");
         }
         public override void InitializeExport(SmartSchool.API.PlugIn.Export.ExportWizard wizard)
@@ -101,6 +105,12 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 case "備查文號": row.Add(field, rec.LastADNumber); break;
                                 case "核准日期": row.Add(field, rec.ADDate); break;
                                 case "核准文號": row.Add(field, rec.ADNumber); break;
+                                case "借讀學校代碼": row.Add(field, rec.Code7SchoolCode); break;
+                                case "借讀科別代碼": row.Add(field, rec.Code7DeptCode); break;
+                                case "申請開始日期": row.Add(field, rec.Code71BeginDate); break;
+                                case "申請結束日期": row.Add(field, rec.Code71EndDate); break;
+                                case "實際開始日期": row.Add(field, rec.Code72BeginDate); break;
+                                case "實際結束日期": row.Add(field, rec.Code72EndDate); break;
                                 case "狀態":
                                     if (StudentStatusDict.ContainsKey(rec.StudentID))
                                         row.Add(field, StudentStatusDict[rec.StudentID]); break;
