@@ -164,10 +164,13 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
 
         private void cbxUpdateCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string code = cbxUpdateCode.Text.Substring(0, 3);
-            cbxUpdateCode.Items.Add(code);
-            cbxUpdateCode.Text = code;
-            SettxtGradeComment();
+            if (cbxUpdateCode.Text.Length >= 3)
+            {
+                string code = cbxUpdateCode.Text.Substring(0, 3);
+                cbxUpdateCode.Items.Add(code);
+                cbxUpdateCode.Text = code;
+                SettxtGradeComment();
+            }
         }
 
         private void SettxtGradeComment()

@@ -359,7 +359,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("班別"));
                 mdws.Cells[mdws_index, 1].PutValue((record.ParentNode as XmlElement).GetAttribute("科別代號"));
                 mdws.Cells[mdws_index, 2].PutValue("");
-                mdws.Cells[mdws_index, 3].PutValue("學號");
+                mdws.Cells[mdws_index, 3].PutValue(record.GetAttribute("學號"));
                 mdws.Cells[mdws_index, 4].PutValue(record.GetAttribute("姓名"));
                 mdws.Cells[mdws_index, 5].PutValue(record.GetAttribute("身分證號"));
                 mdws.Cells[mdws_index, 6].PutValue(record.GetAttribute("註1"));
@@ -369,9 +369,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 10].PutValue(record.GetAttribute("年級"));
                 mdws.Cells[mdws_index, 11].PutValue(record.GetAttribute("借讀學校代碼"));
                 mdws.Cells[mdws_index, 12].PutValue(record.GetAttribute("借讀科別代碼"));
-                mdws.Cells[mdws_index, 13].PutValue(ParseCDate2(record.GetAttribute("申請開始日期")));
-                mdws.Cells[mdws_index, 14].PutValue(ParseCDate2(record.GetAttribute("申請結束日期")));
-                mdws.Cells[mdws_index, 15].PutValue(record.GetAttribute("異動代碼"));                
+                mdws.Cells[mdws_index, 13].PutValue(record.GetAttribute("異動代碼"));
+                mdws.Cells[mdws_index, 14].PutValue(ParseCDate2(record.GetAttribute("申請開始日期")));
+                mdws.Cells[mdws_index, 15].PutValue(ParseCDate2(record.GetAttribute("申請結束日期")));                
                 mdws.Cells[mdws_index, 16].PutValue(record.GetAttribute("備註"));
             }
 
