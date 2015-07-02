@@ -56,6 +56,14 @@ namespace UpdateRecordModule_KHSH_D.BL
                     case "延修學生名冊":
                         rptBuild = new ExtendingStudentList();
                         break;
+
+                    case "新生保留錄取資格名冊":
+                        rptBuild = new RetaintoStudentList();
+                        break;
+
+                    case "借讀學生名冊":
+                        rptBuild = new TemporaryStudentList();
+                        break;
                 }
                 return rptBuild;          
         }

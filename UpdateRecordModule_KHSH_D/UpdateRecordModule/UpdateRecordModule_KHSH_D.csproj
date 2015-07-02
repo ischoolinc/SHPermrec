@@ -278,7 +278,9 @@
     <Compile Include="GovernmentalDocument\Reports\List\IReportBuilder.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\ReportBuilder.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\ReportTemplate.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\RetaintoStudentList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\rpt_UpdateRecord.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\TemporaryStudentList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\TransferExportList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\TransferImport1List.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\TransferImport2List.cs" />
@@ -311,7 +313,11 @@
     <Compile Include="ImportExport\ImportTransferList.cs" />
     <Compile Include="ImportExport\ImportUpdateRecCode100.cs" />
     <Compile Include="ImportExport\ImportUtil.cs" />
-    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UpdateRecordItemControls\IUpdateRecordInfo.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="PermRecLogProcess.cs" />
@@ -416,7 +422,10 @@
     <EmbeddedResource Include="ImportExport\ImportStudentV2.resx">
       <DependentUpon>ImportStudentV2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateRecordItem.resx">
       <DependentUpon>UpdateRecordItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -455,6 +464,8 @@
     <None Include="Resources\JHSchoolList.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\RetaintoStudentListTemplate.xls" />
+    <None Include="Resources\TemporaryStudentListTemplate.xls" />
     <None Include="Resources\TransferExportTemplate.xls" />
     <None Include="Resources\TransferImport1Template.xls" />
     <None Include="Resources\TransferImport2Template.xls" />
@@ -528,6 +539,7 @@
     <Content Include="Resources\btnItemNameList.Image.png" />
     <Content Include="Resources\demographic_reload_64.png" />
     <Content Include="Resources\error.ico" />
+    <Content Include="Resources\SHSchoolList.xml" />
     <Content Include="Resources\warning.ico" />
     <None Include="Resources\history_save_64.png" />
   </ItemGroup>

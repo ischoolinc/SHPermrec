@@ -12,7 +12,7 @@ namespace UpdateRecordModule_KHSH_D.DAL
     /// </summary>
     public class StudUpdateRecBatchCreator
     {
-        public enum UpdateRecBatchType { 新生名冊, 畢業名冊, 轉學生入學名冊, 復學生名冊, 轉出學生名冊, 延修學生名冊}
+        public enum UpdateRecBatchType { 新生名冊, 畢業名冊, 轉學生入學名冊, 復學生名冊, 轉出學生名冊, 延修學生名冊, 新生保留錄取資格名冊, 借讀學生名冊 }
 
         private UpdateRecBatchType _UpdateRecBatchType;
         private List<BL.StudUpdateRecDoc> _StudUpdateRecDocList;        
@@ -36,6 +36,20 @@ namespace UpdateRecordModule_KHSH_D.DAL
             List<string> ExtendCodeList = new List<string>();
             ExtendCodeList.Add("235");
             ExtendCodeList.Add("236");
+
+            // 新生保留代碼
+            List<string> chkCodeList1 = new List<string>();
+            chkCodeList1.Add("601");
+            chkCodeList1.Add("602");
+            chkCodeList1.Add("603");
+            chkCodeList1.Add("604");
+
+            // 借讀代碼
+            List<string> chkCodeList2 = new List<string>();
+            chkCodeList2.Add("701");
+            chkCodeList2.Add("702");
+            chkCodeList2.Add("703");
+
 
             // 取得異動代碼資料
             XElement elms = DAL.DALTransfer.GetUpdateCodeList();
@@ -81,6 +95,17 @@ namespace UpdateRecordModule_KHSH_D.DAL
                     // 規則：只取得異動代碼為延修且年級是延修生。
                     CodeList = (from elm in elms.Elements("異動") where ExtendCodeList.Contains(elm.Element("代號").Value) select elm.Element("代號").Value).ToList();
                     updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where StudentIDList.Contains(data.StudentID) && data.GradeYear == "延修生" && data.ADNumber.Trim() == "" select data).ToList();
+                    break;
+
+                case UpdateRecBatchType.新生保留錄取資格名冊:
+                    CodeList = (from elm in elms.Elements("異動") where chkCodeList1.Contains(elm.Element("代號").Value) select elm.Element("代號").Value).ToList();
+                    updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where StudentIDList.Contains(data.StudentID) && data.GradeYear != "延修生" && data.ADNumber.Trim() == "" select data).ToList();
+                    break;
+
+
+                case UpdateRecBatchType.借讀學生名冊:
+                    CodeList = (from elm in elms.Elements("異動") where chkCodeList2.Contains(elm.Element("代號").Value) select elm.Element("代號").Value).ToList();
+                    updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where StudentIDList.Contains(data.StudentID) && data.GradeYear != "延修生" && data.ADNumber.Trim() == "" select data).ToList();
                     break;
             }
 

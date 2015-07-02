@@ -39,7 +39,9 @@ namespace UpdateRecordModule_KHSH_D.GovernmentalDocument
                 NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.復學生名冊);
                 NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊);
                 NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修學生名冊);
-                
+                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊);
+                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊);
+
          
 
             foreach (DAL.StudUpdateRecBatchCreator.UpdateRecBatchType item in NameList)

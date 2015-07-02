@@ -25,7 +25,8 @@ namespace UpdateRecordModule_KHSH_D
         private actMode _actMode;
         private string _StudentID;
         bool _checkSave = false;
-
+        
+        public bool _chkLoadForm = true;
         // Log
         private UpdateRecordModule_KHSH_D.PermRecLogProcess _prlp;
 
@@ -86,16 +87,24 @@ namespace UpdateRecordModule_KHSH_D
                 cbxSel.Enabled = false;
                 UpdateRecordEditorPanle.Controls.Clear();
                 
-                UserControl ui = CreateByUpdateCode();                
-                UpdateRecordEditorPanle.Controls.Add(ui);
-                UpdateRecordEditorPanle.Size = ui.Size;
-                Size s1 = new System.Drawing.Size();
-                s1 = this.Size;
-                s1.Height = ui.Size.Height + 120;
-                this.Size = s1;
-                
-                // 加入 log
-                _prlp.SetAction("修改");
+                UserControl ui = CreateByUpdateCode();
+                if (ui != null)
+                {
+                    UpdateRecordEditorPanle.Controls.Add(ui);
+                    UpdateRecordEditorPanle.Size = ui.Size;
+                    Size s1 = new System.Drawing.Size();
+                    s1 = this.Size;
+                    s1.Height = ui.Size.Height + 120;
+                    this.Size = s1;
+
+                    // 加入 log
+                    _prlp.SetAction("修改");
+                }
+                else
+                {
+                    FISCA.Presentation.Controls.MsgBox.Show("無法解析異動代碼");
+                    this.Close();
+                }
             }
 
             // 加入 log
@@ -166,28 +175,28 @@ namespace UpdateRecordModule_KHSH_D
         
         public UserControl CreateByUpdateCode()            
         {
-            // 初始化資料
-            string strSchoolYear = string.Empty, strSemester = string.Empty, strUpdateType = string.Empty;
-            if (_StudUpdateRec.SchoolYear.HasValue)
-                strSchoolYear = _StudUpdateRec.SchoolYear.Value.ToString();
-            if (_StudUpdateRec.Semester.HasValue)
-                strSemester = _StudUpdateRec.Semester.Value.ToString();
-            
 
-            
-            // 設定畫面上學年度學期年級資料
-            SetLoadUpdateSchoolYearSemester(strSchoolYear, strSemester,_StudUpdateRec.GradeYear);
+            _chkLoadForm = true;
+            try
+            {
 
-            // 用異動代碼判斷是哪種異動
-            string UpdateType=string.Empty;
-            List<string> xx = (from elm in _UpdateCode.Elements("異動") where elm.Element("代號").Value == _StudUpdateRec.UpdateCode select elm.Element("分類").Value ).ToList();
-            if (xx.Count > 0)
-                UpdateType = xx[0];            
+                // 初始化資料
+                string strSchoolYear = string.Empty, strSemester = string.Empty, strUpdateType = string.Empty;
+                if (_StudUpdateRec.SchoolYear.HasValue)
+                    strSchoolYear = _StudUpdateRec.SchoolYear.Value.ToString();
+                if (_StudUpdateRec.Semester.HasValue)
+                    strSemester = _StudUpdateRec.Semester.Value.ToString();
 
-            // 001-新生
-            List<XElement> UpdateCodeElms = (from elm in _UpdateCode.Elements("異動") where elm.Element("分類").Value == UpdateType select elm).ToList();
-            if (_StudUpdateRec == null)
-                _StudUpdateRec = _DefStudUpdateRec;
+                // 設定畫面上學年度學期年級資料
+                SetLoadUpdateSchoolYearSemester(strSchoolYear, strSemester, _StudUpdateRec.GradeYear);
+
+                // 用異動代碼判斷是哪種異動
+                string UpdateType = utility.GetUpdateTypeByCode(_StudUpdateRec.UpdateCode);
+                
+                // 001-新生
+                List<XElement> UpdateCodeElms = (from elm in _UpdateCode.Elements("異動") where elm.Element("分類").Value == UpdateType select elm).ToList();
+                if (_StudUpdateRec == null)
+                    _StudUpdateRec = _DefStudUpdateRec;
 
 
                 if (UpdateType == "學籍異動")
@@ -212,8 +221,15 @@ namespace UpdateRecordModule_KHSH_D
                 }
                 else
                     return null;
+            }
+            catch (Exception ex)
+            {
+                FISCA.Presentation.Controls.MsgBox.Show("解析異動代碼錯誤，" + ex.Message);
+                _chkLoadForm = false;
+
+                return null;
+            }
             
-           
         }
         private void cbxSel_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -250,17 +266,26 @@ namespace UpdateRecordModule_KHSH_D
                 if(_StudUpdateRec!=null)
                 if (int.TryParse(_StudUpdateRec.UpdateCode, out codeInt) && _actMode== actMode.新增)
                 {
+                    int icode;
+                    List<SHUpdateRecordRecord> UpRec01List = new List<SHUpdateRecordRecord>();
                     // 檢查是否有新生異動
-                    List<SHUpdateRecordRecord> UpRec01List = (from data in SHUpdateRecord.SelectByStudentID(_StudentID) where int.Parse(data.UpdateCode) < 100 select data).ToList();
-                    if (UpRec01List.Count > 0 && codeInt<100)
+                    foreach (SHUpdateRecordRecord rec in SHUpdateRecord.SelectByStudentID(_StudentID))
+                    {
+                        if (int.TryParse(rec.UpdateCode, out icode))
+                        {
+                            if (icode > 0 && icode < 100)
+                                UpRec01List.Add(rec);
+                        }
+                    }
+                    if (UpRec01List.Count > 0 && codeInt < 100)
                         if (FISCA.Presentation.Controls.MsgBox.Show("已有" + UpRec01List.Count + "筆新生異動，是否覆蓋", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                             SHUpdateRecord.Delete(UpRec01List);
                         else
                             return;
 
                     // 檢查是否有畢業異動
-                    List<SHUpdateRecordRecord> UpRec05List = (from data in SHUpdateRecord.SelectByStudentID(_StudentID) where int.Parse(data.UpdateCode) > 500 select data).ToList();
-                    if (UpRec05List.Count > 0 && codeInt >500)
+                    List<SHUpdateRecordRecord> UpRec05List = (from data in SHUpdateRecord.SelectByStudentID(_StudentID) where data.UpdateCode == "501" select data).ToList();
+                    if (UpRec05List.Count > 0 && codeInt == 501)
                         if (FISCA.Presentation.Controls.MsgBox.Show("已有" + UpRec01List.Count + "筆畢業異動，是否覆蓋", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                             SHUpdateRecord.Delete(UpRec05List);
                         else
