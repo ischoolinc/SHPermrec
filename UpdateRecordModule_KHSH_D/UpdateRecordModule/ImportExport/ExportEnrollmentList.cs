@@ -95,7 +95,7 @@ namespace UpdateRecordModule_KHSH_D.ImportExport
                             case "畢業國中": row.Add(field, rec.GraduateSchool); break;
                             case "畢業國中所在地代碼": row.Add(field, rec.GraduateSchoolLocationCode); break;
                             case "畢業國中學校代碼": row.Add(field, rec.GraduateSchoolCode); break;
-                            case "畢業國中畢業學年度": row.Add(field, rec.GraduateSchoolYear); break;
+                            case "國中畢業學年度": row.Add(field, rec.GraduateSchoolYear); break;
                             case "畢業國中入學資格註記": row.Add(field, rec.GraduateComment); break;
                             case "核准日期": row.Add(field, rec.ADDate); break;
                             case "核准文號": row.Add(field, rec.ADNumber); break;
