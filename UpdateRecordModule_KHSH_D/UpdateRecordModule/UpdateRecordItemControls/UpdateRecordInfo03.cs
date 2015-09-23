@@ -28,7 +28,7 @@ namespace UpdateRecordModule_KHSH_D.UpdateRecordItemControls
         /// <summary>
         /// 新生異動
         /// </summary>
-        public UpdateRecordInfo03(SHUpdateRecordRecord UpdateRec, PermRecLogProcess prlp, List<XElement> UpdateCodeElms)
+        public UpdateRecordInfo03(SHUpdateRecordRecord UpdateRec, PermRecLogProcess prlp, List<XElement> UpdateCodeElms,bool isInsert)
         {
             InitializeComponent();
             cbxGender.Items.Add("男");
@@ -45,51 +45,54 @@ namespace UpdateRecordModule_KHSH_D.UpdateRecordItemControls
 
             _faldn = new UpdateRecordModule_KHSH_D.Utility.FormAndLogDataManager(_prlp);
             
-            // 載入資料
-            // 載入預設前級畢業資訊
-            Dictionary<string, DAL.SchoolData> schoolDataDict = new Dictionary<string, DAL.SchoolData>();
-
-            foreach (XElement elm in BL.Get.JHSchoolList().Elements("學校"))
+            // 新增帶入預設
+            if(isInsert)
             {
-                DAL.SchoolData sd = new DAL.SchoolData();
-                sd.SchoolCode = elm.Attribute("代碼").Value;
-                sd.SchoolLocation = elm.Attribute("所在地").Value;
-                sd.SchoolName = elm.Attribute("名稱").Value;
-                sd.SchoolLocationCode = elm.Attribute("所在地代碼").Value;
-                if (sd.SchoolCode.Length > 3)
-                    sd.SchoolType = sd.SchoolCode.Substring(2, 1);
+                // 載入資料
+                // 載入預設前級畢業資訊
+                Dictionary<string, DAL.SchoolData> schoolDataDict = new Dictionary<string, DAL.SchoolData>();
 
-                string s1 = elm.Attribute("所在地").Value + elm.Attribute("名稱").Value;
-
-                if (!schoolDataDict.ContainsKey(s1))
-                    schoolDataDict.Add(s1, sd);
-
-                if (!schoolDataDict.ContainsKey(sd.SchoolName))
-                    schoolDataDict.Add(sd.SchoolName, sd);
-
-            }
-
-            SHBeforeEnrollmentRecord brfRec = SHBeforeEnrollment.SelectByStudentID(_UpdateRec.StudentID);
-
-            if (string.IsNullOrEmpty(_UpdateRec.GraduateSchool))
-                _UpdateRec.GraduateSchool = brfRec.School;
-            if (string.IsNullOrEmpty(_UpdateRec.GraduateSchoolYear))
-                _UpdateRec.GraduateSchoolYear = brfRec.GraduateSchoolYear;
-
-            // 用學校名稱解析
-            if (!string.IsNullOrEmpty(brfRec.School))
-            {
-                string key = brfRec.SchoolLocation.Replace("台", "臺") + brfRec.School.Trim();
-                if (schoolDataDict.ContainsKey(key))
+                foreach (XElement elm in BL.Get.JHSchoolList().Elements("學校"))
                 {
-                    if (string.IsNullOrEmpty(_UpdateRec.GraduateSchoolCode))
+                    DAL.SchoolData sd = new DAL.SchoolData();
+                    sd.SchoolCode = elm.Attribute("代碼").Value;
+                    sd.SchoolLocation = elm.Attribute("所在地").Value;
+                    sd.SchoolName = elm.Attribute("名稱").Value;
+                    sd.SchoolLocationCode = elm.Attribute("所在地代碼").Value;
+                    if (sd.SchoolCode.Length > 3)
+                        sd.SchoolType = sd.SchoolCode.Substring(2, 1);
+
+                    string s1 = elm.Attribute("所在地").Value + elm.Attribute("名稱").Value;
+
+                    if (!schoolDataDict.ContainsKey(s1))
+                        schoolDataDict.Add(s1, sd);
+
+                    if (!schoolDataDict.ContainsKey(sd.SchoolName))
+                        schoolDataDict.Add(sd.SchoolName, sd);
+
+                }
+
+                SHBeforeEnrollmentRecord brfRec = SHBeforeEnrollment.SelectByStudentID(_UpdateRec.StudentID);
+
+                if (string.IsNullOrEmpty(_UpdateRec.GraduateSchool))
+                    _UpdateRec.GraduateSchool = brfRec.School;
+                if (string.IsNullOrEmpty(_UpdateRec.GraduateSchoolYear))
+                    _UpdateRec.GraduateSchoolYear = brfRec.GraduateSchoolYear;
+
+                // 用學校名稱解析
+                if (!string.IsNullOrEmpty(brfRec.School))
+                {
+                    string key = brfRec.SchoolLocation.Replace("台", "臺") + brfRec.School.Trim();
+                    if (schoolDataDict.ContainsKey(key))
                     {
-                        _UpdateRec.GraduateSchoolCode = schoolDataDict[key].SchoolCode;
-                        _UpdateRec.GraduateSchoolLocationCode = schoolDataDict[key].SchoolLocationCode;
+                        if (string.IsNullOrEmpty(_UpdateRec.GraduateSchoolCode))
+                        {
+                            _UpdateRec.GraduateSchoolCode = schoolDataDict[key].SchoolCode;
+                            _UpdateRec.GraduateSchoolLocationCode = schoolDataDict[key].SchoolLocationCode;
+                        }
                     }
                 }
-            }
-            
+            }            
 
             cbxUpdateCode = _faldn.SetFormData(_UpdateRec.UpdateCode, cbxUpdateCode, "資格代碼");
             txtDesc = _faldn.SetFormData(_UpdateRec.UpdateDescription, txtDesc, "原因及事項");

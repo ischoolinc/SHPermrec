@@ -165,9 +165,20 @@ namespace UpdateRecordModule_KHSH_D
                 else if (FormUpdateType == "轉入異動")
                     return new UpdateRecordInfo02(_StudUpdateRec, _prlp, UpdateCodeElms);
                 else if (FormUpdateType == "新生異動")
-                    return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms);
+                {
+                    if(_actMode == actMode.新增)
+                        return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms, true);
+                    else
+                        return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms, false);
+                }
+                    
                 else if (FormUpdateType == "畢業異動")
-                    return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms);
+                {
+                    if(_actMode == actMode.新增)
+                        return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms,true);
+                    else
+                        return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms,false);
+                }                    
                 else
                     return null;
            
@@ -212,12 +223,18 @@ namespace UpdateRecordModule_KHSH_D
                 else if (UpdateType == "新生異動")
                 {
                     cbxSel.Text = "新生異動";
-                    return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms);
+                    if(_actMode == actMode.新增)
+                        return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms, true);
+                    else
+                        return new UpdateRecordInfo03(_StudUpdateRec, _prlp, UpdateCodeElms, false);
                 }
                 else if (UpdateType == "畢業異動")
                 {
                     cbxSel.Text = "畢業異動";
-                    return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms);
+                    if(_actMode == actMode.新增)
+                        return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms,true);
+                    else
+                        return new UpdateRecordInfo04(_StudUpdateRec, _prlp, UpdateCodeElms, false);
                 }
                 else
                     return null;

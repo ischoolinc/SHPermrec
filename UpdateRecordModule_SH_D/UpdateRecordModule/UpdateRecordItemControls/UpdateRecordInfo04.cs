@@ -29,7 +29,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         /// <summary>
         /// 畢業異動
         /// </summary>
-        public UpdateRecordInfo04(SHUpdateRecordRecord UpdateRec, PermRecLogProcess prlp, List<XElement> UpdateCodeElms)
+        public UpdateRecordInfo04(SHUpdateRecordRecord UpdateRec, PermRecLogProcess prlp, List<XElement> UpdateCodeElms,bool isInsert)
         {
             InitializeComponent();
             cbxGender.Items.Add("男");
@@ -47,19 +47,24 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _epUpdateCode = new ErrorProvider();
             _UCodeDict = Utility.UITool.ConvertUpdateCodeDescDict(_UpdateCodeElms);
 
-            //當畢業證書字號沒有值取得SHLeaveInfoRecord畢業證書字號
-            if (string.IsNullOrEmpty(_UpdateRec.GraduateCertificateNumber))
+        // 當新增帶入預設
+            if(isInsert)
             {
-                SHLeaveInfoRecord lvr = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
-                _UpdateRec.GraduateCertificateNumber = lvr.DiplomaNumber;
-            }
-            
-            if (string.IsNullOrEmpty(_UpdateRec.ExpectGraduateSchoolYear))
-            {
-                SHLeaveInfoRecord shl = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
-                if(shl.SchoolYear.HasValue)
-                    _UpdateRec.ExpectGraduateSchoolYear = shl.SchoolYear.Value.ToString();
-            }
+                //當畢業證書字號沒有值取得SHLeaveInfoRecord畢業證書字號
+                if (string.IsNullOrEmpty(_UpdateRec.GraduateCertificateNumber))
+                {
+                    SHLeaveInfoRecord lvr = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
+                    _UpdateRec.GraduateCertificateNumber = lvr.DiplomaNumber;
+                }
+
+                if (string.IsNullOrEmpty(_UpdateRec.ExpectGraduateSchoolYear))
+                {
+                    SHLeaveInfoRecord shl = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
+                    if (shl.SchoolYear.HasValue)
+                        _UpdateRec.ExpectGraduateSchoolYear = shl.SchoolYear.Value.ToString();
+                }
+            }         
+
 
             // 載入資料           
             cbxUpdateCode = _faldn.SetFormData(_UpdateRec.UpdateCode, cbxUpdateCode, "異動代碼");
