@@ -326,7 +326,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //實做頁面
             Worksheet DyWb = wb.Worksheets[wb.Worksheets.Add()];
             //名稱
-            DyWb.Name = "電子格式";
+            DyWb.Name = "異動名冊";
             //範圍
             Range range_H = TemplateWb.Cells.CreateRange(0, 1, false);
             Range range_R = TemplateWb.Cells.CreateRange(1, 1, false);
@@ -411,8 +411,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 // 註2
                 DyWb.Cells[DyWb_index, 18].PutValue(rec.Comment2);
 
+                //雙學籍編號  ，在 第19行，僅提供欄位，系統中無此資料，需使用者自行填值。
+
+
                 //備註說明
-                DyWb.Cells[DyWb_index, 19].PutValue(rec.Comment);
+                DyWb.Cells[DyWb_index, 20].PutValue(rec.Comment);
 
                 // 2011 新承辦單位修正，轉科讀取新學號
                 if (NewStudentNumberCodes.Contains(rec.UpdateCode))
