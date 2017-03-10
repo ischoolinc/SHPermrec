@@ -148,6 +148,8 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.Code72BeginDate = rec.Code72BeginDate;
                 studUrec.Code72EndDate = rec.Code72EndDate;
 
+                studUrec.ReplicatedSchoolRollNumber = rec.ReplicatedSchoolRollNumber;
+
                 if (rec.Gender == "男")
                     studUrec.GenderCode = "1";
                 else if (rec.Gender == "女")
@@ -413,6 +415,8 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "申請結束日期": studUpdateRec.Code71EndDate= val.Value; break;
                             case "實際開始日期": studUpdateRec.Code72BeginDate = val.Value; break;
                             case "實際結束日期": studUpdateRec.Code72EndDate = val.Value; break;
+
+                            case "雙重學籍編號": studUpdateRec.ReplicatedSchoolRollNumber = val.Value; break;
                                 
                         }
                     }
@@ -559,6 +563,9 @@ namespace UpdateRecordModule_SH_D.DAL
                     elm.SetAttributeValue("轉入前學生資料_備查日期", rec.PreviousSchoolLastADDate);
                     elm.SetAttributeValue("轉入前學生資料_備查文號", rec.PreviousSchoolLastADNumber);                    
                     elm.SetAttributeValue("入學資格證明文件", rec.GraduateDocument);
+
+                    elm.SetAttributeValue("雙重學籍編號", rec.ReplicatedSchoolRollNumber);
+
                     // 當他校轉入
                     if(rec.UpdateCode.Substring(0,1)=="1")
                         elm.SetAttributeValue("轉入身分別代碼", rec.Comment2);
@@ -862,7 +869,10 @@ namespace UpdateRecordModule_SH_D.DAL
 
                  // 實際結束日期
                  val.Code72EndDate = Record.GetAttribute("實際結束日期");
-                    
+
+                 //雙重學籍編號
+                 val.ReplicatedSchoolRollNumber = Record.GetAttribute("雙重學籍編號");
+                                    
                  retVal.Add(val);                
             }
 

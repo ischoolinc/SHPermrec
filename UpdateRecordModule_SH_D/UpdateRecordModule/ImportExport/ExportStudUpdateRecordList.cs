@@ -53,6 +53,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
             _ExportList.Add("實際開始日期");
             _ExportList.Add("實際結束日期");
             _ExportList.Add("狀態");
+            _ExportList.Add("雙重學籍編號");
         }
         public override void InitializeExport(SmartSchool.API.PlugIn.Export.ExportWizard wizard)
         {
@@ -105,6 +106,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 case "備查文號": row.Add(field, rec.LastADNumber); break;
                                 case "核准日期": row.Add(field, rec.ADDate); break;
                                 case "核准文號": row.Add(field, rec.ADNumber); break;
+                                case "雙重學籍編號": row.Add(field, rec.ReplicatedSchoolRollNumber); break;
                                 case "借讀學校代碼": row.Add(field, rec.Code7SchoolCode); break;
                                 case "借讀科別代碼": row.Add(field, rec.Code7DeptCode); break;
                                 case "申請開始日期": row.Add(field, rec.Code71BeginDate); break;

@@ -411,8 +411,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 // 註2
                 DyWb.Cells[DyWb_index, 18].PutValue(rec.Comment2);
 
-                //雙學籍編號  ，在 第19行，僅提供欄位，系統中無此資料，需使用者自行填值。
-
+                //雙學籍編號 
+                DyWb.Cells[DyWb_index, 19].PutValue(rec.ReplicatedSchoolRollNumber);
 
                 //備註說明
                 DyWb.Cells[DyWb_index, 20].PutValue(rec.Comment);

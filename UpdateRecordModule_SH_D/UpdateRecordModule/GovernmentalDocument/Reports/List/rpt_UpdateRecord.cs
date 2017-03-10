@@ -209,5 +209,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         /// 實際結束日期
         /// </summary>
         public string Code72EndDate { get; set; }
+
+
+        /// <summary>
+        /// 雙重學籍編號
+        /// </summary>
+        public string ReplicatedSchoolRollNumber { get; set; }
     }
 }

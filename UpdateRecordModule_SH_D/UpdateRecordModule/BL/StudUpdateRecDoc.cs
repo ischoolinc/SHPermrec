@@ -243,5 +243,10 @@ namespace UpdateRecordModule_SH_D.BL
         /// </summary>
         public string Code72EndDate { get; set; }
 
+        /// <summary>
+        /// 雙重學籍編號
+        /// </summary>
+        public string ReplicatedSchoolRollNumber { get; set; }
+
     }
 }

@@ -164,7 +164,7 @@
       <HintPath>Library\ReportHelper.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SHSchool.Data, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SHSchool.Data, Version=2.0.0.4, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\SHSchool.Data.dll</HintPath>
       <Private>False</Private>

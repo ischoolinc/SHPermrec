@@ -3006,6 +3006,11 @@
             借讀實際結束日期(借讀名冊)。
             </summary>
         </member>
+        <member name="P:SHSchool.Data.SHUpdateRecordRecord.ReplicatedSchoolRollNumber">
+            <summary>
+            雙重學籍編號。
+            </summary>
+        </member>
         <member name="T:SHSchool.Data.SHClassTag">
             <summary>
             班級標籤類別，提供方法用來取得、新增、修改及刪除班級標籤資訊

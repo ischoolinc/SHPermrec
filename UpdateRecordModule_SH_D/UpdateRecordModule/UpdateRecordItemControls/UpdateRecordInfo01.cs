@@ -120,6 +120,8 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             dtC71EndDate = _faldn.SetFormData(_UpdateRec.Code71EndDate, dtC71EndDate, "申請結束日期");
             dtC72BeginDate = _faldn.SetFormData(_UpdateRec.Code72BeginDate, dtC72BeginDate, "實際開始日期");
             dtC72EndDate = _faldn.SetFormData(_UpdateRec.Code72EndDate, dtC72EndDate, "實際結束日期");
+
+            txtReplicatedSchoolRollNumber = _faldn.SetFormData(_UpdateRec.ReplicatedSchoolRollNumber, txtReplicatedSchoolRollNumber, "雙重學籍編號");
         }       
 
         #region IUpdateRecordInfo 成員
@@ -165,6 +167,8 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.Code71EndDate = _faldn.GetFormData(dtC71EndDate, "申請結束日期");
             _UpdateRec.Code72BeginDate = _faldn.GetFormData(dtC72BeginDate, "實際開始日期");
             _UpdateRec.Code72EndDate = _faldn.GetFormData(dtC72EndDate, "實際結束日期");
+
+            _UpdateRec.ReplicatedSchoolRollNumber = _faldn.GetFormData(txtReplicatedSchoolRollNumber, "雙重學籍編號");
 
 
             // 取得 Log

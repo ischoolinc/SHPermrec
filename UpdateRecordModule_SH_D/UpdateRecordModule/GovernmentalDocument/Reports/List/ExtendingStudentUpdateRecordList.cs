@@ -268,7 +268,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                         Worksheet mingdao = wb.Worksheets[1];
             Worksheet mdws = wb.Worksheets[1];
-            mdws.Name = "電子格式";
+            mdws.Name = "研修生異動名冊";
 
             Range range_header = mingdao.Cells.CreateRange(0, 1, false);
             Range range_row = mingdao.Cells.CreateRange(1, 1, false);
@@ -354,8 +354,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 // 註2
                 mdws.Cells[mdws_index, 18].PutValue(rec.Comment2);
 
+                // 雙重學籍編號
+                mdws.Cells[mdws_index, 19].PutValue(rec.ReplicatedSchoolRollNumber);
+
                 //備註說明
-                mdws.Cells[mdws_index, 19].PutValue(rec.Comment);
+                mdws.Cells[mdws_index, 20].PutValue(rec.Comment);
 
             }
 

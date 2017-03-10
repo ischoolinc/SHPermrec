@@ -244,6 +244,11 @@ namespace UpdateRecordModule_SH_D.ImportExport
                         if (string.IsNullOrEmpty(ir.GetValue("核准日期")))
                             UpdateRec.ADDate = "";
                     }
+                    // 雙重學籍編號
+                    if (ir.Contains("雙重學籍編號"))
+                    {
+                        UpdateRec.ReplicatedSchoolRollNumber = ir.GetValue("雙重學籍編號");  
+                    }
                     // 核准文號
                     if (ir.Contains("核准文號"))
                         UpdateRec.ADNumber = ir.GetValue("核准文號");
@@ -404,6 +409,11 @@ namespace UpdateRecordModule_SH_D.ImportExport
 
                         if (string.IsNullOrEmpty(ir.GetValue("核准日期")))
                             UpdateRec.ADDate = "";
+                    }
+                    // 雙重學籍編號
+                    if (ir.Contains("雙重學籍編號"))
+                    {
+                        UpdateRec.ReplicatedSchoolRollNumber = ir.GetValue("雙重學籍編號");
                     }
                     // 核准文號
                     if (ir.Contains("核准文號") && mOption.SelectedFields.Contains("核准文號"))

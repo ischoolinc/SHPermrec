@@ -27,6 +27,7 @@ D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordM
 D:\GitProjModules\ischoolDesktop\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.pdb
 C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.dll
 C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\bin\Debug\UpdateRecordModule_SH_D.pdb
+C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.csprojResolveAssemblyReference.cache
 C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchGraduateRecForm.resources
 C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchGraduateRec_WarningForm.resources
 C:\Users\ED\Documents\ischool_github\SHPermrec\UpdateRecordModule_SH_D\UpdateRecordModule\obj\Debug\UpdateRecordModule_SH_D.Batch.BatchNewStudUpdateRecForm.resources

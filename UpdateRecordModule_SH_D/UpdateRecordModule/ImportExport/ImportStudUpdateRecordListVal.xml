@@ -57,7 +57,8 @@
     <Field Required="False" Name="申請開始日期" EmptyAlsoValidate="False"></Field>
     <Field Required="False" Name="申請結束日期" EmptyAlsoValidate="False"></Field>
     <Field Required="False" Name="實際開始日期" EmptyAlsoValidate="False"></Field>
-    <Field Required="False" Name="實際結束日期" EmptyAlsoValidate="False"></Field>
+    <Field Required="False" Name="實際結束日期" EmptyAlsoValidate="False"></Field>  
+    <Field Required="False" Name="雙重學籍編號" EmptyAlsoValidate="False"></Field>
   </FieldList>
   <ValidatorList>
     <FieldValidator Name="不可空白" Type="STRINGLENGTH">
