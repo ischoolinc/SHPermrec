@@ -284,6 +284,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 格式轉換
             List<GovernmentalDocument.Reports.List.rpt_UpdateRecord> _data = DALTranser.ConvertRptUpdateRecord(source);
 
+            // 整理封面的列數，能填的值盡量幫他填，剩下無法的 要請使用者自行填寫
+            //  <年級,<班別,科別>>
+            Dictionary<string, Dictionary<string, List<string>>> cover_row_dict = new Dictionary<string, Dictionary<string, List<string>>>();
+
             // 排序 (依 班別、年級、科別代碼、異動代碼)
             _data = (from data in _data orderby data.ClassType, data.DeptCode, data.UpdateCode select data).ToList();
 
@@ -360,6 +364,26 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 //備註說明
                 mdws.Cells[mdws_index, 20].PutValue(rec.Comment);
 
+                // 整理cover_row_dict
+
+                //年級
+                if (!cover_row_dict.ContainsKey(rec.GradeYear))
+                {
+                    cover_row_dict.Add(rec.GradeYear, new Dictionary<string, List<string>>());
+                }
+
+                //班別
+                if (!cover_row_dict[rec.GradeYear].ContainsKey(rec.ClassType))
+                {
+                    cover_row_dict[rec.GradeYear].Add(rec.ClassType, new List<string>());
+                }
+
+                //科別
+                if (!cover_row_dict[rec.GradeYear][rec.ClassType].Contains(rec.DeptCode))
+                {
+                    cover_row_dict[rec.GradeYear][rec.ClassType].Add(rec.DeptCode);
+                }
+
             }
 
             //foreach (XmlElement record in source.SelectNodes("清單/異動紀錄"))
@@ -397,6 +421,44 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //}
 
             mdws.AutoFitColumns();
+
+            //範本
+            Worksheet cover = wb.Worksheets["研修生異動名冊封面"];
+
+            string school_code = source.SelectSingleNode("@學校代號").InnerText;
+            string school_year = source.SelectSingleNode("@學年度").InnerText;
+            string school_semester = source.SelectSingleNode("@學期").InnerText;
+
+
+            int cover_row_counter = 1;
+
+            foreach (var gradeyear in cover_row_dict)
+            {
+                foreach (var classtype in gradeyear.Value)
+                {
+                    foreach (var deptcode in classtype.Value)
+                    {
+                        //學校代碼
+                        cover.Cells[cover_row_counter, 0].PutValue(school_code);
+                        //學年度
+                        cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                        //學期
+                        cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+                        //年級
+                        cover.Cells[cover_row_counter, 3].PutValue(gradeyear.Key);
+                        //名冊別 (異動名冊 固定為3)
+                        cover.Cells[cover_row_counter, 4].PutValue("3");
+                        //班別
+                        cover.Cells[cover_row_counter, 5].PutValue(classtype.Key);
+                        //科別代碼
+                        cover.Cells[cover_row_counter, 6].PutValue(deptcode);
+
+                        cover_row_counter++;
+                    }
+                }
+            }
+
+
             mdws.Cells.SetColumnWidth(5, 8.5);
             mdws.Cells.SetColumnWidth(11, 20);
                         
