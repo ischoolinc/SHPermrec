@@ -40,6 +40,7 @@ namespace UpdateRecordModule_SH_D.DAL
             retValue.Add("3-實用技能學程");
             retValue.Add("4-建教班");
             retValue.Add("7-重點產業班/台德菁英班/雙軌旗艦訓練計畫專班");
+            retValue.Add("8-建教僑生專班");
             retValue.Add("01-核定班");
             retValue.Add("02-編制班");
             retValue.Add("03-自給自足班");
