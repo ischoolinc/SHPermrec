@@ -565,7 +565,9 @@
     <Content Include="Resources\btnItemNameList.Image.png" />
     <Content Include="Resources\demographic_reload_64.png" />
     <Content Include="Resources\error.ico" />
-    <Content Include="Resources\SHSchoolList.xml" />
+    <Content Include="Resources\SHSchoolList.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\warning.ico" />
     <None Include="Resources\history_save_64.png" />
   </ItemGroup>

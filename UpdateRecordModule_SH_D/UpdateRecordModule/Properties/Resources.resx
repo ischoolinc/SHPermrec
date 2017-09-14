@@ -133,9 +133,6 @@
   <data name="GraduatingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\graduatingstudentlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="JHSchoolList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\JHSchoolList.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="StudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\studentupdaterecordlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -183,5 +180,8 @@
   </data>
   <data name="TemporaryStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\temporarystudentlisttemplate.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JHSchoolList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\jhschoollist.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

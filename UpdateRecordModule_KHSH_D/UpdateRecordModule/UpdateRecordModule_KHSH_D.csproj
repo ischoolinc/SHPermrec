@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{455D808A-0878-40C8-9B86-49B7F6305099}</ProjectGuid>
+    <ProjectGuid>{86AF88A8-C1F8-41AE-9013-57ED9A3F3DB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UpdateRecordModule_KHSH_D</RootNamespace>
