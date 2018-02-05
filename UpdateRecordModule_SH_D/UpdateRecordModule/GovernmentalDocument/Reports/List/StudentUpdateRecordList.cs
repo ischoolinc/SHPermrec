@@ -10,7 +10,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 {
     public class StudentUpdateRecordList : ReportBuilder
     {
-        List<string> UpdateDataCodes = new List<string>() {"401","402","403","404","405","407","408","409","499"};
+        List<string> UpdateDataCodes = new List<string>() { "401", "402", "403", "404", "405", "407", "408", "409", "499" };
         //List<string> NewStudentNumberCodes = new List<string>() { "211", "221", "222", "223", "224", "231", "232", "233", "234", "401" };
         List<string> NewStudentNumberCodes = new List<string>() { "211", "212", "221", "222", "223", "224", "225", "226", "231", "232", "233", "234", "237", "238", "239", "240", "241" };
         protected override void Build(System.Xml.XmlElement source, string location)
@@ -178,7 +178,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     //    wb.Worksheets[0].Cells[rowj, 1].PutValue(strNum);
                     //}
                     //else
-                        wb.Worksheets[0].Cells[rowj, 1].PutValue(st.SelectSingleNode("@學號").InnerText);
+                    wb.Worksheets[0].Cells[rowj, 1].PutValue(st.SelectSingleNode("@學號").InnerText);
 
                     wb.Worksheets[0].Cells[rowj, 3].PutValue(st.SelectSingleNode("@姓名").InnerText);
                     wb.Worksheets[0].Cells[rowj, 4].PutValue(st.SelectSingleNode("@身分證號").InnerText);
@@ -188,39 +188,39 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     //wb.Worksheets[0].Cells[rowj, 12].PutValue(st.SelectSingleNode("@原因及事項").InnerText + (string.IsNullOrEmpty(st.GetAttribute("更正後資料")) ? "" : "\n" + st.GetAttribute("更正後資料")));
 
                     string UpdateData = "";
-                    if (st.SelectSingleNode("@新資料")!=null)
+                    if (st.SelectSingleNode("@新資料") != null)
                     {
                         // 更正學號填到另一格
                         if (updatecode != "401")
                             UpdateData = st.SelectSingleNode("@新資料").InnerText;
                     }
 
-                    wb.Worksheets[0].Cells[rowj, 12].PutValue(st.SelectSingleNode("@原因及事項").InnerText+"\n"+UpdateData);
+                    wb.Worksheets[0].Cells[rowj, 12].PutValue(st.SelectSingleNode("@原因及事項").InnerText + "\n" + UpdateData);
 
                     string strUpdateDate = Util.ConvertDateStr2(st.SelectSingleNode("@異動日期").InnerText);
 
 
-                        //假設有異動學生學號的類別才出現新學號字樣
-                        if (st.SelectSingleNode("@新學號")!=null)
-                            if (!string.IsNullOrEmpty(st.SelectSingleNode("@新學號").InnerText))
+                    //假設有異動學生學號的類別才出現新學號字樣
+                    if (st.SelectSingleNode("@新學號") != null)
+                        if (!string.IsNullOrEmpty(st.SelectSingleNode("@新學號").InnerText))
+                        {
+                            int newNo;
+                            if (int.TryParse(st.SelectSingleNode("@新學號").InnerText, out newNo))
+                                strUpdateDate = newNo + "\n" + strUpdateDate;
+                        }
+                        else
+                        {
+                            // 更正學號
+                            if (updatecode == "401")
                             {
-                                int newNo;
-                                if (int.TryParse(st.SelectSingleNode("@新學號").InnerText, out newNo))
-                                    strUpdateDate = newNo + "\n" + strUpdateDate;
+                                if (st.SelectSingleNode("@新資料") != null)
+                                    if (!string.IsNullOrEmpty(st.SelectSingleNode("@新資料").InnerText))
+                                        strUpdateDate = st.SelectSingleNode("@新資料").InnerText + "\n" + strUpdateDate;
                             }
-                            else
-                            {
-                                // 更正學號
-                                if (updatecode == "401")
-                                {
-                                    if (st.SelectSingleNode("@新資料") != null)
-                                        if (!string.IsNullOrEmpty(st.SelectSingleNode("@新資料").InnerText))
-                                            strUpdateDate = st.SelectSingleNode("@新資料").InnerText + "\n" + strUpdateDate;
-                                }
-                            }
-                    
+                        }
+
                     wb.Worksheets[0].Cells[rowj, 13].PutValue(strUpdateDate);
-                    if(st.SelectSingleNode("@特殊身份代碼") !=null )
+                    if (st.SelectSingleNode("@特殊身份代碼") != null)
                         wb.Worksheets[0].Cells[rowj, 16].PutValue(st.SelectSingleNode("@特殊身份代碼").InnerText);
                     //wb.Worksheets[0].Cells[rowj, 16].PutValue(st.SelectSingleNode("@備註").InnerText);
 
@@ -346,12 +346,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             // 整理封面的列數，能填的值盡量幫他填，剩下無法的 要請使用者自行填寫
             //  <年級,<班別,科別>>
-            Dictionary<string,Dictionary<string,List<string>>> cover_row_dict = new Dictionary<string,Dictionary<string,List<string>>>();
+            Dictionary<string, Dictionary<string, List<string>>> cover_row_dict = new Dictionary<string, Dictionary<string, List<string>>>();
 
             // 排序 (依 班別、年級、科別代碼、異動代碼)
             _data = (from data in _data orderby data.ClassType, GYear(data.GradeYear), data.DeptCode, data.UpdateCode select data).ToList();
-            
-            foreach(GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data )
+
+            foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data)
             {
                 DyWb_index++;
                 //每增加一行,複製一次
@@ -429,12 +429,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     ids.Add(rec.StudentID);
                     SHSchool.Data.SHStudent.RemoveByIDs(ids);
                     SHSchool.Data.SHStudentRecord studRec = SHSchool.Data.SHStudent.SelectByID(rec.StudentID);
-                    if(studRec !=null)
+                    if (studRec != null)
                         DyWb.Cells[DyWb_index, 3].PutValue(studRec.StudentNumber);
                     DyWb.Cells[DyWb_index, 17].PutValue("");
                 }
 
-                                
+
                 // 整理cover_row_dict
 
                 //年級
@@ -442,20 +442,20 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 {
                     cover_row_dict.Add(rec.GradeYear, new Dictionary<string, List<string>>());
                 }
-                
+
                 //班別
-                if (!cover_row_dict[rec.GradeYear].ContainsKey(rec.ClassType)) 
+                if (!cover_row_dict[rec.GradeYear].ContainsKey(rec.ClassType))
                 {
-                    cover_row_dict[rec.GradeYear].Add(rec.ClassType,new List<string>());                                
+                    cover_row_dict[rec.GradeYear].Add(rec.ClassType, new List<string>());
                 }
 
                 //科別
                 if (!cover_row_dict[rec.GradeYear][rec.ClassType].Contains(rec.DeptCode))
                 {
-                    cover_row_dict[rec.GradeYear][rec.ClassType].Add(rec.DeptCode);                                
+                    cover_row_dict[rec.GradeYear][rec.ClassType].Add(rec.DeptCode);
                 }
-                
-            
+
+
 
             }
 
@@ -508,7 +508,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //    //DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("舊班別"));
             //    ////舊科別代碼
             //    //DyWb.Cells[DyWb_index, 16].PutValue(Record.GetAttribute("舊科別代碼"));
-                
+
             //    //更正後資料
             //    string strUpdateData = string.Empty;
 
@@ -546,30 +546,103 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             int cover_row_counter = 1;
 
-            foreach(var gradeyear in cover_row_dict)
-            {
-                foreach (var classtype in gradeyear.Value) 
-                {
-                    foreach(var deptcode in classtype.Value)
-                    {
-                        //學校代碼
-                        cover.Cells[cover_row_counter, 0].PutValue(school_code);
-                        //學年度
-                        cover.Cells[cover_row_counter, 1].PutValue(school_year);
-                        //學期
-                        cover.Cells[cover_row_counter, 2].PutValue(school_semester);
-                        //年級
-                        cover.Cells[cover_row_counter, 3].PutValue(gradeyear.Key);
-                        //名冊別 (異動名冊 固定為3)
-                        cover.Cells[cover_row_counter, 4].PutValue("3");                        
-                        //班別
-                        cover.Cells[cover_row_counter, 5].PutValue(classtype.Key);
-                        //科別代碼
-                        cover.Cells[cover_row_counter, 6].PutValue(deptcode);
+            //foreach (var gradeyear in cover_row_dict)
+            //{
+            //    foreach (var classtype in gradeyear.Value)
+            //    {
+            //        foreach (var deptcode in classtype.Value)
+            //        {
+            //            //學校代碼
+            //            cover.Cells[cover_row_counter, 0].PutValue(school_code);
+            //            //學年度
+            //            cover.Cells[cover_row_counter, 1].PutValue(school_year);
+            //            //學期
+            //            cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+            //            //年級
+            //            cover.Cells[cover_row_counter, 3].PutValue(gradeyear.Key);
+            //            //名冊別 (異動名冊 固定為3)
+            //            cover.Cells[cover_row_counter, 4].PutValue("3");
+            //            //班別
+            //            cover.Cells[cover_row_counter, 5].PutValue(classtype.Key);
+            //            //科別代碼
+            //            cover.Cells[cover_row_counter, 6].PutValue(deptcode);
 
-                        cover_row_counter++;
-                    }                                                
-                }                                    
+            //            //YOYO
+            //            cover.Cells[cover_row_counter, 6].PutValue("YOYO");
+
+            //            cover_row_counter++;
+            //        }
+            //    }
+            //}
+
+            //2018/2/2 穎驊註解 ，下面是新的封面產生方式
+
+            foreach (XmlNode list in source.SelectNodes("清單"))
+            {
+                string gradeYear = list.SelectSingleNode("@年級").InnerText;
+                string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
+
+                //學校代碼
+                cover.Cells[cover_row_counter, 0].PutValue(school_code);
+                //學年度
+                cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                //學期
+                cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+                //年級
+                cover.Cells[cover_row_counter, 3].PutValue(gradeYear);
+                //科別代碼
+                cover.Cells[cover_row_counter, 6].PutValue(deptCode);
+
+                foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                {
+                    string reportType = st.SelectSingleNode("@名冊別").InnerText;
+                    string classType = st.SelectSingleNode("@班別").InnerText;
+                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
+                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
+                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
+                    string actualClassCount = st.SelectSingleNode("@實招班數").InnerText;
+                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
+                    string originalStudentCount = st.SelectSingleNode("@原有學生數").InnerText;
+                    string increaseStudentCount = st.SelectSingleNode("@增加學生數").InnerText;
+                    string decreaseStudentCount = st.SelectSingleNode("@減少學生數").InnerText;
+                    string modifiedStudentCount = st.SelectSingleNode("@更正學生數").InnerText;
+                    string currentStudentCount = st.SelectSingleNode("@現有學生數").InnerText;
+                    string remarks1 = st.SelectSingleNode("@註1").InnerText;
+                    string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
+
+
+
+                    //名冊別
+                    cover.Cells[cover_row_counter, 4].PutValue(reportType);
+                    //班別
+                    cover.Cells[cover_row_counter, 5].PutValue(classType);
+                    //上傳類別
+                    cover.Cells[cover_row_counter, 7].PutValue(updateType);
+                    //核定班級
+                    cover.Cells[cover_row_counter, 8].PutValue(approvedClassCount);
+                    //核定學生數
+                    cover.Cells[cover_row_counter, 9].PutValue(approvedStudentCount);
+                    //實招班數
+                    cover.Cells[cover_row_counter, 10].PutValue(actualClassCount);
+                    //實招新生數
+                    cover.Cells[cover_row_counter, 11].PutValue(actualStudentCount);
+                    //原有學生數
+                    cover.Cells[cover_row_counter, 12].PutValue(originalStudentCount);
+                    //增加學生數
+                    cover.Cells[cover_row_counter, 13].PutValue(increaseStudentCount);
+                    //減少學生數
+                    cover.Cells[cover_row_counter, 14].PutValue(decreaseStudentCount);
+                    //更正學生數
+                    cover.Cells[cover_row_counter, 15].PutValue(modifiedStudentCount);
+                    //現有學生數
+                    cover.Cells[cover_row_counter, 16].PutValue(currentStudentCount);
+                    //註1
+                    cover.Cells[cover_row_counter, 17].PutValue(remarks1);
+                    //備註說明
+                    cover.Cells[cover_row_counter, 18].PutValue(remarksContent);
+
+                }
+                cover_row_counter++;
             }
 
 

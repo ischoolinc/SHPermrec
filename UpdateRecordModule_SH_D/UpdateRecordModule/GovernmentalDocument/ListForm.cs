@@ -36,6 +36,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         {
             btnEReport1.Visible = false;
             btnEReport2.Visible = false;
+            btnModifyCover.Visible = false;
             lblADName1.Text = "";
             lblADName2.Text = "";
             lblADName3.Text = "";
@@ -197,6 +198,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     lblADInfo.Text = "【" + rec.Name + "】 核准文號";
                     btnEReport1.Visible = true;
                     btnEReport2.Visible = true;
+
+                    btnModifyCover.Visible = true;
 
                     //處理看板資訊
                     StringBuilder builder = new StringBuilder("");
@@ -497,6 +500,21 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             {
 
             }
-        } 
+        }
+
+
+        //2018/2/5 穎驊 新增，提供使用者 就目前所選擇的 異動名冊，檢查其封面資料(自動就舊資料產出的)是否正確，並且調整。
+        private void btnModifyCover_Click(object sender, EventArgs e)
+        {
+            // 取得異動名冊畫面上所選擇異動名冊ID
+            _SelectBRecID = UpdateRecordModule_SH_D.BL.Get.UpdateBatchSelectID();
+            // 透過異動名冊ID取得異動名冊
+            _SelectBRec = UpdateRecordModule_SH_D.BL.Get.StudUpdateRecBatchRecByID(_SelectBRecID);
+
+
+            ModifyingCoverForm mcf = new ModifyingCoverForm(_SelectBRec);
+
+            mcf.ShowDialog();
+        }
     }
 }

@@ -24,18 +24,24 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             foreach (XElement d1Elm in dataElms)
             {
-                if(d1Elm.Attribute("科別") !=null )
+                if (d1Elm.Attribute("科別") != null)
                 {
-                    int idx=d1Elm.Attribute("科別").Value.IndexOf(":");
+                    int idx = d1Elm.Attribute("科別").Value.IndexOf(":");
                     if (idx > 1)
                         d1Elm.Attribute("科別").Value = d1Elm.Attribute("科別").Value.Substring(0, idx);
                 }
-                List<XElement> upRecList=null;
-                
+                List<XElement> upRecList = null;
+
+                //2018/2/5 穎驊 新增異動封面的處理，如不特別補充邏輯，寫進去的資料格式會被洗掉。
+                List<XElement> upRecCover =new List<XElement>();
+
                 try
                 {
                     // 使用學號排序
                     upRecList = (from elm in d1Elm.Elements("異動紀錄") orderby elm.Attribute("學號").Value select elm).ToList();
+
+                    //2018/2/5 穎驊 新增異動封面的處理
+                    upRecCover = (from elm in d1Elm.Elements("異動名冊封面") select elm).ToList();
                 }
                 catch
                 {
@@ -57,8 +63,18 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                     // 在排序時處理:名稱
                     d1Elm.Add(elmRec);
+
                 }
+
+                //2018/2/5 穎驊 新增異動封面的處理 因封面只有一張，故為第一個
+                if (upRecCover.Count == 1)
+                {
+                    d1Elm.Add(upRecCover[0]);
+                }
+                
+
                 elmRoot.Add(d1Elm);
+                                
             }
             
            retVal = new XmlDocument ().ReadNode(elmRoot.CreateReader())as XmlElement ;

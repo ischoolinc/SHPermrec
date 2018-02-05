@@ -283,6 +283,12 @@
     <Compile Include="GovernmentalDocument\ListForm.Designer.cs">
       <DependentUpon>ListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentalDocument\ModifyingCoverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ModifyingCoverForm.Designer.cs">
+      <DependentUpon>ModifyingCoverForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\Reports\List\EnrollmentList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\ExtendingStudentGraduateList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\ExtendingStudentList.cs" />
@@ -429,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ListForm.resx">
       <DependentUpon>ListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ModifyingCoverForm.resx">
+      <DependentUpon>ModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\UpdateRecordADN.resx">
       <DependentUpon>UpdateRecordADN.cs</DependentUpon>
