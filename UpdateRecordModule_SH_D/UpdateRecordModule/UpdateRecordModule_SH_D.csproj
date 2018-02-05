@@ -258,6 +258,7 @@
     </Compile>
     <Compile Include="BL\Get.cs" />
     <Compile Include="BL\ReportSelector.cs" />
+    <Compile Include="BL\StudUpdateRecCoverRec.cs" />
     <Compile Include="BL\StudUpdateRecBatchRec.cs" />
     <Compile Include="BL\StudUpdateRecDoc.cs" />
     <Compile Include="BL\Util.cs" />
