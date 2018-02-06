@@ -512,7 +512,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             _SelectBRec = UpdateRecordModule_SH_D.BL.Get.StudUpdateRecBatchRecByID(_SelectBRecID);
 
 
-            ModifyingCoverForm mcf = new ModifyingCoverForm(_SelectBRec);
+            StudentUpdateRecordListModifyingCoverForm mcf = new StudentUpdateRecordListModifyingCoverForm(_SelectBRec);
 
             mcf.ShowDialog();
         }

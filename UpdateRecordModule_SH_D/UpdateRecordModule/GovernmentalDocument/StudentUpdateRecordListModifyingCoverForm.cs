@@ -13,7 +13,7 @@ using SHSchool.Data;
 
 namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    public partial class ModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
+    public partial class StudentUpdateRecordListModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
     {
 
         StudUpdateRecBatchRec _BRec;
@@ -22,11 +22,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
-        public ModifyingCoverForm(StudUpdateRecBatchRec BRec)
+        public StudentUpdateRecordListModifyingCoverForm(StudUpdateRecBatchRec BRec)
         {
             InitializeComponent();
-
-
             
             _BRec = BRec;
 
