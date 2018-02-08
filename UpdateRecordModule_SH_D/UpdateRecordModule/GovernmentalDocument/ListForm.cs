@@ -512,9 +512,52 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             _SelectBRec = UpdateRecordModule_SH_D.BL.Get.StudUpdateRecBatchRecByID(_SelectBRecID);
 
 
-            StudentUpdateRecordListModifyingCoverForm mcf = new StudentUpdateRecordListModifyingCoverForm(_SelectBRec);
+            //依據所選不同的 異動名冊別 產生對應不同的調整封面Form
+            switch (_SelectBRec.UpdateType)
+            {
+                //case "新生名冊":
+                //    rptBuild = new EnrollmentList();
+                //    break;
+                case "延修生學籍異動名冊":
+                    ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm esurlcrmcf = new ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm(_SelectBRec);
+                    esurlcrmcf.ShowDialog();
+                    break;
 
-            mcf.ShowDialog();
+                case "學籍異動名冊":
+                    StudentUpdateRecordListModifyingCoverForm mcf = new StudentUpdateRecordListModifyingCoverForm(_SelectBRec);
+                    mcf.ShowDialog();
+                    break;
+
+                //case "畢業名冊":
+                //    rptBuild = new GraduatingStudentList();
+                //    break;
+
+                case "延修生畢業名冊":
+                    ExtendingStudentGraduateListCoverRecModifyingCoverForm esglcrmcf = new ExtendingStudentGraduateListCoverRecModifyingCoverForm(_SelectBRec);
+                    esglcrmcf.ShowDialog();                    
+                    break;
+
+                case "延修生名冊":
+                    ExtendingStudentCoverRecModifyingCoverForm escrmcf = new ExtendingStudentCoverRecModifyingCoverForm(_SelectBRec);
+                    escrmcf.ShowDialog();
+                    break;
+
+                    //case "轉入學生名冊":
+                    //    rptBuild = new TransferringStudentUpdateRecordList();
+                    //    break;
+
+                    //case "新生保留錄取資格名冊":
+                    //    rptBuild = new RetaintoStudentList();
+                    //    break;
+
+                    //case "借讀學生名冊":
+                    //    rptBuild = new TemporaryStudentList();
+                    //    break;
+            }
+
+            
+
+         
         }
     }
 }

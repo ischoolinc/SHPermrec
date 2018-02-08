@@ -281,11 +281,29 @@
     <Compile Include="GovernmentalDocument\BuildWizard.Designer.cs">
       <DependentUpon>BuildWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.Designer.cs">
+      <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm.Designer.cs">
+      <DependentUpon>ExtendingStudentGraduateListCoverRecModifyingCoverForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\ListForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GovernmentalDocument\ListForm.Designer.cs">
       <DependentUpon>ListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm.Designer.cs">
+      <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm.cs">
       <SubType>Form</SubType>
@@ -437,8 +455,17 @@
     <EmbeddedResource Include="GovernmentalDocument\BuildWizard.resx">
       <DependentUpon>BuildWizard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.resx">
+      <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm.resx">
+      <DependentUpon>ExtendingStudentGraduateListCoverRecModifyingCoverForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ListForm.resx">
       <DependentUpon>ListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm.resx">
+      <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm.resx">
       <DependentUpon>StudentUpdateRecordListModifyingCoverForm.cs</DependentUpon>

@@ -13,16 +13,16 @@ using SHSchool.Data;
 
 namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    public partial class StudentUpdateRecordListModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
+    public partial class ExtendingStudentGraduateListCoverRecModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
     {
 
         StudUpdateRecBatchRec _BRec;
 
-        List<StudUpdateRecCoverRec> coverDataList = new List<StudUpdateRecCoverRec>();
+        List<ExtendingStudentGraduateListCoverRec> coverDataList = new List<ExtendingStudentGraduateListCoverRec>();
 
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
-        public StudentUpdateRecordListModifyingCoverForm(StudUpdateRecBatchRec BRec)
+        public ExtendingStudentGraduateListCoverRecModifyingCoverForm(StudUpdateRecBatchRec BRec)
         {
             InitializeComponent();
             
@@ -45,26 +45,21 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
                 List<string> row_data = new List<string>();
-
-                string gradeYear = list.SelectSingleNode("@年級").InnerText;
+                
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
 
 
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
                     string reportType = st.SelectSingleNode("@名冊別").InnerText;
+                    string scheduledGraduateYear = st.SelectSingleNode("@應畢業學年度").InnerText;
                     string classType = st.SelectSingleNode("@班別").InnerText;
                     string updateType = st.SelectSingleNode("@上傳類別").InnerText;
-                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
-                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
-                    string actualClassCount = st.SelectSingleNode("@實招班數").InnerText;
-                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
+                    string approvedExtendingStudentCount = st.SelectSingleNode("@輔導延修學生數").InnerText;
+                    string waitingExtendingStudentCount = st.SelectSingleNode("@未申請延修學生數").InnerText;           
                     string originalStudentCount = st.SelectSingleNode("@原有學生數").InnerText;
-                    string increaseStudentCount = st.SelectSingleNode("@增加學生數").InnerText;
-                    string decreaseStudentCount = st.SelectSingleNode("@減少學生數").InnerText;
-                    string modifiedStudentCount = st.SelectSingleNode("@更正學生數").InnerText;
-                    string currentStudentCount = st.SelectSingleNode("@現有學生數").InnerText;
-                    string remarks1 = st.SelectSingleNode("@註1").InnerText;
+                    string graduatedStudentCount = st.SelectSingleNode("@畢業學生數").InnerText;                    
+                    string currentStudentCount = st.SelectSingleNode("@現有學生數").InnerText;                    
                     string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
 
                     //學校代號
@@ -73,36 +68,26 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     row_data.Add(school_year);
                     //學期
                     row_data.Add(school_semester);
-                    //年級
-                    row_data.Add(gradeYear);
                     //名冊別
                     row_data.Add(reportType);
+                    //應畢業學年度
+                    row_data.Add(scheduledGraduateYear);
                     //班別
                     row_data.Add(school_semester);
                     //科別代碼
                     row_data.Add(deptCode);
                     //上傳類別
                     row_data.Add(updateType);
-                    //核定班數
-                    row_data.Add(approvedClassCount);
-                    //核定學生數
-                    row_data.Add(approvedStudentCount);
-                    //實招班數
-                    row_data.Add(actualClassCount);
-                    //實招新生數
-                    row_data.Add(actualStudentCount);
+                    //輔導延修學生數
+                    row_data.Add(approvedExtendingStudentCount);
+                    //未申請延修學生數
+                    row_data.Add(waitingExtendingStudentCount);            
                     //原有學生數
                     row_data.Add(originalStudentCount);
-                    //增加學生數
-                    row_data.Add(increaseStudentCount);
-                    //減少學生數
-                    row_data.Add(decreaseStudentCount);
-                    //更正學生數
-                    row_data.Add(modifiedStudentCount);
                     //現有學生數
                     row_data.Add(currentStudentCount);
-                    //註1
-                    row_data.Add(remarks1);
+                    //畢業學生數
+                    row_data.Add(graduatedStudentCount);
                     //備註說明
                     row_data.Add(remarksContent);
 
@@ -125,23 +110,18 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             //整理UI介面的資料 打包成xml 儲存
             foreach (DataGridViewRow dr in dataGridViewX1.Rows)
             {
-                StudUpdateRecCoverRec coverData = new StudUpdateRecCoverRec();
+                ExtendingStudentGraduateListCoverRec coverData = new ExtendingStudentGraduateListCoverRec();
 
-                coverData.grYear = "" + dr.Cells["年級"].Value;
-                coverData.DeptCode = "" + dr.Cells["科別代碼"].Value;
-                coverData.ReportType = "" + dr.Cells["名冊別"].Value;
+                coverData.ReportType = "" + dr.Cells["名冊別"].Value;                                
+                coverData.ScheduledGraduateYear = "" + dr.Cells["應畢業學年度"].Value;
                 coverData.ClassType = "" + dr.Cells["班別"].Value;
+                coverData.DeptCode = "" + dr.Cells["科別代碼"].Value;
                 coverData.UpdateType = "" + dr.Cells["上傳類別"].Value;
-                coverData.ApprovedClassCount = "" + dr.Cells["核定班數"].Value;
-                coverData.ApprovedStudentCount = "" + dr.Cells["核定學生數"].Value;
-                coverData.ActualClassCount = "" + dr.Cells["實招班數"].Value;
-                coverData.ActualStudentCount = "" + dr.Cells["實招新生數"].Value;
+                coverData.ApprovedExtendingStudentCount = "" + dr.Cells["輔導延修學生數"].Value;
+                coverData.WaitingExtendingStudentCount = "" + dr.Cells["未申請延修學生數"].Value;
                 coverData.OriginalStudentCount = "" + dr.Cells["原有學生數"].Value;
-                coverData.IncreaseStudentCount = "" + dr.Cells["增加學生數"].Value;
-                coverData.DecreaseStudentCount = "" + dr.Cells["減少學生數"].Value;
-                coverData.ModifiedStudentCount = "" + dr.Cells["更正學生數"].Value;
                 coverData.CurrentStudentCount = "" + dr.Cells["現有學生數"].Value;
-                coverData.Remarks1 = "" + dr.Cells["註1"].Value;
+                coverData.GraduatedStudentCount = "" + dr.Cells["畢業學生數"].Value;
                 coverData.RemarksContent = "" + dr.Cells["備註說明"].Value;
 
                 coverDataList.Add(coverData);
@@ -325,26 +305,23 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
                 //2018/2/5 穎驊增加 處理封面資料
-                foreach (StudUpdateRecCoverRec coverRec in coverDataList)
+                foreach (ExtendingStudentGraduateListCoverRec coverRec in coverDataList)
                 {
-                    //假如整理好的封面資料 其年級、科別代碼 與 現在的資料相同， 則配對
-                    if (coverRec.grYear == grYear && coverRec.DeptCode == DeptCode)
+                    //假如整理好的封面資料 只要科別代碼 與 現在的資料相同， 則配對
+                    // 2018/2/8 穎驊特別備註因為延修生名冊不需分年級，都是"延修生"年級，因此只要科別能對齊，資料就是對的。
+                    if (coverRec.DeptCode == DeptCode)
                     {
                         XElement elmGrDeptCover = new XElement("異動名冊封面");
 
                         elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
+                        elmGrDeptCover.SetAttributeValue("應畢業學年度", coverRec.ScheduledGraduateYear);
                         elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
                         elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
-                        elmGrDeptCover.SetAttributeValue("核定班數", coverRec.ApprovedClassCount);
-                        elmGrDeptCover.SetAttributeValue("核定學生數", coverRec.ApprovedStudentCount);
-                        elmGrDeptCover.SetAttributeValue("實招班數", coverRec.ActualClassCount);
-                        elmGrDeptCover.SetAttributeValue("實招新生數", coverRec.ActualStudentCount);
+                        elmGrDeptCover.SetAttributeValue("輔導延修學生數", coverRec.ApprovedExtendingStudentCount);
+                        elmGrDeptCover.SetAttributeValue("未申請延修學生數", coverRec.WaitingExtendingStudentCount);                        
                         elmGrDeptCover.SetAttributeValue("原有學生數", coverRec.OriginalStudentCount);
-                        elmGrDeptCover.SetAttributeValue("增加學生數", coverRec.IncreaseStudentCount);
-                        elmGrDeptCover.SetAttributeValue("減少學生數", coverRec.DecreaseStudentCount);
-                        elmGrDeptCover.SetAttributeValue("更正學生數", coverRec.ModifiedStudentCount);
-                        elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);
-                        elmGrDeptCover.SetAttributeValue("註1", coverRec.Remarks1);
+                        elmGrDeptCover.SetAttributeValue("畢業學生數", coverRec.GraduatedStudentCount);                        
+                        elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);                        
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);

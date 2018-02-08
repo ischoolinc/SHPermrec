@@ -1,6 +1,6 @@
 ﻿namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    partial class StudentUpdateRecordListModifyingCoverForm
+    partial class ExtendingStudentGraduateListCoverRecModifyingCoverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -44,21 +44,16 @@
             this.學校代碼 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.學年度 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.學期 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.年級 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.名冊別 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.應畢業學年度 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.班別 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.科別代碼 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.上傳類別 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.核定班數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.核定學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.實招班數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.實招新生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.輔導延修學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.未申請延修學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.原有學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.增加學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.減少學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.更正學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.現有學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.註1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.畢業學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.備註說明 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
@@ -75,21 +70,16 @@
             this.學校代碼,
             this.學年度,
             this.學期,
-            this.年級,
             this.名冊別,
+            this.應畢業學年度,
             this.班別,
             this.科別代碼,
             this.上傳類別,
-            this.核定班數,
-            this.核定學生數,
-            this.實招班數,
-            this.實招新生數,
+            this.輔導延修學生數,
+            this.未申請延修學生數,
             this.原有學生數,
-            this.增加學生數,
-            this.減少學生數,
-            this.更正學生數,
             this.現有學生數,
-            this.註1,
+            this.畢業學生數,
             this.備註說明});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -103,7 +93,7 @@
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 69);
             this.dataGridViewX1.Name = "dataGridViewX1";
             this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.Size = new System.Drawing.Size(1719, 385);
+            this.dataGridViewX1.Size = new System.Drawing.Size(1402, 385);
             this.dataGridViewX1.TabIndex = 0;
             // 
             // btnSave
@@ -112,7 +102,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnSave.Location = new System.Drawing.Point(1535, 484);
+            this.btnSave.Location = new System.Drawing.Point(1218, 484);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(99, 23);
             this.btnSave.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -126,7 +116,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnClose.Location = new System.Drawing.Point(1656, 484);
+            this.btnClose.Location = new System.Drawing.Point(1339, 484);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -189,23 +179,23 @@
             this.學期.ReadOnly = true;
             this.學期.Width = 70;
             // 
-            // 年級
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
-            this.年級.DefaultCellStyle = dataGridViewCellStyle4;
-            this.年級.HeaderText = "年級";
-            this.年級.Name = "年級";
-            this.年級.ReadOnly = true;
-            this.年級.Width = 70;
-            // 
             // 名冊別
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
-            this.名冊別.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGray;
+            this.名冊別.DefaultCellStyle = dataGridViewCellStyle4;
             this.名冊別.HeaderText = "名冊別";
             this.名冊別.Name = "名冊別";
             this.名冊別.ReadOnly = true;
             this.名冊別.Width = 80;
+            // 
+            // 應畢業學年度
+            // 
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
+            this.應畢業學年度.DefaultCellStyle = dataGridViewCellStyle5;
+            this.應畢業學年度.HeaderText = "應畢業學年度";
+            this.應畢業學年度.Name = "應畢業學年度";
+            this.應畢業學年度.ReadOnly = true;
+            this.應畢業學年度.Width = 120;
             // 
             // 班別
             // 
@@ -231,57 +221,32 @@
             this.上傳類別.Name = "上傳類別";
             this.上傳類別.Width = 90;
             // 
-            // 核定班數
+            // 輔導延修學生數
             // 
-            this.核定班數.HeaderText = "核定班數";
-            this.核定班數.Name = "核定班數";
-            this.核定班數.Width = 90;
+            this.輔導延修學生數.HeaderText = "輔導延修學生數";
+            this.輔導延修學生數.Name = "輔導延修學生數";
+            this.輔導延修學生數.Width = 140;
             // 
-            // 核定學生數
+            // 未申請延修學生數
             // 
-            this.核定學生數.HeaderText = "核定學生數";
-            this.核定學生數.Name = "核定學生數";
-            // 
-            // 實招班數
-            // 
-            this.實招班數.HeaderText = "實招班數";
-            this.實招班數.Name = "實招班數";
-            this.實招班數.Width = 90;
-            // 
-            // 實招新生數
-            // 
-            this.實招新生數.HeaderText = "實招新生數";
-            this.實招新生數.Name = "實招新生數";
+            this.未申請延修學生數.HeaderText = "未申請延修學生數";
+            this.未申請延修學生數.Name = "未申請延修學生數";
+            this.未申請延修學生數.Width = 140;
             // 
             // 原有學生數
             // 
             this.原有學生數.HeaderText = "原有學生數";
             this.原有學生數.Name = "原有學生數";
             // 
-            // 增加學生數
-            // 
-            this.增加學生數.HeaderText = "增加學生數";
-            this.增加學生數.Name = "增加學生數";
-            // 
-            // 減少學生數
-            // 
-            this.減少學生數.HeaderText = "減少學生數";
-            this.減少學生數.Name = "減少學生數";
-            // 
-            // 更正學生數
-            // 
-            this.更正學生數.HeaderText = "更正學生數";
-            this.更正學生數.Name = "更正學生數";
-            // 
             // 現有學生數
             // 
             this.現有學生數.HeaderText = "現有學生數";
             this.現有學生數.Name = "現有學生數";
             // 
-            // 註1
+            // 畢業學生數
             // 
-            this.註1.HeaderText = "註1";
-            this.註1.Name = "註1";
+            this.畢業學生數.HeaderText = "畢業學生數";
+            this.畢業學生數.Name = "畢業學生數";
             // 
             // 備註說明
             // 
@@ -289,19 +254,19 @@
             this.備註說明.HeaderText = "備註說明";
             this.備註說明.Name = "備註說明";
             // 
-            // StudentUpdateRecordListModifyingCoverForm
+            // ExtendingStudentGraduateListCoverRecModifyingCoverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1743, 519);
+            this.ClientSize = new System.Drawing.Size(1426, 519);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewX1);
             this.DoubleBuffered = true;
-            this.Name = "StudentUpdateRecordListModifyingCoverForm";
-            this.Text = "調整學籍異動名冊封面資料";
+            this.Name = "ExtendingStudentGraduateListCoverRecModifyingCoverForm";
+            this.Text = "調整延修生畢業名冊封面資料";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
@@ -317,21 +282,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 學校代碼;
         private System.Windows.Forms.DataGridViewTextBoxColumn 學年度;
         private System.Windows.Forms.DataGridViewTextBoxColumn 學期;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 年級;
         private System.Windows.Forms.DataGridViewTextBoxColumn 名冊別;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 應畢業學年度;
         private System.Windows.Forms.DataGridViewTextBoxColumn 班別;
         private System.Windows.Forms.DataGridViewTextBoxColumn 科別代碼;
         private System.Windows.Forms.DataGridViewTextBoxColumn 上傳類別;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 核定班數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 核定學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 實招班數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 實招新生數;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 輔導延修學生數;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 未申請延修學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 原有學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 增加學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 減少學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 更正學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 現有學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 註1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 畢業學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 備註說明;
     }
 }
