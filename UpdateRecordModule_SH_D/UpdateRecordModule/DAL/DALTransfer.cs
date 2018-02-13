@@ -463,9 +463,9 @@ namespace UpdateRecordModule_SH_D.DAL
                 //    deptCodeDict.Add(rec.Name, rec.Code);
             }
 
-            foreach (BL.StudUpdateRecDoc val in updateRecList )
-            {                                
-                string key = val.GradeYear +"_"+val.Department+"_";
+            foreach (BL.StudUpdateRecDoc val in updateRecList)
+            {
+                string key = val.GradeYear + "_" + val.Department + "_";
                 if (data.ContainsKey(key))
                     data[key].Add(val);
                 else
@@ -475,7 +475,13 @@ namespace UpdateRecordModule_SH_D.DAL
                     data.Add(key, xx);
                 }
             }
-                        
+
+            //2018/02/09 穎驊新增
+            //若本次異動名冊為初次產生，則尋找之前對應的異動名冊，將相關資料帶到封面
+            List<SHUpdateRecordBatchRecord> recBatch_list = SHUpdateRecordBatch.SelectAll();
+
+
+
             XElement retVal = new XElement("異動名冊");
             retVal.SetAttributeValue("學年度", Global._GSchoolYear);
             retVal.SetAttributeValue("學期", Global._GSemester);
@@ -638,24 +644,57 @@ namespace UpdateRecordModule_SH_D.DAL
         public static void SetStudUpdateRecBatchRec(BL.StudUpdateRecBatchRec StudUpdateRecBRec,bool isInsert)
         {
             SHUpdateRecordBatchRecord shurbr = new SHUpdateRecordBatchRecord();
-            shurbr.ADDate = StudUpdateRecBRec.ADDate;
-            shurbr.ADNumber = StudUpdateRecBRec.ADNumber;
-            Global._GSchoolCode = K12.Data.School.Code;
-            Global._GSchoolName = K12.Data.School.ChineseName;
-            Global._GUpdateBatchType = StudUpdateRecBRec.UpdateType;
-            Global._GSchoolYear = StudUpdateRecBRec.SchoolYear.ToString ();
-            Global._GSemester = StudUpdateRecBRec.Semester.ToString();
-            Global._GDocName = StudUpdateRecBRec.Name;
-            // 將 XElement 轉型 XmlElement
-            shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(StudUpdateRecBRec.StudUpdateRecDocList).CreateReader()) as XmlElement; 
-            shurbr.ID = StudUpdateRecBRec.ID;
-            shurbr.Name = StudUpdateRecBRec.Name;
-            shurbr.SchoolYear = StudUpdateRecBRec.SchoolYear;
-            shurbr.Semester = StudUpdateRecBRec.Semester;
+            
+
+            //若為新增產生名冊
             if (isInsert)
+            {
+                shurbr.ADDate = StudUpdateRecBRec.ADDate;
+                shurbr.ADNumber = StudUpdateRecBRec.ADNumber;
+                Global._GSchoolCode = K12.Data.School.Code;
+                Global._GSchoolName = K12.Data.School.ChineseName;
+                Global._GUpdateBatchType = StudUpdateRecBRec.UpdateType;
+                Global._GSchoolYear = StudUpdateRecBRec.SchoolYear.ToString();
+                Global._GSemester = StudUpdateRecBRec.Semester.ToString();
+                Global._GDocName = StudUpdateRecBRec.Name;
+
+                // 將 XElement 轉型 XmlElement
+                shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(StudUpdateRecBRec.StudUpdateRecDocList).CreateReader()) as XmlElement;
+
+                shurbr.ID = StudUpdateRecBRec.ID;
+                shurbr.Name = StudUpdateRecBRec.Name;
+                shurbr.SchoolYear = StudUpdateRecBRec.SchoolYear;
+                shurbr.Semester = StudUpdateRecBRec.Semester;
+
                 SHUpdateRecordBatch.Insert(shurbr);
+            }
+            //若為更新名冊(只有在上傳文號時會使用)
             else
+            {
+                shurbr.ADDate = StudUpdateRecBRec.ADDate;
+                shurbr.ADNumber = StudUpdateRecBRec.ADNumber;
+                Global._GSchoolCode = K12.Data.School.Code;
+                Global._GSchoolName = K12.Data.School.ChineseName;
+                Global._GUpdateBatchType = StudUpdateRecBRec.UpdateType;
+                Global._GSchoolYear = StudUpdateRecBRec.SchoolYear.ToString();
+                Global._GSemester = StudUpdateRecBRec.Semester.ToString();
+                Global._GDocName = StudUpdateRecBRec.Name;
+
+                //更新名冊，只會更新文號，不會更新內容，故照舊
+                // 將 string 轉型 XmlElement
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(SHUpdateRecordBatch.SelectByID(StudUpdateRecBRec.ID).Content.InnerXml);
+                
+                shurbr.Content = doc.DocumentElement;
+
+                shurbr.ID = StudUpdateRecBRec.ID;
+                shurbr.Name = StudUpdateRecBRec.Name;
+                shurbr.SchoolYear = StudUpdateRecBRec.SchoolYear;
+                shurbr.Semester = StudUpdateRecBRec.Semester;
+
                 SHUpdateRecordBatch.Update(shurbr);
+            }
+            
         }
 
         /// <summary>

@@ -369,6 +369,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         private void itemPanelName_ItemClick(object sender, EventArgs e)
         {
             SetSelectUpdateBatchID();
+
+            CoverEditorBlock();
         }
 
         private void SetSelectUpdateBatchID()
@@ -385,6 +387,59 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         // 畫面上選擇的異動名冊ID
         string _SelectBRecID;
         string path = "";
+
+
+        //2018/2/9 穎驊新增，由於還有些名冊的封面支援尚未完成，
+        //因此在此新增方法，將還沒有完成的封面，其編輯封面功能按鈕擋住
+        private void CoverEditorBlock()
+        {
+            if (itemPanelName.SelectedItems.Count > 0)
+            {
+                // 取得異動名冊畫面上所選擇異動名冊ID
+                _SelectBRecID = UpdateRecordModule_SH_D.BL.Get.UpdateBatchSelectID();
+                // 透過異動名冊ID取得異動名冊
+                _SelectBRec = UpdateRecordModule_SH_D.BL.Get.StudUpdateRecBatchRecByID(_SelectBRecID);
+
+                //依據所選不同的 異動名冊別 選擇關閉功能
+                switch (_SelectBRec.UpdateType)
+                {
+                    case "新生名冊":
+                        btnModifyCover.Enabled = false;
+                        break;
+                    case "延修生學籍異動名冊":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "學籍異動名冊":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "畢業名冊":
+                        btnModifyCover.Enabled = false;
+                        break;
+
+                    case "延修生畢業名冊":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "延修生名冊":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "轉入學生名冊":
+                        btnModifyCover.Enabled = false;
+                        break;
+
+                    case "新生保留錄取資格名冊":
+                        btnModifyCover.Enabled = false;
+                        break;
+
+                    case "借讀學生名冊":
+                        btnModifyCover.Enabled = false;
+                        break;
+                }
+            }            
+        }
 
         /// <summary>
         /// 產生報表
