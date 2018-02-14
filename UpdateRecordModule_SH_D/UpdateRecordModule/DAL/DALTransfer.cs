@@ -16,7 +16,7 @@ namespace UpdateRecordModule_SH_D.DAL
     {
 
         // 名冊異動列別集合
-        private static Dictionary<string, StudUpdateRecBatchCreator.UpdateRecBatchType> _UpdateRecBatchTypeDict= new Dictionary<string,StudUpdateRecBatchCreator.UpdateRecBatchType>();
+        private static Dictionary<string, StudUpdateRecBatchCreator.UpdateRecBatchType> _UpdateRecBatchTypeDict = new Dictionary<string, StudUpdateRecBatchCreator.UpdateRecBatchType>();
 
         /// <summary>
         /// 取得異動代碼 XElement
@@ -24,7 +24,7 @@ namespace UpdateRecordModule_SH_D.DAL
         /// <returns></returns>
         public static XElement GetUpdateCodeList()
         {
-           
+
             return XElement.Parse(Properties.Resources.UpdateCode_SHD);
         }
 
@@ -34,7 +34,7 @@ namespace UpdateRecordModule_SH_D.DAL
         /// <returns></returns>
         public static List<string> GetClassTypeList()
         {
-            List<string> retValue = new List<string> ();
+            List<string> retValue = new List<string>();
             retValue.Add("1-日間部");
             retValue.Add("2-夜間部");
             retValue.Add("3-實用技能學程");
@@ -47,7 +47,7 @@ namespace UpdateRecordModule_SH_D.DAL
             retValue.Add("04-員工進修班");
             retValue.Add("05-重點產業班");
             retValue.Add("06-產業人力套案專班");
-         
+
             return retValue;
         }
 
@@ -98,7 +98,7 @@ namespace UpdateRecordModule_SH_D.DAL
         public static List<BL.StudUpdateRecDoc> ConvertSHUpdateRecToStudUpdateRec(List<SHUpdateRecordRecord> recList)
         {
             List<BL.StudUpdateRecDoc> StudRecList = new List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>();
-            
+
             Dictionary<string, string> deptCodeDict = new Dictionary<string, string>();
             foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
             {
@@ -157,13 +157,13 @@ namespace UpdateRecordModule_SH_D.DAL
                     studUrec.GenderCode = "2";
                 else
                     studUrec.GenderCode = "";
-                
+
                 //// 當科別有:取前面值
                 //depIdx = rec.Department.IndexOf(":");
                 //if(depIdx >1)
                 //    studUrec.Department = rec.Department.Substring(0,depIdx);
                 //else
-                    studUrec.Department = rec.Department;
+                studUrec.Department = rec.Department;
 
                 if (deptCodeDict.ContainsKey(rec.Department))
                     studUrec.DeptCode = deptCodeDict[rec.Department];
@@ -174,7 +174,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.ADDate = rec.ADDate;
                 studUrec.URID = rec.ID;
                 studUrec.StudentID = rec.StudentID;
-                if(rec.Student !=null )
+                if (rec.Student != null)
                     studUrec.StudStatus = rec.Student.Status.ToString();
 
                 studUrec.PreviousSemester = rec.PreviousSemester;
@@ -182,7 +182,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.Comment2 = rec.Comment2;
                 studUrec.GraduateDocument = rec.GraduateDocument;
                 studUrec.ExpectGraduateSchoolYear = rec.ExpectGraduateSchoolYear;
-                StudRecList.Add(studUrec);            
+                StudRecList.Add(studUrec);
             }
             return StudRecList;
         }
@@ -202,22 +202,22 @@ namespace UpdateRecordModule_SH_D.DAL
             foreach (XElement d1Elm in dataElms)
             {
                 // 取得年級與科別
-                string strGradeYear = "", strDeptName = "",strDeptCode="";
+                string strGradeYear = "", strDeptName = "", strDeptCode = "";
                 if (d1Elm.Attribute("年級") != null)
                     strGradeYear = d1Elm.Attribute("年級").Value;
 
                 //// 科別處理:問題，當有:取:前文字
                 if (d1Elm.Attribute("科別") != null)
-                {                    
+                {
                     //depIdx = d1Elm.Attribute("科別").Value.IndexOf(":");
                     //if(depIdx>1)
                     //    strDeptName = d1Elm.Attribute("科別").Value.Substring(0,depIdx);
                     //else
-                        strDeptName = d1Elm.Attribute("科別").Value;
+                    strDeptName = d1Elm.Attribute("科別").Value;
                 }
                 if (d1Elm.Attribute("科別代號") != null)
                     strDeptCode = d1Elm.Attribute("科別代號").Value;
-                               
+
                 // 取得異動紀錄集合
                 List<XElement> upRecList = (from elm in d1Elm.Elements("異動紀錄") select elm).ToList();
 
@@ -259,7 +259,7 @@ namespace UpdateRecordModule_SH_D.DAL
                             //break;
 
                             case "科別代碼":
-                                    studUpdateRec.DeptCode = strDeptCode;
+                                studUpdateRec.DeptCode = strDeptCode;
                                 break;
                             case "特殊身分代碼":
                                 studUpdateRec.SpecialStatus = val.Value;
@@ -275,8 +275,8 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "身份證字號":
                             case "身分證字號":
                             case "身分證號":
-                            case "身份證號":                                
-                                if(string.IsNullOrEmpty(studUpdateRec.IDNumber))
+                            case "身份證號":
+                                if (string.IsNullOrEmpty(studUpdateRec.IDNumber))
                                     studUpdateRec.IDNumber = val.Value;
                                 break;
 
@@ -287,12 +287,12 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "註1":
                             case "身分證註記":
                             case "身份證註記":
-                                if(string.IsNullOrEmpty(studUpdateRec.IDNumberComment))
+                                if (string.IsNullOrEmpty(studUpdateRec.IDNumberComment))
                                     studUpdateRec.IDNumberComment = val.Value;
                                 break;
 
                             case "更正後身分證註記":
-                                if(string.IsNullOrEmpty(studUpdateRec.Comment2))
+                                if (string.IsNullOrEmpty(studUpdateRec.Comment2))
                                     studUpdateRec.Comment2 = val.Value;
                                 break;
 
@@ -358,7 +358,7 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "轉入前學生資料_科別":
                                 studUpdateRec.PreviousDepartment = val.Value;
                                 break;
-                            
+
                             case "原就讀年級":
                             case "轉入前學生資料_年級":
                                 studUpdateRec.PreviousGradeYear = val.Value;
@@ -403,7 +403,7 @@ namespace UpdateRecordModule_SH_D.DAL
                                 break;
 
                             case "入學資格證明文件":
-                                studUpdateRec.GraduateDocument=val.Value;
+                                studUpdateRec.GraduateDocument = val.Value;
                                 break;
 
                             case "應畢業學年度":
@@ -413,12 +413,12 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "借讀學校代碼": studUpdateRec.Code7SchoolCode = val.Value; break;
                             case "借讀科別代碼": studUpdateRec.Code7DeptCode = val.Value; break;
                             case "申請開始日期": studUpdateRec.Code71BeginDate = val.Value; break;
-                            case "申請結束日期": studUpdateRec.Code71EndDate= val.Value; break;
+                            case "申請結束日期": studUpdateRec.Code71EndDate = val.Value; break;
                             case "實際開始日期": studUpdateRec.Code72BeginDate = val.Value; break;
                             case "實際結束日期": studUpdateRec.Code72EndDate = val.Value; break;
 
                             case "雙重學籍編號": studUpdateRec.ReplicatedSchoolRollNumber = val.Value; break;
-                                
+
                         }
                     }
 
@@ -439,7 +439,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     retVal.Add(studUpdateRec);
                 }
             }
-                
+
             return retVal;
         }
 
@@ -450,7 +450,7 @@ namespace UpdateRecordModule_SH_D.DAL
         public static XElement ConvertStudUpdateRecDocToXML(List<BL.StudUpdateRecDoc> updateRecList)
         {
             // 排序年級與科別
-          //var data = from ud in updateRecList orderby;
+            //var data = from ud in updateRecList orderby;
             Dictionary<string, List<BL.StudUpdateRecDoc>> data = new Dictionary<string, List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>>();
             Dictionary<string, string> deptCodeDict = new Dictionary<string, string>();
 
@@ -478,9 +478,30 @@ namespace UpdateRecordModule_SH_D.DAL
 
             //2018/02/09 穎驊新增
             //若本次異動名冊為初次產生，則尋找之前對應的異動名冊，將相關資料帶到封面
-            List<SHUpdateRecordBatchRecord> recBatch_list = SHUpdateRecordBatch.SelectAll();
 
+            List<SHUpdateRecordBatchRecord> recBatch_list = new List<SHUpdateRecordBatchRecord>();
 
+            //當學年度的
+            //List<SHUpdateRecordBatchRecord> recBatch_list = SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear), int.Parse(Global._GSemester));
+
+            // 以現在的學年度往回去翻最多兩學年 
+            for (int schoolyear_index = 0; schoolyear_index < 2; schoolyear_index++)
+            {
+                recBatch_list.AddRange(SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear) - schoolyear_index, int.Parse(Global._GSemester)));
+
+                // 假如是第一學期，則幫補找第二學期
+                if (int.Parse(Global._GSemester) == 1)
+                {
+                    recBatch_list.AddRange(SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear) - schoolyear_index, int.Parse(Global._GSemester) + 1));
+                }
+                // 假如是第二學期，則幫補找第一學期
+                if (int.Parse(Global._GSemester) == 2)
+                {
+                    recBatch_list.AddRange(SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear) - schoolyear_index, int.Parse(Global._GSemester) - 1));
+                }
+            }
+
+            
 
             XElement retVal = new XElement("異動名冊");
             retVal.SetAttributeValue("學年度", Global._GSchoolYear);
@@ -495,69 +516,69 @@ namespace UpdateRecordModule_SH_D.DAL
                 // 解析年級科別
                 int idx = val.Key.IndexOf("_");
                 string grYear = val.Key.Substring(0, idx);
-                string DeptName=val.Key.Substring(idx+1,(val.Key.Length-(idx+2)));
+                string DeptName = val.Key.Substring(idx + 1, (val.Key.Length - (idx + 2)));
                 string DeptCode = "";
                 if (deptCodeDict.ContainsKey(DeptName))
                     DeptCode = deptCodeDict[DeptName];
 
-                XElement elmGrDept = new XElement ("清單");
-                elmGrDept.SetAttributeValue("年級", grYear);                
+                XElement elmGrDept = new XElement("清單");
+                elmGrDept.SetAttributeValue("年級", grYear);
                 elmGrDept.SetAttributeValue("科別", DeptName);
                 elmGrDept.SetAttributeValue("科別代碼", DeptCode);
                 elmGrDept.SetAttributeValue("科別代號", DeptCode);
-                foreach (BL.StudUpdateRecDoc rec in val.Value )
+                foreach (BL.StudUpdateRecDoc rec in val.Value)
                 {
                     XElement elm = new XElement("異動紀錄");
-                    elm.SetAttributeValue("異動代碼",rec.UpdateCode);
+                    elm.SetAttributeValue("異動代碼", rec.UpdateCode);
                     elm.SetAttributeValue("異動代號", rec.UpdateCode);
-                    elm.SetAttributeValue("原因及事項",rec.UpdateDescription);
-                    elm.SetAttributeValue("異動日期",rec.UpdateDate);
-                    elm.SetAttributeValue("備註",rec.Comment);
-                    elm.SetAttributeValue("班別",rec.ClassType);
-                    elm.SetAttributeValue("科別",rec.Department);
+                    elm.SetAttributeValue("原因及事項", rec.UpdateDescription);
+                    elm.SetAttributeValue("異動日期", rec.UpdateDate);
+                    elm.SetAttributeValue("備註", rec.Comment);
+                    elm.SetAttributeValue("班別", rec.ClassType);
+                    elm.SetAttributeValue("科別", rec.Department);
                     elm.SetAttributeValue("科別代碼", rec.DeptCode);
-                    elm.SetAttributeValue("特殊身分代碼",rec.SpecialStatus);
+                    elm.SetAttributeValue("特殊身分代碼", rec.SpecialStatus);
                     elm.SetAttributeValue("特殊身份代碼", rec.SpecialStatus);
-                    elm.SetAttributeValue("姓名",rec.StudentName);
-                    elm.SetAttributeValue("學號",rec.StudentNumber);
-                    elm.SetAttributeValue("身分證字號",rec.IDNumber);
+                    elm.SetAttributeValue("姓名", rec.StudentName);
+                    elm.SetAttributeValue("學號", rec.StudentNumber);
+                    elm.SetAttributeValue("身分證字號", rec.IDNumber);
                     elm.SetAttributeValue("身分證號", rec.IDNumber);
-                    elm.SetAttributeValue("生日",rec.Birthday);
+                    elm.SetAttributeValue("生日", rec.Birthday);
                     DateTime dt;
                     if (DateTime.TryParse(rec.Birthday, out dt))
                         elm.SetAttributeValue("出生年月日", (dt.Year - 1911) + "/" + dt.Month + "/" + dt.Day);
                     else
                         elm.SetAttributeValue("出生年月日", "");
-                    elm.SetAttributeValue("身分證註記",rec.IDNumberComment);
+                    elm.SetAttributeValue("身分證註記", rec.IDNumberComment);
                     elm.SetAttributeValue("註1", rec.IDNumberComment);
-                    
-                    elm.SetAttributeValue("性別",rec.Gender);
+
+                    elm.SetAttributeValue("性別", rec.Gender);
                     elm.SetAttributeValue("性別代碼", rec.GenderCode);
                     elm.SetAttributeValue("性別代號", rec.GenderCode);
-                    elm.SetAttributeValue("畢業國中",rec.GraduateSchool);                    
-                    elm.SetAttributeValue("畢業國中所在地代碼",rec.GraduateSchoolLocationCode);
+                    elm.SetAttributeValue("畢業國中", rec.GraduateSchool);
+                    elm.SetAttributeValue("畢業國中所在地代碼", rec.GraduateSchoolLocationCode);
                     elm.SetAttributeValue("畢業國中所在縣市代號", rec.GraduateSchoolLocationCode);
-                    elm.SetAttributeValue("入學資格註記",rec.GraduateComment);
+                    elm.SetAttributeValue("入學資格註記", rec.GraduateComment);
                     elm.SetAttributeValue("入學資格代號", rec.UpdateCode);
-                    elm.SetAttributeValue("畢業國中代碼",rec.GraduateSchoolCode);
-                    elm.SetAttributeValue("國中畢業學年度",rec.GraduateSchoolYear);
-                    elm.SetAttributeValue("核准日期",rec.ADDate);
-                    elm.SetAttributeValue("核准文號",rec.ADNumber);
-                    elm.SetAttributeValue("舊科別代碼",rec.OldDepartmentCode);
-                    elm.SetAttributeValue("舊班別",rec.OldClassType);
-                    elm.SetAttributeValue("備查日期",rec.LastADDate);
-                    elm.SetAttributeValue("備查文號",rec.LastADNumber);
-                    elm.SetAttributeValue("原就讀學校",rec.PreviousSchool);
-                    elm.SetAttributeValue("原就讀學號",rec.PreviousStudentNumber);
-                    elm.SetAttributeValue("原就讀科別",rec.PreviousDepartment);
-                    elm.SetAttributeValue("原就讀年級",rec.PreviousGradeYear);
+                    elm.SetAttributeValue("畢業國中代碼", rec.GraduateSchoolCode);
+                    elm.SetAttributeValue("國中畢業學年度", rec.GraduateSchoolYear);
+                    elm.SetAttributeValue("核准日期", rec.ADDate);
+                    elm.SetAttributeValue("核准文號", rec.ADNumber);
+                    elm.SetAttributeValue("舊科別代碼", rec.OldDepartmentCode);
+                    elm.SetAttributeValue("舊班別", rec.OldClassType);
+                    elm.SetAttributeValue("備查日期", rec.LastADDate);
+                    elm.SetAttributeValue("備查文號", rec.LastADNumber);
+                    elm.SetAttributeValue("原就讀學校", rec.PreviousSchool);
+                    elm.SetAttributeValue("原就讀學號", rec.PreviousStudentNumber);
+                    elm.SetAttributeValue("原就讀科別", rec.PreviousDepartment);
+                    elm.SetAttributeValue("原就讀年級", rec.PreviousGradeYear);
                     elm.SetAttributeValue("原就讀學期", rec.PreviousSemester);
-                    elm.SetAttributeValue("原就讀備查日期",rec.PreviousSchoolLastADDate);
-                    elm.SetAttributeValue("原就讀備查文號",rec.PreviousSchoolLastADNumber);
-                    elm.SetAttributeValue("最後異動代碼",rec.LastUpdateCode);
+                    elm.SetAttributeValue("原就讀備查日期", rec.PreviousSchoolLastADDate);
+                    elm.SetAttributeValue("原就讀備查文號", rec.PreviousSchoolLastADNumber);
+                    elm.SetAttributeValue("最後異動代碼", rec.LastUpdateCode);
                     elm.SetAttributeValue("最後異動代號", rec.LastUpdateCode);
-                    elm.SetAttributeValue("畢業證書字號",rec.GraduateCertificateNumber);
-                    elm.SetAttributeValue("年級",rec.GradeYear);
+                    elm.SetAttributeValue("畢業證書字號", rec.GraduateCertificateNumber);
+                    elm.SetAttributeValue("年級", rec.GradeYear);
                     elm.SetAttributeValue("新資料", rec.NewData);
                     elm.SetAttributeValue("異動編號", rec.URID);
                     elm.SetAttributeValue("學生編號", rec.StudentID);
@@ -568,13 +589,13 @@ namespace UpdateRecordModule_SH_D.DAL
                     elm.SetAttributeValue("轉入前學生資料_年級", rec.PreviousGradeYear);
                     elm.SetAttributeValue("轉入前學生資料_學期", rec.PreviousSemester);
                     elm.SetAttributeValue("轉入前學生資料_備查日期", rec.PreviousSchoolLastADDate);
-                    elm.SetAttributeValue("轉入前學生資料_備查文號", rec.PreviousSchoolLastADNumber);                    
+                    elm.SetAttributeValue("轉入前學生資料_備查文號", rec.PreviousSchoolLastADNumber);
                     elm.SetAttributeValue("入學資格證明文件", rec.GraduateDocument);
 
                     elm.SetAttributeValue("雙重學籍編號", rec.ReplicatedSchoolRollNumber);
 
                     // 當他校轉入
-                    if(rec.UpdateCode.Substring(0,1)=="1")
+                    if (rec.UpdateCode.Substring(0, 1) == "1")
                         elm.SetAttributeValue("轉入身分別代碼", rec.Comment2);
                     else
                         elm.SetAttributeValue("更正後身分證註記", rec.Comment2);
@@ -590,8 +611,20 @@ namespace UpdateRecordModule_SH_D.DAL
 
                     elmGrDept.Add(elm);
                 }
+
+
+                //2018/02/14 穎驊新增
+                //填封面資料
+                //傳入 封面種類、目前學年、年級、科別代碼、近期的(三年內)所有異動名冊
+                XElement elmGrDeptCover = AutoGenerateCover(Global._GUpdateBatchType, Global._GSchoolYear,grYear, DeptCode,recBatch_list);
+
+                
+
+                //加入封面
+                elmGrDept.Add(elmGrDeptCover);
+
                 retVal.Add(elmGrDept);
-            }            
+            }
             return retVal;
         }
 
@@ -606,34 +639,34 @@ namespace UpdateRecordModule_SH_D.DAL
 
             BL.StudUpdateRecBatchRec surbr = new UpdateRecordModule_SH_D.BL.StudUpdateRecBatchRec();
             SHUpdateRecordBatchRecord recBatch = SHUpdateRecordBatch.SelectByID(ID);
-                surbr.ID = recBatch.ID;
-                surbr.ADDate = recBatch.ADDate;
-                surbr.ADNumber = recBatch.ADNumber;
-                surbr.Name = recBatch.Name;
-                surbr.SchoolYear =recBatch.SchoolYear;
-                surbr.Semester = recBatch.Semester;
-                surbr.Content = recBatch.Content;
-                string content = recBatch.Content.InnerXml;
-                XElement elm = XElement.Parse(content);
-                surbr.StudUpdateRecDocList = ConvertXmlToStudUpdateRecDocList(elm);
-                foreach (XAttribute xx in elm.Attributes())
+            surbr.ID = recBatch.ID;
+            surbr.ADDate = recBatch.ADDate;
+            surbr.ADNumber = recBatch.ADNumber;
+            surbr.Name = recBatch.Name;
+            surbr.SchoolYear = recBatch.SchoolYear;
+            surbr.Semester = recBatch.Semester;
+            surbr.Content = recBatch.Content;
+            string content = recBatch.Content.InnerXml;
+            XElement elm = XElement.Parse(content);
+            surbr.StudUpdateRecDocList = ConvertXmlToStudUpdateRecDocList(elm);
+            foreach (XAttribute xx in elm.Attributes())
+            {
+                switch (xx.Name.ToString())
                 {
-                    switch (xx.Name.ToString ())
-                    {
-                        case "學校代號":
-                            surbr.SchoolCode = xx.Value;
-                            break;
-                        case "學校代碼":
-                            surbr.SchoolCode = xx.Value;
-                            break;
-                        case "學校名稱":
-                            surbr.SchoolName=xx.Value;
-                            break;
-                        case "類別":
-                            surbr.UpdateType=xx.Value;
-                            break;                    
-                    }
-                }            
+                    case "學校代號":
+                        surbr.SchoolCode = xx.Value;
+                        break;
+                    case "學校代碼":
+                        surbr.SchoolCode = xx.Value;
+                        break;
+                    case "學校名稱":
+                        surbr.SchoolName = xx.Value;
+                        break;
+                    case "類別":
+                        surbr.UpdateType = xx.Value;
+                        break;
+                }
+            }
             return surbr;
         }
 
@@ -641,10 +674,10 @@ namespace UpdateRecordModule_SH_D.DAL
         /// 儲存異動名冊
         /// </summary>
         /// <param name="StudUpdateRecBRec"></param>
-        public static void SetStudUpdateRecBatchRec(BL.StudUpdateRecBatchRec StudUpdateRecBRec,bool isInsert)
+        public static void SetStudUpdateRecBatchRec(BL.StudUpdateRecBatchRec StudUpdateRecBRec, bool isInsert)
         {
             SHUpdateRecordBatchRecord shurbr = new SHUpdateRecordBatchRecord();
-            
+
 
             //若為新增產生名冊
             if (isInsert)
@@ -684,7 +717,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 // 將 string 轉型 XmlElement
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(SHUpdateRecordBatch.SelectByID(StudUpdateRecBRec.ID).Content.InnerXml);
-                
+
                 shurbr.Content = doc.DocumentElement;
 
                 shurbr.ID = StudUpdateRecBRec.ID;
@@ -694,7 +727,7 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 SHUpdateRecordBatch.Update(shurbr);
             }
-            
+
         }
 
         /// <summary>
@@ -711,7 +744,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 retVal.Add(node.InnerText);
             retVal.OrderByDescending(x => x);
             return retVal;
-            
+
         }
 
         /// <summary>
@@ -732,7 +765,7 @@ namespace UpdateRecordModule_SH_D.DAL
             _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊);
             _UpdateRecBatchTypeDict.Add(StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊.ToString(), StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊);
 
-           
+
 
             return _UpdateRecBatchTypeDict;
         }
@@ -744,15 +777,15 @@ namespace UpdateRecordModule_SH_D.DAL
         /// <param name="ADNumber"></param>
         /// <param name="studURIDList"></param>
         public static void SetStudsUpdateRecADdata(string ADDate, string ADNumber, List<string> studURIDList)
-        { 
+        {
             // 取得異動 ID            
-            List<SHUpdateRecordRecord> updateRecs = SHUpdateRecord.SelectByIDs(studURIDList);            
+            List<SHUpdateRecordRecord> updateRecs = SHUpdateRecord.SelectByIDs(studURIDList);
             foreach (SHUpdateRecordRecord rec in updateRecs)
             {
                 rec.ADDate = ADDate;
-                rec.ADNumber = ADNumber;                
+                rec.ADNumber = ADNumber;
             }
-        
+
             // 更新異動資料
             SHUpdateRecord.Update(updateRecs);
         }
@@ -772,49 +805,49 @@ namespace UpdateRecordModule_SH_D.DAL
                 GovernmentalDocument.Reports.List.rpt_UpdateRecord val = new GovernmentalDocument.Reports.List.rpt_UpdateRecord();
 
                 //班別
-                val.ClassType=Record.GetAttribute("班別");
-                
+                val.ClassType = Record.GetAttribute("班別");
+
                 //科別代碼
-                val.DeptCode=(Record.ParentNode as XmlElement).GetAttribute("科別代號");                
-                
+                val.DeptCode = (Record.ParentNode as XmlElement).GetAttribute("科別代號");
+
                 //學號
-                val.StudentNumber=Record.GetAttribute("學號");
+                val.StudentNumber = Record.GetAttribute("學號");
 
                 // StudentID
                 val.StudentID = Record.GetAttribute("學生編號");
-                
+
                 //姓名
-                val.Name=Record.GetAttribute("姓名");
-                
+                val.Name = Record.GetAttribute("姓名");
+
                 //身分證字號
-                val.IDNumber=Record.GetAttribute("身分證號");
+                val.IDNumber = Record.GetAttribute("身分證號");
 
                 //註1
-                 val.Comment1= Record.GetAttribute("註1");
+                val.Comment1 = Record.GetAttribute("註1");
 
                 //性別代碼
-                 val.GenderCode=Record.GetAttribute("性別代號");
+                val.GenderCode = Record.GetAttribute("性別代號");
                 //出生日期
-                 val.Birthday = GetBirthdateWithoutSlash(Record.GetAttribute("出生年月日"));
+                val.Birthday = GetBirthdateWithoutSlash(Record.GetAttribute("出生年月日"));
 
                 //特殊身份代碼
-                 val.SpecialStatusCode= Record.GetAttribute("特殊身份代碼"); //原為抓取備註欄位
-                //年級
-                 val.GradeYear=(Record.ParentNode as XmlElement).GetAttribute("年級");
+                val.SpecialStatusCode = Record.GetAttribute("特殊身份代碼"); //原為抓取備註欄位
+                                                                       //年級
+                val.GradeYear = (Record.ParentNode as XmlElement).GetAttribute("年級");
                 //異動原因代碼
-                 val.UpdateCode=Record.GetAttribute("異動代號");
-                
+                val.UpdateCode = Record.GetAttribute("異動代號");
+
                 //異動日期
                 val.UpdateDate = GetBirthdateWithoutSlash(Record.GetAttribute("異動日期"));
-                
+
                 // 原科別代碼
-                if(Record.GetAttribute("原就讀科別").Trim()=="")
+                if (Record.GetAttribute("原就讀科別").Trim() == "")
                     val.PreviousDeptCode = Record.GetAttribute("轉入前學生資料_科別");
                 else
                     val.PreviousDeptCode = Record.GetAttribute("原就讀科別");
 
                 // 原學校代碼
-                if(Record.GetAttribute("原就讀學校").Trim()=="")
+                if (Record.GetAttribute("原就讀學校").Trim() == "")
                     val.PreviousSchoolCode = Record.GetAttribute("轉入前學生資料_學校");
                 else
                     val.PreviousSchoolCode = Record.GetAttribute("原就讀學校");
@@ -838,7 +871,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     val.PreviousSemester = Record.GetAttribute("原就讀學期");
 
                 //原備查日期
-                if(Record.GetAttribute("原就讀備查日期").Trim()=="")
+                if (Record.GetAttribute("原就讀備查日期").Trim() == "")
                     val.PreviousSchoolLastADDate = GetBirthdateWithoutSlash(Record.GetAttribute("轉入前學生資料_備查日期"));
                 else
                     val.PreviousSchoolLastADDate = GetBirthdateWithoutSlash(Record.GetAttribute("原就讀備查日期"));
@@ -847,73 +880,73 @@ namespace UpdateRecordModule_SH_D.DAL
                 if (Record.GetAttribute("原就讀備查文號").Trim() == "")
                     val.PreviousSchoolLastADDoc = GetNumAndSrt1(Record.GetAttribute("轉入前學生資料_備查文號"));
                 else
-                    val.PreviousSchoolLastADDoc= GetNumAndSrt1(Record.GetAttribute("原就讀備查文號"));
+                    val.PreviousSchoolLastADDoc = GetNumAndSrt1(Record.GetAttribute("原就讀備查文號"));
 
                 //原備查文號
                 if (Record.GetAttribute("原就讀備查文號").Trim() == "")
                     val.PreviousSchoolLastADNum = GetNumAndSrt2(Record.GetAttribute("轉入前學生資料_備查文號"));
                 else
-                    val.PreviousSchoolLastADNum=GetNumAndSrt2(Record.GetAttribute("原就讀備查文號"));
+                    val.PreviousSchoolLastADNum = GetNumAndSrt2(Record.GetAttribute("原就讀備查文號"));
 
                 //更正後資料               
-                 val.NewData = Record.GetAttribute("新資料");
-                                
+                val.NewData = Record.GetAttribute("新資料");
+
                 // 新學號
-                 val.NewStudNumber = Record.GetAttribute("新學號");
+                val.NewStudNumber = Record.GetAttribute("新學號");
 
                 //備註說明
-                 val.Comment= Record.GetAttribute("備註");
+                val.Comment = Record.GetAttribute("備註");
 
                 // 異動編號
-                 if(Record.GetAttribute("編號")!="")
-                     val.URID = Record.GetAttribute("編號");
-                 else
-                     val.URID = Record.GetAttribute("異動編號");
+                if (Record.GetAttribute("編號") != "")
+                    val.URID = Record.GetAttribute("編號");
+                else
+                    val.URID = Record.GetAttribute("異動編號");
 
 
                 // 備查日期
-                 val.LastADDate = GetBirthdateWithoutSlash(Record.GetAttribute("備查日期"));
+                val.LastADDate = GetBirthdateWithoutSlash(Record.GetAttribute("備查日期"));
 
                 // 備查文字
-                 val.LastADDoc = GetNumAndSrt1(Record.GetAttribute("備查文號"));
+                val.LastADDoc = GetNumAndSrt1(Record.GetAttribute("備查文號"));
 
                 // 備查文號
-                 val.LastADNum = GetNumAndSrt2(Record.GetAttribute("備查文號"));
+                val.LastADNum = GetNumAndSrt2(Record.GetAttribute("備查文號"));
 
-                 // 畢業證書字號
-                 val.GraduateCertificateNumber = Record.GetAttribute("畢業證書字號");
+                // 畢業證書字號
+                val.GraduateCertificateNumber = Record.GetAttribute("畢業證書字號");
 
-                 // 更正後身分證註記                
-                 val.Comment2 = Record.GetAttribute("更正後身分證註記");
+                // 更正後身分證註記                
+                val.Comment2 = Record.GetAttribute("更正後身分證註記");
 
-                 // 轉入身分別代碼 
-                 val.TransferStatus = Record.GetAttribute("轉入身分別代碼");
+                // 轉入身分別代碼 
+                val.TransferStatus = Record.GetAttribute("轉入身分別代碼");
 
                 // 應畢業學年度
-                 val.ExpectGraduateSchoolYear = Record.GetAttribute("應畢業學年度");
+                val.ExpectGraduateSchoolYear = Record.GetAttribute("應畢業學年度");
 
-                 // 借讀學校代碼
-                 val.Code7SchoolCode= Record.GetAttribute("借讀學校代碼");
+                // 借讀學校代碼
+                val.Code7SchoolCode = Record.GetAttribute("借讀學校代碼");
 
-                 // 借讀科別代碼
-                 val.Code7DeptCode = Record.GetAttribute("借讀科別代碼");
+                // 借讀科別代碼
+                val.Code7DeptCode = Record.GetAttribute("借讀科別代碼");
 
-                 // 申請開始日期
-                 val.Code71BeginDate = Record.GetAttribute("申請開始日期");
+                // 申請開始日期
+                val.Code71BeginDate = Record.GetAttribute("申請開始日期");
 
-                 // 申請結束日期
-                 val.Code71EndDate = Record.GetAttribute("申請結束日期");
+                // 申請結束日期
+                val.Code71EndDate = Record.GetAttribute("申請結束日期");
 
-                 // 實際開始日期
-                 val.Code72BeginDate = Record.GetAttribute("實際開始日期");
+                // 實際開始日期
+                val.Code72BeginDate = Record.GetAttribute("實際開始日期");
 
-                 // 實際結束日期
-                 val.Code72EndDate = Record.GetAttribute("實際結束日期");
+                // 實際結束日期
+                val.Code72EndDate = Record.GetAttribute("實際結束日期");
 
-                 //雙重學籍編號
-                 val.ReplicatedSchoolRollNumber = Record.GetAttribute("雙重學籍編號");
-                                    
-                 retVal.Add(val);                
+                //雙重學籍編號
+                val.ReplicatedSchoolRollNumber = Record.GetAttribute("雙重學籍編號");
+
+                retVal.Add(val);
             }
 
             // 解析科別代碼用
@@ -921,27 +954,27 @@ namespace UpdateRecordModule_SH_D.DAL
             foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
                 if (!deptCodeDict.ContainsKey(rec.FullName))
                     deptCodeDict.Add(rec.FullName, rec.Code);
-  
+
 
             // 排序填入
             int uidint;
-            retVal = (from data in retVal orderby data.Name,data.UpdateDate, int.TryParse(data.URID,out uidint) select data).ToList();
+            retVal = (from data in retVal orderby data.Name, data.UpdateDate, int.TryParse(data.URID, out uidint) select data).ToList();
 
             int order = 0;
             string tmpStr = "";
             foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in retVal)
-            {               
-            
-                if(rec.Name != tmpStr)
+            {
+
+                if (rec.Name != tmpStr)
                 {
-                    order =1;
-                    rec.Order=order.ToString();                    
+                    order = 1;
+                    rec.Order = order.ToString();
                 }
                 else
-                    rec.Order =order.ToString ();
+                    rec.Order = order.ToString();
 
-                order ++;
-                tmpStr =rec.Name;
+                order++;
+                tmpStr = rec.Name;
 
 
                 // 教育部 99年學校代碼長度定義6碼，直接切
@@ -951,7 +984,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 // 解析科別代碼
                 if (deptCodeDict.ContainsKey(rec.PreviousDeptCode))
                     rec.PreviousDeptCode = deptCodeDict[rec.PreviousDeptCode];
-            }                    
+            }
 
             return retVal;
         }
@@ -980,7 +1013,7 @@ namespace UpdateRecordModule_SH_D.DAL
             if (fuct.Contains("字"))
             {
                 if (fuct.Remove(fuct.LastIndexOf("字")) != "")
-                return fuct.Remove(fuct.LastIndexOf("字"));
+                    return fuct.Remove(fuct.LastIndexOf("字"));
             }
 
             return GetNumAndSrt2(fuct);
@@ -1006,6 +1039,130 @@ namespace UpdateRecordModule_SH_D.DAL
         }
 
         #endregion
+
+
+        // 2018/2/14 穎驊新增
+        //依據目前的名冊種類、以前的資料 自動帶出封面資料
+        //需傳入 名冊種類、年級、科別代碼、近期的(三年內)所有異動名冊 ，才能夠對應出資料
+        private static XElement AutoGenerateCover(string _GUpdateBatchType, string schoolYear, string gradeYear,string deptCode, List<SHUpdateRecordBatchRecord> recBatch_list)
+        {
+
+            
+
+            XElement elmGrDeptCover = new XElement("異動名冊封面");
+
+            switch (_GUpdateBatchType)
+            {
+                case "新生名冊":
+                    //rptBuild = new EnrollmentList();
+                    break;
+                case "延修生學籍異動名冊":                                        
+                    break;
+
+
+                case "學籍異動名冊":
+
+                    DateTime? uploadTime = new DateTime();
+
+                    foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
+                    {
+                        System.Xml.XmlElement source;
+
+                        source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
+
+                        string school_code = source.SelectSingleNode("@學校代號").InnerText;
+                        string school_year = source.SelectSingleNode("@學年度").InnerText;
+                        string school_semester = source.SelectSingleNode("@學期").InnerText;
+                        string update_type = source.SelectSingleNode("@類別").InnerText;
+
+                        // 舊的名冊 與上傳名冊同種類、且有上傳過後 審核通過的文號(代表核准)，將會抓取最新的那筆紀錄寫進來                    
+                        if (update_type == _GUpdateBatchType && batch_record.ADNumber != "" && batch_record.ADDate > uploadTime)
+                        {
+                            uploadTime = batch_record.ADDate;
+
+                            // 假如目前新異動名冊要求的學年度 與舊的異動名冊學年度相同，代表同一年級科別對應的對象是同一屆的學生
+                            if (schoolYear == school_year)
+                            {
+                                foreach (XmlNode list in source.SelectNodes("清單"))
+                                {
+                                    if (gradeYear == list.SelectSingleNode("@年級").InnerText && deptCode == list.SelectSingleNode("@科別代碼").InnerText)
+                                    {
+                                        foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                                        {
+                                            elmGrDeptCover.SetAttributeValue("名冊別", st.SelectSingleNode("@名冊別").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("增加學生數", st.SelectSingleNode("@增加學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("減少學生數", st.SelectSingleNode("@減少學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("更正學生數", st.SelectSingleNode("@更正學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("現有學生數", st.SelectSingleNode("@現有學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明").InnerText);
+                                        }                                                                                
+                                    }
+                                }
+                            }
+
+                            
+
+
+                        }
+
+
+                                                
+
+                    }
+
+                    
+                    break;
+
+                case "畢業名冊":
+                    //rptBuild = new GraduatingStudentList();
+                    break;
+
+                case "延修生畢業名冊":
+                    //rptBuild = new ExtendingStudentGraduateList();
+                    break;
+
+                case "延修生名冊":
+                    elmGrDeptCover.SetAttributeValue("名冊別", "1");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "1");
+                    elmGrDeptCover.SetAttributeValue("班別", "1");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "1");
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "1");
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "1");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "1");
+                    elmGrDeptCover.SetAttributeValue("增加學生數", "1");
+                    elmGrDeptCover.SetAttributeValue("現有學生數", "1");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "1");
+                    break;
+
+                case "轉入學生名冊":
+                    //rptBuild = new TransferringStudentUpdateRecordList();
+                    break;
+
+                case "新生保留錄取資格名冊":
+                    //rptBuild = new RetaintoStudentList();
+                    break;
+
+                case "借讀學生名冊":
+                    //rptBuild = new TemporaryStudentList();
+                    break;
+            }
+
+            
+
+
+
+
+            return elmGrDeptCover;
+        }
+
 
     }
 }
