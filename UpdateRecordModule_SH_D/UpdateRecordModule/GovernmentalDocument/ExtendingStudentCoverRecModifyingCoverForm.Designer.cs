@@ -190,11 +190,10 @@
             // 
             // 應畢業學年度
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
             this.應畢業學年度.DefaultCellStyle = dataGridViewCellStyle5;
             this.應畢業學年度.HeaderText = "應畢業學年度";
             this.應畢業學年度.Name = "應畢業學年度";
-            this.應畢業學年度.ReadOnly = true;
             this.應畢業學年度.Width = 120;
             // 
             // 班別

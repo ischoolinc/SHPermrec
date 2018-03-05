@@ -1064,58 +1064,74 @@ namespace UpdateRecordModule_SH_D.DAL
 
                     DateTime? uploadTime = new DateTime();
 
-                    foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
+                    //紀錄 是否有舊的異動名冊資料可以參考
+                    bool hasOldUpdateRecordBatchRecord = false;
+
+                    //foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
+                    //{
+                    //    System.Xml.XmlElement source;
+
+                    //    source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
+
+                    //    string school_code = source.SelectSingleNode("@學校代號").InnerText;
+                    //    string school_year = source.SelectSingleNode("@學年度").InnerText;
+                    //    string school_semester = source.SelectSingleNode("@學期").InnerText;
+                    //    string update_type = source.SelectSingleNode("@類別").InnerText;
+
+                    //    // 舊的名冊 與上傳名冊同種類、且有上傳過後 審核通過的文號(代表核准)，將會抓取最新的那筆紀錄寫進來                    
+                    //    if (update_type == _GUpdateBatchType && batch_record.ADNumber != "" && batch_record.ADDate > uploadTime)
+                    //    {
+                    //        //有舊紀錄可以用
+                    //        hasOldUpdateRecordBatchRecord = true;
+                    //        uploadTime = batch_record.ADDate;
+
+                    //        // 假如目前新異動名冊要求的學年度 與舊的異動名冊學年度相同，代表同一年級科別對應的對象是同一屆的學生
+                    //        if (schoolYear == school_year)
+                    //        {
+                    //            foreach (XmlNode list in source.SelectNodes("清單"))
+                    //            {
+                    //                if (gradeYear == list.SelectSingleNode("@年級").InnerText && deptCode == list.SelectSingleNode("@科別代碼").InnerText)
+                    //                {
+                    //                    foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                    //                    {
+                    //                        elmGrDeptCover.SetAttributeValue("名冊別", st.SelectSingleNode("@名冊別").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("增加學生數", st.SelectSingleNode("@增加學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("減少學生數", st.SelectSingleNode("@減少學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("更正學生數", st.SelectSingleNode("@更正學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("現有學生數", st.SelectSingleNode("@現有學生數").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1").InnerText);
+                    //                        elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明").InnerText);
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+
+                    // 假如無舊資料可以用 ，代表這次新增是第一筆， 大部分的封面資料需要使用者自行填入
+                    if (!hasOldUpdateRecordBatchRecord)
                     {
-                        System.Xml.XmlElement source;
-
-                        source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
-
-                        string school_code = source.SelectSingleNode("@學校代號").InnerText;
-                        string school_year = source.SelectSingleNode("@學年度").InnerText;
-                        string school_semester = source.SelectSingleNode("@學期").InnerText;
-                        string update_type = source.SelectSingleNode("@類別").InnerText;
-
-                        // 舊的名冊 與上傳名冊同種類、且有上傳過後 審核通過的文號(代表核准)，將會抓取最新的那筆紀錄寫進來                    
-                        if (update_type == _GUpdateBatchType && batch_record.ADNumber != "" && batch_record.ADDate > uploadTime)
-                        {
-                            uploadTime = batch_record.ADDate;
-
-                            // 假如目前新異動名冊要求的學年度 與舊的異動名冊學年度相同，代表同一年級科別對應的對象是同一屆的學生
-                            if (schoolYear == school_year)
-                            {
-                                foreach (XmlNode list in source.SelectNodes("清單"))
-                                {
-                                    if (gradeYear == list.SelectSingleNode("@年級").InnerText && deptCode == list.SelectSingleNode("@科別代碼").InnerText)
-                                    {
-                                        foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
-                                        {
-                                            elmGrDeptCover.SetAttributeValue("名冊別", st.SelectSingleNode("@名冊別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("增加學生數", st.SelectSingleNode("@增加學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("減少學生數", st.SelectSingleNode("@減少學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("更正學生數", st.SelectSingleNode("@更正學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("現有學生數", st.SelectSingleNode("@現有學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明").InnerText);
-                                        }                                                                                
-                                    }
-                                }
-                            }
-
-                            
-
-
-                        }
-
-
-                                                
-
+                        elmGrDeptCover.SetAttributeValue("名冊別", "3");
+                        elmGrDeptCover.SetAttributeValue("班別", "");
+                        elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                        elmGrDeptCover.SetAttributeValue("核定班數", "");
+                        elmGrDeptCover.SetAttributeValue("核定學生數", "");
+                        elmGrDeptCover.SetAttributeValue("實招班數", "");
+                        elmGrDeptCover.SetAttributeValue("實招新生數", "");
+                        elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                        elmGrDeptCover.SetAttributeValue("增加學生數", "");
+                        elmGrDeptCover.SetAttributeValue("減少學生數", "");
+                        elmGrDeptCover.SetAttributeValue("更正學生數", "");
+                        elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                        elmGrDeptCover.SetAttributeValue("註1", "");
+                        elmGrDeptCover.SetAttributeValue("備註說明", "");
                     }
 
                     
