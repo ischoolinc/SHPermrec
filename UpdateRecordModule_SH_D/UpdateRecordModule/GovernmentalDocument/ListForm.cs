@@ -427,7 +427,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         break;
 
                     case "轉入學生名冊":
-                        btnModifyCover.Enabled = false;
+                        btnModifyCover.Enabled = true;
                         break;
 
                     case "新生保留錄取資格名冊":
@@ -597,9 +597,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     escrmcf.ShowDialog();
                     break;
 
-                    //case "轉入學生名冊":
-                    //    rptBuild = new TransferringStudentUpdateRecordList();
-                    //    break;
+                case "轉入學生名冊":
+                    TransferingStudentUpdateRecordListModifyingCoverForm tsurmvf = new TransferingStudentUpdateRecordListModifyingCoverForm(_SelectBRec);
+                    tsurmvf.ShowDialog();
+                    break;
 
                     //case "新生保留錄取資格名冊":
                     //    rptBuild = new RetaintoStudentList();

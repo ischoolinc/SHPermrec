@@ -71,8 +71,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                         ws.Cells.CreateRange(index + next, next, false).Copy(tempRange);
                     }
 
-                    //填入資料
-                    for (int i = 0; i < dataRow && recCount < list.ChildNodes.Count; i++, recCount++)
+                    //填入資料 (2018/3/6 穎驊註解，list.ChildNodes.Count-1 因為要扣掉一個 異動名冊封面 資料)
+                    for (int i = 0; i < dataRow && recCount < list.ChildNodes.Count-1; i++, recCount++)
                     {
                         //MsgBox.Show(i.ToString()+" "+recCount.ToString());
                         XmlNode rec = list.SelectNodes("異動紀錄")[recCount];
@@ -266,6 +266,77 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             wb.Worksheets.RemoveAt("電子格式範本");
 
             #endregion
+
+            //2018/3/6 穎驊 新增轉入生 封面格式支援
+
+            Worksheet cover = wb.Worksheets["轉入生名冊封面"];
+
+            string school_code = source.SelectSingleNode("@學校代號").InnerText;
+            string school_year = source.SelectSingleNode("@學年度").InnerText;
+            string school_semester = source.SelectSingleNode("@學期").InnerText;
+
+            int cover_row_counter = 1;
+            
+
+            foreach (XmlNode list in source.SelectNodes("清單"))
+            {
+                string gradeYear = list.SelectSingleNode("@年級").InnerText;
+                string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
+
+                //學校代碼
+                cover.Cells[cover_row_counter, 0].PutValue(school_code);
+                //學年度
+                cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                //學期
+                cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+                //年級
+                cover.Cells[cover_row_counter, 3].PutValue(gradeYear);
+                //科別代碼
+                cover.Cells[cover_row_counter, 6].PutValue(deptCode);
+
+                foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                {
+                    string reportType = st.SelectSingleNode("@名冊別").InnerText;
+                    string classType = st.SelectSingleNode("@班別").InnerText;
+                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
+                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
+                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
+                    string actualClassCount = st.SelectSingleNode("@實招班數").InnerText;
+                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
+                    string originalStudentCount = st.SelectSingleNode("@原有學生數").InnerText;
+                    string transferStudentCount = st.SelectSingleNode("@轉入學生數").InnerText;                    
+                    string currentStudentCount = st.SelectSingleNode("@現有學生數").InnerText;
+                    string remarks1 = st.SelectSingleNode("@註1").InnerText;
+                    string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
+
+                    //名冊別
+                    cover.Cells[cover_row_counter, 4].PutValue(reportType);
+                    //班別
+                    cover.Cells[cover_row_counter, 5].PutValue(classType);
+                    //上傳類別
+                    cover.Cells[cover_row_counter, 7].PutValue(updateType);
+                    //核定班級
+                    cover.Cells[cover_row_counter, 8].PutValue(approvedClassCount);
+                    //核定學生數
+                    cover.Cells[cover_row_counter, 9].PutValue(approvedStudentCount);
+                    //實招班數
+                    cover.Cells[cover_row_counter, 10].PutValue(actualClassCount);
+                    //實招新生數
+                    cover.Cells[cover_row_counter, 11].PutValue(actualStudentCount);
+                    //原有學生數
+                    cover.Cells[cover_row_counter, 12].PutValue(originalStudentCount);
+                    //轉入學生數
+                    cover.Cells[cover_row_counter, 13].PutValue(transferStudentCount);                    
+                    //現有學生數
+                    cover.Cells[cover_row_counter, 14].PutValue(currentStudentCount);
+                    //註1
+                    cover.Cells[cover_row_counter, 15].PutValue(remarks1);
+                    //備註說明
+                    cover.Cells[cover_row_counter, 16].PutValue(remarksContent);
+                }
+                cover_row_counter++;
+            }
+
 
             wb.Worksheets.ActiveSheetIndex = 0;
 

@@ -1047,7 +1047,7 @@ namespace UpdateRecordModule_SH_D.DAL
         private static XElement AutoGenerateCover(string _GUpdateBatchType, string schoolYear, string gradeYear,string deptCode, List<SHUpdateRecordBatchRecord> recBatch_list)
         {
 
-            
+            bool hasOldUpdateRecordBatchRecord = false;
 
             XElement elmGrDeptCover = new XElement("異動名冊封面");
 
@@ -1065,7 +1065,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     DateTime? uploadTime = new DateTime();
 
                     //紀錄 是否有舊的異動名冊資料可以參考
-                    bool hasOldUpdateRecordBatchRecord = false;
+                    hasOldUpdateRecordBatchRecord = false;
 
                     //foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
                     //{
@@ -1147,19 +1147,42 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 case "延修生名冊":
                     elmGrDeptCover.SetAttributeValue("名冊別", "1");
-                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "1");
-                    elmGrDeptCover.SetAttributeValue("班別", "1");
-                    elmGrDeptCover.SetAttributeValue("上傳類別", "1");
-                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "1");
-                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "1");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "1");
-                    elmGrDeptCover.SetAttributeValue("增加學生數", "1");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "1");
-                    elmGrDeptCover.SetAttributeValue("備註說明", "1");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
+                    elmGrDeptCover.SetAttributeValue("班別", "");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("增加學生數", "");
+                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "轉入學生名冊":
                     //rptBuild = new TransferringStudentUpdateRecordList();
+
+                    //紀錄 是否有舊的異動名冊資料可以參考
+                     hasOldUpdateRecordBatchRecord = false;
+
+                    // 假如無舊資料可以用 ，代表這次新增是第一筆， 大部分的封面資料需要使用者自行填入
+                    if (!hasOldUpdateRecordBatchRecord)
+                    {
+                        elmGrDeptCover.SetAttributeValue("名冊別", "2");
+                        elmGrDeptCover.SetAttributeValue("班別", "");                        
+                        elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                        elmGrDeptCover.SetAttributeValue("核定班數", "");
+                        elmGrDeptCover.SetAttributeValue("核定學生數", "");
+                        elmGrDeptCover.SetAttributeValue("實招班數", "");
+                        elmGrDeptCover.SetAttributeValue("實招新生數", "");
+                        elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                        elmGrDeptCover.SetAttributeValue("轉入學生數", "");                        
+                        elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                        elmGrDeptCover.SetAttributeValue("註1", "");
+                        elmGrDeptCover.SetAttributeValue("備註說明", "");
+
+                    }
+
+
                     break;
 
                 case "新生保留錄取資格名冊":
@@ -1182,3 +1205,4 @@ namespace UpdateRecordModule_SH_D.DAL
 
     }
 }
+
