@@ -44,7 +44,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 //Page
                 int currentPage = 1;
-                int totalPage = (list.ChildNodes.Count / 18) + 1;
+                //2018/6/19 穎驊新增因應客服 https://ischool.zendesk.com/agent/tickets/6076，
+                //反映列印不出問題，發現此處Count 會多數一個 上次新增異動名冊封面的邏輯項目，造成數有些屬性找不到而爆炸，
+                //因此都先固定減一
+                int totalPage = ((list.ChildNodes.Count-1 )/ 18) + 1; 
 
                 //寫入名冊類別
                 if (source.SelectSingleNode("@類別").InnerText == "畢業名冊")
@@ -86,7 +89,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     }
 
                     //填入資料
-                    for (int i = 0; i < 18 && recCount < list.ChildNodes.Count; i++, recCount++)
+                    for (int i = 0; i < 18 && recCount < list.ChildNodes.Count -1; i++, recCount++)
                     {
                         //MsgBox.Show(i.ToString()+" "+recCount.ToString());
                         XmlNode rec = list.SelectNodes("異動紀錄")[recCount];
@@ -120,7 +123,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     if (currentPage == totalPage)
                     {
                         ws.Cells[dataIndex, 0].PutValue("合計");
-                        ws.Cells[dataIndex, 1].PutValue(list.ChildNodes.Count.ToString());
+                        ws.Cells[dataIndex, 1].PutValue((list.ChildNodes.Count-1).ToString());
                         //ws.Cells[index + 22, 0].PutValue("合計");
                         //ws.Cells[index + 22, 1].PutValue(list.ChildNodes.Count.ToString());
                     }
