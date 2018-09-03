@@ -1056,7 +1056,17 @@ namespace UpdateRecordModule_SH_D.DAL
                 case "新生名冊":
                     //rptBuild = new EnrollmentList();
                     break;
-                case "延修生學籍異動名冊":                                        
+                case "延修生學籍異動名冊":
+                    elmGrDeptCover.SetAttributeValue("名冊別", "6");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
+                    elmGrDeptCover.SetAttributeValue("班別", "");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("減少學生數", "");
+                    elmGrDeptCover.SetAttributeValue("更正學生數", "");
+                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
 
@@ -1143,10 +1153,20 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 case "延修生畢業名冊":
                     //rptBuild = new ExtendingStudentGraduateList();
+                    elmGrDeptCover.SetAttributeValue("名冊別", "7");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
+                    elmGrDeptCover.SetAttributeValue("班別", "");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("畢業學生數", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "延修生名冊":
-                    elmGrDeptCover.SetAttributeValue("名冊別", "1");
+                    elmGrDeptCover.SetAttributeValue("名冊別", "5");
                     elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
                     elmGrDeptCover.SetAttributeValue("班別", "");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
