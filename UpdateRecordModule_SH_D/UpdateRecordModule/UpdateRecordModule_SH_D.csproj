@@ -261,6 +261,7 @@
     <Compile Include="BL\Get.cs" />
     <Compile Include="BL\ReportSelector.cs" />
     <Compile Include="BL\ExtendingStudentCoverRec.cs" />
+    <Compile Include="BL\EnrollmentListRecCoverRec.cs" />
     <Compile Include="BL\TransferStudUpdateRecCoverRec.cs" />
     <Compile Include="BL\StudUpdateRecCoverRec.cs" />
     <Compile Include="BL\StudUpdateRecBatchRec.cs" />
@@ -305,6 +306,12 @@
     </Compile>
     <Compile Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm.Designer.cs">
       <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.Designer.cs">
+      <DependentUpon>EnrollmentListModifyingCoverForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm.cs">
       <SubType>Form</SubType>
@@ -473,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm.resx">
       <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.resx">
+      <DependentUpon>EnrollmentListModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm.resx">
       <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm.cs</DependentUpon>

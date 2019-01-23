@@ -1055,6 +1055,15 @@ namespace UpdateRecordModule_SH_D.DAL
             {
                 case "新生名冊":
                     //rptBuild = new EnrollmentList();
+                    elmGrDeptCover.SetAttributeValue("名冊別", "1");
+                    elmGrDeptCover.SetAttributeValue("班別", "1");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("核定班數", "");
+                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
+                    elmGrDeptCover.SetAttributeValue("實招班數", "");
+                    elmGrDeptCover.SetAttributeValue("實招新生數", "");                    
+                    elmGrDeptCover.SetAttributeValue("註1", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
                 case "延修生學籍異動名冊":
                     elmGrDeptCover.SetAttributeValue("名冊別", "6");

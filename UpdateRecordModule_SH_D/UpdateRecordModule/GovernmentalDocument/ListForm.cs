@@ -404,7 +404,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 switch (_SelectBRec.UpdateType)
                 {
                     case "新生名冊":
-                        btnModifyCover.Enabled = false;
+                        btnModifyCover.Enabled = true;
                         break;
                     case "延修生學籍異動名冊":
                         btnModifyCover.Enabled = true;
@@ -570,9 +570,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             //依據所選不同的 異動名冊別 產生對應不同的調整封面Form
             switch (_SelectBRec.UpdateType)
             {
-                //case "新生名冊":
-                //    rptBuild = new EnrollmentList();
-                //    break;
+                case "新生名冊":
+                    EnrollmentListModifyingCoverForm elmcf = new EnrollmentListModifyingCoverForm(_SelectBRec);
+                    elmcf.ShowDialog();
+                    break;
+
                 case "延修生學籍異動名冊":
                     ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm esurlcrmcf = new ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm(_SelectBRec);
                     esurlcrmcf.ShowDialog();
