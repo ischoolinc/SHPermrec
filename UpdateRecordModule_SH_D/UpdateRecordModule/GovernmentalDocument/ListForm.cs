@@ -415,7 +415,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         break;
 
                     case "畢業名冊":
-                        btnModifyCover.Enabled = false;
+                        btnModifyCover.Enabled = true;
                         break;
 
                     case "延修生畢業名冊":
@@ -431,11 +431,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         break;
 
                     case "新生保留錄取資格名冊":
-                        btnModifyCover.Enabled = false;
+                        btnModifyCover.Enabled = true;
                         break;
 
                     case "借讀學生名冊":
-                        btnModifyCover.Enabled = false;
+                        btnModifyCover.Enabled = true;
                         break;
                 }
             }            
@@ -585,9 +585,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     mcf.ShowDialog();
                     break;
 
-                //case "畢業名冊":
-                //    rptBuild = new GraduatingStudentList();
-                //    break;
+                case "畢業名冊":
+                    GraduatingStudentListModifyingCoverForm gslmcf = new GraduatingStudentListModifyingCoverForm(_SelectBRec);
+                    gslmcf.ShowDialog();
+                    break;
 
                 case "延修生畢業名冊":
                     ExtendingStudentGraduateListCoverRecModifyingCoverForm esglcrmcf = new ExtendingStudentGraduateListCoverRecModifyingCoverForm(_SelectBRec);
@@ -604,13 +605,15 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     tsurmvf.ShowDialog();
                     break;
 
-                    //case "新生保留錄取資格名冊":
-                    //    rptBuild = new RetaintoStudentList();
-                    //    break;
+                case "新生保留錄取資格名冊":
+                    RetaintoStudentListModifyingCoverForm rslmcf = new RetaintoStudentListModifyingCoverForm(_SelectBRec);
+                    rslmcf.ShowDialog();
+                    break;
 
-                    //case "借讀學生名冊":
-                    //    rptBuild = new TemporaryStudentList();
-                    //    break;
+                case "借讀學生名冊":
+                    TemporaryStudentListModifyingCoverForm tslmcf = new TemporaryStudentListModifyingCoverForm(_SelectBRec);
+                    tslmcf.ShowDialog();
+                    break;
             }
 
             

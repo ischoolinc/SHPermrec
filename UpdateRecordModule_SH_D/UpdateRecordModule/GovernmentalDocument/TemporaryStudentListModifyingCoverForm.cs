@@ -13,16 +13,16 @@ using SHSchool.Data;
 
 namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    public partial class EnrollmentListModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
+    public partial class TemporaryStudentListModifyingCoverForm : FISCA.Presentation.Controls.BaseForm
     {
 
         StudUpdateRecBatchRec _BRec;
 
-        List<EnrollmentListRecCoverRec> coverDataList = new List<EnrollmentListRecCoverRec>();
+        List<TemporaryStudentListRecCoverRec> coverDataList = new List<TemporaryStudentListRecCoverRec>();
 
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
-        public EnrollmentListModifyingCoverForm(StudUpdateRecBatchRec BRec)
+        public TemporaryStudentListModifyingCoverForm(StudUpdateRecBatchRec BRec)
         {
             InitializeComponent();
             
@@ -53,14 +53,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
                     //string reportType = st.SelectSingleNode("@名冊別").InnerText;
-                    string reportType = "1";// 新生名冊 固定為1 
-                    string classType = st.SelectSingleNode("@班別") != null? st.SelectSingleNode("@班別").InnerText :"";
+                    string reportType = "a";// 新生保留錄取資格名冊封面 固定為a
+                    string classType = st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText :"";
                     string updateType = st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "";
-                    string approvedClassCount = st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "";
-                    string approvedStudentCount = st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "";
-                    string actualClassCount = st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "";
-                    string actualStudentCount = st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "";
-                    string remarks1 = st.SelectSingleNode("@註1") != null ? st.SelectSingleNode("@註1").InnerText : "";
+
+                    string DisasterStudentCount = st.SelectSingleNode("@因災害申請借讀學生數") != null ? st.SelectSingleNode("@因災害申請借讀學生數").InnerText : "";
+                    string MaladapStudentCount = st.SelectSingleNode("@因適應不良申請借讀學生數") != null ? st.SelectSingleNode("@因適應不良申請借讀學生數").InnerText : "";
+                    string PlayerTrainingStudentCount = st.SelectSingleNode("@因參加國家代表隊選手培集訓申請借讀學生數") != null ? st.SelectSingleNode("@因參加國家代表隊選手培集訓申請借讀學生數").InnerText : "";
+                                   
                     string remarksContent = st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "";
 
                     //學校代號
@@ -79,16 +79,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     row_data.Add(deptCode);
                     //上傳類別
                     row_data.Add(updateType);
-                    //核定班數
-                    row_data.Add(approvedClassCount);
-                    //核定學生數
-                    row_data.Add(approvedStudentCount);
-                    //實招班數
-                    row_data.Add(actualClassCount);
-                    //實招新生數
-                    row_data.Add(actualStudentCount);
-                    //註1
-                    row_data.Add(remarks1);
+
+                    //因災害申請借讀學生數
+                    row_data.Add(DisasterStudentCount);
+                    //因適應不良申請借讀學生數
+                    row_data.Add(MaladapStudentCount);
+                    //因參加國家代表隊選手培集訓申請借讀學生數
+                    row_data.Add(PlayerTrainingStudentCount);
+
                     //備註說明
                     row_data.Add(remarksContent);
 
@@ -111,18 +109,18 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             //整理UI介面的資料 打包成xml 儲存
             foreach (DataGridViewRow dr in dataGridViewX1.Rows)
             {
-                EnrollmentListRecCoverRec coverData = new EnrollmentListRecCoverRec();
+                TemporaryStudentListRecCoverRec coverData = new TemporaryStudentListRecCoverRec();
 
                 coverData.grYear = "" + dr.Cells["年級"].Value;
                 coverData.DeptCode = "" + dr.Cells["科別代碼"].Value;
                 coverData.ReportType = "" + dr.Cells["名冊別"].Value;
                 coverData.ClassType = "" + dr.Cells["班別"].Value;
                 coverData.UpdateType = "" + dr.Cells["上傳類別"].Value;
-                coverData.ApprovedClassCount = "" + dr.Cells["核定班數"].Value;
-                coverData.ApprovedStudentCount = "" + dr.Cells["核定學生數"].Value;
-                coverData.ActualClassCount = "" + dr.Cells["實招班數"].Value;
-                coverData.ActualStudentCount = "" + dr.Cells["實招新生數"].Value;               
-                coverData.Remarks1 = "" + dr.Cells["註1"].Value;
+
+                coverData.DisasterStudentCount = "" + dr.Cells["因災害申請借讀學生數"].Value;
+                coverData.MaladapStudentCount = "" + dr.Cells["因適應不良申請借讀學生數"].Value;
+                coverData.PlayerTrainingStudentCount = "" + dr.Cells["因參加國家代表隊選手培集訓申請借讀學生數"].Value;
+
                 coverData.RemarksContent = "" + dr.Cells["備註說明"].Value;
 
                 coverDataList.Add(coverData);
@@ -306,7 +304,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
                 //2018/2/5 穎驊增加 處理封面資料
-                foreach (EnrollmentListRecCoverRec coverRec in coverDataList)
+                foreach (TemporaryStudentListRecCoverRec coverRec in coverDataList)
                 {
                     //假如整理好的封面資料 其年級、科別代碼 與 現在的資料相同， 則配對
                     if (coverRec.grYear == grYear && coverRec.DeptCode == DeptCode)
@@ -316,11 +314,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
                         elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
                         elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
-                        elmGrDeptCover.SetAttributeValue("核定班數", coverRec.ApprovedClassCount);
-                        elmGrDeptCover.SetAttributeValue("核定學生數", coverRec.ApprovedStudentCount);
-                        elmGrDeptCover.SetAttributeValue("實招班數", coverRec.ActualClassCount);
-                        elmGrDeptCover.SetAttributeValue("實招新生數", coverRec.ActualStudentCount);
-                        elmGrDeptCover.SetAttributeValue("註1", coverRec.Remarks1);
+                        elmGrDeptCover.SetAttributeValue("因災害申請借讀學生數", coverRec.DisasterStudentCount);
+                        elmGrDeptCover.SetAttributeValue("因適應不良申請借讀學生數", coverRec.MaladapStudentCount);
+                        elmGrDeptCover.SetAttributeValue("因參加國家代表隊選手培集訓申請借讀學生數", coverRec.PlayerTrainingStudentCount);
+
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);

@@ -52,20 +52,20 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
-                    string reportType = st.SelectSingleNode("@名冊別").InnerText;
-                    string classType = st.SelectSingleNode("@班別").InnerText;
-                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
-                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
-                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
-                    string actualClassCount = st.SelectSingleNode("@實招班數").InnerText;
-                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
-                    string originalStudentCount = st.SelectSingleNode("@原有學生數").InnerText;
-                    string increaseStudentCount = st.SelectSingleNode("@增加學生數").InnerText;
-                    string decreaseStudentCount = st.SelectSingleNode("@減少學生數").InnerText;
-                    string modifiedStudentCount = st.SelectSingleNode("@更正學生數").InnerText;
-                    string currentStudentCount = st.SelectSingleNode("@現有學生數").InnerText;
-                    string remarks1 = st.SelectSingleNode("@註1").InnerText;
-                    string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
+                    string reportType = st.SelectSingleNode("@名冊別") !=null ? st.SelectSingleNode("@名冊別").InnerText :"";
+                    string classType = st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "";
+                    string updateType = st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "";
+                    string approvedClassCount = st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "";
+                    string approvedStudentCount = st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "";
+                    string actualClassCount = st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "";
+                    string actualStudentCount = st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "";
+                    string originalStudentCount = st.SelectSingleNode("@原有學生數") != null ? st.SelectSingleNode("@原有學生數").InnerText : "";
+                    string increaseStudentCount = st.SelectSingleNode("@增加學生數") != null ? st.SelectSingleNode("@增加學生數").InnerText : "";
+                    string decreaseStudentCount = st.SelectSingleNode("@減少學生數") != null ? st.SelectSingleNode("@減少學生數").InnerText : "";
+                    string modifiedStudentCount = st.SelectSingleNode("@更正學生數") != null ? st.SelectSingleNode("@更正學生數").InnerText : "";
+                    string currentStudentCount = st.SelectSingleNode("@現有學生數") != null ? st.SelectSingleNode("@現有學生數").InnerText : "";
+                    string remarks1 = st.SelectSingleNode("@註1") != null ? st.SelectSingleNode("@註1").InnerText : "";
+                    string remarksContent = st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "";
 
                     //學校代號
                     row_data.Add(school_code);
@@ -78,7 +78,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     //名冊別
                     row_data.Add(reportType);
                     //班別
-                    row_data.Add(school_semester);
+                    row_data.Add(classType);
                     //科別代碼
                     row_data.Add(deptCode);
                     //上傳類別

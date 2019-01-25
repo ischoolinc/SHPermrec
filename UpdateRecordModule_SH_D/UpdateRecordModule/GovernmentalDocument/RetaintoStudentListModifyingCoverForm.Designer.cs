@@ -1,6 +1,6 @@
 ﻿namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    partial class EnrollmentListModifyingCoverForm
+    partial class RetaintoStudentListModifyingCoverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -48,11 +48,9 @@
             this.班別 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.科別代碼 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.上傳類別 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.核定班數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.核定學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.實招班數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.實招新生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.註1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.因病須長期療養或懷孕申請保留學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.因服兵役申請保留學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.備註說明 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
@@ -74,11 +72,9 @@
             this.班別,
             this.科別代碼,
             this.上傳類別,
-            this.核定班數,
-            this.核定學生數,
-            this.實招班數,
-            this.實招新生數,
-            this.註1,
+            this.因病須長期療養或懷孕申請保留學生數,
+            this.因服兵役申請保留學生數,
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數,
             this.備註說明});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -200,6 +196,7 @@
             // 
             this.班別.HeaderText = "班別";
             this.班別.Name = "班別";
+            this.班別.Width = 70;
             // 
             // 科別代碼
             // 
@@ -216,32 +213,23 @@
             this.上傳類別.Name = "上傳類別";
             this.上傳類別.Width = 90;
             // 
-            // 核定班數
+            // 因病須長期療養或懷孕申請保留學生數
             // 
-            this.核定班數.HeaderText = "核定班數";
-            this.核定班數.Name = "核定班數";
-            this.核定班數.Width = 90;
+            this.因病須長期療養或懷孕申請保留學生數.HeaderText = "因病須長期療養或懷孕申請保留學生數";
+            this.因病須長期療養或懷孕申請保留學生數.Name = "因病須長期療養或懷孕申請保留學生數";
+            this.因病須長期療養或懷孕申請保留學生數.Width = 200;
             // 
-            // 核定學生數
+            // 因服兵役申請保留學生數
             // 
-            this.核定學生數.HeaderText = "核定學生數";
-            this.核定學生數.Name = "核定學生數";
+            this.因服兵役申請保留學生數.HeaderText = "因服兵役申請保留學生數";
+            this.因服兵役申請保留學生數.Name = "因服兵役申請保留學生數";
+            this.因服兵役申請保留學生數.Width = 200;
             // 
-            // 實招班數
+            // 因病申請保留錄取資格期間復受徵召服役者申請學生數
             // 
-            this.實招班數.HeaderText = "實招班數";
-            this.實招班數.Name = "實招班數";
-            this.實招班數.Width = 90;
-            // 
-            // 實招新生數
-            // 
-            this.實招新生數.HeaderText = "實招新生數";
-            this.實招新生數.Name = "實招新生數";
-            // 
-            // 註1
-            // 
-            this.註1.HeaderText = "註1";
-            this.註1.Name = "註1";
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數.HeaderText = "因病申請保留錄取資格期間復受徵召服役者申請學生數";
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數.Name = "因病申請保留錄取資格期間復受徵召服役者申請學生數";
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數.Width = 200;
             // 
             // 備註說明
             // 
@@ -249,7 +237,7 @@
             this.備註說明.HeaderText = "備註說明";
             this.備註說明.Name = "備註說明";
             // 
-            // EnrollmentListModifyingCoverForm
+            // RetaintoStudentListModifyingCoverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -260,8 +248,8 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewX1);
             this.DoubleBuffered = true;
-            this.Name = "EnrollmentListModifyingCoverForm";
-            this.Text = "調整新生異動名冊封面資料";
+            this.Name = "RetaintoStudentListModifyingCoverForm";
+            this.Text = "調整新生保留錄取資格名冊封面資料";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
@@ -282,11 +270,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 班別;
         private System.Windows.Forms.DataGridViewTextBoxColumn 科別代碼;
         private System.Windows.Forms.DataGridViewTextBoxColumn 上傳類別;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 核定班數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 核定學生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 實招班數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 實招新生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 註1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 因病須長期療養或懷孕申請保留學生數;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 因服兵役申請保留學生數;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 因病申請保留錄取資格期間復受徵召服役者申請學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 備註說明;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
-    partial class EnrollmentListModifyingCoverForm
+    partial class GraduatingStudentListModifyingCoverForm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,8 @@
             this.核定學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.實招班數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.實招新生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.註1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.原有學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.畢業學生數 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.備註說明 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
@@ -78,7 +79,8 @@
             this.核定學生數,
             this.實招班數,
             this.實招新生數,
-            this.註1,
+            this.原有學生數,
+            this.畢業學生數,
             this.備註說明});
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -200,6 +202,7 @@
             // 
             this.班別.HeaderText = "班別";
             this.班別.Name = "班別";
+            this.班別.Width = 70;
             // 
             // 科別代碼
             // 
@@ -238,10 +241,15 @@
             this.實招新生數.HeaderText = "實招新生數";
             this.實招新生數.Name = "實招新生數";
             // 
-            // 註1
+            // 原有學生數
             // 
-            this.註1.HeaderText = "註1";
-            this.註1.Name = "註1";
+            this.原有學生數.HeaderText = "原有學生數";
+            this.原有學生數.Name = "原有學生數";
+            // 
+            // 畢業學生數
+            // 
+            this.畢業學生數.HeaderText = "畢業學生數";
+            this.畢業學生數.Name = "畢業學生數";
             // 
             // 備註說明
             // 
@@ -249,7 +257,7 @@
             this.備註說明.HeaderText = "備註說明";
             this.備註說明.Name = "備註說明";
             // 
-            // EnrollmentListModifyingCoverForm
+            // GraduatingStudentListModifyingCoverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -260,8 +268,8 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewX1);
             this.DoubleBuffered = true;
-            this.Name = "EnrollmentListModifyingCoverForm";
-            this.Text = "調整新生異動名冊封面資料";
+            this.Name = "GraduatingStudentListModifyingCoverForm";
+            this.Text = "調整畢業異動名冊封面資料";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
@@ -286,7 +294,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 核定學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 實招班數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 實招新生數;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 註1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 原有學生數;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 畢業學生數;
         private System.Windows.Forms.DataGridViewTextBoxColumn 備註說明;
     }
 }
