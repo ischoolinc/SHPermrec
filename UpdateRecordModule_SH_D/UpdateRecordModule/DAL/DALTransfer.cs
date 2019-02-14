@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using SHSchool.Data;
 using System.Xml;
+using System.Text.RegularExpressions;
 using FISCA.DSAUtil;
 
 namespace UpdateRecordModule_SH_D.DAL
@@ -1010,13 +1011,27 @@ namespace UpdateRecordModule_SH_D.DAL
 
         private string GetNumAndSrt1(string fuct)
         {
-            if (fuct.Contains("字"))
-            {
-                if (fuct.Remove(fuct.LastIndexOf("字")) != "")
-                    return fuct.Remove(fuct.LastIndexOf("字"));
-            }
+            // 2019/02/14 穎驊改寫， 根據最新的107年度規範，備查文字、文號 不要出現 字、第、號 字樣
+            // 另外原有邏輯採用關鍵字(字、第、號)裁切，會出現無法對應部分文號 如 中市教高學統10712345678 的裁切
+            // 這邊統一改寫 ，在移除字、第、號文字後， 使用正規表達式 Regex 裁切， 
+            // 中文文字部分將會是 備查文字 ， 數字的部分 則為 備查文號
+           
+            //if (fuct.Contains("字"))
+            //{
+            //    if (fuct.Remove(fuct.LastIndexOf("字")) != "")
+            //        return fuct.Remove(fuct.LastIndexOf("字"));
+            //}
 
-            return GetNumAndSrt2(fuct);
+            //return GetNumAndSrt2(fuct);
+
+            fuct = fuct.Replace("字", "");
+            fuct = fuct.Replace("第", "");
+            fuct = fuct.Replace("號", "");
+
+            // 以文字區別 裁切
+            string[] numbers = Regex.Split(fuct, @"\d+");
+
+            return numbers.Length > 1 ? numbers[0] : fuct;            
         }
 
         #endregion
@@ -1026,16 +1041,23 @@ namespace UpdateRecordModule_SH_D.DAL
 
         private string GetNumAndSrt2(string fuct)
         {
-            if (fuct.Contains("第") && fuct.Contains("號"))
-            {
-                return fuct.Substring(fuct.LastIndexOf("第") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("第") - 1);
-            }
+            //if (fuct.Contains("第") && fuct.Contains("號"))
+            //{
+            //    return fuct.Substring(fuct.LastIndexOf("第") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("第") - 1);
+            //}
 
-            if (fuct.Contains("字") && fuct.Contains("號"))
-            {
-                return fuct.Substring(fuct.LastIndexOf("字") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("字") - 1);
-            }
-            return fuct;
+            //if (fuct.Contains("字") && fuct.Contains("號"))
+            //{
+            //    return fuct.Substring(fuct.LastIndexOf("字") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("字") - 1);
+            //}
+            fuct = fuct.Replace("字", "");
+            fuct = fuct.Replace("第", "");
+            fuct = fuct.Replace("號", "");
+
+            // 以數字區別 裁切
+            string[] numbers = Regex.Split(fuct, @"\D+");
+            
+            return numbers.Length >1 ? numbers[1] : fuct;
         }
 
         #endregion
@@ -1214,6 +1236,7 @@ namespace UpdateRecordModule_SH_D.DAL
 
                     break;
 
+                // 新生保留錄取資格名冊 、借讀學生名冊 每一次的名冊封面都是獨立的 與前次名冊 無關
                 case "新生保留錄取資格名冊":
                     //rptBuild = new RetaintoStudentList();
                     break;
