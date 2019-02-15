@@ -261,13 +261,30 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 #endregion
             }
-
+                       
             //範本
-            Worksheet cover = wb.Worksheets["延修生名冊封面"];
+            Worksheet TemplateWb_Cover = wb.Worksheets["延修生名冊封面範本"];
+
+            //實做頁面
+            Worksheet cover = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            cover.Name = "延修生名冊封面";
 
             string school_code = source.SelectSingleNode("@學校代號").InnerText;
             string school_year = source.SelectSingleNode("@學年度").InnerText;
             string school_semester = source.SelectSingleNode("@學期").InnerText;
+
+            //範圍
+            Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+
+            Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
+
 
             int cover_row_counter = 1;
 
@@ -275,6 +292,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
+                //每增加一行,複製一次
+                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
 
@@ -326,13 +346,34 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 cover_row_counter++;
             }
 
-            Worksheet mdws = wb.Worksheets[1];
-            mdws.Name = "電子格式";
+            // 資料末底 加End
+            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
+
+
+            //範本
+            Worksheet TemplateWb = wb.Worksheets["電子格式範本"];
+
+            //實做頁面
+            Worksheet mdws = wb.Worksheets[wb.Worksheets.Add()];
+
+            mdws.Name = "延修生名冊";
+
+            //範圍
+            Range range_H = TemplateWb.Cells.CreateRange(0, 1, false);
+            Range range_R = TemplateWb.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
+            //拷貝range_H
+            mdws.Cells.CreateRange(0, 1, false).Copy(range_H);
 
             int mdws_index = 0;
             foreach (XmlElement record in source.SelectNodes("清單/異動紀錄"))
             {
                 mdws_index++;
+
+                //每增加一行,複製一次
+                mdws.Cells.CreateRange(mdws_index, 1, false).Copy(range_R);
+
                 // 應畢業學年度                
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("應畢業學年度"));
                 mdws.Cells[mdws_index, 1].PutValue(record.GetAttribute("班別"));
@@ -356,10 +397,15 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 16].PutValue(record.GetAttribute("備註"));
             }
 
+            // 資料末底 加End
+            mdws.Cells.CreateRange(mdws_index + 1, 1, false).Copy(range_R_EndRow);
+
             mdws.AutoFitColumns();
             mdws.Cells.SetColumnWidth(5, 8.5);
             mdws.Cells.SetColumnWidth(11, 20);
-
+            
+            wb.Worksheets.RemoveAt("延修生名冊封面範本");
+            wb.Worksheets.RemoveAt("電子格式範本");
             wb.Worksheets.ActiveSheetIndex = 0;            
 
 

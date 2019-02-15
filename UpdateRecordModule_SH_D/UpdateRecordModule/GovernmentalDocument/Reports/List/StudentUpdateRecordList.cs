@@ -541,7 +541,6 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 資料末底 加End
             cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
 
-
             wb.Worksheets.RemoveAt("電子格式範本");
             wb.Worksheets.RemoveAt("異動名冊封面範本");
 
