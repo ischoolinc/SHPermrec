@@ -133,10 +133,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             Worksheet TemplateWb = wb.Worksheets["電子格式範本"];
 
             Worksheet DyWb = wb.Worksheets[wb.Worksheets.Add()];
-            DyWb.Name = "電子格式";
+            DyWb.Name = "轉入生名冊";
 
             Range range_H = TemplateWb.Cells.CreateRange(0, 1, false);
             Range range_R = TemplateWb.Cells.CreateRange(1, 1, false);
+
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
+
             DyWb.Cells.CreateRange(0, 1, false).Copy(range_H);
 
             int DyWb_index = 0;
@@ -211,55 +215,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 22].PutValue(rec.Comment);            
             }
 
-            //foreach (XmlElement Record in source.SelectNodes("清單/異動紀錄"))
-            //{
-            //    DyWb_index++;
-            //    //每增加一行,複製一次
-            //    DyWb.Cells.CreateRange(DyWb_index, 1, false).Copy(range_R);
-
-            //    //班別
-            //    DyWb.Cells[DyWb_index, 0].PutValue(Record.GetAttribute("班別"));
-            //    //科別代碼
-            //    DyWb.Cells[DyWb_index, 1].PutValue((Record.ParentNode as XmlElement).GetAttribute("科別代號"));
-            //    //學號
-            //    DyWb.Cells[DyWb_index, 2].PutValue(Record.GetAttribute("新學號"));
-            //    //姓名
-            //    DyWb.Cells[DyWb_index, 3].PutValue(Record.GetAttribute("姓名"));
-            //    //身分證字號
-            //    DyWb.Cells[DyWb_index, 4].PutValue(Record.GetAttribute("身分證號"));
-            //    //註1
-            //    DyWb.Cells[DyWb_index, 5].PutValue(Record.GetAttribute("註1"));
-            //    //性別代碼
-            //    DyWb.Cells[DyWb_index, 6].PutValue(Record.GetAttribute("性別代號"));
-            //    //出生日期
-            //    DyWb.Cells[DyWb_index, 7].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("出生年月日")));
-            //    //特殊身份代碼
-            //    DyWb.Cells[DyWb_index, 8].PutValue(Record.GetAttribute("特殊身份代碼"));
-            //    //年級
-            //    DyWb.Cells[DyWb_index, 9].PutValue((Record.ParentNode as XmlElement).GetAttribute("年級"));
-            //    //異動原因代碼
-            //    DyWb.Cells[DyWb_index, 10].PutValue(Record.GetAttribute("異動代號"));
-            //    //轉入日期
-            //    DyWb.Cells[DyWb_index, 11].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("異動日期")));
-            //    //原備查日期
-            //    DyWb.Cells[DyWb_index, 12].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("轉入前學生資料_備查日期")));
-            //    //原備查文字(*)
-            //    DyWb.Cells[DyWb_index, 13].PutValue(GetNumAndSrt1(Record.GetAttribute("轉入前學生資料_備查文號")));
-            //    //原備查文號(*)
-            //    DyWb.Cells[DyWb_index, 14].PutValue(GetNumAndSrt2(Record.GetAttribute("轉入前學生資料_備查文號")));
-            //    //原學校代碼(*)
-            //    DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("轉入前學生資料_學校"));
-            //    //原科別代碼
-            //    DyWb.Cells[DyWb_index, 16].PutValue(Record.GetAttribute("轉入前學生資料_科別"));
-            //    //原學號
-            //    DyWb.Cells[DyWb_index, 17].PutValue(Record.GetAttribute("轉入前學生資料_學號"));
-            //    //原年級
-            //    DyWb.Cells[DyWb_index, 18].PutValue(Getyear(Record.GetAttribute("轉入前學生資料_年級")));
-            //    //原學期
-            //    DyWb.Cells[DyWb_index, 19].PutValue(Getsemester(Record.GetAttribute("轉入前學生資料_年級")));
-            //    //備註說明
-            //    DyWb.Cells[DyWb_index, 20].PutValue(Record.GetAttribute("備註"));
-            //}
+            // 資料末底 加End
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).Copy(range_R_EndRow);
 
             DyWb.AutoFitColumns();
 
@@ -269,17 +226,36 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             //2018/3/6 穎驊 新增轉入生 封面格式支援
 
-            Worksheet cover = wb.Worksheets["轉入生名冊封面"];
+            //範本
+            Worksheet TemplateWb_Cover = wb.Worksheets["轉入生名冊封面範本"];
 
+            //實做頁面
+            Worksheet cover = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            cover.Name = "轉入生名冊封面";
+            
             string school_code = source.SelectSingleNode("@學校代號").InnerText;
             string school_year = source.SelectSingleNode("@學年度").InnerText;
             string school_semester = source.SelectSingleNode("@學期").InnerText;
 
+            //範圍
+            Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+
+            Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
+
             int cover_row_counter = 1;
             
-
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
+                //每增加一行,複製一次
+                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
 
@@ -337,6 +313,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 cover_row_counter++;
             }
 
+            // 資料末底 加End
+            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
+
+            wb.Worksheets.RemoveAt("轉入生名冊封面範本");
 
             wb.Worksheets.ActiveSheetIndex = 0;
 

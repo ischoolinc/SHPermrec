@@ -149,10 +149,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //實做頁面
             Worksheet DyWb = wb.Worksheets[wb.Worksheets.Add()];
             //名稱
-            DyWb.Name = "電子格式";
+            DyWb.Name = "畢業生名冊";
             //範圍
             Range range_H = TemplateWb.Cells.CreateRange(0, 1, false);
             Range range_R = TemplateWb.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
             //拷貝range_H
             DyWb.Cells.CreateRange(0, 1, false).Copy(range_H);
 
@@ -207,13 +209,107 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 //畢業證書字號
                 DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("畢業證書字號"));
+
+                //畢業證書註記學程代碼 (2019/02/15 穎驊 檢查發現 目前我們系統沒有支援這個概念，要再研究)
+                DyWb.Cells[DyWb_index, 16].PutValue("");
+
                 //備註說明
-                DyWb.Cells[DyWb_index, 16].PutValue(Record.GetAttribute("備註"));
+                DyWb.Cells[DyWb_index, 17].PutValue(Record.GetAttribute("備註"));
             }
+
+            // 資料末底 加End
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).Copy(range_R_EndRow);
 
             DyWb.AutoFitColumns();
 
             wb.Worksheets.RemoveAt("電子格式範本");
+
+            //範本
+            Worksheet TemplateWb_Cover = wb.Worksheets["畢業生名冊封面範本"];
+
+            //實做頁面
+            Worksheet cover = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            cover.Name = "畢業生名冊封面";
+            
+            string school_year = source.SelectSingleNode("@學年度").InnerText;
+            string school_semester = source.SelectSingleNode("@學期").InnerText;
+
+            //範圍
+            Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+
+            Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
+
+            int cover_row_counter = 1;
+
+            //2018/2/2 穎驊註解 ，下面是新的封面產生方式
+
+            foreach (XmlNode list in source.SelectNodes("清單"))
+            {
+                //每增加一行,複製一次
+                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+
+                string gradeYear = list.SelectSingleNode("@年級").InnerText;
+                string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
+              
+                //學年度
+                cover.Cells[cover_row_counter, 0].PutValue(school_year);
+                //學期
+                cover.Cells[cover_row_counter, 1].PutValue(school_semester);
+                //年級
+                cover.Cells[cover_row_counter, 2].PutValue(gradeYear);
+                //科別代碼
+                cover.Cells[cover_row_counter, 5].PutValue(deptCode);
+
+                foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                {
+                    string reportType = st.SelectSingleNode("@名冊別").InnerText;
+                    string classType = st.SelectSingleNode("@班別").InnerText;
+                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
+                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
+                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
+                    string actualClassCount = st.SelectSingleNode("@實招班數").InnerText;
+                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
+                    string originalStudentCount = st.SelectSingleNode("@原有學生數").InnerText;                    
+                    string graduatedStudentCount = st.SelectSingleNode("@畢業學生數").InnerText;                    
+                    string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
+
+                    //名冊別
+                    cover.Cells[cover_row_counter, 3].PutValue(reportType);
+                    //班別
+                    cover.Cells[cover_row_counter, 4].PutValue(classType);
+                    //上傳類別
+                    cover.Cells[cover_row_counter, 6].PutValue(updateType);
+                    //核定班級
+                    cover.Cells[cover_row_counter, 7].PutValue(approvedClassCount);
+                    //核定學生數
+                    cover.Cells[cover_row_counter, 8].PutValue(approvedStudentCount);
+                    //實招班數
+                    cover.Cells[cover_row_counter, 9].PutValue(actualClassCount);
+                    //實招新生數
+                    cover.Cells[cover_row_counter, 10].PutValue(actualStudentCount);
+                    //原有學生數
+                    cover.Cells[cover_row_counter, 11].PutValue(originalStudentCount);
+                    //畢業學生數
+                    cover.Cells[cover_row_counter, 12].PutValue(graduatedStudentCount);
+                    //備註說明
+                    cover.Cells[cover_row_counter, 13].PutValue(remarksContent);
+
+                }
+                cover_row_counter++;
+            }
+
+            // 資料末底 加End
+            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
+
+            wb.Worksheets.RemoveAt("畢業生名冊封面範本");
+
             #endregion
 
             wb.Worksheets.ActiveSheetIndex = 0;

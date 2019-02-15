@@ -1015,14 +1015,16 @@ namespace UpdateRecordModule_SH_D.DAL
             // 另外原有邏輯採用關鍵字(字、第、號)裁切，會出現無法對應部分文號 如 中市教高學統10712345678 的裁切
             // 這邊統一改寫 ，在移除字、第、號文字後， 使用正規表達式 Regex 裁切， 
             // 中文文字部分將會是 備查文字 ， 數字的部分 則為 備查文號
-           
+
+            #region 舊寫法
             //if (fuct.Contains("字"))
             //{
             //    if (fuct.Remove(fuct.LastIndexOf("字")) != "")
             //        return fuct.Remove(fuct.LastIndexOf("字"));
             //}
 
-            //return GetNumAndSrt2(fuct);
+            //return GetNumAndSrt2(fuct); 
+            #endregion
 
             fuct = fuct.Replace("字", "");
             fuct = fuct.Replace("第", "");
@@ -1041,6 +1043,7 @@ namespace UpdateRecordModule_SH_D.DAL
 
         private string GetNumAndSrt2(string fuct)
         {
+            #region 舊寫法
             //if (fuct.Contains("第") && fuct.Contains("號"))
             //{
             //    return fuct.Substring(fuct.LastIndexOf("第") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("第") - 1);
@@ -1049,7 +1052,8 @@ namespace UpdateRecordModule_SH_D.DAL
             //if (fuct.Contains("字") && fuct.Contains("號"))
             //{
             //    return fuct.Substring(fuct.LastIndexOf("字") + 1, fuct.LastIndexOf("號") - fuct.LastIndexOf("字") - 1);
-            //}
+            //} 
+            #endregion
             fuct = fuct.Replace("字", "");
             fuct = fuct.Replace("第", "");
             fuct = fuct.Replace("號", "");

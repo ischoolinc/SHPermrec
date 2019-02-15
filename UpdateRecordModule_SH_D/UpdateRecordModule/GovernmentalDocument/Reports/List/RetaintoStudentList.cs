@@ -308,12 +308,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             #region 97中辦格式
 
-            Worksheet mingdao = wb.Worksheets["電子格式103"];
+            Worksheet mingdao = wb.Worksheets["電子格式範本"];
             Worksheet mdws = wb.Worksheets[wb.Worksheets.Add()];
-            mdws.Name = "電子格式";
+            mdws.Name = "新生保留錄取資格名冊";
 
             Range range_header = mingdao.Cells.CreateRange(0, 1, false);
             Range range_row = mingdao.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_EndRow = mingdao.Cells.CreateRange(2, 1, false);
 
             mdws.Cells.CreateRange(0, 1, false).Copy(range_header);
 
@@ -337,11 +339,91 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             }
 
             mdws.AutoFitColumns();
-            wb.Worksheets.RemoveAt("電子格式103");
-            wb.Worksheets.ActiveSheetIndex = 0;
+            wb.Worksheets.RemoveAt("電子格式範本");
+
+            // 資料末底 加End
+            mdws.Cells.CreateRange(mdws_index + 1, 1, false).Copy(range_R_EndRow);
+
+
+            //範本
+            Worksheet TemplateWb_Cover = wb.Worksheets["新生保留錄取資格名冊封面範本"];
+
+            //實做頁面
+            Worksheet cover = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            cover.Name = "新生保留錄取資格名冊封面";
+
+            string school_code = source.SelectSingleNode("@學校代號").InnerText;
+            string school_year = source.SelectSingleNode("@學年度").InnerText;
+            string school_semester = source.SelectSingleNode("@學期").InnerText;
+
+            //範圍
+            Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+
+            Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
+
+            int cover_row_counter = 1;
+
+            //2018/2/2 穎驊註解 ，下面是新的封面產生方式
+
+            foreach (XmlNode list in source.SelectNodes("清單"))
+            {
+                //每增加一行,複製一次
+                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+
+                string gradeYear = list.SelectSingleNode("@年級").InnerText;
+                string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
+
+                //學校代碼
+                cover.Cells[cover_row_counter, 0].PutValue(school_code);
+                //學年度
+                cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                //學期
+                cover.Cells[cover_row_counter, 2].PutValue(school_semester);                
+                //科別代碼
+                cover.Cells[cover_row_counter, 5].PutValue(deptCode);
+
+                foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                {
+                    string reportType = st.SelectSingleNode("@名冊別").InnerText;
+                    string classType = st.SelectSingleNode("@班別").InnerText;
+                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
+                    string longTermCareStudentCount = st.SelectSingleNode("@因病須長期療養或懷孕申請保留學生數").InnerText;
+                    string militaryStudentCount = st.SelectSingleNode("@因服兵役申請保留學生數").InnerText;
+                    string reCallStudentCount = st.SelectSingleNode("@因病申請保留錄取資格期間復受徵召服役者申請學生數").InnerText;                    
+                    string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
+
+                    //名冊別
+                    cover.Cells[cover_row_counter, 3].PutValue(reportType);
+                    //班別
+                    cover.Cells[cover_row_counter, 4].PutValue(classType);
+                    //上傳類別
+                    cover.Cells[cover_row_counter, 6].PutValue(updateType);
+                    //因病須長期療養或懷孕申請保留學生數
+                    cover.Cells[cover_row_counter, 7].PutValue(longTermCareStudentCount);
+                    //因服兵役申請保留學生數
+                    cover.Cells[cover_row_counter, 8].PutValue(militaryStudentCount);
+                    //因病申請保留錄取資格期間復受徵召服役者申請學生數
+                    cover.Cells[cover_row_counter, 9].PutValue(reCallStudentCount);
+                    //備註說明
+                    cover.Cells[cover_row_counter, 10].PutValue(remarksContent);
+                }
+                cover_row_counter++;
+            }
+
+            // 資料末底 加End
+            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
+
 
             #endregion
 
+            wb.Worksheets.RemoveAt("新生保留錄取資格名冊封面範本");
             wb.Worksheets.ActiveSheetIndex = 0;
 
             //儲存 Excel

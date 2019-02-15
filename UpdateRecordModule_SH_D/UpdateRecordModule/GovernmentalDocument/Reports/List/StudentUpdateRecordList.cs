@@ -330,6 +330,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //範圍
             Range range_H = TemplateWb.Cells.CreateRange(0, 1, false);
             Range range_R = TemplateWb.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
             //拷貝range_H
             DyWb.Cells.CreateRange(0, 1, false).Copy(range_H);
 
@@ -342,12 +344,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             // 格式轉換
             List<GovernmentalDocument.Reports.List.rpt_UpdateRecord> _data = DALTranser.ConvertRptUpdateRecord(source);
-
-
-            // 整理封面的列數，能填的值盡量幫他填，剩下無法的 要請使用者自行填寫
-            //  <年級,<班別,科別>>
-            Dictionary<string, Dictionary<string, List<string>>> cover_row_dict = new Dictionary<string, Dictionary<string, List<string>>>();
-
+           
             // 排序 (依 班別、年級、科別代碼、異動代碼)
             _data = (from data in _data orderby data.ClassType, GYear(data.GradeYear), data.DeptCode, data.UpdateCode select data).ToList();
 
@@ -435,150 +432,46 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 }
 
 
-                // 整理cover_row_dict
-
-                //年級
-                if (!cover_row_dict.ContainsKey(rec.GradeYear))
-                {
-                    cover_row_dict.Add(rec.GradeYear, new Dictionary<string, List<string>>());
-                }
-
-                //班別
-                if (!cover_row_dict[rec.GradeYear].ContainsKey(rec.ClassType))
-                {
-                    cover_row_dict[rec.GradeYear].Add(rec.ClassType, new List<string>());
-                }
-
-                //科別
-                if (!cover_row_dict[rec.GradeYear][rec.ClassType].Contains(rec.DeptCode))
-                {
-                    cover_row_dict[rec.GradeYear][rec.ClassType].Add(rec.DeptCode);
-                }
-
-
 
             }
 
-
-            //foreach (XmlElement Record in source.SelectNodes("清單/異動紀錄"))
-            //{
-            //    DyWb_index++;
-            //    //每增加一行,複製一次
-            //    DyWb.Cells.CreateRange(DyWb_index, 1, false).Copy(range_R);
-
-            //    //班別
-            //    DyWb.Cells[DyWb_index, 0].PutValue(Record.GetAttribute("班別"));
-            //    //科別代碼
-            //    DyWb.Cells[DyWb_index, 1].PutValue((Record.ParentNode as XmlElement).GetAttribute("科別代號"));
-
-            //    // 2 放上傳類別，請使用者自填 
-
-            //    //學號
-            //    DyWb.Cells[DyWb_index, 3].PutValue(Record.GetAttribute("學號"));
-            //    //姓名
-            //    DyWb.Cells[DyWb_index, 4].PutValue(Record.GetAttribute("姓名"));
-            //    //身分證字號
-            //    DyWb.Cells[DyWb_index, 5].PutValue(Record.GetAttribute("身分證號"));
-
-            //    //註1
-            //    DyWb.Cells[DyWb_index, 6].PutValue(Record.GetAttribute("註1"));
-
-            //    //性別代碼
-            //    DyWb.Cells[DyWb_index, 7].PutValue(Record.GetAttribute("性別代號"));
-            //    //出生日期
-            //    DyWb.Cells[DyWb_index, 8].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("出生年月日")));
-
-            //    //特殊身份代碼
-            //    DyWb.Cells[DyWb_index, 9].PutValue(Record.GetAttribute("特殊身份代碼")); //原為抓取備註欄位
-            //    //年級
-            //    DyWb.Cells[DyWb_index, 10].PutValue((Record.ParentNode as XmlElement).GetAttribute("年級"));
-            //    //異動原因代碼
-            //    DyWb.Cells[DyWb_index, 11].PutValue(Record.GetAttribute("異動代號"));
-            //    //異動日期
-            //    DyWb.Cells[DyWb_index, 12].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("異動日期")));
-            //    //原備查日期
-            //    DyWb.Cells[DyWb_index, 13].PutValue(GetBirthdateWithoutSlash(Record.GetAttribute("備查日期")));
-            //    //原備查文字
-            //    DyWb.Cells[DyWb_index, 14].PutValue(GetNumAndSrt1(Record.GetAttribute("備查文號")));
-            //    //原備查文號
-            //    DyWb.Cells[DyWb_index, 15].PutValue(GetNumAndSrt2(Record.GetAttribute("備查文號")));
-
-            //    // 捨棄
-            //    ////舊班別
-            //    //DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("舊班別"));
-            //    ////舊科別代碼
-            //    //DyWb.Cells[DyWb_index, 16].PutValue(Record.GetAttribute("舊科別代碼"));
-
-            //    //更正後資料
-            //    string strUpdateData = string.Empty;
-
-            //    //若是更正後資料有值則填入更正後資料
-            //    if (!string.IsNullOrEmpty(Record.GetAttribute("更正後資料")))
-            //        strUpdateData = Record.GetAttribute("更正後資料");
-
-            //    //若是新學號中有值則填入新學號
-            //    //判斷strUpdateData是否已有值，若是已有值則加入斷行符號
-            //    if (!string.IsNullOrEmpty(Record.GetAttribute("新學號")))
-            //        strUpdateData += string.IsNullOrEmpty(strUpdateData) ? Record.GetAttribute("新學號") : "\n" + Record.GetAttribute("新學號");
-
-            //    DyWb.Cells[DyWb_index, 16].PutValue(strUpdateData);
-            //    //備註說明
-            //    DyWb.Cells[DyWb_index, 17].PutValue(Record.GetAttribute("備註"));
-
-            //    // 2011 新承辦單位修正
-            //    if(spcCode.Contains(Record.GetAttribute("異動代號")))
-            //    {
-            //        DyWb.Cells[DyWb_index, 3].PutValue(Record.GetAttribute("新學號"));
-            //        DyWb.Cells[DyWb_index, 16].PutValue("");
-            //    }
-            //}
-
+            // 資料末底 加End
+            DyWb.Cells.CreateRange(DyWb_index+1, 1, false).Copy(range_R_EndRow);
 
             DyWb.AutoFitColumns();
 
             //範本
-            Worksheet cover = wb.Worksheets["異動名冊封面"];
+            Worksheet TemplateWb_Cover = wb.Worksheets["異動名冊封面範本"];
+
+            //實做頁面
+            Worksheet cover = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            cover.Name = "異動名冊封面";
 
             string school_code = source.SelectSingleNode("@學校代號").InnerText;
             string school_year = source.SelectSingleNode("@學年度").InnerText;
             string school_semester = source.SelectSingleNode("@學期").InnerText;
 
+            //範圍
+            Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+
+            Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
 
             int cover_row_counter = 1;
-
-            //foreach (var gradeyear in cover_row_dict)
-            //{
-            //    foreach (var classtype in gradeyear.Value)
-            //    {
-            //        foreach (var deptcode in classtype.Value)
-            //        {
-            //            //學校代碼
-            //            cover.Cells[cover_row_counter, 0].PutValue(school_code);
-            //            //學年度
-            //            cover.Cells[cover_row_counter, 1].PutValue(school_year);
-            //            //學期
-            //            cover.Cells[cover_row_counter, 2].PutValue(school_semester);
-            //            //年級
-            //            cover.Cells[cover_row_counter, 3].PutValue(gradeyear.Key);
-            //            //名冊別 (異動名冊 固定為3)
-            //            cover.Cells[cover_row_counter, 4].PutValue("3");
-            //            //班別
-            //            cover.Cells[cover_row_counter, 5].PutValue(classtype.Key);
-            //            //科別代碼
-            //            cover.Cells[cover_row_counter, 6].PutValue(deptcode);
-
-            //            //YOYO
-            //            cover.Cells[cover_row_counter, 6].PutValue("YOYO");
-
-            //            cover_row_counter++;
-            //        }
-            //    }
-            //}
 
             //2018/2/2 穎驊註解 ，下面是新的封面產生方式
 
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
+                //每增加一行,複製一次
+                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
 
@@ -645,26 +538,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 cover_row_counter++;
             }
 
-
-
-            //cover.Cells[1, 0].PutValue(source.SelectSingleNode("@學校代號").InnerText);
-            //cover.Cells[1, 1].PutValue(Convert.ToInt32(source.SelectSingleNode("@學年度").InnerText));
-            //cover.Cells[1, 2].PutValue(Convert.ToInt32(source.SelectSingleNode("@學期").InnerText));
-
-
-
-            ////將學校資料填入適當的位置內
-            //wb.Worksheets[0].Cells[rowi, 13].PutValue(source.SelectSingleNode("@學校代號").InnerText);
-            //wb.Worksheets[0].Cells[rowi, 16].PutValue(list.SelectSingleNode("@科別代號").InnerText);
-            //wb.Worksheets[0].Cells[rowi + 2, 2].PutValue(source.SelectSingleNode("@學校名稱").InnerText);
-            //wb.Worksheets[0].Cells[rowi + 2, 6].PutValue(Convert.ToInt32(source.SelectSingleNode("@學年度").InnerText));
-            //wb.Worksheets[0].Cells[rowi + 2, 9].PutValue(Convert.ToInt32(source.SelectSingleNode("@學期").InnerText));
-            //wb.Worksheets[0].Cells[rowi + 2, 12].PutValue(list.SelectSingleNode("@科別").InnerText);
-
-
+            // 資料末底 加End
+            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
 
 
             wb.Worksheets.RemoveAt("電子格式範本");
+            wb.Worksheets.RemoveAt("異動名冊封面範本");
 
             #endregion
 
