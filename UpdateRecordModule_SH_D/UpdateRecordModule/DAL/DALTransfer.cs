@@ -1155,20 +1155,20 @@ namespace UpdateRecordModule_SH_D.DAL
                                     {
                                         foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                         {
-                                            elmGrDeptCover.SetAttributeValue("名冊別", st.SelectSingleNode("@名冊別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("名冊別", st.SelectSingleNode("@名冊別") !=null ? st.SelectSingleNode("@名冊別").InnerText :"");
+                                            elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數") != null ? st.SelectSingleNode("@原有學生數").InnerText : "");
                                             elmGrDeptCover.SetAttributeValue("增加學生數", "");
                                             elmGrDeptCover.SetAttributeValue("減少學生數", "");
                                             elmGrDeptCover.SetAttributeValue("更正學生數", "");
                                             elmGrDeptCover.SetAttributeValue("現有學生數", "");
-                                            elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1").InnerText);
-                                            elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明").InnerText);
+                                            elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1") != null ? st.SelectSingleNode("@註1").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "");
                                         }
                                         hasOldUpdateRecordBatchRecord = true;
                                     }
@@ -1210,19 +1210,19 @@ namespace UpdateRecordModule_SH_D.DAL
                                             foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                             {
                                                 elmGrDeptCover.SetAttributeValue("名冊別", "3");
-                                                elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@核定學生數").InnerText); // 如果是以前都沒有其他異動， 原有學生數就會等於新生的核定學生數
+                                                elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數")!= null ? st.SelectSingleNode("@核定學生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : ""); // 如果是以前都沒有其他異動， 原有學生數就會等於新生的核定學生數
                                                 elmGrDeptCover.SetAttributeValue("增加學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("減少學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("更正學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("現有學生數", "");
-                                                elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明").InnerText);
+                                                elmGrDeptCover.SetAttributeValue("註1", st.SelectSingleNode("@註1") != null ? st.SelectSingleNode("@註1").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "");
                                             }                                            
                                         }
                                     }
@@ -1318,13 +1318,13 @@ namespace UpdateRecordModule_SH_D.DAL
                                             foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                             {
                                                 elmGrDeptCover.SetAttributeValue("名冊別", "2");
-                                                elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數").InnerText);
-                                                elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@核定學生數").InnerText); // 如果是以前都沒有其他異動， 原有學生數就會等於新生的核定學生數
+                                                elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : ""); // 如果是以前都沒有其他異動， 原有學生數就會等於新生的核定學生數
                                                 elmGrDeptCover.SetAttributeValue("轉入學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("現有學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("註1", "");
