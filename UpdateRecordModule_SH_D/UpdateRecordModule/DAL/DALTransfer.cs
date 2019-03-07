@@ -1265,9 +1265,25 @@ namespace UpdateRecordModule_SH_D.DAL
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
-                case "轉入學生名冊":                    
+                case "轉入學生名冊":
                     //紀錄 是否有舊的異動名冊資料可以參考
                     hasOldUpdateRecordBatchRecord = false;
+
+                    // 先預設基本值
+                    #region 基本值
+                    elmGrDeptCover.SetAttributeValue("名冊別", "2");
+                    elmGrDeptCover.SetAttributeValue("班別", "");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("核定班數", "");
+                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
+                    elmGrDeptCover.SetAttributeValue("實招班數", "");
+                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("轉入學生數", "");
+                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("註1", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
+                    #endregion
 
                     // 假如無舊資料可以用 ，代表這次新增是第一筆， 
                     // 可以先嘗試從 新生名冊抓基本資料
@@ -1301,7 +1317,7 @@ namespace UpdateRecordModule_SH_D.DAL
                                         {
                                             foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                             {
-                                                elmGrDeptCover.SetAttributeValue("名冊別", "3");
+                                                elmGrDeptCover.SetAttributeValue("名冊別", "2");
                                                 elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別").InnerText);
                                                 elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別").InnerText);
                                                 elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數").InnerText);
@@ -1312,8 +1328,9 @@ namespace UpdateRecordModule_SH_D.DAL
                                                 elmGrDeptCover.SetAttributeValue("轉入學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("現有學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("註1", "");
-                                                elmGrDeptCover.SetAttributeValue("備註說明", "");                                           
+                                                elmGrDeptCover.SetAttributeValue("備註說明", "");
                                             }
+
                                         }
                                     }
                                 }
