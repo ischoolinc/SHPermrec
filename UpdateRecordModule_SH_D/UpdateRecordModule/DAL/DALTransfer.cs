@@ -1127,8 +1127,14 @@ namespace UpdateRecordModule_SH_D.DAL
                     elmGrDeptCover.SetAttributeValue("更正學生數", "");
                     elmGrDeptCover.SetAttributeValue("現有學生數", "");
                     elmGrDeptCover.SetAttributeValue("註1", "");
-                    elmGrDeptCover.SetAttributeValue("備註說明", ""); 
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
                     #endregion
+
+                    // 異動資料 沒有年級，也不用做了，填基本值就好
+                    if (gradeYear == "")
+                    {
+                        break;
+                    }
 
                     foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
                     {
@@ -1252,6 +1258,12 @@ namespace UpdateRecordModule_SH_D.DAL
                     elmGrDeptCover.SetAttributeValue("畢業學生數", "");                                        
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     #endregion
+
+                    // 異動資料 沒有年級，也不用做了，填基本值就好
+                    if (gradeYear == "")
+                    {
+                        break;
+                    }
 
                     foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
                     {
