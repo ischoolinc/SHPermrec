@@ -1236,6 +1236,120 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 case "畢業名冊":
                     //rptBuild = new GraduatingStudentList();
+
+                    uploadTime = new DateTime();
+
+                    // 先預設基本值
+                    #region 基本值
+                    elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                    elmGrDeptCover.SetAttributeValue("班別", "");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("核定班數", "");
+                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
+                    elmGrDeptCover.SetAttributeValue("實招班數", "");
+                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
+                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("畢業學生數", "");                                        
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");
+                    #endregion
+
+                    foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
+                    {
+                        System.Xml.XmlElement source;
+
+                        source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
+
+                        string school_code = source.SelectSingleNode("@學校代號").InnerText;
+                        string school_year = source.SelectSingleNode("@學年度").InnerText;
+                        string school_semester = source.SelectSingleNode("@學期").InnerText;
+                        string update_type = source.SelectSingleNode("@類別").InnerText;
+
+                        // 舊的學籍異動名冊 名冊 、且有上傳過後 審核通過的文號(代表核准)，將會抓取最新的那筆紀錄寫進來                    
+                        if (update_type == "學籍異動名冊" && batch_record.ADNumber != "" && batch_record.ADDate > uploadTime)
+                        {
+                            uploadTime = batch_record.ADDate;
+
+                            // 假如目前新異動名冊要求的學年度 與舊的異動名冊學年度相同，代表同一年級科別對應的對象是同一屆的學生
+                            if (schoolYear == school_year)
+                            {
+                                foreach (XmlNode list in source.SelectNodes("清單"))
+                                {
+                                    if (gradeYear == list.SelectSingleNode("@年級").InnerText && deptCode == list.SelectSingleNode("@科別代碼").InnerText)
+                                    {
+                                        foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                                        {
+                                            elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                                            elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@原有學生數") != null ? st.SelectSingleNode("@原有學生數").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("畢業學生數", "");
+                                            elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "");
+                                        }
+                                        hasOldUpdateRecordBatchRecord = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // 假如無舊資料可以用 ，代表本屆學生自新生名冊開始後，都沒有任何異動過，，本次更新是第一筆， 
+                    // 可以先嘗試從 新生名冊抓基本資料
+                    if (!hasOldUpdateRecordBatchRecord)
+                    {
+                        uploadTime = new DateTime();
+
+                        foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
+                        {
+                            System.Xml.XmlElement source;
+
+                            source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
+
+                            string school_code = source.SelectSingleNode("@學校代號").InnerText;
+                            string school_year = source.SelectSingleNode("@學年度").InnerText;
+                            string school_semester = source.SelectSingleNode("@學期").InnerText;
+                            string update_type = source.SelectSingleNode("@類別").InnerText;
+
+                            // 舊的名冊 與上傳名冊同種類、且有上傳過後 審核通過的文號(代表核准)，將會抓取最新的那筆紀錄寫進來                    
+                            if (update_type == "新生名冊" && batch_record.ADNumber != "" && batch_record.ADDate > uploadTime)
+                            {
+                                uploadTime = batch_record.ADDate;
+
+                                // 如果要找對照的新生名冊 一年級找 當學年 - (1-1 ) 的學年 的新生名冊 、二年級找 當學年 - (2-1 ) 的學年 的新生名冊 三年級找 當學年 - (3-1 ) 的學年 的新生名冊
+                                // ex : 現在學年度107-1 二年級 建立異動名冊時要找新生名冊 ， 要去找106 學年度時的新生名冊資料
+                                if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
+                                {
+                                    foreach (XmlNode list in source.SelectNodes("清單"))
+                                    {
+                                        if (gradeYear == list.SelectSingleNode("@年級").InnerText && deptCode == list.SelectSingleNode("@科別代碼").InnerText)
+                                        {
+                                            foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                                            {
+                                                elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                                                elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("實招新生數", st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("原有學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : ""); // 如果是以前都沒有其他異動， 原有學生數就會等於新生的核定學生數
+                                                elmGrDeptCover.SetAttributeValue("畢業學生數", "");                                                                                                
+                                                elmGrDeptCover.SetAttributeValue("備註說明", st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+
+
+
                     break;
 
                 case "延修生畢業名冊":
