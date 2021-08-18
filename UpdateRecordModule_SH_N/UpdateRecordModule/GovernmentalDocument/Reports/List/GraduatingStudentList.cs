@@ -104,7 +104,7 @@ namespace UpdateRecordModule_SH_N.GovernmentalDocument.Reports.List
                         if(rec.SelectSingleNode("@最後異動代號")!=null )
                             ws.Cells[dataIndex, 4].PutValue(rec.SelectSingleNode("@最後異動代號").InnerText.ToString());
                         ws.Cells[dataIndex, 5].PutValue(Util.ConvertDateStr2(rec.SelectSingleNode("@備查日期").InnerText) + "\n" +rec.SelectSingleNode("@備查文號").InnerText);
-                        ws.Cells[dataIndex, 6].PutValue(rec.SelectSingleNode("@畢業證書字號").InnerText);
+                        ws.Cells[dataIndex, 6].PutValue((rec.SelectSingleNode("@畢業證書字號").InnerText).Replace(" ",""));
 
                         
                         //ws.Cells[dataIndex, 7].PutValue(rec.SelectSingleNode("@備註").InnerText);
@@ -202,7 +202,7 @@ namespace UpdateRecordModule_SH_N.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 14].PutValue(Util.ConvertDate1(Record.GetAttribute("備查日期")));
 
                 //畢業證書字號
-                DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("畢業證書字號"));
+                DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("畢業證書字號").Replace(" ", ""));
                 //備註說明
                 DyWb.Cells[DyWb_index, 16].PutValue(Record.GetAttribute("備註"));
             }
