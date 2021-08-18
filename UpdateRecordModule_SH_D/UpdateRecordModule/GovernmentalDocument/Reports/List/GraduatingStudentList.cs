@@ -108,7 +108,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                         if(rec.SelectSingleNode("@最後異動代號")!=null )
                             ws.Cells[dataIndex, 4].PutValue(rec.SelectSingleNode("@最後異動代號").InnerText.ToString());
                         ws.Cells[dataIndex, 5].PutValue(Util.ConvertDateStr2(rec.SelectSingleNode("@備查日期").InnerText) + "\n" +rec.SelectSingleNode("@備查文號").InnerText);
-                        ws.Cells[dataIndex, 6].PutValue(rec.SelectSingleNode("@畢業證書字號").InnerText);
+                        ws.Cells[dataIndex, 6].PutValue((rec.SelectSingleNode("@畢業證書字號").InnerText).Replace(" ",""));
 
                         
                         //ws.Cells[dataIndex, 7].PutValue(rec.SelectSingleNode("@備註").InnerText);
@@ -208,7 +208,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 14].PutValue(Util.ConvertDate1(Record.GetAttribute("備查日期")));
 
                 //畢業證書字號
-                DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("畢業證書字號"));
+                DyWb.Cells[DyWb_index, 15].PutValue(Record.GetAttribute("畢業證書字號").Replace(" ",""));
 
                 //畢業證書註記學程代碼 (2019/02/15 穎驊 檢查發現 目前我們系統沒有支援這個概念，要再研究)
                 DyWb.Cells[DyWb_index, 16].PutValue("");
