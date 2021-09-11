@@ -151,7 +151,7 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.Code72EndDate = rec.Code72EndDate;
 
                 studUrec.ReplicatedSchoolRollNumber = rec.ReplicatedSchoolRollNumber;
-
+                studUrec.OverseasChineseStudentCountryCode = rec.OverseasChineseStudentCountryCode;
                 if (rec.Gender == "男")
                     studUrec.GenderCode = "1";
                 else if (rec.Gender == "女")
@@ -183,6 +183,8 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.Comment2 = rec.Comment2;
                 studUrec.GraduateDocument = rec.GraduateDocument;
                 studUrec.ExpectGraduateSchoolYear = rec.ExpectGraduateSchoolYear;
+
+
                 StudRecList.Add(studUrec);
             }
             return StudRecList;
@@ -419,7 +421,7 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "實際結束日期": studUpdateRec.Code72EndDate = val.Value; break;
 
                             case "雙重學籍編號": studUpdateRec.ReplicatedSchoolRollNumber = val.Value; break;
-
+                            case "建教僑生專班學生國別": studUpdateRec.OverseasChineseStudentCountryCode = val.Value; break;
                         }
                     }
 
@@ -594,6 +596,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     elm.SetAttributeValue("入學資格證明文件", rec.GraduateDocument);
 
                     elm.SetAttributeValue("雙重學籍編號", rec.ReplicatedSchoolRollNumber);
+                    elm.SetAttributeValue("建教僑生專班學生國別", rec.OverseasChineseStudentCountryCode);
 
                     // 當他校轉入
                     if (rec.UpdateCode.Substring(0, 1) == "1")
@@ -946,6 +949,10 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 //雙重學籍編號
                 val.ReplicatedSchoolRollNumber = Record.GetAttribute("雙重學籍編號");
+
+                //建教僑生專班學生國別
+                val.OverseasChineseStudentCountryCode = Record.GetAttribute("建教僑生專班學生國別");
+
 
                 retVal.Add(val);
             }

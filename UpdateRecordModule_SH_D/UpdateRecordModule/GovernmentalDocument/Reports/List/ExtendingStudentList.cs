@@ -394,7 +394,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 mdws.Cells[mdws_index, 14].PutValue(BL.Util.GetDocNo_Doc(record.GetAttribute("備查文號")));
                 mdws.Cells[mdws_index, 15].PutValue(BL.Util.GetDocNo_No(record.GetAttribute("備查文號")));
-                mdws.Cells[mdws_index, 16].PutValue(record.GetAttribute("備註"));
+                mdws.Cells[mdws_index, 16].PutValue(record.GetAttribute("雙重學籍編號"));
+                mdws.Cells[mdws_index, 17].PutValue(record.GetAttribute("備註"));
             }
 
             // 資料末底 加End

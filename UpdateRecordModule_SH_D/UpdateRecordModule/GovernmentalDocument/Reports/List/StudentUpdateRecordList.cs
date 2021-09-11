@@ -416,8 +416,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 //雙學籍編號 
                 DyWb.Cells[DyWb_index, 19].PutValue(rec.ReplicatedSchoolRollNumber);
 
+                //建教僑生專班學生異動因素代碼 
+
                 //備註說明
-                DyWb.Cells[DyWb_index, 20].PutValue(rec.Comment);
+                DyWb.Cells[DyWb_index, 21].PutValue(rec.Comment);
 
                 // 2011 新承辦單位修正，轉科讀取新學號
                 if (NewStudentNumberCodes.Contains(rec.UpdateCode))
@@ -475,16 +477,27 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
 
-                //學校代碼
-                cover.Cells[cover_row_counter, 0].PutValue(school_code);
-                //學年度
-                cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                ////學校代碼
+                //cover.Cells[cover_row_counter, 0].PutValue(school_code);
+                ////學年度
+                //cover.Cells[cover_row_counter, 1].PutValue(school_year);
+                ////學期
+                //cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+                ////年級
+                //cover.Cells[cover_row_counter, 3].PutValue(gradeYear);
+                ////科別代碼
+                //cover.Cells[cover_row_counter, 6].PutValue(deptCode);
+
+                #region 2021-09-10 修改
                 //學期
-                cover.Cells[cover_row_counter, 2].PutValue(school_semester);
+                cover.Cells[cover_row_counter, 0].PutValue(school_semester);
                 //年級
-                cover.Cells[cover_row_counter, 3].PutValue(gradeYear);
+                cover.Cells[cover_row_counter, 1].PutValue(gradeYear);
                 //科別代碼
-                cover.Cells[cover_row_counter, 6].PutValue(deptCode);
+                cover.Cells[cover_row_counter, 4].PutValue(deptCode);
+                #endregion
+
+
 
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
@@ -505,35 +518,66 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
 
 
-                    //名冊別
-                    cover.Cells[cover_row_counter, 4].PutValue(reportType);
-                    //班別
-                    cover.Cells[cover_row_counter, 5].PutValue(classType);
-                    //上傳類別
-                    cover.Cells[cover_row_counter, 7].PutValue(updateType);
-                    //核定班級
-                    cover.Cells[cover_row_counter, 8].PutValue(approvedClassCount);
-                    //核定學生數
-                    cover.Cells[cover_row_counter, 9].PutValue(approvedStudentCount);
-                    //實招班數
-                    cover.Cells[cover_row_counter, 10].PutValue(actualClassCount);
-                    //實招新生數
-                    cover.Cells[cover_row_counter, 11].PutValue(actualStudentCount);
-                    //原有學生數
-                    cover.Cells[cover_row_counter, 12].PutValue(originalStudentCount);
-                    //增加學生數
-                    cover.Cells[cover_row_counter, 13].PutValue(increaseStudentCount);
-                    //減少學生數
-                    cover.Cells[cover_row_counter, 14].PutValue(decreaseStudentCount);
-                    //更正學生數
-                    cover.Cells[cover_row_counter, 15].PutValue(modifiedStudentCount);
-                    //現有學生數
-                    cover.Cells[cover_row_counter, 16].PutValue(currentStudentCount);
-                    //註1
-                    cover.Cells[cover_row_counter, 17].PutValue(remarks1);
-                    //備註說明
-                    cover.Cells[cover_row_counter, 18].PutValue(remarksContent);
+                    ////名冊別
+                    //cover.Cells[cover_row_counter, 4].PutValue(reportType);
+                    ////班別
+                    //cover.Cells[cover_row_counter, 5].PutValue(classType);
+                    ////上傳類別
+                    //cover.Cells[cover_row_counter, 7].PutValue(updateType);
+                    ////核定班級
+                    //cover.Cells[cover_row_counter, 8].PutValue(approvedClassCount);
+                    ////核定學生數
+                    //cover.Cells[cover_row_counter, 9].PutValue(approvedStudentCount);
+                    ////實招班數
+                    //cover.Cells[cover_row_counter, 10].PutValue(actualClassCount);
+                    ////實招新生數
+                    //cover.Cells[cover_row_counter, 11].PutValue(actualStudentCount);
+                    ////原有學生數
+                    //cover.Cells[cover_row_counter, 12].PutValue(originalStudentCount);
+                    ////增加學生數
+                    //cover.Cells[cover_row_counter, 13].PutValue(increaseStudentCount);
+                    ////減少學生數
+                    //cover.Cells[cover_row_counter, 14].PutValue(decreaseStudentCount);
+                    ////更正學生數
+                    //cover.Cells[cover_row_counter, 15].PutValue(modifiedStudentCount);
+                    ////現有學生數
+                    //cover.Cells[cover_row_counter, 16].PutValue(currentStudentCount);
+                    ////註1
+                    //cover.Cells[cover_row_counter, 17].PutValue(remarks1);
+                    ////備註說明
+                    //cover.Cells[cover_row_counter, 18].PutValue(remarksContent);
 
+                    #region 2021-09-10 修改
+                    //名冊別
+                    cover.Cells[cover_row_counter, 2].PutValue(reportType);
+                    //班別
+                    cover.Cells[cover_row_counter, 3].PutValue(classType);
+                    //上傳類別
+                    cover.Cells[cover_row_counter, 5].PutValue(updateType);
+                    //核定班級
+                    cover.Cells[cover_row_counter, 6].PutValue(approvedClassCount);
+                    //核定學生數
+                    cover.Cells[cover_row_counter, 7].PutValue(approvedStudentCount);
+                    //實招班數
+                    cover.Cells[cover_row_counter, 8].PutValue(actualClassCount);
+                    //實招新生數
+                    cover.Cells[cover_row_counter, 9].PutValue(actualStudentCount);
+                    //原有學生數
+                    cover.Cells[cover_row_counter, 10].PutValue(originalStudentCount);
+                    //增加學生數
+                    cover.Cells[cover_row_counter, 11].PutValue(increaseStudentCount);
+                    //減少學生數
+                    cover.Cells[cover_row_counter, 12].PutValue(decreaseStudentCount);
+                    //更正學生數
+                    cover.Cells[cover_row_counter, 13].PutValue(modifiedStudentCount);
+                    //現有學生數
+                    cover.Cells[cover_row_counter, 14].PutValue(currentStudentCount);
+                    //註1
+                    cover.Cells[cover_row_counter, 15].PutValue(remarks1);
+                    //備註說明
+                    cover.Cells[cover_row_counter, 16].PutValue(remarksContent);
+
+                    #endregion
                 }
                 cover_row_counter++;
             }

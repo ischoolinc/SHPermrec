@@ -75,6 +75,8 @@
             this.labelX18 = new DevComponents.DotNetBar.LabelX();
             this.labelX21 = new DevComponents.DotNetBar.LabelX();
             this.lblMsg = new DevComponents.DotNetBar.LabelX();
+            this.txtOverseasChineseStudentCountryCode = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX26 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtUpdateDate)).BeginInit();
             this.groupPanel2.SuspendLayout();
@@ -88,6 +90,8 @@
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.txtOverseasChineseStudentCountryCode);
+            this.groupPanel1.Controls.Add(this.labelX26);
             this.groupPanel1.Controls.Add(this.txtGradeDoc);
             this.groupPanel1.Controls.Add(this.labelX17);
             this.groupPanel1.Controls.Add(this.txtSpecial);
@@ -108,7 +112,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(3, 5);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(510, 153);
+            this.groupPanel1.Size = new System.Drawing.Size(510, 183);
             // 
             // 
             // 
@@ -461,7 +465,7 @@
             this.groupPanel2.Controls.Add(this.labelX11);
             this.groupPanel2.Controls.Add(this.labelX10);
             this.groupPanel2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupPanel2.Location = new System.Drawing.Point(3, 161);
+            this.groupPanel2.Location = new System.Drawing.Point(3, 192);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.Size = new System.Drawing.Size(510, 127);
@@ -739,7 +743,7 @@
             this.groupPanel3.Controls.Add(this.labelX9);
             this.groupPanel3.Controls.Add(this.labelX8);
             this.groupPanel3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupPanel3.Location = new System.Drawing.Point(3, 391);
+            this.groupPanel3.Location = new System.Drawing.Point(3, 422);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.groupPanel3.Name = "groupPanel3";
             this.groupPanel3.Size = new System.Drawing.Size(510, 71);
@@ -899,7 +903,7 @@
             this.groupPanel4.Controls.Add(this.labelX18);
             this.groupPanel4.Controls.Add(this.labelX21);
             this.groupPanel4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupPanel4.Location = new System.Drawing.Point(3, 291);
+            this.groupPanel4.Location = new System.Drawing.Point(3, 322);
             this.groupPanel4.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.groupPanel4.Name = "groupPanel4";
             this.groupPanel4.Size = new System.Drawing.Size(510, 96);
@@ -1077,12 +1081,44 @@
             // 
             this.lblMsg.BackgroundStyle.Class = "";
             this.lblMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMsg.Location = new System.Drawing.Point(3, 466);
+            this.lblMsg.Location = new System.Drawing.Point(3, 497);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(510, 81);
             this.lblMsg.TabIndex = 11;
             this.lblMsg.Text = resources.GetString("lblMsg.Text");
             this.lblMsg.WordWrap = true;
+            // 
+            // txtOverseasChineseStudentCountryCode
+            // 
+            // 
+            // 
+            // 
+            this.txtOverseasChineseStudentCountryCode.Border.Class = "TextBoxBorder";
+            this.txtOverseasChineseStudentCountryCode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtOverseasChineseStudentCountryCode.Location = new System.Drawing.Point(396, 128);
+            this.txtOverseasChineseStudentCountryCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOverseasChineseStudentCountryCode.Name = "txtOverseasChineseStudentCountryCode";
+            this.txtOverseasChineseStudentCountryCode.Size = new System.Drawing.Size(94, 23);
+            this.txtOverseasChineseStudentCountryCode.TabIndex = 120;
+            // 
+            // labelX26
+            // 
+            this.labelX26.AutoSize = true;
+            this.labelX26.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX26.BackgroundStyle.Class = "";
+            this.labelX26.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX26.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX26.ForeColor = System.Drawing.Color.Black;
+            this.labelX26.Location = new System.Drawing.Point(249, 131);
+            this.labelX26.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX26.Name = "labelX26";
+            this.labelX26.Size = new System.Drawing.Size(141, 21);
+            this.labelX26.TabIndex = 119;
+            this.labelX26.Text = "建教僑生專班學生國別";
+            this.labelX26.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // UpdateRecordInfo03
             // 
@@ -1096,8 +1132,9 @@
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UpdateRecordInfo03";
-            this.Size = new System.Drawing.Size(515, 550);
+            this.Size = new System.Drawing.Size(515, 587);
             this.groupPanel1.ResumeLayout(false);
+            this.groupPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtUpdateDate)).EndInit();
             this.groupPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtBirthday)).EndInit();
@@ -1156,5 +1193,7 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txtGradeDoc;
         private DevComponents.DotNetBar.LabelX labelX17;
         private DevComponents.DotNetBar.LabelX lblMsg;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtOverseasChineseStudentCountryCode;
+        private DevComponents.DotNetBar.LabelX labelX26;
     }
 }

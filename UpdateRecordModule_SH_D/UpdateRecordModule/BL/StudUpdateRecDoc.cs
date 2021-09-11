@@ -248,5 +248,10 @@ namespace UpdateRecordModule_SH_D.BL
         /// </summary>
         public string ReplicatedSchoolRollNumber { get; set; }
 
+        /// <summary>
+        /// 建教僑生專班學生國別
+        /// </summary>
+        public string OverseasChineseStudentCountryCode { get; set; }
+
     }
 }

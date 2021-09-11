@@ -20,6 +20,16 @@
             文字評量代碼表記錄
             </summary>
         </member>
+        <member name="P:SHSchool.Data.MoralityRecord.Name">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.MoralityRecord.Items">
+            <summary>
+            項目
+            </summary>
+        </member>
         <member name="M:SHSchool.Data.MoralityRecord.Load(System.Xml.XmlElement)">
             <summary>
             從XML載入
@@ -35,16 +45,6 @@
         <member name="M:SHSchool.Data.MoralityRecord.#ctor">
             <summary>
             無參數建構式
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.MoralityRecord.Name">
-            <summary>
-            名稱
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.MoralityRecord.Items">
-            <summary>
-            項目
             </summary>
         </member>
         <member name="T:SHSchool.Data.MoralityItem">
@@ -1118,7 +1118,7 @@
             2.新增必填欄位為學生記錄編號（RefStudentID）、學年度（SchoolYear）、學期（Semester）、缺曠日期（OccurDate）。
             </remarks>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHMerit.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHMeritRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHMerit.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHMeritRecord})" -->
         <member name="M:SHSchool.Data.SHMerit.Update(SHSchool.Data.SHMeritRecord)">
             <summary>
             更新單筆學生獎勵記錄
@@ -1364,6 +1364,21 @@
             學生畢業成績資訊
             </summary>
         </member>
+        <member name="P:SHSchool.Data.SHGradScoreRecord.RefStudentID">
+            <summary>
+            所屬學生編號
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHGradScoreRecord.Entries">
+            <summary>
+            畢業分項成績
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHGradScoreRecord.Student">
+            <summary>
+            所屬學生
+            </summary>
+        </member>
         <member name="M:SHSchool.Data.SHGradScoreRecord.#ctor">
             <summary>
             預設建構式
@@ -1385,24 +1400,19 @@
             </summary>
             <param name="data"></param>
         </member>
-        <member name="P:SHSchool.Data.SHGradScoreRecord.RefStudentID">
-            <summary>
-            所屬學生編號
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHGradScoreRecord.Entries">
-            <summary>
-            畢業分項成績
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHGradScoreRecord.Student">
-            <summary>
-            所屬學生
-            </summary>
-        </member>
         <member name="T:SHSchool.Data.GradEntryScore">
             <summary>
             畢業分項成績
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.GradEntryScore.Entry">
+            <summary>
+            分項名稱
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.GradEntryScore.Score">
+            <summary>
+            成績
             </summary>
         </member>
         <member name="M:SHSchool.Data.GradEntryScore.#ctor(System.Xml.XmlElement)">
@@ -1422,16 +1432,6 @@
             複製畢業成績物件
             </summary>
             <returns></returns>
-        </member>
-        <member name="P:SHSchool.Data.GradEntryScore.Entry">
-            <summary>
-            分項名稱
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.GradEntryScore.Score">
-            <summary>
-            成績
-            </summary>
         </member>
         <member name="T:SHSchool.Data.SHMoralScoreCalcRule">
             <summary>
@@ -1485,40 +1485,6 @@
             <summary>
             學生學年分項成績資訊
             </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSchoolYearEntryScoreRecord.Load(System.Xml.XmlElement)">
-             <summary>
-             用XML參數載入資料
-             <![CDATA[
-                <SchoolYearEntryScore ID="11812">
-                <RefStudentId>49614</RefStudentId>
-                <SchoolYear>96</SchoolYear>
-                <GradeYear>3</GradeYear>
-                <EntryGroup>學習</EntryGroup>
-                <ScoreInfo>
-                    <SchoolYearEntryScore>
-                        <Entry 分項="學業" 成績="86.1" />
-                    </SchoolYearEntryScore>
-                </ScoreInfo>
-                <ClassRating>
-                    <Rating 範圍人數="52">
-                        <Item 分項="學業" 成績="86.1" 成績人數="52" 排名="10" />
-                    </Rating>
-                </ClassRating>
-                <DeptRating>
-                    <Rating 範圍人數="144">
-                        <Item 分項="學業" 成績="86.1" 成績人數="144" 排名="24" />
-                    </Rating>
-                </DeptRating>
-                <YearRating>
-                    <Rating 範圍人數="1225">
-                        <Item 分項="學業" 成績="86.1" 成績人數="828" 排名="85" />
-                    </Rating>
-                </YearRating>
-            </SchoolYearEntryScore>
-             ]]>
-             </summary>
-             <param name="element"></param>
         </member>
         <member name="P:SHSchool.Data.SHSchoolYearEntryScoreRecord.ID">
             <summary>
@@ -1591,6 +1557,40 @@
             科排名
             </summary>
         </member>
+        <member name="M:SHSchool.Data.SHSchoolYearEntryScoreRecord.Load(System.Xml.XmlElement)">
+             <summary>
+             用XML參數載入資料
+             <![CDATA[
+                <SchoolYearEntryScore ID="11812">
+                <RefStudentId>49614</RefStudentId>
+                <SchoolYear>96</SchoolYear>
+                <GradeYear>3</GradeYear>
+                <EntryGroup>學習</EntryGroup>
+                <ScoreInfo>
+                    <SchoolYearEntryScore>
+                        <Entry 分項="學業" 成績="86.1" />
+                    </SchoolYearEntryScore>
+                </ScoreInfo>
+                <ClassRating>
+                    <Rating 範圍人數="52">
+                        <Item 分項="學業" 成績="86.1" 成績人數="52" 排名="10" />
+                    </Rating>
+                </ClassRating>
+                <DeptRating>
+                    <Rating 範圍人數="144">
+                        <Item 分項="學業" 成績="86.1" 成績人數="144" 排名="24" />
+                    </Rating>
+                </DeptRating>
+                <YearRating>
+                    <Rating 範圍人數="1225">
+                        <Item 分項="學業" 成績="86.1" 成績人數="828" 排名="85" />
+                    </Rating>
+                </YearRating>
+            </SchoolYearEntryScore>
+             ]]>
+             </summary>
+             <param name="element"></param>
+        </member>
         <member name="T:SHSchool.Data.SHSchoolYearScore">
             <summary>
             學生學年成績類別，提供方法用來取得、新增、修改及刪除學生學期成績資訊
@@ -1638,7 +1638,7 @@
                 
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHSchoolYearScore.Update(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSchoolYearScoreRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHSchoolYearScore.Update(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSchoolYearScoreRecord})" -->
         <member name="M:SHSchool.Data.SHSchoolYearScore.Delete(SHSchool.Data.SHSchoolYearScoreRecord)">
             <summary>
             刪除單筆學生學年科目成績記錄
@@ -1693,23 +1693,6 @@
             <summary>
             學生學年成績紀錄物件
             </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.#ctor">
-            <summary>
-            空白建構式
-            </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.#ctor(System.Xml.XmlElement)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="element"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.Load(System.Xml.XmlElement)">
-            <summary>
-            從XML參數載入資料
-            </summary>
-            <param name="element"></param>
         </member>
         <member name="P:SHSchool.Data.SHSchoolYearScoreRecord.ID">
             <summary>
@@ -1766,9 +1749,36 @@
             學期科目成績
             </summary>
         </member>
+        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.#ctor">
+            <summary>
+            空白建構式
+            </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.#ctor(System.Xml.XmlElement)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHSchoolYearScoreRecord.Load(System.Xml.XmlElement)">
+            <summary>
+            從XML參數載入資料
+            </summary>
+            <param name="element"></param>
+        </member>
         <member name="T:SHSchool.Data.SHSchoolYearScoreSubject">
             <summary>
             學生學年科目成績紀錄物件
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSchoolYearScoreSubject.Subject">
+            <summary>
+            科目名稱
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSchoolYearScoreSubject.Score">
+            <summary>
+            分數
             </summary>
         </member>
         <member name="M:SHSchool.Data.SHSchoolYearScoreSubject.#ctor">
@@ -1787,16 +1797,6 @@
             由XML載入資料
             </summary>
             <param name="element"></param>
-        </member>
-        <member name="P:SHSchool.Data.SHSchoolYearScoreSubject.Subject">
-            <summary>
-            科目名稱
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSchoolYearScoreSubject.Score">
-            <summary>
-            分數
-            </summary>
         </member>
         <member name="T:SHSchool.Data.SHSemesterEntryScore">
             <summary>
@@ -1879,12 +1879,6 @@
             學生學期分項成績資訊
             </summary>
         </member>
-        <member name="M:SHSchool.Data.SHSemesterEntryScoreRecord.Load(System.Xml.XmlElement)">
-            <summary>
-            用XML參數載入資料
-            </summary>
-            <param name="element"></param>
-        </member>
         <member name="P:SHSchool.Data.SHSemesterEntryScoreRecord.ID">
             <summary>
             系統編號
@@ -1966,6 +1960,12 @@
             科排名
             </summary>
         </member>
+        <member name="M:SHSchool.Data.SHSemesterEntryScoreRecord.Load(System.Xml.XmlElement)">
+            <summary>
+            用XML參數載入資料
+            </summary>
+            <param name="element"></param>
+        </member>
         <member name="T:SHSchool.Data.SHSubjectTable">
             <summary>
             核心科目表或學程科目表
@@ -1980,6 +1980,36 @@
         <member name="T:SHSchool.Data.SHSubjectTableRecord">
             <summary>
             核心及學程科目表記錄物件
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.ID">
+            <summary>
+            系統編號
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.Catalog">
+            <summary>
+            目前為『核心科目表』或『學程科目表』
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.Name">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.CreditCount">
+            <summary>
+            必修學分數
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.CoreCount">
+            <summary>
+            核心科目學分數
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSubjectTableRecord.Subjects">
+            <summary>
+            科目列表
             </summary>
         </member>
         <member name="M:SHSchool.Data.SHSubjectTableRecord.#ctor">
@@ -2022,46 +2052,10 @@
             </summary>
             <param name="data"></param>
         </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.ID">
-            <summary>
-            系統編號
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.Catalog">
-            <summary>
-            目前為『核心科目表』或『學程科目表』
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.Name">
-            <summary>
-            名稱
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.CreditCount">
-            <summary>
-            必修學分數
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.CoreCount">
-            <summary>
-            核心科目學分數
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSubjectTableRecord.Subjects">
-            <summary>
-            科目列表
-            </summary>
-        </member>
         <member name="T:SHSchool.Data.SHSubjectTableSubject">
             <summary>
             學程或核心科目表科目
             </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSubjectTableSubject.Load(System.Xml.XmlElement)">
-            <summary>
-            從XML參數載入
-            </summary>
-            <param name="data"></param>
         </member>
         <member name="P:SHSchool.Data.SHSubjectTableSubject.Name">
             <summary>
@@ -2077,6 +2071,12 @@
             <summary>
             級別
             </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHSubjectTableSubject.Load(System.Xml.XmlElement)">
+            <summary>
+            從XML參數載入
+            </summary>
+            <param name="data"></param>
         </member>
         <member name="T:SHSchool.Data.SHBeforeEnrollment">
             <summary>
@@ -2264,17 +2264,6 @@
             學籍身份對照表記錄物件
             </summary>
         </member>
-        <member name="M:SHSchool.Data.SHPermrecStatusMappingInfo.#ctor">
-            <summary>
-            無參數建構式
-            </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHPermrecStatusMappingInfo.Load(System.Xml.XmlElement)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="data"></param>
-        </member>
         <member name="P:SHSchool.Data.SHPermrecStatusMappingInfo.Code">
             <summary>
             學籍身份代碼
@@ -2294,6 +2283,17 @@
             <summary>
             學生標籤的完整名稱列表字串
             </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHPermrecStatusMappingInfo.#ctor">
+            <summary>
+            無參數建構式
+            </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHPermrecStatusMappingInfo.Load(System.Xml.XmlElement)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="data"></param>
         </member>
         <member name="T:SHSchool.Data.SHUpdateRecord">
             <summary>
@@ -2815,12 +2815,6 @@
             異動代碼對照表記錄物件
             </summary>
         </member>
-        <member name="M:SHSchool.Data.SHUpdateCodeMappingInfo.Load(System.Xml.XmlElement)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="data"></param>
-        </member>
         <member name="P:SHSchool.Data.SHUpdateCodeMappingInfo.Code">
             <summary>
             異動代碼
@@ -2835,6 +2829,12 @@
             <summary>
             異動分類
             </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHUpdateCodeMappingInfo.Load(System.Xml.XmlElement)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="data"></param>
         </member>
         <member name="T:SHSchool.Data.SHUpdateRecordRecord">
             <summary>
@@ -3009,6 +3009,11 @@
         <member name="P:SHSchool.Data.SHUpdateRecordRecord.ReplicatedSchoolRollNumber">
             <summary>
             雙重學籍編號。
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHUpdateRecordRecord.OverseasChineseStudentCountryCode">
+            <summary>
+            建教僑生專班學生國別
             </summary>
         </member>
         <member name="T:SHSchool.Data.SHClassTag">
@@ -3389,18 +3394,6 @@
             排名資訊
             </summary>
         </member>
-        <member name="M:SHSchool.Data.SHRankingInfo.#ctor(System.Xml.XmlElement,System.String)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="element"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHRankingInfo.Load(System.Xml.XmlElement,System.String)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="element"></param>
-        </member>
         <member name="P:SHSchool.Data.SHRankingInfo.Score">
             <summary>
             分數
@@ -3421,9 +3414,26 @@
             排序名稱
             </summary>
         </member>
+        <member name="M:SHSchool.Data.SHRankingInfo.#ctor(System.Xml.XmlElement,System.String)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHRankingInfo.Load(System.Xml.XmlElement,System.String)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="element"></param>
+        </member>
         <member name="T:SHSchool.Data.SHMoralScoreCalcRuleRecord">
             <summary>
             德行成績計算規則
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHMoralScoreCalcRuleRecord.Content">
+            <summary>
+            內容，必填
             </summary>
         </member>
         <member name="M:SHSchool.Data.SHMoralScoreCalcRuleRecord.#ctor">
@@ -3453,11 +3463,6 @@
             ]]>
             </summary>
             <param name="data"></param>
-        </member>
-        <member name="P:SHSchool.Data.SHMoralScoreCalcRuleRecord.Content">
-            <summary>
-            內容，必填
-            </summary>
         </member>
         <member name="T:SHSchool.Data.SHSchoolInfo">
             <summary>
@@ -3887,7 +3892,7 @@
             <summary>
             刪除多筆標籤設定記錄
             </summary>
-            <param name="List&lt;string&gt;">多筆標籤設定記錄編號</param>
+            <param name="List&lt;string&gt;&lt;string&gt;">多筆標籤設定記錄編號</param>
             <returns>int，傳回成功更新的筆數。</returns>
             <exception cref="T:System.Exception">
             </exception>
@@ -4735,8 +4740,8 @@
                 List&lt;SHScoreCalcRuleRecord&gt; records = SHScoreCalcRule.SelectByIDs(ScoreCalcRuleIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHScoreCalcRule.Insert(SHSchool.Data.SHScoreCalcRuleRecord)" 中格式錯誤的 XML 註解 -->
-        <!-- 忽略成員 "M:SHSchool.Data.SHScoreCalcRule.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHScoreCalcRuleRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHScoreCalcRule.Insert(SHSchool.Data.SHScoreCalcRuleRecord)" -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHScoreCalcRule.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHScoreCalcRuleRecord})" -->
         <member name="M:SHSchool.Data.SHScoreCalcRule.Update(SHSchool.Data.SHScoreCalcRuleRecord)">
             <summary>
             更新單筆成績計算規則記錄
@@ -4874,8 +4879,8 @@
                 List&lt;AEIncludeRecord&gt; aeincluderecords = AEInclude.SelectByIDs(AEIncludeIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHAEInclude.Insert(SHSchool.Data.SHAEIncludeRecord)" 中格式錯誤的 XML 註解 -->
-        <!-- 忽略成員 "M:SHSchool.Data.SHAEInclude.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHAEIncludeRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHAEInclude.Insert(SHSchool.Data.SHAEIncludeRecord)" -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHAEInclude.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHAEIncludeRecord})" -->
         <member name="M:SHSchool.Data.SHAEInclude.Update(SHSchool.Data.SHAEIncludeRecord)">
             <summary>
             更新單筆評分樣板記錄
@@ -5030,7 +5035,7 @@
                 List&lt;SHAssessmentSetupRecord&gt; records = SHAssessmentSetup.SelectByIDs(AssessmentSetupIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHAssessmentSetup.Insert(SHSchool.Data.SHAssessmentSetupRecord)" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHAssessmentSetup.Insert(SHSchool.Data.SHAssessmentSetupRecord)" -->
         <member name="M:SHSchool.Data.SHAssessmentSetup.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHAssessmentSetupRecord})">
             <summary>
             新增多筆評量設定記錄
@@ -5173,8 +5178,8 @@
                 List&lt;SHExamRecord&gt; records = SHExam.SelectByIDs(ExamIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHExam.Insert(SHSchool.Data.SHExamRecord)" 中格式錯誤的 XML 註解 -->
-        <!-- 忽略成員 "M:SHSchool.Data.SHExam.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHExamRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHExam.Insert(SHSchool.Data.SHExamRecord)" -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHExam.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHExamRecord})" -->
         <member name="M:SHSchool.Data.SHExam.Update(SHSchool.Data.SHExamRecord)">
             <summary>
             更新單筆考試項目記錄
@@ -5334,7 +5339,7 @@
             <exception cref="T:System.Exception">
             </exception>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHMoralScore.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHMoralScoreRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHMoralScore.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHMoralScoreRecord})" -->
         <member name="M:SHSchool.Data.SHMoralScore.Update(SHSchool.Data.SHMoralScoreRecord)">
             <summary>
             更新單筆學期德行評量記錄
@@ -5457,8 +5462,8 @@
                 List&lt;SHProgramPlanRecord&gt; records = SHProgramPlan.SelectByIDs(ProgramPlanIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHProgramPlan.Insert(SHSchool.Data.SHProgramPlanRecord)" 中格式錯誤的 XML 註解 -->
-        <!-- 忽略成員 "M:SHSchool.Data.SHProgramPlan.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHProgramPlanRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHProgramPlan.Insert(SHSchool.Data.SHProgramPlanRecord)" -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHProgramPlan.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHProgramPlanRecord})" -->
         <member name="M:SHSchool.Data.SHProgramPlan.Update(SHSchool.Data.SHProgramPlanRecord)">
             <summary>
             更新單筆課程規劃記錄
@@ -5634,8 +5639,8 @@
                 List&lt;SHSCAttendRecord&gt; records = SHSCAttend.SelectByStudentIDs(StudentIDs);
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHSCAttend.Insert(SHSchool.Data.SHSCAttendRecord)" 中格式錯誤的 XML 註解 -->
-        <!-- 忽略成員 "M:SHSchool.Data.SHSCAttend.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSCAttendRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHSCAttend.Insert(SHSchool.Data.SHSCAttendRecord)" -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHSCAttend.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSCAttendRecord})" -->
         <member name="M:SHSchool.Data.SHSCAttend.Update(SHSchool.Data.SHSCAttendRecord)">
             <summary>
             更新單筆學生修課記錄
@@ -5836,7 +5841,7 @@
             <example>
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHSCETake.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSCETakeRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHSCETake.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSCETakeRecord})" -->
         <member name="M:SHSchool.Data.SHSCETake.Update(SHSchool.Data.SHSCETakeRecord)">
             <summary>
             更新單筆學生期中成績記錄
@@ -6062,7 +6067,7 @@
                 
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHSemesterScore.Update(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSemesterScoreRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHSemesterScore.Update(System.Collections.Generic.IEnumerable{SHSchool.Data.SHSemesterScoreRecord})" -->
         <member name="M:SHSchool.Data.SHSemesterScore.Delete(SHSchool.Data.SHSemesterScoreRecord)">
             <summary>
             刪除單筆學生學期成績記錄
@@ -6118,6 +6123,16 @@
             學生學期成績資訊
             </summary>
         </member>
+        <member name="P:SHSchool.Data.SHSemesterScoreRecord.Subjects">
+            <summary>
+            學期科目成績明細
+            </summary>
+        </member>
+        <member name="P:SHSchool.Data.SHSemesterScoreRecord.Student">
+            <summary>
+            所屬學生
+            </summary>
+        </member>
         <member name="M:SHSchool.Data.SHSemesterScoreRecord.#ctor">
             <summary>
             無參數建構式，會將學期科目成績明細初始化
@@ -6143,47 +6158,10 @@
             </summary>
             <param name="element"></param>
         </member>
-        <member name="P:SHSchool.Data.SHSemesterScoreRecord.Subjects">
-            <summary>
-            學期科目成績明細
-            </summary>
-        </member>
-        <member name="P:SHSchool.Data.SHSemesterScoreRecord.Student">
-            <summary>
-            所屬學生
-            </summary>
-        </member>
         <member name="T:SHSchool.Data.SHSubjectScore">
             <summary>
             科目成績
             </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSubjectScore.#ctor">
-            <summary>
-            無參數建構式
-            </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHSubjectScore.#ctor(System.Xml.XmlElement)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="subject"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHSubjectScore.Load(System.Xml.XmlElement)">
-            <summary>
-            從XML載入資料
-            <![CDATA[
-            ]]>
-            </summary>
-            <param name="element"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHSubjectScore.ToXML">
-            <summary>
-            將資料匯出成XML格式
-            <![CDATA[
-            ]]>
-            </summary>
-            <returns></returns>
         </member>
         <member name="P:SHSchool.Data.SHSubjectScore.RefSemesterScoreID">
             <summary>
@@ -6280,6 +6258,33 @@
             註解
             </summary>
         </member>
+        <member name="M:SHSchool.Data.SHSubjectScore.#ctor">
+            <summary>
+            無參數建構式
+            </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHSubjectScore.#ctor(System.Xml.XmlElement)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="subject"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHSubjectScore.Load(System.Xml.XmlElement)">
+            <summary>
+            從XML載入資料
+            <![CDATA[
+            ]]>
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHSubjectScore.ToXML">
+            <summary>
+            將資料匯出成XML格式
+            <![CDATA[
+            ]]>
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SHSchool.Data.SHTCInstruct">
             <summary>
             教師教授課程類別，提供方法用來取得、新增、修改及刪除教師教授課程資訊
@@ -6338,7 +6343,7 @@
             <example>
             </example>
         </member>
-        <!-- 忽略成員 "M:SHSchool.Data.SHTCInstruct.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHTCInstructRecord})" 中格式錯誤的 XML 註解 -->
+        <!-- Badly formed XML comment ignored for member "M:SHSchool.Data.SHTCInstruct.Insert(System.Collections.Generic.IEnumerable{SHSchool.Data.SHTCInstructRecord})" -->
         <member name="M:SHSchool.Data.SHTCInstruct.Update(SHSchool.Data.SHTCInstructRecord)">
             <summary>
             更新單筆教師教授課程記錄
@@ -6774,6 +6779,16 @@
             <remarks></remarks>
         </member>
         <member name="M:SHSchool.Data.SHCourse.SelectBySchoolYearAndSemester(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            根據學年度、學期及課程名稱取得課程列表。
+            </summary>
+            <param name="SchoolYear">學年度，傳入null代表取得所有學年度資料。</param>
+            <param name="Semester">學期，傳入null代表取得所有學期資料。</param>
+            <param name="CourseName">課程名稱</param> 
+            <returns>List&lt;SHCourseRecord&gt;，代表課程物件。</returns>
+            <seealso cref="T:SHSchool.Data.SHCourseRecord"/>
+            <exception cref="T:System.Exception">
+            </exception>
             <example>
                 <code>
                   List&lt;SHCourseRecord&gt; records = SHCourse.SelectBySchoolYearAndSemester(SchoolYear,Semester,CourseName);
@@ -6823,6 +6838,14 @@
             <remarks>可能情況若是傳5筆ID，但是其中1筆沒有資料，就只會回傳4筆資料</remarks>
         </member>
         <member name="M:SHSchool.Data.SHCourse.Insert(SHSchool.Data.SHCourseRecord)">
+            <summary>
+            新增單筆課程記錄
+            </summary>
+            <param name="CourseRecord">課程記錄物件</param> 
+            <returns>string，傳回新增物件的系統編號。</returns>
+            <seealso cref="T:SHSchool.Data.SHCourseRecord"/>
+            <exception cref="T:System.Exception">
+            </exception>
             <example>
                 <code>
                     SHCourseRecord record = new SHCourseRecord();
@@ -7241,35 +7264,6 @@
             科別資訊
             </summary>
         </member>
-        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor">
-            <summary>
-            無參數建構式
-            </summary>
-        </member>
-        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor(System.Xml.XmlElement)">
-            <summary>
-            XML參數建構式
-            </summary>
-            <param name="element"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor(System.Data.DataRow)">
-            <summary>
-            DataRow參數建構式
-            </summary>
-            <param name="Row"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHDepartmentRecord.Load(System.Xml.XmlElement)">
-            <summary>
-            從XML載入設定值
-            </summary>
-            <param name="element"></param>
-        </member>
-        <member name="M:SHSchool.Data.SHDepartmentRecord.Load(System.Data.DataRow)">
-            <summary>
-            從DataRow載入設定值
-            </summary>
-            <param name="row"></param>
-        </member>
         <member name="P:SHSchool.Data.SHDepartmentRecord.ID">
             <summary>
             系統編號
@@ -7304,6 +7298,35 @@
             <summary>
             科主任教師記錄物件
             </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor">
+            <summary>
+            無參數建構式
+            </summary>
+        </member>
+        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor(System.Xml.XmlElement)">
+            <summary>
+            XML參數建構式
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHDepartmentRecord.#ctor(System.Data.DataRow)">
+            <summary>
+            DataRow參數建構式
+            </summary>
+            <param name="Row"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHDepartmentRecord.Load(System.Xml.XmlElement)">
+            <summary>
+            從XML載入設定值
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:SHSchool.Data.SHDepartmentRecord.Load(System.Data.DataRow)">
+            <summary>
+            從DataRow載入設定值
+            </summary>
+            <param name="row"></param>
         </member>
         <member name="T:SHSchool.Data.SHMoralScoreRecord">
             <summary>

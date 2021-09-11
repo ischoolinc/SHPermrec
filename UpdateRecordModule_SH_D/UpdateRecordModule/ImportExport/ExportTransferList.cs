@@ -51,6 +51,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
             _ExportList.Add("核准日期");
             _ExportList.Add("核准文號");
             _ExportList.Add("轉入身分別代碼");
+            _ExportList.Add("建教僑生專班學生國別");
             _ExportList.Add("狀態");
         }
 
@@ -108,6 +109,8 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 
                                 case "核准日期": row.Add(field, rec.ADDate); break;
                                 case "核准文號": row.Add(field, rec.ADNumber); break;
+                                case "建教僑生專班學生國別": row.Add(field, rec.OverseasChineseStudentCountryCode); break;
+
                                 case "狀態":
                                     if (StudentStatusDict.ContainsKey(rec.StudentID))
                                         row.Add(field, StudentStatusDict[rec.StudentID]); break;

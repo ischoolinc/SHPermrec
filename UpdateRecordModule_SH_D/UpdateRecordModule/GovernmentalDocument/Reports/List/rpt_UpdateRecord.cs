@@ -215,5 +215,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         /// 雙重學籍編號
         /// </summary>
         public string ReplicatedSchoolRollNumber { get; set; }
+
+        /// <summary>
+        /// 建教僑生專班學生國別
+        /// </summary>
+        public string OverseasChineseStudentCountryCode { get; set; }
     }
 }

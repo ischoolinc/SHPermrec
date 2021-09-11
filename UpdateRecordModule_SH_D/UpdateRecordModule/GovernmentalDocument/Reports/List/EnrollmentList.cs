@@ -352,9 +352,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             //    mdws.Cells[mdws_index, 13].PutValue(record.GetAttribute("畢業國中"));
                 mdws.Cells[mdws_index, 11].PutValue(GradeSchoolCode);
-                mdws.Cells[mdws_index, 12].PutValue(record.GetAttribute("入學資格證明文件"));                   
-
-                mdws.Cells[mdws_index, 13].PutValue(record.GetAttribute("備註"));
+                mdws.Cells[mdws_index, 12].PutValue(record.GetAttribute("入學資格證明文件"));
+                mdws.Cells[mdws_index, 13].PutValue(record.GetAttribute("建教僑生專班學生國別"));
+                mdws.Cells[mdws_index, 14].PutValue(record.GetAttribute("備註"));
             }
 
             // 資料末底 加End

@@ -116,7 +116,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             dtADDate = _faldn.SetFormData(_UpdateRec.ADDate, dtADDate, "核准日期");
             txtADDocNo = _faldn.SetFormData(_UpdateRec.ADNumber, txtADDocNo, "核准文號");
             txtGradeDoc = _faldn.SetFormData(_UpdateRec.GraduateDocument, txtGradeDoc, "入學資格證明文件");          
-                        
+            txtOverseasChineseStudentCountryCode = _faldn.SetFormData(_UpdateRec.OverseasChineseStudentCountryCode, txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
         }
 
 
@@ -152,6 +152,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.ADNumber =_faldn.GetFormData(txtADDocNo, "核准文號");
             _UpdateRec.GraduateDocument = _faldn.GetFormData(txtGradeDoc, "入學資格證明文件");
             _UpdateRec.GraduateSchoolCode = _faldn.GetFormData(txtISchoolCode, "畢業國中學校代號");
+            _UpdateRec.OverseasChineseStudentCountryCode = _faldn.GetFormData(txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
 
             _prlp = _faldn.GetLogData();
 

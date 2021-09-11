@@ -210,9 +210,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 //原學期
                 DyWb.Cells[DyWb_index, 21].PutValue(Getsemester(rec.PreviousSemester));
 
+                //建教僑生專班學生國別
+                DyWb.Cells[DyWb_index, 22].PutValue(rec.OverseasChineseStudentCountryCode);
 
                 //備註說明
-                DyWb.Cells[DyWb_index, 22].PutValue(rec.Comment);            
+                DyWb.Cells[DyWb_index, 23].PutValue(rec.Comment);            
             }
 
             // 資料末底 加End

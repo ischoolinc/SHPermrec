@@ -242,6 +242,10 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 核准文號
                     if (ir.Contains("核准文號"))
                         UpdateRec.ADNumber = ir.GetValue("核准文號");
+
+                    //建教僑生專班學生國別
+                    if (ir.Contains("建教僑生專班學生國別"))
+                        UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");
                 }
                 else
                 { 
@@ -365,7 +369,11 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 核准文號
                     if (ir.Contains("核准文號") && mOption.SelectedFields.Contains("核准文號"))
                         UpdateRec.ADNumber = ir.GetValue("核准文號");
-                
+
+                    // 建教僑生專班學生國別
+                    if (ir.Contains("建教僑生專班學生國別") && mOption.SelectedFields.Contains("建教僑生專班學生國別"))
+                        UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");
+
                 }
 
 

@@ -248,6 +248,10 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     //轉入身分別代碼
                     if (ir.Contains("轉入身分別代碼"))
                         UpdateRec.Comment2 = ir.GetValue("轉入身分別代碼");
+
+                    //建教僑生專班學生國別
+                    if (ir.Contains("建教僑生專班學生國別"))
+                        UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");
                 }
                 else
                 {
@@ -394,6 +398,10 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 轉入身分別代碼
                     if (ir.Contains("轉入身分別代碼") && mOption.SelectedFields.Contains("轉入身分別代碼"))
                         UpdateRec.Comment2 = ir.GetValue("轉入身分別代碼");
+
+                    // 建教僑生專班學生國別
+                    if (ir.Contains("建教僑生專班學生國別") && mOption.SelectedFields.Contains("建教僑生專班學生國別"))
+                        UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");
 
                 }
 

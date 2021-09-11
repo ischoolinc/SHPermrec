@@ -53,6 +53,7 @@
     <Field Required="False" Name="核准文號"></Field>
     <Field Required="False" Name="轉入身分別代碼"></Field>
     <Field Required="False" Name="特殊身分代碼"></Field>
+	<Field Required="False" Name="建教僑生專班學生國別"></Field>
   </FieldList>
   <ValidatorList>
     <FieldValidator Name="不可空白" Type="STRINGLENGTH">

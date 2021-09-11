@@ -71,7 +71,8 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             txtADDocNo = _faldn.SetFormData(_UpdateRec.ADNumber, txtADDocNo, "核准文號");
             txtSSemester = _faldn.SetFormData(_UpdateRec.PreviousSemester, txtSSemester, "原就讀學期");
             txtComment2 = _faldn.SetFormData(_UpdateRec.Comment2, txtComment2, "轉入身分別代碼");
-            
+            txtOverseasChineseStudentCountryCode = _faldn.SetFormData(_UpdateRec.OverseasChineseStudentCountryCode, txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
+
         }
 
 
@@ -115,6 +116,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.Comment2 = _faldn.GetFormData(txtComment2, "轉入身分別代碼");
             _UpdateRec.ADDate = _faldn.GetFormData(dtADDate, "核准日期");
             _UpdateRec.ADNumber = _faldn.GetFormData(txtADDocNo, "核准文號");
+            _UpdateRec.OverseasChineseStudentCountryCode = _faldn.GetFormData(txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
 
             _prlp = _faldn.GetLogData();
             return _UpdateRec;
