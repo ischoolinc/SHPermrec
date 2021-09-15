@@ -80,8 +80,8 @@
             this.office2007StyleWizard1.FooterStyle.TextAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Center;
             this.office2007StyleWizard1.FooterStyle.TextColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.office2007StyleWizard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(57)))), ((int)(((byte)(129)))));
-            this.office2007StyleWizard1.HeaderCaptionFont = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.office2007StyleWizard1.HeaderDescriptionFont = new System.Drawing.Font("Microsoft JhengHei", 9.75F);
+            this.office2007StyleWizard1.HeaderCaptionFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.office2007StyleWizard1.HeaderDescriptionFont = new System.Drawing.Font("微軟正黑體", 9.75F);
             this.office2007StyleWizard1.HeaderDescriptionIndent = 16;
             // 
             // 
@@ -89,6 +89,10 @@
             this.office2007StyleWizard1.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(215)))), ((int)(((byte)(243)))));
             this.office2007StyleWizard1.HeaderStyle.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(241)))), ((int)(((byte)(254)))));
             this.office2007StyleWizard1.HeaderStyle.BackColorBlend.AddRange(new DevComponents.DotNetBar.BackgroundColorBlend[] {
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(211)))), ((int)(((byte)(239))))), 0F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(212)))), ((int)(((byte)(240))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(201)))), ((int)(((byte)(234))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(224)))), ((int)(((byte)(245))))), 1F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(211)))), ((int)(((byte)(239))))), 0F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(212)))), ((int)(((byte)(240))))), 0.4F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(201)))), ((int)(((byte)(234))))), 0.4F),
@@ -357,7 +361,7 @@
             this.updateRecordInfo2.ClassType = "";
             this.updateRecordInfo2.Comment = "";
             this.updateRecordInfo2.Department = "";
-            this.updateRecordInfo2.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateRecordInfo2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateRecordInfo2.Gender = "";
             this.updateRecordInfo2.GradeYear = "";
             this.updateRecordInfo2.GraduateCertificateNumber = "";
@@ -402,7 +406,7 @@
             this.updateRecordInfo1.ClassType = "";
             this.updateRecordInfo1.Comment = "";
             this.updateRecordInfo1.Department = "";
-            this.updateRecordInfo1.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateRecordInfo1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.updateRecordInfo1.Gender = "";
             this.updateRecordInfo1.GradeYear = "";
             this.updateRecordInfo1.GraduateCertificateNumber = "";

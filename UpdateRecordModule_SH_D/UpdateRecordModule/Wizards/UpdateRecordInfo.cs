@@ -258,7 +258,8 @@ namespace UpdateRecordModule_SH_D.Wizards
             #region 檢查班別
             if (control.Tag != null && control.Tag.ToString().EndsWith("ClassType"))
             {
-                List<string> ClassTypeIDs = new List<string>() { "1", "3", "4", "7", "01", "02", "03", "04", "05", "06" };
+                //List<string> ClassTypeIDs = new List<string>() { "1", "3", "4", "7", "01", "02", "03", "04", "05", "06" };
+                List<string> ClassTypeIDs = new List<string>() { "1","2", "3", "4","6", "7","8","9", "01", "02", "03", "04", "05", "06" };
 
                 if (!ClassTypeIDs.Contains(control.Text))
                     if (showError)
@@ -1113,9 +1114,24 @@ namespace UpdateRecordModule_SH_D.Wizards
             cmbClassType.DropDownWidth = 250;
             cmbClassType.Items.Clear();
             cmbClassType.Items.Add(Expand ? "1-日間部" : "1");
-            cmbClassType.Items.Add(Expand ? "3-實用技能班" : "3");
+            cmbClassType.Items.Add(Expand ? "2-夜間部" : "2");
+            cmbClassType.Items.Add(Expand ? "3-實用技能學程(一般班)" : "3");
             cmbClassType.Items.Add(Expand ? "4-建教班" : "4");
-            cmbClassType.Items.Add(Expand ? "7-重點產業班與台德菁英班" : "7");         
+            cmbClassType.Items.Add(Expand ? "6-產學訓合作計畫班(產學合作班)" : "6");
+            cmbClassType.Items.Add(Expand ? "7-重點產業班/台德菁英班/雙軌旗艦訓練計畫專班" : "7");
+            cmbClassType.Items.Add(Expand ? "8-建教僑生專班" : "8");
+            cmbClassType.Items.Add(Expand ? "9-實驗班" : "9");
+            cmbClassType.Items.Add(Expand ? "01-進修部(核定班)" : "01");
+            cmbClassType.Items.Add(Expand ? "02-編制班" : "02");
+            cmbClassType.Items.Add(Expand ? "03-自給自足班" : "03");
+            cmbClassType.Items.Add(Expand ? "04-員工進修班" : "04");
+            cmbClassType.Items.Add(Expand ? "05-重點產業班" : "05");
+            cmbClassType.Items.Add(Expand ? "06-產業人力套案專班" : "06");
+
+            //cmbClassType.Items.Add(Expand ? "1-日間部" : "1");
+            //cmbClassType.Items.Add(Expand ? "3-實用技能班" : "3");
+            //cmbClassType.Items.Add(Expand ? "4-建教班" : "4");
+            //cmbClassType.Items.Add(Expand ? "7-重點產業班與台德菁英班" : "7");         
             cmbClassType.SelectedItem = s.Split("-".ToCharArray())[0];
         }
 
