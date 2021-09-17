@@ -232,7 +232,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             //名稱
             cover.Name = "畢業生名冊封面";
-            
+
+            string school_code = source.SelectSingleNode("@學校代號").InnerText;
             string school_year = source.SelectSingleNode("@學年度").InnerText;
             string school_semester = source.SelectSingleNode("@學期").InnerText;
 
@@ -257,15 +258,19 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
-              
+
+                //2021-09 
+                //學校代碼
+                cover.Cells[cover_row_counter, 0].PutValue(school_code);
+
                 //學年度
-                cover.Cells[cover_row_counter, 0].PutValue(school_year);
+                cover.Cells[cover_row_counter, 1].PutValue(school_year);
                 //學期
-                cover.Cells[cover_row_counter, 1].PutValue(school_semester);
+                cover.Cells[cover_row_counter, 2].PutValue(school_semester);
                 //年級
-                cover.Cells[cover_row_counter, 2].PutValue(gradeYear);
+                cover.Cells[cover_row_counter, 3].PutValue(gradeYear);
                 //科別代碼
-                cover.Cells[cover_row_counter, 5].PutValue(deptCode);
+                cover.Cells[cover_row_counter, 6].PutValue(deptCode);
 
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
@@ -281,25 +286,25 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     string remarksContent = st.SelectSingleNode("@備註說明").InnerText;
 
                     //名冊別
-                    cover.Cells[cover_row_counter, 3].PutValue(reportType);
+                    cover.Cells[cover_row_counter, 4].PutValue(reportType);
                     //班別
-                    cover.Cells[cover_row_counter, 4].PutValue(classType);
+                    cover.Cells[cover_row_counter, 5].PutValue(classType);
                     //上傳類別
-                    cover.Cells[cover_row_counter, 6].PutValue(updateType);
+                    cover.Cells[cover_row_counter, 7].PutValue(updateType);
                     //核定班級
-                    cover.Cells[cover_row_counter, 7].PutValue(approvedClassCount);
+                    cover.Cells[cover_row_counter, 8].PutValue(approvedClassCount);
                     //核定學生數
-                    cover.Cells[cover_row_counter, 8].PutValue(approvedStudentCount);
+                    cover.Cells[cover_row_counter, 9].PutValue(approvedStudentCount);
                     //實招班數
-                    cover.Cells[cover_row_counter, 9].PutValue(actualClassCount);
+                    cover.Cells[cover_row_counter, 10].PutValue(actualClassCount);
                     //實招新生數
-                    cover.Cells[cover_row_counter, 10].PutValue(actualStudentCount);
+                    cover.Cells[cover_row_counter, 11].PutValue(actualStudentCount);
                     //原有學生數
-                    cover.Cells[cover_row_counter, 11].PutValue(originalStudentCount);
+                    cover.Cells[cover_row_counter, 12].PutValue(originalStudentCount);
                     //畢業學生數
-                    cover.Cells[cover_row_counter, 12].PutValue(graduatedStudentCount);
+                    cover.Cells[cover_row_counter, 13].PutValue(graduatedStudentCount);
                     //備註說明
-                    cover.Cells[cover_row_counter, 13].PutValue(remarksContent);
+                    cover.Cells[cover_row_counter, 14].PutValue(remarksContent);
 
                 }
                 cover_row_counter++;

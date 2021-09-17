@@ -25,7 +25,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         public StudentUpdateRecordListModifyingCoverForm(StudUpdateRecBatchRec BRec)
         {
             InitializeComponent();
-            
+
+            List<int> cols = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13,14,15,16 };
+            Campus.Windows.DataGridViewImeDecorator dec = new Campus.Windows.DataGridViewImeDecorator(this.dataGridViewX1, cols);
+
             _BRec = BRec;
 
             if (_BRec == null)
