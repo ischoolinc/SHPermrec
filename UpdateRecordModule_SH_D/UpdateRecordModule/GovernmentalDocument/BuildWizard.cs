@@ -42,20 +42,35 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             // 加入可選擇異動名冊名稱
             List<DAL.StudUpdateRecBatchCreator.UpdateRecBatchType> NameList = new List<DAL.StudUpdateRecBatchCreator.UpdateRecBatchType>();
                      
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.學籍異動名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.轉入學生名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊);
-                NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊);
-         
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.學籍異動名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.轉入學生名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊);
+                //NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊);
+
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.學籍異動名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.轉入學生名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生保留錄取資格名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.借讀學生名冊_2021版);
+
 
             foreach (DAL.StudUpdateRecBatchCreator.UpdateRecBatchType item in NameList)
             {
-                ListViewItem itm = new ListViewItem(item.ToString(), 0);
+                /// 2021-10 Cynthia 雖然異動名冊類別命名為「新生名冊_2021版」，
+                /// 但避免使用者向客服詢問2021年版本和之前的差別，故在畫面上只顯示底線之前的字「新生名冊」。
+                
+                string[] sArray = item.ToString().Split('_');
+                ListViewItem itm = new ListViewItem(sArray[0], 0);
+                //ListViewItem itm = new ListViewItem(item.ToString(), 0);
                 itm.Tag = item;
                 listView1.Items.Add(itm);
             }
@@ -151,7 +166,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         /// <returns></returns>
         private void setDefaultNameListName()
         {
-            txtNameListName.Text = cbxSchoolYear.Text + "_" + cbxSemester.Text + "_" + _UpdateType.ToString();
+            ///2021-10 Cynthia 調整後的異動名冊類別後面有「_2021版」，這裡將後面的「_2021版」切掉，讓產出來的預設名稱和之前一樣。
+            string[] strArray = _UpdateType.ToString().Split('_');
+            string updateType = strArray[0];
+
+            //txtNameListName.Text = cbxSchoolYear.Text + "_" + cbxSemester.Text + "_" + _UpdateType.ToString();
+            txtNameListName.Text = cbxSchoolYear.Text + "_" + cbxSemester.Text + "_" + updateType;
         }
 
         void _BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -166,6 +186,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                             var.UpdateCode,
                             var.UpdateDate,
                             var.GradeYear,
+                            var.ClassType,
                             var.Department,
                             var.StudentNumber,
                             var.StudentName,
@@ -278,7 +299,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             }
             catch (Exception ex)
             {
-                FISCA.Presentation.Controls.MsgBox.Show("產生名冊XML發生錯誤" + ex.Message);
+                FISCA.Presentation.Controls.MsgBox.Show("產生名冊XML發生錯誤：" + ex.Message);
             }
             
             this.DialogResult = DialogResult.OK;

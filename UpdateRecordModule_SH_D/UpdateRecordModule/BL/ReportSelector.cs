@@ -68,7 +68,42 @@ namespace UpdateRecordModule_SH_D.BL
                     case "借讀學生名冊":
                         rptBuild= new TemporaryStudentList();
                         break;
-                }
+ 
+                case "新生名冊_2021版":
+                    rptBuild = new EnrollmentList2021();
+                    break;
+                case "延修生學籍異動名冊_2021版":
+                    rptBuild = new ExtendingStudentUpdateRecordList2021();
+                    break;
+
+                case "學籍異動名冊_2021版":
+                    rptBuild = new StudentUpdateRecordList2021();
+                    break;
+
+                case "畢業名冊_2021版":
+                    rptBuild = new GraduatingStudentList2021();
+                    break;
+
+                case "延修生畢業名冊_2021版":
+                    rptBuild = new ExtendingStudentGraduateList2021();
+                    break;
+
+                case "延修生名冊_2021版":
+                    rptBuild = new ExtendingStudentList2021();
+                    break;
+
+                case "轉入學生名冊_2021版":
+                    rptBuild = new TransferringStudentUpdateRecordList2021();
+                    break;
+
+                case "新生保留錄取資格名冊_2021版":
+                    rptBuild = new RetaintoStudentList2021();
+                    break;
+
+                case "借讀學生名冊_2021版":
+                    rptBuild = new TemporaryStudentList2021();
+                    break;
+            }
                 return rptBuild;
           
         }

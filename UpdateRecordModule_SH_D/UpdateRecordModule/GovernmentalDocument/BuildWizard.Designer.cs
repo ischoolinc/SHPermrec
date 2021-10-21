@@ -68,6 +68,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lvSorter1 = new IntelliSchool.DSA.ClientFramework.ControlCommunication.LVSorter();
             this.lvViewManager1 = new IntelliSchool.DSA.ClientFramework.ControlCommunication.LVViewManager();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
             this.panelEx3.SuspendLayout();
@@ -126,6 +127,7 @@
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(5, 25);
             this.listView1.MultiSelect = false;
@@ -479,6 +481,7 @@
             this.columnHeader6,
             this.columnHeader5,
             this.columnHeader1,
+            this.columnHeader9,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -585,6 +588,10 @@
             this.lvViewManager1.EnableTile = false;
             this.lvViewManager1.TargetListView = this.listView2;
             // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "班別";
+            // 
             // BuildWizard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -650,7 +657,7 @@
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dtBeginDate;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private DevComponents.DotNetBar.LabelX lblMsg;
-
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 
 }

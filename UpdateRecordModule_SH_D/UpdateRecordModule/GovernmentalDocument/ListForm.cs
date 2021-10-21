@@ -437,6 +437,41 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     case "借讀學生名冊":
                         btnModifyCover.Enabled = true;
                         break;
+
+                    case "新生名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+                    case "延修生學籍異動名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "學籍異動名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "畢業名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "延修生畢業名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "延修生名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "轉入學生名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "新生保留錄取資格名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
+
+                    case "借讀學生名冊_2021版":
+                        btnModifyCover.Enabled = true;
+                        break;
                 }
             }            
         }
@@ -613,6 +648,51 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 case "借讀學生名冊":
                     TemporaryStudentListModifyingCoverForm tslmcf = new TemporaryStudentListModifyingCoverForm(_SelectBRec);
                     tslmcf.ShowDialog();
+                    break;
+
+                case "新生名冊_2021版":
+                    EnrollmentListModifyingCoverForm2021 elmcf2021 = new EnrollmentListModifyingCoverForm2021(_SelectBRec);
+                    elmcf2021.ShowDialog();
+                    break;
+
+                case "延修生學籍異動名冊_2021版":
+                    ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021 esurlcrmcf2021 = new ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021(_SelectBRec);
+                    esurlcrmcf2021.ShowDialog();
+                    break;
+
+                case "學籍異動名冊_2021版":
+                    StudentUpdateRecordListModifyingCoverForm2021 mcf2021 = new StudentUpdateRecordListModifyingCoverForm2021(_SelectBRec);
+                    mcf2021.ShowDialog();
+                    break;
+
+                case "畢業名冊_2021版":
+                    GraduatingStudentListModifyingCoverForm2021 gslmcf2021 = new GraduatingStudentListModifyingCoverForm2021(_SelectBRec);
+                    gslmcf2021.ShowDialog();
+                    break;
+
+                case "延修生畢業名冊_2021版":
+                    ExtendingStudentGraduateListCoverRecModifyingCoverForm2021 esglcrmcf2021 = new ExtendingStudentGraduateListCoverRecModifyingCoverForm2021(_SelectBRec);
+                    esglcrmcf2021.ShowDialog();
+                    break;
+
+                case "延修生名冊_2021版":
+                    ExtendingStudentCoverRecModifyingCoverForm2021 escrmcf2021 = new ExtendingStudentCoverRecModifyingCoverForm2021(_SelectBRec);
+                    escrmcf2021.ShowDialog();
+                    break;
+
+                case "轉入學生名冊_2021版":
+                    TransferingStudentUpdateRecordListModifyingCoverForm2021 tsurmvf2021 = new TransferingStudentUpdateRecordListModifyingCoverForm2021(_SelectBRec);
+                    tsurmvf2021.ShowDialog();
+                    break;
+
+                case "新生保留錄取資格名冊_2021版":
+                    RetaintoStudentListModifyingCoverForm2021 rslmcf2021 = new RetaintoStudentListModifyingCoverForm2021(_SelectBRec);
+                    rslmcf2021.ShowDialog();
+                    break;
+
+                case "借讀學生名冊_2021版":
+                    TemporaryStudentListModifyingCoverForm2021 tslmcf2021 = new TemporaryStudentListModifyingCoverForm2021(_SelectBRec);
+                    tslmcf2021.ShowDialog();
                     break;
             }
 

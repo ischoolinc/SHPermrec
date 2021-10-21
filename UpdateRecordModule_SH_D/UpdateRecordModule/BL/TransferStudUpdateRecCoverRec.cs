@@ -78,5 +78,9 @@ namespace UpdateRecordModule_SH_D.BL
         /// </summary>
         public string RemarksContent { get; set; }
 
+        /// <summary>
+        /// 科別
+        /// </summary>
+        public string Department { get; set; }
     }
 }

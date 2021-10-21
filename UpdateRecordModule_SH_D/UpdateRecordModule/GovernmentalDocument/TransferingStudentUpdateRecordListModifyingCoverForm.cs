@@ -76,7 +76,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     //名冊別
                     row_data.Add(reportType);
                     //班別
-                    row_data.Add(school_semester);
+                    row_data.Add(classType);
                     //科別代碼
                     row_data.Add(deptCode);
                     //上傳類別

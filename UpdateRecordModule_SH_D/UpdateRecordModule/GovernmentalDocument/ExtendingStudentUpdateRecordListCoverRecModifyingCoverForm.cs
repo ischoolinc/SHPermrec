@@ -76,7 +76,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     //應畢業學年度
                     row_data.Add(scheduledGraduateYear);
                     //班別
-                    row_data.Add(school_semester);
+                    row_data.Add(classType);
                     //科別代碼
                     row_data.Add(deptCode);
                     //上傳類別

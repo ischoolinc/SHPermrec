@@ -201,9 +201,11 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 // 學籍異動代碼
                 DyWb.Cells[DyWb_index, 11].PutValue(Record.GetAttribute("最後異動代號"));
                 //學籍異動文字
-                DyWb.Cells[DyWb_index, 12].PutValue(Util.GetDocNo_Doc(Record.GetAttribute("備查文號")));
+                //DyWb.Cells[DyWb_index, 12].PutValue(Util.GetDocNo_Doc(Record.GetAttribute("備查文號")));
+                DyWb.Cells[DyWb_index, 12].PutValue(DAL.DALTransfer.GetNumAndSrt1(Record.GetAttribute("備查文號")));
                 //學籍異動文號
-                DyWb.Cells[DyWb_index, 13].PutValue(Util.GetDocNo_No(Record.GetAttribute("備查文號")));
+                //DyWb.Cells[DyWb_index, 13].PutValue(Util.GetDocNo_No(Record.GetAttribute("備查文號")));
+                DyWb.Cells[DyWb_index, 13].PutValue(DAL.DALTransfer.GetNumAndSrt2(Record.GetAttribute("備查文號")));
                 // 學籍異動核准日期
                 DyWb.Cells[DyWb_index, 14].PutValue(Util.ConvertDate1(Record.GetAttribute("備查日期")));
 

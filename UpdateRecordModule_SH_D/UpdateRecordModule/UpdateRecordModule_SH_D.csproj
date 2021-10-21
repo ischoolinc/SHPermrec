@@ -287,6 +287,57 @@
     <Compile Include="GovernmentalDocument\BuildWizard.Designer.cs">
       <DependentUpon>BuildWizard.cs</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentalDocument\EnrollmentListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\EnrollmentListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>EnrollmentListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>ExtendingStudentGraduateListCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\GraduatingStudentListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\GraduatingStudentListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>GraduatingStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\Reports\List\EnrollmentList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\ExtendingStudentGraduateList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\ExtendingStudentList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\ExtendingStudentUpdateRecordList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\GraduatingStudentList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\RetaintoStudentList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\StudentUpdateRecordList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\TemporaryStudentList2021.cs" />
+    <Compile Include="GovernmentalDocument\Reports\List\TransferringStudentUpdateRecordList2021.cs" />
+    <Compile Include="GovernmentalDocument\RetaintoStudentListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\RetaintoStudentListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>RetaintoStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>StudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +386,12 @@
     <Compile Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.Designer.cs">
       <DependentUpon>EnrollmentListModifyingCoverForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>TemporaryStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +419,12 @@
     <Compile Include="GovernmentalDocument\Reports\List\TemporaryStudentList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\TransferringStudentUpdateRecordList.cs" />
     <Compile Include="GovernmentalDocument\Reports\List\UtilXml.cs" />
+    <Compile Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm2021.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm2021.Designer.cs">
+      <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\UpdateRecordADN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -491,6 +554,27 @@
     <EmbeddedResource Include="GovernmentalDocument\BuildWizard.resx">
       <DependentUpon>BuildWizard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\EnrollmentListModifyingCoverForm2021.resx">
+      <DependentUpon>EnrollmentListModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentCoverRecModifyingCoverForm2021.resx">
+      <DependentUpon>ExtendingStudentCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm2021.resx">
+      <DependentUpon>ExtendingStudentGraduateListCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.resx">
+      <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\GraduatingStudentListModifyingCoverForm2021.resx">
+      <DependentUpon>GraduatingStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\RetaintoStudentListModifyingCoverForm2021.resx">
+      <DependentUpon>RetaintoStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm2021.resx">
+      <DependentUpon>StudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm.resx">
       <DependentUpon>TemporaryStudentListModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -515,11 +599,17 @@
     <EmbeddedResource Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.resx">
       <DependentUpon>EnrollmentListModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm2021.resx">
+      <DependentUpon>TemporaryStudentListModifyingCoverForm2021.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm.resx">
       <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\StudentUpdateRecordListModifyingCoverForm.resx">
       <DependentUpon>StudentUpdateRecordListModifyingCoverForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm2021.resx">
+      <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\UpdateRecordADN.resx">
       <DependentUpon>UpdateRecordADN.cs</DependentUpon>
