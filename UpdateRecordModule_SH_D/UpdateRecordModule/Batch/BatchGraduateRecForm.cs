@@ -32,6 +32,17 @@ namespace UpdateRecordModule_SH_D.Batch
         /// 異動日期
         /// </summary>
         DateTime _UpdateDate = DateTime.Now;
+
+        /// <summary>
+        /// 班別
+        /// </summary>
+        string _ClassType;
+
+        /// <summary>
+        /// 應畢業學年度
+        /// </summary>
+        int _GSchoolYear;
+
         Dictionary<string, SHStudentRecord> _StudentDict = new Dictionary<string, SHStudentRecord>();
 
         // 新增資料
@@ -124,6 +135,12 @@ namespace UpdateRecordModule_SH_D.Batch
 
                     // 異動日期
                     rec.UpdateDate = _UpdateDate.ToShortDateString();
+
+                    // 應畢業學年度
+                    rec.ExpectGraduateSchoolYear = _GSchoolYear.ToString();
+
+                    // 班別
+                    rec.ClassType = _ClassType;
                                         
                     // 姓名
                     rec.StudentName = _StudentDict[sid].Name;
@@ -272,6 +289,12 @@ namespace UpdateRecordModule_SH_D.Batch
             foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
                 if (!_DeptRecDict.ContainsKey(rec.ID))
                     _DeptRecDict.Add(rec.ID, rec);
+
+            // 應畢業學年度
+            int schoolYear = 0;
+            if (int.TryParse(K12.Data.School.DefaultSchoolYear, out schoolYear))
+                iptSchoolYear.Value = schoolYear;
+
         }
 
         void _bgWorkerLoad_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -295,6 +318,8 @@ namespace UpdateRecordModule_SH_D.Batch
                 return;
             }
             _UpdateDate = dtUpdate.Value;
+            _ClassType = cbxClassType.Text;
+            _GSchoolYear = iptSchoolYear.Value;
             // 檢查是否已有資料
             if (_StudHasGraduateRecDict.Count > 0)
             {
@@ -316,6 +341,23 @@ namespace UpdateRecordModule_SH_D.Batch
             this.btnRun.Enabled = false;
             dtUpdate.Value = DateTime.Now;
             _bgWorkerLoad.RunWorkerAsync();
+        }
+
+        private void cbxClassType_DropDown(object sender, EventArgs e)
+        {
+            cbxClassType.Items.Clear();
+            cbxClassType.Items.AddRange(DAL.DALTransfer.GetClassTypeList().ToArray());
+        }
+
+        private void cbxClassType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cbxClassType.Text.IndexOf("-");
+            if (idx > 0)
+            {
+                string code = cbxClassType.Text.Substring(0, idx);
+                cbxClassType.Items.Add(code);
+                cbxClassType.Text = code;
+            }
         }
     }
 }

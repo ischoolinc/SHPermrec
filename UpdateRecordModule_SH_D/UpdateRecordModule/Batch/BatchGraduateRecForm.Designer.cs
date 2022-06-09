@@ -32,7 +32,12 @@
             this.btnRun = new DevComponents.DotNetBar.ButtonX();
             this.dtUpdate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.cbxClassType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.iptSchoolYear = new DevComponents.Editors.IntegerInput();
             ((System.ComponentModel.ISupportInitialize)(this.dtUpdate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iptSchoolYear)).BeginInit();
             this.SuspendLayout();
             // 
             // labelX1
@@ -53,10 +58,11 @@
             // btnRun
             // 
             this.btnRun.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRun.AutoSize = true;
             this.btnRun.BackColor = System.Drawing.Color.Transparent;
             this.btnRun.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnRun.Location = new System.Drawing.Point(58, 72);
+            this.btnRun.Location = new System.Drawing.Point(58, 142);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(75, 25);
             this.btnRun.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -130,10 +136,11 @@
             // btnExit
             // 
             this.btnExit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.AutoSize = true;
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(141, 72);
+            this.btnExit.Location = new System.Drawing.Point(141, 142);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 25);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -141,11 +148,79 @@
             this.btnExit.Text = "取消";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(16, 57);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(60, 21);
+            this.labelX2.TabIndex = 4;
+            this.labelX2.Text = "班　　別";
+            // 
+            // labelX3
+            // 
+            this.labelX3.AutoSize = true;
+            this.labelX3.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.Class = "";
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.labelX3.Location = new System.Drawing.Point(16, 94);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(104, 21);
+            this.labelX3.TabIndex = 5;
+            this.labelX3.Text = "應 畢 業 學 年 度";
+            // 
+            // cbxClassType
+            // 
+            this.cbxClassType.DisplayMember = "Text";
+            this.cbxClassType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbxClassType.FormattingEnabled = true;
+            this.cbxClassType.ItemHeight = 19;
+            this.cbxClassType.Location = new System.Drawing.Point(82, 55);
+            this.cbxClassType.Name = "cbxClassType";
+            this.cbxClassType.Size = new System.Drawing.Size(134, 25);
+            this.cbxClassType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbxClassType.TabIndex = 6;
+            this.cbxClassType.DropDown += new System.EventHandler(this.cbxClassType_DropDown);
+            this.cbxClassType.SelectedIndexChanged += new System.EventHandler(this.cbxClassType_SelectedIndexChanged);
+            // 
+            // iptSchoolYear
+            // 
+            this.iptSchoolYear.AllowEmptyState = false;
+            this.iptSchoolYear.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.iptSchoolYear.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.iptSchoolYear.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.iptSchoolYear.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.iptSchoolYear.Location = new System.Drawing.Point(126, 92);
+            this.iptSchoolYear.MaxValue = 300;
+            this.iptSchoolYear.MinValue = 70;
+            this.iptSchoolYear.Name = "iptSchoolYear";
+            this.iptSchoolYear.ShowUpDown = true;
+            this.iptSchoolYear.Size = new System.Drawing.Size(90, 25);
+            this.iptSchoolYear.TabIndex = 29;
+            this.iptSchoolYear.Value = 110;
+            // 
             // BatchGraduateRecForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 115);
+            this.ClientSize = new System.Drawing.Size(232, 185);
+            this.Controls.Add(this.iptSchoolYear);
+            this.Controls.Add(this.cbxClassType);
+            this.Controls.Add(this.labelX3);
+            this.Controls.Add(this.labelX2);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dtUpdate);
             this.Controls.Add(this.btnRun);
@@ -155,6 +230,7 @@
             this.Text = "產生批次畢業異動";
             this.Load += new System.EventHandler(this.BatchGraduateRecForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtUpdate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iptSchoolYear)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +242,9 @@
         private DevComponents.DotNetBar.ButtonX btnRun;
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dtUpdate;
         private DevComponents.DotNetBar.ButtonX btnExit;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbxClassType;
+        private DevComponents.Editors.IntegerInput iptSchoolYear;
     }
 }
