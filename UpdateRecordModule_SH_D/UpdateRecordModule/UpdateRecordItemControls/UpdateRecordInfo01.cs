@@ -12,10 +12,10 @@ using System.Xml.Linq;
 
 namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
 {
-    public partial class UpdateRecordInfo01 : UserControl,IUpdateRecordInfo
+    public partial class UpdateRecordInfo01 : UserControl, IUpdateRecordInfo
     {
-        
-        
+
+
         // 異動
         private SHUpdateRecordRecord _UpdateRec;
         // Log
@@ -26,7 +26,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         private List<SHDepartmentRecord> _DeptList;
         private ErrorProvider _epUpdateCode;
         private Dictionary<string, string> _updateCodeDict4;
-        
+
 
         // 異動代碼索引，給畫面與檢查使用
         Dictionary<string, string> _UCodeDict;
@@ -34,10 +34,10 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         /// <summary>
         /// 學籍異動
         /// </summary>
-        public UpdateRecordInfo01(SHUpdateRecordRecord UpdateRec,PermRecLogProcess prlp,List<XElement> UpdateCodeElms)
+        public UpdateRecordInfo01(SHUpdateRecordRecord UpdateRec, PermRecLogProcess prlp, List<XElement> UpdateCodeElms)
         {
             SHUpdateRecordRecord rec = new SHUpdateRecordRecord();
-            
+
             InitializeComponent();
             cbxGender.Items.Add("男");
             cbxGender.Items.Add("女");
@@ -50,31 +50,31 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _epUpdateCode = new ErrorProvider();
 
             _UpdateCoodeList = (from x in _UpdateCodeElms select x.Element("代號").Value + " " + x.Element("原因及事項").Value).ToList();
-            _DeptList =SHDepartment.SelectAll();
+            _DeptList = SHDepartment.SelectAll();
 
             // 更正學籍顯示對照用
             _updateCodeDict4 = new Dictionary<string, string>();
 
 
             // 日進校不同，所以需要檢查：
-                // 日校
-                _updateCodeDict4.Add("401", "新學號");
-                _updateCodeDict4.Add("402", "新姓名");
-                _updateCodeDict4.Add("403", "新性別");
-                _updateCodeDict4.Add("404", "新籍貫");
-                _updateCodeDict4.Add("405", "新生日");
-                _updateCodeDict4.Add("406", "新科別");
-                _updateCodeDict4.Add("407", "新身分證號");
-                _updateCodeDict4.Add("408", "入學資格學校名稱");
-                _updateCodeDict4.Add("409", "特殊身分");
-                _updateCodeDict4.Add("499", "其他學籍事項");
-                
-                if (string.IsNullOrEmpty(_UpdateRec.ExpectGraduateSchoolYear))
-                {
-                    SHLeaveInfoRecord shl = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
-                    if(shl.SchoolYear.HasValue )
-                        _UpdateRec.ExpectGraduateSchoolYear = shl.SchoolYear.Value.ToString();
-                }
+            // 日校
+            _updateCodeDict4.Add("401", "新學號");
+            _updateCodeDict4.Add("402", "新姓名");
+            _updateCodeDict4.Add("403", "新性別");
+            _updateCodeDict4.Add("404", "新籍貫");
+            _updateCodeDict4.Add("405", "新生日");
+            _updateCodeDict4.Add("406", "新科別");
+            _updateCodeDict4.Add("407", "新身分證號");
+            _updateCodeDict4.Add("408", "入學資格學校名稱");
+            _updateCodeDict4.Add("409", "特殊身分");
+            _updateCodeDict4.Add("499", "其他學籍事項");
+
+            if (string.IsNullOrEmpty(_UpdateRec.ExpectGraduateSchoolYear))
+            {
+                SHLeaveInfoRecord shl = SHLeaveInfo.SelectByStudentID(_UpdateRec.StudentID);
+                if (shl.SchoolYear.HasValue)
+                    _UpdateRec.ExpectGraduateSchoolYear = shl.SchoolYear.Value.ToString();
+            }
 
             _UCodeDict = Utility.UITool.ConvertUpdateCodeDescDict(_UpdateCodeElms);
 
@@ -97,16 +97,16 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             cbxUpdateCode = _faldn.SetFormData(_UpdateRec.UpdateCode, cbxUpdateCode, "異動代碼");
             txtDesc = _faldn.SetFormData(_UpdateRec.UpdateDescription, txtDesc, "原因及事項");
             dtUpdateDate = _faldn.SetFormData(_UpdateRec.UpdateDate, dtUpdateDate, "異動日期");
-            txtMemo = _faldn.SetFormData(_UpdateRec.Comment,txtMemo,"備註");
+            txtMemo = _faldn.SetFormData(_UpdateRec.Comment, txtMemo, "備註");
             cbxDept = _faldn.SetFormData(_UpdateRec.Department, cbxDept, "科別");
             cbxClass = _faldn.SetFormData(_UpdateRec.ClassType, cbxClass, "班別");
-            txtSpecial = _faldn.SetFormData(_UpdateRec.SpecialStatus,txtSpecial,"特殊身分代碼");
+            txtSpecial = _faldn.SetFormData(_UpdateRec.SpecialStatus, txtSpecial, "特殊身分代碼");
             txtName = _faldn.SetFormData(_UpdateRec.StudentName, txtName, "姓名");
-            txtStudentNumber = _faldn.SetFormData(_UpdateRec.StudentNumber ,txtStudentNumber,"學號");
-            txtIDNumber = _faldn.SetFormData(_UpdateRec.IDNumber,txtIDNumber,"身分證字號");
+            txtStudentNumber = _faldn.SetFormData(_UpdateRec.StudentNumber, txtStudentNumber, "學號");
+            txtIDNumber = _faldn.SetFormData(_UpdateRec.IDNumber, txtIDNumber, "身分證字號");
             txtNewData = _faldn.SetFormData(_UpdateRec.NewData, txtNewData, "新資料");
-            txtIDNumber1 = _faldn.SetFormData(_UpdateRec.IDNumberComment,txtIDNumber1,"註1");            
-            txtIDNumber2 = _faldn.SetFormData(_UpdateRec.Comment2 , txtIDNumber2, "註2");
+            txtIDNumber1 = _faldn.SetFormData(_UpdateRec.IDNumberComment, txtIDNumber1, "註1");
+            txtIDNumber2 = _faldn.SetFormData(_UpdateRec.Comment2, txtIDNumber2, "註2");
             dtLastUpdateDate = _faldn.SetFormData(_UpdateRec.LastADDate, dtLastUpdateDate, "備查日期");
             txtLastDocNo = _faldn.SetFormData(_UpdateRec.LastADNumber, txtLastDocNo, "備查文號");
             dtADDate = _faldn.SetFormData(_UpdateRec.ADDate, dtADDate, "核准日期");
@@ -122,7 +122,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             dtC72EndDate = _faldn.SetFormData(_UpdateRec.Code72EndDate, dtC72EndDate, "實際結束日期");
 
             txtReplicatedSchoolRollNumber = _faldn.SetFormData(_UpdateRec.ReplicatedSchoolRollNumber, txtReplicatedSchoolRollNumber, "雙重學籍編號");
-        }       
+        }
 
         #region IUpdateRecordInfo 成員
 
@@ -133,7 +133,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         SHUpdateRecordRecord IUpdateRecordInfo.GetStudUpdateRecord()
         {
             // 檢查畫面
-            if(string.IsNullOrEmpty(cbxUpdateCode.Text))
+            if (string.IsNullOrEmpty(cbxUpdateCode.Text))
                 _epUpdateCode.SetError(cbxUpdateCode, "請輸入異動代碼.");
 
             if (_epUpdateCode.GetError(cbxUpdateCode).Length > 0)
@@ -152,7 +152,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.StudentNumber = _faldn.GetFormData(txtStudentNumber, "學號");
             _UpdateRec.IDNumber = _faldn.GetFormData(txtIDNumber, "身分證字號");
             _UpdateRec.NewData = _faldn.GetFormData(txtNewData, "新資料");
-            _UpdateRec.IDNumberComment = _faldn.GetFormData(txtIDNumber1, "註1"); 
+            _UpdateRec.IDNumberComment = _faldn.GetFormData(txtIDNumber1, "註1");
             _UpdateRec.Comment2 = _faldn.GetFormData(txtIDNumber2, "註2");
             _UpdateRec.LastADDate = _faldn.GetFormData(dtLastUpdateDate, "備查日期");
             _UpdateRec.LastADNumber = _faldn.GetFormData(txtLastDocNo, "備查文號");
@@ -184,7 +184,7 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         PermRecLogProcess IUpdateRecordInfo.GetLogData()
         {
             return _prlp;
-        }      
+        }
 
 
 
@@ -197,27 +197,27 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
                 string code = cbxUpdateCode.Text.Substring(0, 3);
                 cbxUpdateCode.Items.Add(code);
                 cbxUpdateCode.Text = code;
-            }            
-       }
-        
+            }
+        }
+
         private void cbxUpdateCode_TextChanged(object sender, EventArgs e)
-        { 
-            string Code="";
+        {
+            string Code = "";
             if (cbxUpdateCode.Text.Length >= 3)
-                 Code = cbxUpdateCode.Text.Substring(0, 3);
+                Code = cbxUpdateCode.Text.Substring(0, 3);
 
             if (Code != "")
             {
                 if (_UCodeDict.ContainsKey(Code))
                     txtDesc.Text = _UCodeDict[Code];
-                
+
                 // 當有使用更正學籍異動代碼 401~ 才啟用畫面功能
-                lblNewData.Text = "新學號";                
-                
+                lblNewData.Text = "新學號";
+
                 if (_updateCodeDict4.ContainsKey(Code))
                 {
                     lblNewData.Text = _updateCodeDict4[Code];
-                    
+
                 }
 
                 cbxUpdateCode.Text = Code;
@@ -258,9 +258,19 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
         private void cbxUpdateCode_Leave(object sender, EventArgs e)
         {
             // 檢查異動代碼
-            if(!_UCodeDict.ContainsKey(cbxUpdateCode.Text))
+            if (!_UCodeDict.ContainsKey(cbxUpdateCode.Text))
                 _epUpdateCode.SetError(cbxUpdateCode, "異動代碼不在清單內");
         }
 
+        private void cbxClass_TextChanged(object sender, EventArgs e)
+        {
+            int idx = cbxClass.Text.IndexOf("-");
+            if (idx > 0)
+            {
+                string code = cbxClass.Text.Substring(0, idx);
+                //cbxClass.Items.Add(code);
+                cbxClass.Text = code;
+            }
+        }
     }
 }

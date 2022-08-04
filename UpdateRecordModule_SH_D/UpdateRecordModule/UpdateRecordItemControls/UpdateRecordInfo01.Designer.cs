@@ -678,6 +678,7 @@
             this.cbxClass.TabIndex = 5;
             this.cbxClass.DropDown += new System.EventHandler(this.cbxClass_DropDown);
             this.cbxClass.SelectedIndexChanged += new System.EventHandler(this.cbxClass_SelectedIndexChanged);
+            this.cbxClass.TextChanged += new System.EventHandler(this.cbxClass_TextChanged);
             // 
             // dtUpdateDate
             // 

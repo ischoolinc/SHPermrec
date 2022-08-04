@@ -256,5 +256,16 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             if(!_UCodeDict.ContainsKey(cbxUpdateCode.Text ))                
                 _epUpdateCode.SetError(cbxUpdateCode, "異動代碼不在清單內");
         }
+
+        private void cbxClass_TextChanged(object sender, EventArgs e)
+        {
+            int idx = cbxClass.Text.IndexOf("-");
+            if (idx > 0)
+            {
+                string code = cbxClass.Text.Substring(0, idx);
+                //cbxClass.Items.Add(code);
+                cbxClass.Text = code;
+            }
+        }
     }
 }

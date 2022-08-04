@@ -221,5 +221,16 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
                 txtSSchool.Text = sf.GetSchoolCode() + sf.GetSchoolName();                
             }
         }
+
+        private void cbxClass_TextChanged(object sender, EventArgs e)
+        {
+            int idx = cbxClass.Text.IndexOf("-");
+            if (idx > 0)
+            {
+                string code = cbxClass.Text.Substring(0, idx);
+                //cbxClass.Items.Add(code);
+                cbxClass.Text = code;
+            }
+        }
     }
 }

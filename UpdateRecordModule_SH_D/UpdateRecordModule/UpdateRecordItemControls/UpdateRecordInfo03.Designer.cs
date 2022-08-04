@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateRecordInfo03));
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtOverseasChineseStudentCountryCode = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX26 = new DevComponents.DotNetBar.LabelX();
             this.txtGradeDoc = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX17 = new DevComponents.DotNetBar.LabelX();
             this.txtSpecial = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -75,8 +77,6 @@
             this.labelX18 = new DevComponents.DotNetBar.LabelX();
             this.labelX21 = new DevComponents.DotNetBar.LabelX();
             this.lblMsg = new DevComponents.DotNetBar.LabelX();
-            this.txtOverseasChineseStudentCountryCode = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX26 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtUpdateDate)).BeginInit();
             this.groupPanel2.SuspendLayout();
@@ -145,6 +145,38 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 7;
             this.groupPanel1.Text = "異動狀況";
+            // 
+            // txtOverseasChineseStudentCountryCode
+            // 
+            // 
+            // 
+            // 
+            this.txtOverseasChineseStudentCountryCode.Border.Class = "TextBoxBorder";
+            this.txtOverseasChineseStudentCountryCode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtOverseasChineseStudentCountryCode.Location = new System.Drawing.Point(396, 128);
+            this.txtOverseasChineseStudentCountryCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOverseasChineseStudentCountryCode.Name = "txtOverseasChineseStudentCountryCode";
+            this.txtOverseasChineseStudentCountryCode.Size = new System.Drawing.Size(94, 23);
+            this.txtOverseasChineseStudentCountryCode.TabIndex = 120;
+            // 
+            // labelX26
+            // 
+            this.labelX26.AutoSize = true;
+            this.labelX26.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX26.BackgroundStyle.Class = "";
+            this.labelX26.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX26.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX26.ForeColor = System.Drawing.Color.Black;
+            this.labelX26.Location = new System.Drawing.Point(249, 131);
+            this.labelX26.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX26.Name = "labelX26";
+            this.labelX26.Size = new System.Drawing.Size(141, 21);
+            this.labelX26.TabIndex = 119;
+            this.labelX26.Text = "建教僑生專班學生國別";
+            this.labelX26.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // txtGradeDoc
             // 
@@ -244,6 +276,7 @@
             this.cbxClass.TabIndex = 5;
             this.cbxClass.DropDown += new System.EventHandler(this.cbxClass_DropDown);
             this.cbxClass.SelectedIndexChanged += new System.EventHandler(this.cbxClass_SelectedIndexChanged);
+            this.cbxClass.TextChanged += new System.EventHandler(this.cbxClass_TextChanged);
             // 
             // dtUpdateDate
             // 
@@ -1087,38 +1120,6 @@
             this.lblMsg.TabIndex = 11;
             this.lblMsg.Text = resources.GetString("lblMsg.Text");
             this.lblMsg.WordWrap = true;
-            // 
-            // txtOverseasChineseStudentCountryCode
-            // 
-            // 
-            // 
-            // 
-            this.txtOverseasChineseStudentCountryCode.Border.Class = "TextBoxBorder";
-            this.txtOverseasChineseStudentCountryCode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtOverseasChineseStudentCountryCode.Location = new System.Drawing.Point(396, 128);
-            this.txtOverseasChineseStudentCountryCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtOverseasChineseStudentCountryCode.Name = "txtOverseasChineseStudentCountryCode";
-            this.txtOverseasChineseStudentCountryCode.Size = new System.Drawing.Size(94, 23);
-            this.txtOverseasChineseStudentCountryCode.TabIndex = 120;
-            // 
-            // labelX26
-            // 
-            this.labelX26.AutoSize = true;
-            this.labelX26.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX26.BackgroundStyle.Class = "";
-            this.labelX26.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX26.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.labelX26.ForeColor = System.Drawing.Color.Black;
-            this.labelX26.Location = new System.Drawing.Point(249, 131);
-            this.labelX26.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.labelX26.Name = "labelX26";
-            this.labelX26.Size = new System.Drawing.Size(141, 21);
-            this.labelX26.TabIndex = 119;
-            this.labelX26.Text = "建教僑生專班學生國別";
-            this.labelX26.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // UpdateRecordInfo03
             // 
