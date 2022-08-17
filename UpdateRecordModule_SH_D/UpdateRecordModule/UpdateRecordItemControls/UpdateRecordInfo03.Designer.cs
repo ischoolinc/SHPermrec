@@ -971,7 +971,7 @@
             this.groupPanel4.StyleMouseOver.Class = "";
             this.groupPanel4.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel4.TabIndex = 10;
-            this.groupPanel4.Text = "入學資格資料(畢業國中資料)";
+            this.groupPanel4.Text = "入學資格資料(畢/修業國中資料)";
             // 
             // btlSchoolList
             // 
@@ -1021,10 +1021,10 @@
             // 
             this.txtIJHGradeYear.Border.Class = "TextBoxBorder";
             this.txtIJHGradeYear.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtIJHGradeYear.Location = new System.Drawing.Point(350, 38);
+            this.txtIJHGradeYear.Location = new System.Drawing.Point(384, 38);
             this.txtIJHGradeYear.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.txtIJHGradeYear.Name = "txtIJHGradeYear";
-            this.txtIJHGradeYear.Size = new System.Drawing.Size(140, 23);
+            this.txtIJHGradeYear.Size = new System.Drawing.Size(106, 23);
             this.txtIJHGradeYear.TabIndex = 18;
             // 
             // txtISpaceCode
@@ -1063,12 +1063,12 @@
             this.labelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX20.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX20.ForeColor = System.Drawing.Color.Black;
-            this.labelX20.Location = new System.Drawing.Point(31, 8);
+            this.labelX20.Location = new System.Drawing.Point(3, 8);
             this.labelX20.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.labelX20.Name = "labelX20";
-            this.labelX20.Size = new System.Drawing.Size(62, 25);
+            this.labelX20.Size = new System.Drawing.Size(90, 25);
             this.labelX20.TabIndex = 100;
-            this.labelX20.Text = "畢業國中";
+            this.labelX20.Text = "畢/修業國中";
             this.labelX20.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // labelX18
@@ -1084,9 +1084,9 @@
             this.labelX18.Location = new System.Drawing.Point(244, 38);
             this.labelX18.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.labelX18.Name = "labelX18";
-            this.labelX18.Size = new System.Drawing.Size(101, 25);
+            this.labelX18.Size = new System.Drawing.Size(134, 25);
             this.labelX18.TabIndex = 100;
-            this.labelX18.Text = "國中畢業學年度";
+            this.labelX18.Text = "國中畢/修業學年度";
             this.labelX18.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // labelX21

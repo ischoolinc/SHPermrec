@@ -106,7 +106,7 @@
             this.txtSeatNo.Location = new System.Drawing.Point(253, 53);
             this.txtSeatNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtSeatNo.Name = "txtSeatNo";
-            this.txtSeatNo.Size = new System.Drawing.Size(66, 25);
+            this.txtSeatNo.Size = new System.Drawing.Size(47, 25);
             this.txtSeatNo.TabIndex = 4;
             this.txtSeatNo.TextChanged += new System.EventHandler(this.txtSeatNo_TextChanged);
             // 
@@ -183,12 +183,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(328, 57);
+            this.label2.Location = new System.Drawing.Point(308, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
+            this.label2.Size = new System.Drawing.Size(117, 17);
             this.label2.TabIndex = 10;
-            this.label2.Text = "國中畢業學年度";
+            this.label2.Text = "國中畢/修業學年度";
             // 
             // BeforeEnrollmentItem
             // 

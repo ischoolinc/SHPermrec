@@ -25,7 +25,7 @@ namespace UpdateRecordModule_SH_D
             InitializeComponent();
 
             prlp = new PermRecLogProcess();
-            Group = "前級畢業資訊";
+            Group = "前級畢/修業資訊";
 
             #region 權限判斷程式碼。
             //取得此 Class 定議的 FeatureCode。
