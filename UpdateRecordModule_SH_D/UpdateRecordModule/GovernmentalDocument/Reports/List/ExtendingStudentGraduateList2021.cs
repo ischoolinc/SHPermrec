@@ -54,7 +54,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 int totalPage = (list.ChildNodes.Count / 18) + 1;
 
                 //寫入名冊類別
-                if (source.SelectSingleNode("@類別").InnerText == "延修生畢業名冊")
+                if (source.SelectSingleNode("@類別").InnerText == "延修生畢業名冊"||source.SelectSingleNode("@類別").InnerText == "延修生畢業名冊_2021版")
                     ws.Cells[index, 0].PutValue(ws.Cells[index, 0].StringValue.Replace("□畢業", "■畢業"));
                 else
                     ws.Cells[index, 0].PutValue(ws.Cells[index, 0].StringValue.Replace("□結業", "■結業"));
