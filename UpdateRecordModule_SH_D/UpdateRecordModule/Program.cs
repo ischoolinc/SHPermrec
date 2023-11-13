@@ -18,7 +18,7 @@ namespace UpdateRecordModule_SH_D
     public class Program
     {
 
-        public const string UpdateRecordGovDocsCode = "Button0630";
+        public const string UpdateRecordGovDocsCode = "Button06303";
         public const string UpdateRecordContentCode = "Content0140";
         public const string BeforeEnrollmentContentCode = "SHSchool.Student.BeforeEnrollmentItem";
         /// <summary>

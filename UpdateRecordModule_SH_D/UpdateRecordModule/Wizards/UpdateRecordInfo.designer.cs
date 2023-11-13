@@ -30,18 +30,25 @@
         {
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.學籍異動 = new System.Windows.Forms.Panel();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtTempNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtTempDesc = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.dtTempDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX74 = new DevComponents.DotNetBar.LabelX();
+            this.labelX75 = new DevComponents.DotNetBar.LabelX();
+            this.labelX76 = new DevComponents.DotNetBar.LabelX();
             this.dateTimeInput4 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.學籍異動 = new System.Windows.Forms.Panel();
             this.groupPanel10 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.comboBoxEx16 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboBoxEx9 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.textBoxX27 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.dateTimeInput8 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.labelX42 = new DevComponents.DotNetBar.LabelX();
             this.labelX20 = new DevComponents.DotNetBar.LabelX();
-            this.comboBoxEx16 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboBoxEx5 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.textBoxX28 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.textBoxX29 = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -52,8 +59,14 @@
             this.labelX47 = new DevComponents.DotNetBar.LabelX();
             this.labelX48 = new DevComponents.DotNetBar.LabelX();
             this.labelX49 = new DevComponents.DotNetBar.LabelX();
-            this.comboBoxEx9 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.groupPanel11 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.textBoxX30 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtOriginTempNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtOriginTempDesc = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.dtOriginTempDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX53 = new DevComponents.DotNetBar.LabelX();
+            this.labelX73 = new DevComponents.DotNetBar.LabelX();
             this.dateTimeInput9 = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.comboBoxEx21 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cmbOldClassType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -68,7 +81,6 @@
             this.labelX52 = new DevComponents.DotNetBar.LabelX();
             this.txtNewData = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtNewStudentNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.textBoxX30 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.textBoxX31 = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.lblNewStudentNumber = new DevComponents.DotNetBar.LabelX();
             this.textBoxX32 = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -195,13 +207,14 @@
             this.labelX26 = new DevComponents.DotNetBar.LabelX();
             this.labelX27 = new DevComponents.DotNetBar.LabelX();
             this.panelEx1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.groupPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput4)).BeginInit();
             this.學籍異動.SuspendLayout();
+            this.groupPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTempDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput4)).BeginInit();
             this.groupPanel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput8)).BeginInit();
             this.groupPanel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOriginTempDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput9)).BeginInit();
             this.新生名冊.SuspendLayout();
             this.groupPanel4.SuspendLayout();
@@ -236,7 +249,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(511, 465);
+            this.panelEx1.Size = new System.Drawing.Size(511, 589);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -247,24 +260,40 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.groupPanel1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 397);
+            this.panel3.Location = new System.Drawing.Point(0, 573);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(511, 68);
+            this.panel3.Size = new System.Drawing.Size(511, 16);
             this.panel3.TabIndex = 0;
+            // 
+            // 學籍異動
+            // 
+            this.學籍異動.Controls.Add(this.groupPanel1);
+            this.學籍異動.Controls.Add(this.groupPanel10);
+            this.學籍異動.Controls.Add(this.groupPanel11);
+            this.學籍異動.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.學籍異動.Location = new System.Drawing.Point(0, 0);
+            this.學籍異動.Name = "學籍異動";
+            this.學籍異動.Size = new System.Drawing.Size(511, 589);
+            this.學籍異動.TabIndex = 4;
             // 
             // groupPanel1
             // 
             this.groupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel1.Controls.Add(this.txtTempNumber);
+            this.groupPanel1.Controls.Add(this.txtTempDesc);
+            this.groupPanel1.Controls.Add(this.dtTempDate);
+            this.groupPanel1.Controls.Add(this.labelX74);
+            this.groupPanel1.Controls.Add(this.labelX75);
+            this.groupPanel1.Controls.Add(this.labelX76);
             this.groupPanel1.Controls.Add(this.dateTimeInput4);
             this.groupPanel1.Controls.Add(this.textBoxX1);
             this.groupPanel1.Controls.Add(this.labelX2);
             this.groupPanel1.Controls.Add(this.labelX1);
-            this.groupPanel1.Location = new System.Drawing.Point(3, 3);
+            this.groupPanel1.Location = new System.Drawing.Point(4, 448);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(499, 60);
+            this.groupPanel1.Size = new System.Drawing.Size(499, 127);
             // 
             // 
             // 
@@ -297,6 +326,153 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "核准資料";
+            // 
+            // txtTempNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtTempNumber.Border.Class = "TextBoxBorder";
+            this.txtTempNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtTempNumber.Location = new System.Drawing.Point(306, 64);
+            this.txtTempNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTempNumber.Name = "txtTempNumber";
+            this.txtTempNumber.Size = new System.Drawing.Size(185, 25);
+            this.txtTempNumber.TabIndex = 120;
+            this.txtTempNumber.Tag = "TempNumber";
+            // 
+            // txtTempDesc
+            // 
+            // 
+            // 
+            // 
+            this.txtTempDesc.Border.Class = "TextBoxBorder";
+            this.txtTempDesc.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtTempDesc.Location = new System.Drawing.Point(100, 66);
+            this.txtTempDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTempDesc.Name = "txtTempDesc";
+            this.txtTempDesc.Size = new System.Drawing.Size(128, 25);
+            this.txtTempDesc.TabIndex = 121;
+            this.txtTempDesc.Tag = "TempDesc";
+            // 
+            // dtTempDate
+            // 
+            // 
+            // 
+            // 
+            this.dtTempDate.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtTempDate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
+            this.dtTempDate.ButtonDropDown.Visible = true;
+            this.dtTempDate.DefaultInputValues = false;
+            this.dtTempDate.IsPopupCalendarOpen = false;
+            this.dtTempDate.Location = new System.Drawing.Point(100, 39);
+            this.dtTempDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtTempDate.MonthCalendar.BackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.DayNames = new string[] {
+        "日",
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六"};
+            this.dtTempDate.MonthCalendar.DisplayMonth = new System.DateTime(2010, 10, 1, 0, 0, 0, 0);
+            this.dtTempDate.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtTempDate.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.TodayButtonVisible = true;
+            this.dtTempDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
+            this.dtTempDate.Name = "dtTempDate";
+            this.dtTempDate.Size = new System.Drawing.Size(128, 25);
+            this.dtTempDate.TabIndex = 119;
+            this.dtTempDate.Tag = "TempDate";
+            // 
+            // labelX74
+            // 
+            this.labelX74.AutoSize = true;
+            this.labelX74.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX74.BackgroundStyle.Class = "";
+            this.labelX74.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX74.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX74.ForeColor = System.Drawing.Color.Black;
+            this.labelX74.Location = new System.Drawing.Point(237, 66);
+            this.labelX74.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX74.Name = "labelX74";
+            this.labelX74.Size = new System.Drawing.Size(74, 21);
+            this.labelX74.TabIndex = 122;
+            this.labelX74.Text = "臨編字號：";
+            this.labelX74.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX75
+            // 
+            this.labelX75.AutoSize = true;
+            this.labelX75.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX75.BackgroundStyle.Class = "";
+            this.labelX75.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX75.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX75.ForeColor = System.Drawing.Color.Black;
+            this.labelX75.Location = new System.Drawing.Point(23, 66);
+            this.labelX75.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX75.Name = "labelX75";
+            this.labelX75.Size = new System.Drawing.Size(74, 21);
+            this.labelX75.TabIndex = 123;
+            this.labelX75.Text = "臨編學統：";
+            this.labelX75.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.labelX75.TextLineAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // labelX76
+            // 
+            this.labelX76.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX76.BackgroundStyle.Class = "";
+            this.labelX76.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX76.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX76.ForeColor = System.Drawing.Color.Black;
+            this.labelX76.Location = new System.Drawing.Point(17, 39);
+            this.labelX76.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX76.Name = "labelX76";
+            this.labelX76.Size = new System.Drawing.Size(80, 19);
+            this.labelX76.TabIndex = 124;
+            this.labelX76.Text = "臨編日期：";
+            this.labelX76.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.labelX76.TextLineAlignment = System.Drawing.StringAlignment.Near;
             // 
             // dateTimeInput4
             // 
@@ -398,26 +574,19 @@
             this.labelX1.Size = new System.Drawing.Size(75, 23);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "核准日期：";
-            // 
-            // 學籍異動
-            // 
-            this.學籍異動.Controls.Add(this.groupPanel10);
-            this.學籍異動.Controls.Add(this.groupPanel11);
-            this.學籍異動.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.學籍異動.Location = new System.Drawing.Point(0, 0);
-            this.學籍異動.Name = "學籍異動";
-            this.學籍異動.Size = new System.Drawing.Size(511, 465);
-            this.學籍異動.TabIndex = 4;
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Far;
+            this.labelX1.TextLineAlignment = System.Drawing.StringAlignment.Near;
             // 
             // groupPanel10
             // 
             this.groupPanel10.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel10.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel10.Controls.Add(this.comboBoxEx16);
+            this.groupPanel10.Controls.Add(this.comboBoxEx9);
             this.groupPanel10.Controls.Add(this.textBoxX27);
             this.groupPanel10.Controls.Add(this.dateTimeInput8);
             this.groupPanel10.Controls.Add(this.labelX42);
             this.groupPanel10.Controls.Add(this.labelX20);
-            this.groupPanel10.Controls.Add(this.comboBoxEx16);
             this.groupPanel10.Controls.Add(this.comboBoxEx5);
             this.groupPanel10.Controls.Add(this.textBoxX28);
             this.groupPanel10.Controls.Add(this.textBoxX29);
@@ -428,7 +597,6 @@
             this.groupPanel10.Controls.Add(this.labelX47);
             this.groupPanel10.Controls.Add(this.labelX48);
             this.groupPanel10.Controls.Add(this.labelX49);
-            this.groupPanel10.Controls.Add(this.comboBoxEx9);
             this.groupPanel10.Location = new System.Drawing.Point(3, 12);
             this.groupPanel10.Name = "groupPanel10";
             this.groupPanel10.Size = new System.Drawing.Size(499, 154);
@@ -464,6 +632,30 @@
             this.groupPanel10.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel10.TabIndex = 0;
             this.groupPanel10.Text = "異動狀況";
+            // 
+            // comboBoxEx16
+            // 
+            this.comboBoxEx16.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxEx16.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx16.FormattingEnabled = true;
+            this.comboBoxEx16.ItemHeight = 18;
+            this.comboBoxEx16.Location = new System.Drawing.Point(99, 99);
+            this.comboBoxEx16.Name = "comboBoxEx16";
+            this.comboBoxEx16.Size = new System.Drawing.Size(130, 24);
+            this.comboBoxEx16.TabIndex = 7;
+            this.comboBoxEx16.Tag = "ClassType";
+            // 
+            // comboBoxEx9
+            // 
+            this.comboBoxEx9.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxEx9.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx9.FormattingEnabled = true;
+            this.comboBoxEx9.ItemHeight = 18;
+            this.comboBoxEx9.Location = new System.Drawing.Point(362, 66);
+            this.comboBoxEx9.Name = "comboBoxEx9";
+            this.comboBoxEx9.Size = new System.Drawing.Size(130, 24);
+            this.comboBoxEx9.TabIndex = 5;
+            this.comboBoxEx9.Tag = "Department";
             // 
             // textBoxX27
             // 
@@ -567,22 +759,10 @@
             this.labelX20.TabIndex = 6;
             this.labelX20.Text = "班別：";
             // 
-            // comboBoxEx16
-            // 
-            this.comboBoxEx16.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx16.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBoxEx16.FormattingEnabled = true;
-            this.comboBoxEx16.ItemHeight = 18;
-            this.comboBoxEx16.Location = new System.Drawing.Point(99, 99);
-            this.comboBoxEx16.Name = "comboBoxEx16";
-            this.comboBoxEx16.Size = new System.Drawing.Size(130, 24);
-            this.comboBoxEx16.TabIndex = 7;
-            this.comboBoxEx16.Tag = "ClassType";
-            // 
             // comboBoxEx5
             // 
             this.comboBoxEx5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx5.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx5.FormattingEnabled = true;
             this.comboBoxEx5.ItemHeight = 18;
             this.comboBoxEx5.Location = new System.Drawing.Point(100, 69);
@@ -635,7 +815,7 @@
             // comboBoxEx10
             // 
             this.comboBoxEx10.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx10.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx10.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx10.FormattingEnabled = true;
             this.comboBoxEx10.ItemHeight = 18;
             this.comboBoxEx10.Location = new System.Drawing.Point(100, 6);
@@ -719,22 +899,17 @@
             this.labelX49.TabIndex = 0;
             this.labelX49.Text = "異動原因代碼：";
             // 
-            // comboBoxEx9
-            // 
-            this.comboBoxEx9.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx9.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBoxEx9.FormattingEnabled = true;
-            this.comboBoxEx9.ItemHeight = 18;
-            this.comboBoxEx9.Location = new System.Drawing.Point(362, 66);
-            this.comboBoxEx9.Name = "comboBoxEx9";
-            this.comboBoxEx9.Size = new System.Drawing.Size(130, 24);
-            this.comboBoxEx9.TabIndex = 5;
-            this.comboBoxEx9.Tag = "Department";
-            // 
             // groupPanel11
             // 
             this.groupPanel11.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel11.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel11.Controls.Add(this.textBoxX30);
+            this.groupPanel11.Controls.Add(this.txtOriginTempNumber);
+            this.groupPanel11.Controls.Add(this.txtOriginTempDesc);
+            this.groupPanel11.Controls.Add(this.dtOriginTempDate);
+            this.groupPanel11.Controls.Add(this.labelX5);
+            this.groupPanel11.Controls.Add(this.labelX53);
+            this.groupPanel11.Controls.Add(this.labelX73);
             this.groupPanel11.Controls.Add(this.dateTimeInput9);
             this.groupPanel11.Controls.Add(this.comboBoxEx21);
             this.groupPanel11.Controls.Add(this.cmbOldClassType);
@@ -749,7 +924,6 @@
             this.groupPanel11.Controls.Add(this.labelX52);
             this.groupPanel11.Controls.Add(this.txtNewData);
             this.groupPanel11.Controls.Add(this.txtNewStudentNumber);
-            this.groupPanel11.Controls.Add(this.textBoxX30);
             this.groupPanel11.Controls.Add(this.textBoxX31);
             this.groupPanel11.Controls.Add(this.lblNewStudentNumber);
             this.groupPanel11.Controls.Add(this.textBoxX32);
@@ -757,7 +931,7 @@
             this.groupPanel11.Controls.Add(this.lblNewData);
             this.groupPanel11.Location = new System.Drawing.Point(4, 172);
             this.groupPanel11.Name = "groupPanel11";
-            this.groupPanel11.Size = new System.Drawing.Size(498, 193);
+            this.groupPanel11.Size = new System.Drawing.Size(498, 256);
             // 
             // 
             // 
@@ -790,6 +964,164 @@
             this.groupPanel11.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel11.TabIndex = 1;
             this.groupPanel11.Text = "學生基本資料";
+            // 
+            // textBoxX30
+            // 
+            // 
+            // 
+            // 
+            this.textBoxX30.Border.Class = "TextBoxBorder";
+            this.textBoxX30.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX30.Location = new System.Drawing.Point(346, 10);
+            this.textBoxX30.Name = "textBoxX30";
+            this.textBoxX30.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX30.TabIndex = 1;
+            this.textBoxX30.Tag = "StudentNumber";
+            // 
+            // txtOriginTempNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtOriginTempNumber.Border.Class = "TextBoxBorder";
+            this.txtOriginTempNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtOriginTempNumber.Location = new System.Drawing.Point(346, 192);
+            this.txtOriginTempNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOriginTempNumber.Name = "txtOriginTempNumber";
+            this.txtOriginTempNumber.Size = new System.Drawing.Size(140, 25);
+            this.txtOriginTempNumber.TabIndex = 114;
+            this.txtOriginTempNumber.Tag = "OriginalTempNumber";
+            // 
+            // txtOriginTempDesc
+            // 
+            // 
+            // 
+            // 
+            this.txtOriginTempDesc.Border.Class = "TextBoxBorder";
+            this.txtOriginTempDesc.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtOriginTempDesc.Location = new System.Drawing.Point(95, 194);
+            this.txtOriginTempDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtOriginTempDesc.Name = "txtOriginTempDesc";
+            this.txtOriginTempDesc.Size = new System.Drawing.Size(140, 25);
+            this.txtOriginTempDesc.TabIndex = 115;
+            this.txtOriginTempDesc.Tag = "OriginalTempDesc";
+            // 
+            // dtOriginTempDate
+            // 
+            // 
+            // 
+            // 
+            this.dtOriginTempDate.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtOriginTempDate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtOriginTempDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
+            this.dtOriginTempDate.ButtonDropDown.Visible = true;
+            this.dtOriginTempDate.DefaultInputValues = false;
+            this.dtOriginTempDate.IsPopupCalendarOpen = false;
+            this.dtOriginTempDate.Location = new System.Drawing.Point(96, 163);
+            this.dtOriginTempDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            // 
+            // 
+            // 
+            this.dtOriginTempDate.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtOriginTempDate.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtOriginTempDate.MonthCalendar.BackgroundStyle.Class = "";
+            this.dtOriginTempDate.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtOriginTempDate.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.Class = "";
+            this.dtOriginTempDate.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtOriginTempDate.MonthCalendar.DayNames = new string[] {
+        "日",
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六"};
+            this.dtOriginTempDate.MonthCalendar.DisplayMonth = new System.DateTime(2010, 10, 1, 0, 0, 0, 0);
+            this.dtOriginTempDate.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtOriginTempDate.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtOriginTempDate.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtOriginTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtOriginTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtOriginTempDate.MonthCalendar.NavigationBackgroundStyle.Class = "";
+            this.dtOriginTempDate.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtOriginTempDate.MonthCalendar.TodayButtonVisible = true;
+            this.dtOriginTempDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
+            this.dtOriginTempDate.Name = "dtOriginTempDate";
+            this.dtOriginTempDate.Size = new System.Drawing.Size(140, 25);
+            this.dtOriginTempDate.TabIndex = 113;
+            this.dtOriginTempDate.Tag = "OriginalTempDate";
+            // 
+            // labelX5
+            // 
+            this.labelX5.AutoSize = true;
+            this.labelX5.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX5.BackgroundStyle.Class = "";
+            this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX5.ForeColor = System.Drawing.Color.Black;
+            this.labelX5.Location = new System.Drawing.Point(267, 194);
+            this.labelX5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(87, 21);
+            this.labelX5.TabIndex = 116;
+            this.labelX5.Text = "原臨統字號：";
+            this.labelX5.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX53
+            // 
+            this.labelX53.AutoSize = true;
+            this.labelX53.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX53.BackgroundStyle.Class = "";
+            this.labelX53.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX53.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX53.ForeColor = System.Drawing.Color.Black;
+            this.labelX53.Location = new System.Drawing.Point(9, 194);
+            this.labelX53.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX53.Name = "labelX53";
+            this.labelX53.Size = new System.Drawing.Size(87, 21);
+            this.labelX53.TabIndex = 117;
+            this.labelX53.Text = "原臨編學統；";
+            this.labelX53.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX73
+            // 
+            this.labelX73.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX73.BackgroundStyle.Class = "";
+            this.labelX73.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX73.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX73.ForeColor = System.Drawing.Color.Black;
+            this.labelX73.Location = new System.Drawing.Point(5, 163);
+            this.labelX73.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX73.Name = "labelX73";
+            this.labelX73.Size = new System.Drawing.Size(91, 19);
+            this.labelX73.TabIndex = 118;
+            this.labelX73.Text = "原臨編日期：";
+            this.labelX73.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // dateTimeInput9
             // 
@@ -853,10 +1185,10 @@
             // comboBoxEx21
             // 
             this.comboBoxEx21.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx21.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx21.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx21.FormattingEnabled = true;
             this.comboBoxEx21.ItemHeight = 18;
-            this.comboBoxEx21.Location = new System.Drawing.Point(362, 102);
+            this.comboBoxEx21.Location = new System.Drawing.Point(346, 102);
             this.comboBoxEx21.Name = "comboBoxEx21";
             this.comboBoxEx21.Size = new System.Drawing.Size(130, 24);
             this.comboBoxEx21.TabIndex = 18;
@@ -865,7 +1197,7 @@
             // cmbOldClassType
             // 
             this.cmbOldClassType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbOldClassType.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cmbOldClassType.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cmbOldClassType.FormattingEnabled = true;
             this.cmbOldClassType.ItemHeight = 18;
             this.cmbOldClassType.Location = new System.Drawing.Point(99, 99);
@@ -924,7 +1256,7 @@
             // 
             this.labelX19.BackgroundStyle.Class = "";
             this.labelX19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX19.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX19.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX19.ForeColor = System.Drawing.Color.Black;
             this.labelX19.Location = new System.Drawing.Point(0, 70);
             this.labelX19.Name = "labelX19";
@@ -939,7 +1271,7 @@
             // 
             this.textBoxX33.Border.Class = "TextBoxBorder";
             this.textBoxX33.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX33.Location = new System.Drawing.Point(361, 132);
+            this.textBoxX33.Location = new System.Drawing.Point(346, 132);
             this.textBoxX33.Name = "textBoxX33";
             this.textBoxX33.Size = new System.Drawing.Size(130, 25);
             this.textBoxX33.TabIndex = 5;
@@ -1011,7 +1343,7 @@
             // 
             this.txtNewData.Border.Class = "TextBoxBorder";
             this.txtNewData.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtNewData.Location = new System.Drawing.Point(361, 41);
+            this.txtNewData.Location = new System.Drawing.Point(346, 41);
             this.txtNewData.Name = "txtNewData";
             this.txtNewData.Size = new System.Drawing.Size(130, 25);
             this.txtNewData.TabIndex = 3;
@@ -1025,25 +1357,12 @@
             // 
             this.txtNewStudentNumber.Border.Class = "TextBoxBorder";
             this.txtNewStudentNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.txtNewStudentNumber.Location = new System.Drawing.Point(362, 41);
+            this.txtNewStudentNumber.Location = new System.Drawing.Point(350, 41);
             this.txtNewStudentNumber.Name = "txtNewStudentNumber";
             this.txtNewStudentNumber.Size = new System.Drawing.Size(130, 25);
             this.txtNewStudentNumber.TabIndex = 3;
             this.txtNewStudentNumber.Tag = "NewStudentNumber";
             this.txtNewStudentNumber.Visible = false;
-            // 
-            // textBoxX30
-            // 
-            // 
-            // 
-            // 
-            this.textBoxX30.Border.Class = "TextBoxBorder";
-            this.textBoxX30.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX30.Location = new System.Drawing.Point(362, 10);
-            this.textBoxX30.Name = "textBoxX30";
-            this.textBoxX30.Size = new System.Drawing.Size(130, 25);
-            this.textBoxX30.TabIndex = 1;
-            this.textBoxX30.Tag = "StudentNumber";
             // 
             // textBoxX31
             // 
@@ -1067,7 +1386,7 @@
             this.lblNewStudentNumber.BackgroundStyle.Class = "";
             this.lblNewStudentNumber.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblNewStudentNumber.ForeColor = System.Drawing.Color.Black;
-            this.lblNewStudentNumber.Location = new System.Drawing.Point(292, 43);
+            this.lblNewStudentNumber.Location = new System.Drawing.Point(294, 43);
             this.lblNewStudentNumber.Name = "lblNewStudentNumber";
             this.lblNewStudentNumber.Size = new System.Drawing.Size(60, 21);
             this.lblNewStudentNumber.TabIndex = 0;
@@ -1109,7 +1428,7 @@
             this.lblNewData.BackgroundStyle.Class = "";
             this.lblNewData.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblNewData.ForeColor = System.Drawing.Color.Black;
-            this.lblNewData.Location = new System.Drawing.Point(246, 44);
+            this.lblNewData.Location = new System.Drawing.Point(242, 44);
             this.lblNewData.Name = "lblNewData";
             this.lblNewData.Size = new System.Drawing.Size(112, 18);
             this.lblNewData.TabIndex = 0;
@@ -1125,7 +1444,7 @@
             this.新生名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.新生名冊.Location = new System.Drawing.Point(0, 0);
             this.新生名冊.Name = "新生名冊";
-            this.新生名冊.Size = new System.Drawing.Size(511, 465);
+            this.新生名冊.Size = new System.Drawing.Size(511, 589);
             this.新生名冊.TabIndex = 1;
             // 
             // groupPanel4
@@ -1207,7 +1526,7 @@
             // 
             this.labelX72.BackgroundStyle.Class = "";
             this.labelX72.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX72.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX72.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX72.ForeColor = System.Drawing.Color.Black;
             this.labelX72.Location = new System.Drawing.Point(236, 38);
             this.labelX72.Name = "labelX72";
@@ -1279,7 +1598,7 @@
             // 
             this.labelX14.BackgroundStyle.Class = "";
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX14.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX14.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX14.ForeColor = System.Drawing.Color.Black;
             this.labelX14.Location = new System.Drawing.Point(-3, 8);
             this.labelX14.Name = "labelX14";
@@ -1432,7 +1751,7 @@
             // 
             this.labelX18.BackgroundStyle.Class = "";
             this.labelX18.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX18.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX18.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX18.ForeColor = System.Drawing.Color.Black;
             this.labelX18.Location = new System.Drawing.Point(-3, 65);
             this.labelX18.Name = "labelX18";
@@ -1515,7 +1834,7 @@
             // 
             this.comboBoxEx3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEx3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEx3.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx3.ItemHeight = 18;
             this.comboBoxEx3.Location = new System.Drawing.Point(359, 64);
             this.comboBoxEx3.Name = "comboBoxEx3";
@@ -1725,7 +2044,7 @@
             // comboBoxEx18
             // 
             this.comboBoxEx18.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx18.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx18.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx18.FormattingEnabled = true;
             this.comboBoxEx18.ItemHeight = 18;
             this.comboBoxEx18.Location = new System.Drawing.Point(99, 61);
@@ -1778,7 +2097,7 @@
             // comboBoxEx2
             // 
             this.comboBoxEx2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx2.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx2.FormattingEnabled = true;
             this.comboBoxEx2.ItemHeight = 18;
             this.comboBoxEx2.Location = new System.Drawing.Point(362, 59);
@@ -1790,7 +2109,7 @@
             // comboBoxEx1
             // 
             this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx1.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx1.FormattingEnabled = true;
             this.comboBoxEx1.ItemHeight = 18;
             this.comboBoxEx1.Location = new System.Drawing.Point(100, 4);
@@ -1866,7 +2185,7 @@
             this.畢業名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.畢業名冊.Location = new System.Drawing.Point(0, 0);
             this.畢業名冊.Name = "畢業名冊";
-            this.畢業名冊.Size = new System.Drawing.Size(511, 465);
+            this.畢業名冊.Size = new System.Drawing.Size(511, 589);
             this.畢業名冊.TabIndex = 2;
             // 
             // groupPanel13
@@ -2068,7 +2387,7 @@
             // 
             this.labelX17.BackgroundStyle.Class = "";
             this.labelX17.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX17.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX17.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX17.ForeColor = System.Drawing.Color.Black;
             this.labelX17.Location = new System.Drawing.Point(-2, 64);
             this.labelX17.Name = "labelX17";
@@ -2222,7 +2541,7 @@
             // 
             this.comboBoxEx14.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEx14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEx14.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx14.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx14.FormattingEnabled = true;
             this.comboBoxEx14.ItemHeight = 18;
             this.comboBoxEx14.Location = new System.Drawing.Point(359, 64);
@@ -2433,7 +2752,7 @@
             // comboBoxEx17
             // 
             this.comboBoxEx17.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx17.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx17.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx17.FormattingEnabled = true;
             this.comboBoxEx17.ItemHeight = 18;
             this.comboBoxEx17.Location = new System.Drawing.Point(99, 91);
@@ -2486,7 +2805,7 @@
             // comboBoxEx11
             // 
             this.comboBoxEx11.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx11.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx11.FormattingEnabled = true;
             this.comboBoxEx11.ItemHeight = 18;
             this.comboBoxEx11.Location = new System.Drawing.Point(361, 61);
@@ -2498,7 +2817,7 @@
             // comboBoxEx13
             // 
             this.comboBoxEx13.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx13.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx13.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx13.FormattingEnabled = true;
             this.comboBoxEx13.ItemHeight = 18;
             this.comboBoxEx13.Location = new System.Drawing.Point(100, 4);
@@ -2585,7 +2904,7 @@
             // comboBoxEx15
             // 
             this.comboBoxEx15.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx15.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx15.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx15.FormattingEnabled = true;
             this.comboBoxEx15.ItemHeight = 18;
             this.comboBoxEx15.Location = new System.Drawing.Point(100, 61);
@@ -2602,7 +2921,7 @@
             this.轉入名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.轉入名冊.Location = new System.Drawing.Point(0, 0);
             this.轉入名冊.Name = "轉入名冊";
-            this.轉入名冊.Size = new System.Drawing.Size(511, 465);
+            this.轉入名冊.Size = new System.Drawing.Size(511, 589);
             this.轉入名冊.TabIndex = 3;
             // 
             // groupPanel8
@@ -3005,7 +3324,7 @@
             // 
             this.labelX16.BackgroundStyle.Class = "";
             this.labelX16.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX16.Font = new System.Drawing.Font("Microsoft JhengHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX16.Font = new System.Drawing.Font("微軟正黑體", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX16.ForeColor = System.Drawing.Color.Black;
             this.labelX16.Location = new System.Drawing.Point(0, 55);
             this.labelX16.Name = "labelX16";
@@ -3088,7 +3407,7 @@
             // 
             this.comboBoxEx8.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.comboBoxEx8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxEx8.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx8.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx8.FormattingEnabled = true;
             this.comboBoxEx8.ItemHeight = 18;
             this.comboBoxEx8.Location = new System.Drawing.Point(358, 54);
@@ -3301,7 +3620,7 @@
             // comboBoxEx19
             // 
             this.comboBoxEx19.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx19.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx19.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx19.FormattingEnabled = true;
             this.comboBoxEx19.ItemHeight = 18;
             this.comboBoxEx19.Location = new System.Drawing.Point(99, 91);
@@ -3313,7 +3632,7 @@
             // comboBoxEx12
             // 
             this.comboBoxEx12.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx12.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx12.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx12.FormattingEnabled = true;
             this.comboBoxEx12.ItemHeight = 18;
             this.comboBoxEx12.Location = new System.Drawing.Point(100, 61);
@@ -3366,7 +3685,7 @@
             // comboBoxEx6
             // 
             this.comboBoxEx6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx6.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx6.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx6.FormattingEnabled = true;
             this.comboBoxEx6.ItemHeight = 18;
             this.comboBoxEx6.Location = new System.Drawing.Point(359, 60);
@@ -3378,7 +3697,7 @@
             // comboBoxEx7
             // 
             this.comboBoxEx7.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx7.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxEx7.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBoxEx7.FormattingEnabled = true;
             this.comboBoxEx7.ItemHeight = 18;
             this.comboBoxEx7.Location = new System.Drawing.Point(100, 4);
@@ -3466,19 +3785,21 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.panelEx1);
-            this.Font = new System.Drawing.Font("Microsoft JhengHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UpdateRecordInfo";
-            this.Size = new System.Drawing.Size(511, 465);
+            this.Size = new System.Drawing.Size(511, 589);
             this.panelEx1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.groupPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput4)).EndInit();
             this.學籍異動.ResumeLayout(false);
+            this.groupPanel1.ResumeLayout(false);
+            this.groupPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTempDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput4)).EndInit();
             this.groupPanel10.ResumeLayout(false);
             this.groupPanel10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput8)).EndInit();
             this.groupPanel11.ResumeLayout(false);
             this.groupPanel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtOriginTempDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeInput9)).EndInit();
             this.新生名冊.ResumeLayout(false);
             this.groupPanel4.ResumeLayout(false);
@@ -3679,8 +4000,17 @@
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX23;
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX24;
         private DevComponents.DotNetBar.Controls.TextBoxX textBoxX27;
-
-
-
+        private DevComponents.DotNetBar.Controls.TextBoxX txtOriginTempNumber;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtOriginTempDesc;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtOriginTempDate;
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX labelX53;
+        private DevComponents.DotNetBar.LabelX labelX73;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTempNumber;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTempDesc;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtTempDate;
+        private DevComponents.DotNetBar.LabelX labelX74;
+        private DevComponents.DotNetBar.LabelX labelX75;
+        private DevComponents.DotNetBar.LabelX labelX76;
     }
 }

@@ -242,7 +242,23 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 核准文號
                     if (ir.Contains("核准文號"))
                         UpdateRec.ADNumber = ir.GetValue("核准文號");
+                    // 臨編日期
+                    if (ir.Contains("臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("臨編日期"), out dta))
+                            UpdateRec.TempDate = dta.ToShortDateString();
 
+                        if (string.IsNullOrEmpty(ir.GetValue("臨編日期")))
+                            UpdateRec.TempDate = "";
+
+                    }
+                    // 臨編學統
+                    if (ir.Contains("臨編學統"))
+                        UpdateRec.TempDesc = ir.GetValue("臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("臨編字號"))
+                        UpdateRec.TempNumber = ir.GetValue("臨編字號");
                     //建教僑生專班學生國別
                     if (ir.Contains("建教僑生專班學生國別"))
                         UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");
@@ -369,7 +385,23 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 核准文號
                     if (ir.Contains("核准文號") && mOption.SelectedFields.Contains("核准文號"))
                         UpdateRec.ADNumber = ir.GetValue("核准文號");
+                    // 臨編日期
+                    if (ir.Contains("臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("臨編日期"), out dta))
+                            UpdateRec.TempDate = dta.ToShortDateString();
 
+                        if (string.IsNullOrEmpty(ir.GetValue("臨編日期")))
+                            UpdateRec.TempDate = "";
+
+                    }
+                    // 臨編學統
+                    if (ir.Contains("臨編學統"))
+                        UpdateRec.TempDesc = ir.GetValue("臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("臨編字號"))
+                        UpdateRec.TempNumber = ir.GetValue("臨編字號");
                     // 建教僑生專班學生國別
                     if (ir.Contains("建教僑生專班學生國別") && mOption.SelectedFields.Contains("建教僑生專班學生國別"))
                         UpdateRec.OverseasChineseStudentCountryCode = ir.GetValue("建教僑生專班學生國別");

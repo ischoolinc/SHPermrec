@@ -231,7 +231,23 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     // 備查文號
                     if (ir.Contains("備查文號"))
                         UpdateRec.LastADNumber = ir.GetValue("備查文號");
+                    // 原臨編日期
+                    if (ir.Contains("原臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("原臨編日期"), out dta))
+                            UpdateRec.OriginalTempDate = dta.ToShortDateString();
 
+                        if (string.IsNullOrEmpty(ir.GetValue("原臨編日期")))
+                            UpdateRec.OriginalTempDate = "";
+
+                    }
+                    // 原臨編學統
+                    if (ir.Contains("原臨編學統"))
+                        UpdateRec.OriginalTempDesc = ir.GetValue("原臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("原臨編字號"))
+                        UpdateRec.OriginalTempNumber = ir.GetValue("原臨編字號");
 
 
                     // 核准日期
@@ -244,14 +260,32 @@ namespace UpdateRecordModule_SH_D.ImportExport
                         if (string.IsNullOrEmpty(ir.GetValue("核准日期")))
                             UpdateRec.ADDate = "";
                     }
+                    // 核准文號
+                    if (ir.Contains("核准文號"))
+                        UpdateRec.ADNumber = ir.GetValue("核准文號");
+                    // 臨編日期
+                    if (ir.Contains("臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("臨編日期"), out dta))
+                            UpdateRec.TempDate = dta.ToShortDateString();
+
+                        if (string.IsNullOrEmpty(ir.GetValue("臨編日期")))
+                            UpdateRec.TempDate = "";
+
+                    }
+                    // 臨編學統
+                    if (ir.Contains("臨編學統"))
+                        UpdateRec.TempDesc = ir.GetValue("臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("臨編字號"))
+                        UpdateRec.TempNumber = ir.GetValue("臨編字號");
                     // 雙重學籍編號
                     if (ir.Contains("雙重學籍編號"))
                     {
                         UpdateRec.ReplicatedSchoolRollNumber = ir.GetValue("雙重學籍編號");  
                     }
-                    // 核准文號
-                    if (ir.Contains("核准文號"))
-                        UpdateRec.ADNumber = ir.GetValue("核准文號");
+                    
 
                     // 借讀學校代碼
                     if (ir.Contains("借讀學校代碼"))
@@ -399,7 +433,23 @@ namespace UpdateRecordModule_SH_D.ImportExport
                     if (ir.Contains("備查文號") && mOption.SelectedFields.Contains("備查文號"))
                         UpdateRec.LastADNumber = ir.GetValue("備查文號");
 
+                    // 原臨編日期
+                    if (ir.Contains("原臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("原臨編日期"), out dta))
+                            UpdateRec.OriginalTempDate = dta.ToShortDateString();
 
+                        if (string.IsNullOrEmpty(ir.GetValue("原臨編日期")))
+                            UpdateRec.OriginalTempDate = "";
+
+                    }
+                    // 原臨編學統
+                    if (ir.Contains("原臨編學統"))
+                        UpdateRec.OriginalTempDesc = ir.GetValue("原臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("原臨編字號"))
+                        UpdateRec.OriginalTempNumber = ir.GetValue("原臨編字號");
                     // 核准日期
                     if (ir.Contains("核准日期") && mOption.SelectedFields.Contains("核准日期"))
                     {
@@ -410,6 +460,23 @@ namespace UpdateRecordModule_SH_D.ImportExport
                         if (string.IsNullOrEmpty(ir.GetValue("核准日期")))
                             UpdateRec.ADDate = "";
                     }
+                    // 臨編日期
+                    if (ir.Contains("臨編日期"))
+                    {
+                        DateTime dta;
+                        if (DateTime.TryParse(ir.GetValue("臨編日期"), out dta))
+                            UpdateRec.TempDate = dta.ToShortDateString();
+
+                        if (string.IsNullOrEmpty(ir.GetValue("臨編日期")))
+                            UpdateRec.TempDate = "";
+
+                    }
+                    // 臨編學統
+                    if (ir.Contains("臨編學統"))
+                        UpdateRec.TempDesc = ir.GetValue("臨編學統");
+                    // 臨編字號
+                    if (ir.Contains("臨編字號"))
+                        UpdateRec.TempNumber = ir.GetValue("臨編字號");
                     // 雙重學籍編號
                     if (ir.Contains("雙重學籍編號"))
                     {

@@ -62,6 +62,7 @@
             this.itemContainer1 = new DevComponents.DotNetBar.ItemContainer();
             this.lblAD = new DevComponents.DotNetBar.LabelItem();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnModifyCover = new DevComponents.DotNetBar.ButtonX();
             this.btnEReport2 = new DevComponents.DotNetBar.ButtonX();
             this.lblADName1 = new System.Windows.Forms.Label();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
@@ -70,7 +71,9 @@
             this.backPanel = new DevComponents.DotNetBar.PanelEx();
             this.itemPanelName = new DevComponents.DotNetBar.ItemPanel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnModifyCover = new DevComponents.DotNetBar.ButtonX();
+            this.btnADTempDN = new DevComponents.DotNetBar.ButtonX();
+            this.lblTempADInfo = new DevComponents.DotNetBar.LabelItem();
+            this.lblTempAD = new DevComponents.DotNetBar.LabelItem();
             this.tabControlPanel2.SuspendLayout();
             this.itemPanel2.SuspendLayout();
             this.panelEx2.SuspendLayout();
@@ -101,7 +104,7 @@
             this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnInsert.BackColor = System.Drawing.Color.Transparent;
             this.btnInsert.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnInsert.Location = new System.Drawing.Point(13, 529);
+            this.btnInsert.Location = new System.Drawing.Point(13, 533);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(58, 24);
             this.btnInsert.TabIndex = 2;
@@ -114,7 +117,7 @@
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.BackColor = System.Drawing.Color.Transparent;
             this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnDelete.Location = new System.Drawing.Point(77, 529);
+            this.btnDelete.Location = new System.Drawing.Point(82, 533);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(58, 24);
             this.btnDelete.TabIndex = 3;
@@ -127,7 +130,7 @@
             this.btnAD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAD.BackColor = System.Drawing.Color.Transparent;
             this.btnAD.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAD.Location = new System.Drawing.Point(141, 529);
+            this.btnAD.Location = new System.Drawing.Point(13, 563);
             this.btnAD.Name = "btnAD";
             this.btnAD.Size = new System.Drawing.Size(63, 24);
             this.btnAD.TabIndex = 4;
@@ -142,7 +145,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 28);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(606, 479);
+            this.tabControlPanel2.Size = new System.Drawing.Size(614, 513);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(188)))), ((int)(((byte)(227)))));
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -184,7 +187,7 @@
             this.itemPanel2.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.itemPanel2.Location = new System.Drawing.Point(1, 43);
             this.itemPanel2.Name = "itemPanel2";
-            this.itemPanel2.Size = new System.Drawing.Size(604, 435);
+            this.itemPanel2.Size = new System.Drawing.Size(612, 469);
             this.itemPanel2.TabIndex = 2;
             this.itemPanel2.Text = "itemPanel2";
             // 
@@ -212,7 +215,7 @@
             this.listView.Location = new System.Drawing.Point(3, 25);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(586, 395);
+            this.listView.Size = new System.Drawing.Size(549, 352);
             this.listView.TabIndex = 0;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -275,7 +278,7 @@
             this.panelEx2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx2.Location = new System.Drawing.Point(1, 1);
             this.panelEx2.Name = "panelEx2";
-            this.panelEx2.Size = new System.Drawing.Size(604, 42);
+            this.panelEx2.Size = new System.Drawing.Size(612, 42);
             this.panelEx2.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx2.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -363,7 +366,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 28);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(606, 479);
+            this.tabControlPanel1.Size = new System.Drawing.Size(614, 513);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(253)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(188)))), ((int)(((byte)(227)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -401,12 +404,14 @@
             this.lblADCounter,
             this.lblListContent,
             this.lblADInfo,
-            this.itemContainer1});
+            this.itemContainer1,
+            this.lblTempADInfo,
+            this.lblTempAD});
             this.itemPanel1.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
             this.itemPanel1.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.itemPanel1.Location = new System.Drawing.Point(1, 43);
             this.itemPanel1.Name = "itemPanel1";
-            this.itemPanel1.Size = new System.Drawing.Size(604, 435);
+            this.itemPanel1.Size = new System.Drawing.Size(612, 469);
             this.itemPanel1.TabIndex = 1;
             this.itemPanel1.Text = "itemPanel1";
             // 
@@ -451,7 +456,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx1.Location = new System.Drawing.Point(1, 1);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(604, 42);
+            this.panelEx1.Size = new System.Drawing.Size(612, 42);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -460,6 +465,18 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 0;
+            // 
+            // btnModifyCover
+            // 
+            this.btnModifyCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnModifyCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnModifyCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnModifyCover.Location = new System.Drawing.Point(369, 11);
+            this.btnModifyCover.Name = "btnModifyCover";
+            this.btnModifyCover.Size = new System.Drawing.Size(97, 24);
+            this.btnModifyCover.TabIndex = 8;
+            this.btnModifyCover.Text = "調整封面資料";
+            this.btnModifyCover.Click += new System.EventHandler(this.btnModifyCover_Click);
             // 
             // btnEReport2
             // 
@@ -507,7 +524,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedTabFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabControl1.SelectedTabIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(606, 507);
+            this.tabControl1.Size = new System.Drawing.Size(614, 541);
             this.tabControl1.Style = DevComponents.DotNetBar.eTabStripStyle.Office2007Document;
             this.tabControl1.TabIndex = 5;
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.MultilineWithNavigationBox;
@@ -519,12 +536,15 @@
             // 
             this.backPanel.CanvasColor = System.Drawing.SystemColors.Control;
             this.backPanel.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.backPanel.Controls.Add(this.btnADTempDN);
             this.backPanel.Controls.Add(this.itemPanelName);
+            this.backPanel.Controls.Add(this.btnDelete);
             this.backPanel.Controls.Add(this.tabControl1);
+            this.backPanel.Controls.Add(this.btnInsert);
             this.backPanel.Controls.Add(this.btnAD);
             this.backPanel.Location = new System.Drawing.Point(0, 0);
             this.backPanel.Name = "backPanel";
-            this.backPanel.Size = new System.Drawing.Size(830, 570);
+            this.backPanel.Size = new System.Drawing.Size(838, 604);
             this.backPanel.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.backPanel.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.backPanel.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -563,7 +583,7 @@
             this.itemPanelName.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.itemPanelName.Location = new System.Drawing.Point(12, 48);
             this.itemPanelName.Name = "itemPanelName";
-            this.itemPanelName.Size = new System.Drawing.Size(192, 472);
+            this.itemPanelName.Size = new System.Drawing.Size(192, 479);
             this.itemPanelName.TabIndex = 0;
             this.itemPanelName.Text = "itemPanel3";
             this.itemPanelName.ItemClick += new System.EventHandler(this.itemPanelName_ItemClick);
@@ -576,25 +596,34 @@
             this.imageList1.Images.SetKeyName(0, "f.png");
             this.imageList1.Images.SetKeyName(1, "ff.png");
             // 
-            // btnModifyCover
+            // btnADTempDN
             // 
-            this.btnModifyCover.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnModifyCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnModifyCover.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnModifyCover.Location = new System.Drawing.Point(369, 11);
-            this.btnModifyCover.Name = "btnModifyCover";
-            this.btnModifyCover.Size = new System.Drawing.Size(97, 24);
-            this.btnModifyCover.TabIndex = 8;
-            this.btnModifyCover.Text = "調整封面資料";
-            this.btnModifyCover.Click += new System.EventHandler(this.btnModifyCover_Click);
+            this.btnADTempDN.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnADTempDN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnADTempDN.BackColor = System.Drawing.Color.Transparent;
+            this.btnADTempDN.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnADTempDN.Location = new System.Drawing.Point(82, 563);
+            this.btnADTempDN.Name = "btnADTempDN";
+            this.btnADTempDN.Size = new System.Drawing.Size(105, 24);
+            this.btnADTempDN.TabIndex = 6;
+            this.btnADTempDN.Text = "登錄臨編學統";
+            this.btnADTempDN.Click += new System.EventHandler(this.btnADTempDN_Click);
+            // 
+            // lblTempADInfo
+            // 
+            this.lblTempADInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.lblTempADInfo.Name = "lblTempADInfo";
+            // 
+            // lblTempAD
+            // 
+            this.lblTempAD.Name = "lblTempAD";
+            this.lblTempAD.Text = "<font color=\'red\'>未登錄</font>";
             // 
             // ListForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(828, 570);
+            this.ClientSize = new System.Drawing.Size(850, 610);
             this.Controls.Add(this.pnlReport);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.cboSchoolYear);
             this.Controls.Add(this.backPanel);
             this.DoubleBuffered = true;
@@ -602,7 +631,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListForm";
             this.Text = "異動名冊管理";
-            this.Load += new System.EventHandler(this.ListForm_Load);
             this.tabControlPanel2.ResumeLayout(false);
             this.itemPanel2.ResumeLayout(false);
             this.panelEx2.ResumeLayout(false);
@@ -659,5 +687,8 @@
         private DevComponents.DotNetBar.ItemPanel itemPanelName;
         private System.Windows.Forms.ImageList imageList1;
         private DevComponents.DotNetBar.ButtonX btnModifyCover;
+        private DevComponents.DotNetBar.ButtonX btnADTempDN;
+        private DevComponents.DotNetBar.LabelItem lblTempADInfo;
+        private DevComponents.DotNetBar.LabelItem lblTempAD;
     }
 }

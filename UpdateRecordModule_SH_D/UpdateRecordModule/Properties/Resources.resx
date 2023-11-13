@@ -121,44 +121,8 @@
   <data name="btnItemNameList_Image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\btnitemnamelist.image.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EnrollmentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\enrollmentlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ExtendingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\extendingstudentlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ExtendingStudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\extendingstudentupdaterecordlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="GraduatingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\graduatingstudentlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="StudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\studentupdaterecordlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TransferringStudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\transferringstudentupdaterecordlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ExtendingGraduatingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\extendinggraduatingstudentlisttemplate.xls;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="SHSchoolList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\shschoollist.xml;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="history_save_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\history_save_64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ImportEnrollmentListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\importexport\importenrollmentlistval.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ImportGraduateListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\importexport\importgraduatelistval.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ImportStudUpdateRecordListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\importexport\importstudupdaterecordlistval.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="ImportTransferListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\importexport\importtransferlistval.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\error.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,16 +136,55 @@
   <data name="demographic_reload_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\demographic_reload_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="UpdateCode_SHD" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\updatecode_shd.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="EnrollmentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EnrollmentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RetaintoStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\retaintostudentlisttemplate.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ExtendingGraduatingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExtendingGraduatingStudentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="TemporaryStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\temporarystudentlisttemplate.xls;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ExtendingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExtendingStudentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ExtendingStudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ExtendingStudentUpdateRecordListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GraduatingStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GraduatingStudentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GraduatingStudentListTemplate2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GraduatingStudentListTemplate2023.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ImportEnrollmentListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImportExport\ImportEnrollmentListVal.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ImportGraduateListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImportExport\ImportGraduateListVal.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ImportStudUpdateRecordListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImportExport\ImportStudUpdateRecordListVal.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ImportTransferListVal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ImportExport\ImportTransferListVal.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="JHSchoolList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\jhschoollist.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Resources\JHSchoolList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="RetaintoStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RetaintoStudentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SHSchoolList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SHSchoolList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="StudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StudentUpdateRecordListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TemporaryStudentListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemporaryStudentListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TransferringStudentUpdateRecordListTemplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TransferringStudentUpdateRecordListTemplate.xlsx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UpdateCode_SHD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UpdateCode_SHD.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

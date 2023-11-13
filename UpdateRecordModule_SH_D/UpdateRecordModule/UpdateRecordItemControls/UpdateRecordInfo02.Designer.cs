@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.txtTempNumber = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txtTempDesc = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.dtTempDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX25 = new DevComponents.DotNetBar.LabelX();
+            this.labelX29 = new DevComponents.DotNetBar.LabelX();
+            this.labelX30 = new DevComponents.DotNetBar.LabelX();
             this.txtADDocNo = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.dtADDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
@@ -83,6 +89,7 @@
             this.labelX16 = new DevComponents.DotNetBar.LabelX();
             this.lblMsg = new DevComponents.DotNetBar.LabelX();
             this.groupPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTempDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtADDate)).BeginInit();
             this.groupPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtBirthday)).BeginInit();
@@ -96,15 +103,21 @@
             // 
             this.groupPanel3.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel3.Controls.Add(this.txtTempNumber);
+            this.groupPanel3.Controls.Add(this.txtTempDesc);
+            this.groupPanel3.Controls.Add(this.dtTempDate);
+            this.groupPanel3.Controls.Add(this.labelX25);
+            this.groupPanel3.Controls.Add(this.labelX29);
+            this.groupPanel3.Controls.Add(this.labelX30);
             this.groupPanel3.Controls.Add(this.txtADDocNo);
             this.groupPanel3.Controls.Add(this.dtADDate);
             this.groupPanel3.Controls.Add(this.labelX9);
             this.groupPanel3.Controls.Add(this.labelX8);
             this.groupPanel3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupPanel3.Location = new System.Drawing.Point(3, 444);
+            this.groupPanel3.Location = new System.Drawing.Point(6, 449);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(510, 73);
+            this.groupPanel3.Size = new System.Drawing.Size(510, 117);
             // 
             // 
             // 
@@ -138,6 +151,148 @@
             this.groupPanel3.TabIndex = 4;
             this.groupPanel3.Text = "核准資料";
             this.groupPanel3.Click += new System.EventHandler(this.groupPanel3_Click);
+            // 
+            // txtTempNumber
+            // 
+            // 
+            // 
+            // 
+            this.txtTempNumber.Border.Class = "TextBoxBorder";
+            this.txtTempNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtTempNumber.Location = new System.Drawing.Point(350, 65);
+            this.txtTempNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTempNumber.Name = "txtTempNumber";
+            this.txtTempNumber.Size = new System.Drawing.Size(140, 23);
+            this.txtTempNumber.TabIndex = 114;
+            // 
+            // txtTempDesc
+            // 
+            // 
+            // 
+            // 
+            this.txtTempDesc.Border.Class = "TextBoxBorder";
+            this.txtTempDesc.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.txtTempDesc.Location = new System.Drawing.Point(100, 67);
+            this.txtTempDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTempDesc.Name = "txtTempDesc";
+            this.txtTempDesc.Size = new System.Drawing.Size(140, 23);
+            this.txtTempDesc.TabIndex = 115;
+            // 
+            // dtTempDate
+            // 
+            // 
+            // 
+            // 
+            this.dtTempDate.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtTempDate.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
+            this.dtTempDate.ButtonDropDown.Visible = true;
+            this.dtTempDate.DefaultInputValues = false;
+            this.dtTempDate.IsPopupCalendarOpen = false;
+            this.dtTempDate.Location = new System.Drawing.Point(97, 40);
+            this.dtTempDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtTempDate.MonthCalendar.BackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.DayNames = new string[] {
+        "日",
+        "一",
+        "二",
+        "三",
+        "四",
+        "五",
+        "六"};
+            this.dtTempDate.MonthCalendar.DisplayMonth = new System.DateTime(2010, 10, 1, 0, 0, 0, 0);
+            this.dtTempDate.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtTempDate.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.Class = "";
+            this.dtTempDate.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.dtTempDate.MonthCalendar.TodayButtonVisible = true;
+            this.dtTempDate.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
+            this.dtTempDate.Name = "dtTempDate";
+            this.dtTempDate.Size = new System.Drawing.Size(140, 23);
+            this.dtTempDate.TabIndex = 113;
+            // 
+            // labelX25
+            // 
+            this.labelX25.AutoSize = true;
+            this.labelX25.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX25.BackgroundStyle.Class = "";
+            this.labelX25.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX25.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX25.ForeColor = System.Drawing.Color.Black;
+            this.labelX25.Location = new System.Drawing.Point(285, 67);
+            this.labelX25.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX25.Name = "labelX25";
+            this.labelX25.Size = new System.Drawing.Size(60, 21);
+            this.labelX25.TabIndex = 116;
+            this.labelX25.Text = "臨編字號";
+            this.labelX25.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX29
+            // 
+            this.labelX29.AutoSize = true;
+            this.labelX29.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX29.BackgroundStyle.Class = "";
+            this.labelX29.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX29.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX29.ForeColor = System.Drawing.Color.Black;
+            this.labelX29.Location = new System.Drawing.Point(33, 67);
+            this.labelX29.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX29.Name = "labelX29";
+            this.labelX29.Size = new System.Drawing.Size(60, 21);
+            this.labelX29.TabIndex = 117;
+            this.labelX29.Text = "臨編學統";
+            this.labelX29.TextAlignment = System.Drawing.StringAlignment.Far;
+            // 
+            // labelX30
+            // 
+            this.labelX30.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX30.BackgroundStyle.Class = "";
+            this.labelX30.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX30.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX30.ForeColor = System.Drawing.Color.Black;
+            this.labelX30.Location = new System.Drawing.Point(29, 40);
+            this.labelX30.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelX30.Name = "labelX30";
+            this.labelX30.Size = new System.Drawing.Size(64, 19);
+            this.labelX30.TabIndex = 118;
+            this.labelX30.Text = "臨編日期";
+            this.labelX30.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // txtADDocNo
             // 
@@ -1271,7 +1426,7 @@
             // 
             this.lblMsg.BackgroundStyle.Class = "";
             this.lblMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMsg.Location = new System.Drawing.Point(4, 520);
+            this.lblMsg.Location = new System.Drawing.Point(6, 573);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.Size = new System.Drawing.Size(510, 39);
             this.lblMsg.TabIndex = 5;
@@ -1290,8 +1445,10 @@
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UpdateRecordInfo02";
-            this.Size = new System.Drawing.Size(515, 560);
+            this.Size = new System.Drawing.Size(515, 624);
             this.groupPanel3.ResumeLayout(false);
+            this.groupPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTempDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtADDate)).EndInit();
             this.groupPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtBirthday)).EndInit();
@@ -1360,5 +1517,11 @@
         private DevComponents.DotNetBar.LabelX lblMsg;
         private DevComponents.DotNetBar.Controls.TextBoxX txtOverseasChineseStudentCountryCode;
         private DevComponents.DotNetBar.LabelX labelX26;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTempNumber;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTempDesc;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtTempDate;
+        private DevComponents.DotNetBar.LabelX labelX25;
+        private DevComponents.DotNetBar.LabelX labelX29;
+        private DevComponents.DotNetBar.LabelX labelX30;
     }
 }
