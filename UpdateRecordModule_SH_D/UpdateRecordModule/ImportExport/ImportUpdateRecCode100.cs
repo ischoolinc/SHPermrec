@@ -31,7 +31,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
             // 取得異動資料
             Dictionary<string, List<SHUpdateRecordRecord>> UpdateRecs = new Dictionary<string, List<SHUpdateRecordRecord>>();
             wizard.PackageLimit = 3000;
-            wizard.ImportableFields.AddRange("班別", "特殊身份代碼", "異動科別", "年級", "異動學號", "異動姓名", "身分證號", "註1", "異動代碼", "異動日期", "原因及事項", "新學號", "更正後資料", "舊班別", "舊科別代碼", "備查日期", "備查文號", "核准日期", "核准文號", "備註");
+            wizard.ImportableFields.AddRange("班別", "特殊身份代碼", "異動科別", "年級", "異動學號", "異動姓名", "身分證號", "註1", "異動代碼", "異動日期", "原因及事項", "新學號", "更正後資料", "舊班別", "舊科別代碼", "備查日期", "備查文號","原臨編日期","原臨編學統","原臨編字號", "核准日期", "核准文號", "臨編日期", "臨編學統", "臨編字號", "備註");
             wizard.RequiredFields.AddRange("異動代碼", "異動日期");
             wizard.ValidateStart += delegate(object sender, SmartSchool.API.PlugIn.Import.ValidateStartEventArgs e)
             {
@@ -70,8 +70,8 @@ namespace UpdateRecordModule_SH_D.ImportExport
 
             wizard.ValidateRow += delegate(object sender, SmartSchool.API.PlugIn.Import.ValidateRowEventArgs e)
             {
-                int i = 0;
-                DateTime dt;
+                
+                //DateTime dt;
                 // 檢查學生是否存在
                 SHStudentRecord studRec = null;
                 if (Students.ContainsKey(e.Data.ID))
@@ -135,9 +135,10 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 e.ErrorFields.Add(field, "日期錯誤!");                                
                             }
                             
-                            break;
-
+                            break;                        
                         case "備查日期":
+                        case "原臨編日期":
+                        case "臨編日期":
                         case "核准日期":
                             DateTime dtC2;
                             if (value.Trim() != "")
@@ -324,6 +325,20 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 case "備查文號":
                                     updateRec.LastADNumber = value;
                                     break;
+                                // 原臨編日期
+                                case "原臨編日期":
+                                    DateTime dt4;
+                                    if (DateTime.TryParse(value, out dt4))
+                                        updateRec.OriginalTempDate = dt4.ToShortDateString();
+                                    break;
+                                // 原臨編學統
+                                case "原臨編學統":
+                                    updateRec.OriginalTempDesc = value;
+                                    break;
+                                // 原臨編字號
+                                case "原臨編字號":
+                                    updateRec.OriginalTempNumber = value;
+                                    break;
                                 // 核准日期
                                 case "核准日期":
                                     DateTime dt3;
@@ -333,6 +348,20 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 // 核准文號
                                 case "核准文號":
                                     updateRec.ADNumber = value;
+                                    break;
+                                // 臨編日期
+                                case "臨編日期":
+                                    DateTime dt5;
+                                    if (DateTime.TryParse(value, out dt5))
+                                        updateRec.TempDate = dt5.ToShortDateString();
+                                    break;
+                                // 臨編學統
+                                case "臨編學統":
+                                    updateRec.TempDesc = value;
+                                    break;
+                                // 臨編字號
+                                case "臨編字號":
+                                    updateRec.TempNumber = value;
                                     break;
                                 // 備註
                                 case "備註":

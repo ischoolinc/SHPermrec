@@ -395,12 +395,13 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         /// </summary>
         /// <param name="wb"></param>
         /// <param name="name"></param>
+        
         private void ReportSaveExcel(Workbook wb, string name)
         {
             try
             {
-                string filename = Application.StartupPath + "\\Reports\\" + name + ".xls";
-                wb.Save(filename, FileFormatType.Excel2003);
+                string filename = Application.StartupPath + "\\Reports\\" + name + ".xlsx";
+                wb.Save(filename, FileFormatType.Xlsx);
                 System.Diagnostics.Process.Start(filename);
             }
             catch(Exception ex)

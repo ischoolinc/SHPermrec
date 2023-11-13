@@ -14,6 +14,7 @@ namespace UpdateRecordModule_SH_D
 {
     public class utility
     {
+        
         public static void ExportXls(string inputReportName, Workbook inputXls)
         {
             string reportName = inputReportName;
@@ -21,7 +22,7 @@ namespace UpdateRecordModule_SH_D
             string path = Path.Combine(Application.StartupPath, "Reports");
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            path = Path.Combine(path, reportName + ".xls");
+            path = Path.Combine(path, reportName + ".xlsx");
 
             Workbook wb = inputXls;
 
@@ -41,20 +42,20 @@ namespace UpdateRecordModule_SH_D
 
             try
             {
-                wb.Save(path, Aspose.Cells.FileFormatType.Excel2003);
+                wb.Save(path, Aspose.Cells.FileFormatType.Xlsx);
                 System.Diagnostics.Process.Start(path);
             }
             catch
             {
                 SaveFileDialog sd = new SaveFileDialog();
                 sd.Title = "另存新檔";
-                sd.FileName = reportName + ".xls";
-                sd.Filter = "Excel檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+                sd.FileName = reportName + ".xlsx";
+                sd.Filter = "Excel檔案 (*.xlsx)|*.xlsx|所有檔案 (*.*)|*.*";
                 if (sd.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        wb.Save(sd.FileName, Aspose.Cells.FileFormatType.Excel2003);
+                        wb.Save(sd.FileName, Aspose.Cells.FileFormatType.Xlsx);
 
                     }
                     catch

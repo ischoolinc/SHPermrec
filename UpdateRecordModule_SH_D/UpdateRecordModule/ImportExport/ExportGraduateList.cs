@@ -40,10 +40,16 @@ namespace UpdateRecordModule_SH_D.ImportExport
             _ExportList.Add("異動身分證註記");
             _ExportList.Add("備查日期");
             _ExportList.Add("備查文號");
+            _ExportList.Add("原臨編日期");
+            _ExportList.Add("原臨編學統");
+            _ExportList.Add("原臨編字號");
             _ExportList.Add("最後異動代碼");
             _ExportList.Add("畢業證書字號");
             _ExportList.Add("核准日期");
             _ExportList.Add("核准文號");
+            _ExportList.Add("臨編日期");
+            _ExportList.Add("臨編學統");
+            _ExportList.Add("臨編字號");
             _ExportList.Add("特殊身分代碼");
             _ExportList.Add("應畢業學年度");
             _ExportList.Add("狀態");
@@ -93,10 +99,16 @@ namespace UpdateRecordModule_SH_D.ImportExport
                                 case "異動性別": row.Add(field, rec.Gender); break;
                                 case "備查日期": row.Add(field, rec.LastADDate); break;
                                 case "備查文號": row.Add(field, rec.LastADNumber); break;
+                                case "原臨編日期": row.Add(field, rec.OriginalTempDate); break;
+                                case "原臨編學統": row.Add(field, rec.OriginalTempDesc); break;
+                                case "原臨編字號": row.Add(field, rec.OriginalTempNumber); break;
                                 case "最後異動代碼": row.Add(field, rec.LastUpdateCode); break;
                                 case "畢業證書字號": row.Add(field, rec.GraduateCertificateNumber); break;
                                 case "核准日期": row.Add(field, rec.ADDate); break;
                                 case "核准文號": row.Add(field, rec.ADNumber); break;
+                                case "臨編日期": row.Add(field, rec.TempDate); break;
+                                case "臨編學統": row.Add(field, rec.TempDesc); break;
+                                case "臨編字號": row.Add(field, rec.TempNumber); break;
                                 case "狀態":
                                     if (StudentStatusDict.ContainsKey(rec.StudentID))
                                         row.Add(field, StudentStatusDict[rec.StudentID]); break;

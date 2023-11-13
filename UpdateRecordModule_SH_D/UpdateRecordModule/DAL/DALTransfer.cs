@@ -7,6 +7,11 @@ using SHSchool.Data;
 using System.Xml;
 using System.Text.RegularExpressions;
 using FISCA.DSAUtil;
+using System.Data;
+using FISCA.Data;
+using UpdateRecordModule_SH_D.BL;
+using K12.Data;
+using System.Windows.Forms;
 
 namespace UpdateRecordModule_SH_D.DAL
 {
@@ -94,7 +99,7 @@ namespace UpdateRecordModule_SH_D.DAL
         //}
 
         /// <summary>
-        /// 將異動 SHDAL 資料轉換成名冊用 Rec
+        /// 將異動 SHDAL 資料轉換成名冊用 Rec 
         /// </summary>
         /// <param name="recList"></param>
         /// <returns></returns>
@@ -103,11 +108,14 @@ namespace UpdateRecordModule_SH_D.DAL
             List<BL.StudUpdateRecDoc> StudRecList = new List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>();
 
             Dictionary<string, string> deptCodeDict = new Dictionary<string, string>();
+            Dictionary<string, string> deptGroupNameDict = new Dictionary<string, string>();
             foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
             {
                 if (!deptCodeDict.ContainsKey(rec.FullName))
                     deptCodeDict.Add(rec.FullName, rec.Code);
-
+                if (rec.RefDeptGroupID!="")
+                    if (!deptGroupNameDict.ContainsKey(rec.FullName))
+                        deptGroupNameDict.Add(rec.FullName, SHDeptGroup.SelectByID(rec.RefDeptGroupID).Name);
                 //if (!deptCodeDict.ContainsKey(rec.Name))
                 //    deptCodeDict.Add(rec.Name, rec.Code);
             }
@@ -116,6 +124,10 @@ namespace UpdateRecordModule_SH_D.DAL
             foreach (SHUpdateRecordRecord rec in recList)
             {
                 BL.StudUpdateRecDoc studUrec = new UpdateRecordModule_SH_D.BL.StudUpdateRecDoc();
+                if (deptGroupNameDict.ContainsKey(rec.Department))
+                    studUrec.DeptGroupName = deptGroupNameDict[rec.Department];
+                else
+                    studUrec.DeptGroupName = "";
                 studUrec.UpdateDescription = rec.UpdateDescription;
                 studUrec.UpdateDate = rec.UpdateDate;
                 studUrec.UpdateCode = rec.UpdateCode;
@@ -185,8 +197,12 @@ namespace UpdateRecordModule_SH_D.DAL
                 studUrec.Comment2 = rec.Comment2;
                 studUrec.GraduateDocument = rec.GraduateDocument;
                 studUrec.ExpectGraduateSchoolYear = rec.ExpectGraduateSchoolYear;
-
-
+                studUrec.origin_temp_date = rec.OriginalTempDate;
+                studUrec.origin_temp_desc = rec.OriginalTempDesc;
+                studUrec.origin_temp_number = rec.OriginalTempNumber;
+                studUrec.temp_date = rec.TempDate;
+                studUrec.temp_desc = rec.TempDesc;
+                studUrec.temp_number = rec.TempNumber;
                 StudRecList.Add(studUrec);
             }
             return StudRecList;
@@ -203,7 +219,7 @@ namespace UpdateRecordModule_SH_D.DAL
 
             List<XElement> dataElms = (from elm in XmlElms.Elements("清單") select elm).ToList();
 
-            int depIdx = 0;
+            //int depIdx = 0;
             foreach (XElement d1Elm in dataElms)
             {
                 // 取得年級與科別
@@ -338,6 +354,16 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "核准文號":
                                 studUpdateRec.ADNumber = val.Value;
                                 break;
+                            case "臨編日期":
+                                studUpdateRec.temp_date = val.Value;
+                                break;
+
+                            case "臨編學統":
+                                studUpdateRec.temp_desc = val.Value;
+                                break;
+                            case "臨編字號":
+                                studUpdateRec.temp_number = val.Value;
+                                break;
                             case "舊科別代碼":
                                 studUpdateRec.OldDepartmentCode = val.Value;
                                 break;
@@ -353,7 +379,16 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "備查文號":
                                 studUpdateRec.LastADNumber = val.Value;
                                 break;
+                            case "原臨編日期":
+                                studUpdateRec.origin_temp_date = val.Value;
+                                break;
 
+                            case "原臨編學統":
+                                studUpdateRec.origin_temp_desc = val.Value;
+                                break;
+                           case "原臨編字號":
+                                studUpdateRec.origin_temp_number = val.Value;
+                                break;
                             case "原就讀學校":
                             case "轉入前學生資料_學校":
                                 studUpdateRec.PreviousSchool = val.Value;
@@ -424,7 +459,6 @@ namespace UpdateRecordModule_SH_D.DAL
                             case "申請結束日期": studUpdateRec.Code71EndDate = val.Value; break;
                             case "實際開始日期": studUpdateRec.Code72BeginDate = val.Value; break;
                             case "實際結束日期": studUpdateRec.Code72EndDate = val.Value; break;
-
                             case "雙重學籍編號": studUpdateRec.ReplicatedSchoolRollNumber = val.Value; break;
                             case "建教僑生專班學生國別": studUpdateRec.OverseasChineseStudentCountryCode = val.Value; break;
                         }
@@ -455,25 +489,90 @@ namespace UpdateRecordModule_SH_D.DAL
         /// 將 StudUpdateRecDoc List 轉成 XML
         /// </summary>
         /// <returns></returns>
-        public static XElement ConvertStudUpdateRecDocToXML(List<BL.StudUpdateRecDoc> updateRecList)
+        public static XElement ConvertStudUpdateRecDocToXML(List<BL.StudUpdateRecDoc> updateRecList,string PeopleFrom)
         {
             // 排序年級與科別
             //var data = from ud in updateRecList orderby;
+            DataTable CoverDataTable = new DataTable();
+            List<string> dataDeptCode = new List<string>();
+            List<string> DataDeptGroup = new List<string>();
             Dictionary<string, List<BL.StudUpdateRecDoc>> data = new Dictionary<string, List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>>();
             Dictionary<string, string> deptCodeDict = new Dictionary<string, string>();
+            Dictionary<string, StudUpdateRecCoverRec> CoverData = new Dictionary<string, StudUpdateRecCoverRec>();
+            StudUpdateRecCoverRec CoverRecR = new StudUpdateRecCoverRec();
+            int tempYear;
+            //查詢出前三年名冊封面資料
+            if (int.TryParse(Global._GSchoolYear, out tempYear))
+                tempYear = tempYear - 2;
+            else 
+                tempYear =int.Parse( K12.Data.School.DefaultSchoolYear)-2;
+            string StrSql = @"
+            SELECT 
+                 ID
+                 , school_year
+                 , semester
+                 , ad_date AS 核准日期
+                 ,名冊類別
+                 ,臨編日期 
+	             ,NULLIF(array_to_string(xpath('//清單/@年級', CoverContent),''),'') As 年級
+	             ,NULLIF(array_to_string(xpath('//清單/@班別', CoverContent),''),'') As 班別 
+	             ,NULLIF(array_to_string(xpath('//清單/@科別代碼', CoverContent),''),'') As 科別代碼
+                 ,NULLIF(array_to_string(xpath('//清單/@科別', CoverContent),''),'') As 科別名稱
+	             ,(0||array_to_string(xpath('//異動名冊封面/@核定班數', CoverContent),'')) As 核定班數 
+	             ,(0||array_to_string(xpath('//異動名冊封面/@核定學生數', CoverContent),'')) As 核定學生數
+                 ,(0||array_to_string(xpath('//異動名冊封面/@實招班數', CoverContent),'')) As 實招班數
+                 ,(0||array_to_string(xpath('//異動名冊封面/@實招新生數', CoverContent),'')) As 實招新生數
+	             ,(0||array_to_string(xpath('//異動名冊封面/@現有學生數', CoverContent),'')) As 現有學生數 
+	             ,(0||array_to_string(xpath('//異動名冊封面/@輔導延修學生數', CoverContent), ''))  As 輔導延修學生數
+	             ,(0||array_to_string(xpath('//異動名冊封面/@未申請延修學生數', CoverContent),''))  As 未申請延修學生數
+            FROM (
+                SELECT
+                      ID
+                    , school_year
+                    , semester
+                    , ad_date
+                    ,  NULLIF(array_to_string(xpath('/root/異動名冊/@類別', xmlparse(content concat('<root>', content , '</root>'))), ''),'')   AS 名冊類別
+                   , NULLIF(array_to_string(xpath('/root/異動名冊/@臨編日期', xmlparse(content concat('<root>', content , '</root>'))), ''),'') AS 臨編日期 
+                    , UNNEST (xpath('//異動名冊/清單', xmlparse(content content)))  AS CoverContent
+                 FROM
+                      update_Record_batch)
+	             AS Update_Record_Batch
+	         WHERE school_year >= " + tempYear.ToString();
+            if (Global._GUpdateBatchType.Contains("延修生"))
+                StrSql += "and 名冊類別 in ('延修生學籍異動名冊_2021版','延修生畢業名冊_2021版','延修生名冊_2021版')";
+            else
+                StrSql += "and 名冊類別 in ('新生名冊_2021版', '學籍異動名冊_2021版', '轉入學生名冊_2021版')";
+        
+            if (PeopleFrom== "核准日期")             
+                StrSql+= " ORDER BY  核准日期 DESC, 臨編日期 DESC";
+            else
+                StrSql += " ORDER BY 臨編日期 DESC, 核准日期 DESC";
 
-            foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
-            {
-                if (!deptCodeDict.ContainsKey(rec.FullName))
-                    deptCodeDict.Add(rec.FullName, rec.Code);
+            QueryHelper queryHelper = new QueryHelper(); //宣告SQL工具
 
-                //if (!deptCodeDict.ContainsKey(rec.Name))
-                //    deptCodeDict.Add(rec.Name, rec.Code);
-            }
+            //// debug (將SQL放到檔案再開啟)
+            //string fiPath = Application.StartupPath + @"\sql1.sql";
+            //using (System.IO.StreamWriter fi = new System.IO.StreamWriter(fiPath))
+            //{
+            //    fi.WriteLine(StrSql);
+            //}
 
+
+            CoverDataTable = queryHelper.Select(StrSql); 
+
+            
+            //依科別年級班級類別分類異動記錄
+            string key;
             foreach (BL.StudUpdateRecDoc val in updateRecList)
             {
-                string key = val.GradeYear + "_" + val.Department + "_" + val.ClassType;
+                //延修生年級依應畢業年度來記錄，封面人數的年級亦是
+                //記錄異動名冊內的科別代碼
+                if (!dataDeptCode.Contains(val.DeptCode))
+                    dataDeptCode.Add(val.DeptCode);
+                if (Global._GUpdateBatchType.Contains("延修生"))
+                    key = val.ExpectGraduateSchoolYear + "_" + val.DeptCode + "_" + val.ClassType;
+                else
+                   key = val.GradeYear + "_" + val.DeptCode + "_" + val.ClassType;
                 if (data.ContainsKey(key))
                     data[key].Add(val);
                 else
@@ -483,18 +582,77 @@ namespace UpdateRecordModule_SH_D.DAL
                     data.Add(key, xx);
                 }
             }
+            foreach (SHDepartmentRecord rec in SHDepartment.SelectAll())
+            {
+                //記錄名冊上同部別之科別代碼，以利製作名冊封面
+                if (dataDeptCode.Contains(rec.Code))
+                    if (!DataDeptGroup.Contains(rec.RefDeptGroupID))
+                        DataDeptGroup.Add(rec.RefDeptGroupID);
+                else
+                    if (DataDeptGroup.Contains(rec.RefDeptGroupID))
+                       if (!dataDeptCode.Contains(rec.Code))
+                           dataDeptCode.Add(rec.Code);
+                if (!deptCodeDict.ContainsKey(rec.Code))
+                    deptCodeDict.Add(rec.Code, rec.FullName);
 
-            #region  2021-10 因調整XML結構，故先註解「找舊名冊封面填入」的程式碼
+                //if (!deptCodeDict.ContainsKey(rec.Name))
+                //    deptCodeDict.Add(rec.Name, rec.Code);
+            }
+            //依科別年級班級類別分類異動封面記錄
+            foreach (DataRow drl in CoverDataTable.Rows)
+            {
+                //同部別科別封面資料再列入
+                if (dataDeptCode.Contains(drl["科別代碼"].ToString()))
+                {
+                    //延修生年級依應畢業年度來記錄，封面人數的年級亦是,異動名冊不同年度,年級必須升級
+                    key = "";
+                    if (Global._GUpdateBatchType.Contains("延修生"))
+                        key = drl["年級"].ToString() + "_" + drl["科別代碼"].ToString() + "_" + drl["班別"].ToString();
+                    else
+                    {
+                        if (int.TryParse(drl["年級"].ToString(), out tempYear) )
+                            if (int.TryParse(Global._GSchoolYear,out tempYear))
+                                if (int.TryParse(drl["school_year"].ToString(),out tempYear))
+                                         key = (int.Parse(drl["年級"].ToString()) + (int.Parse(Global._GSchoolYear) - int.Parse(drl["school_year"].ToString()))).ToString() + "_" + drl["科別代碼"].ToString() + "_" + drl["班別"].ToString();
+                    }
+                    if (key != "")
+                    {
+                        CoverRecR = new StudUpdateRecCoverRec();
+                        CoverRecR.DeptCode = drl["科別代碼"].ToString();
+                        CoverRecR.Department = drl["科別名稱"].ToString();
+                        CoverRecR.ClassType = drl["班別"].ToString();
+                        CoverRecR.ApprovedClassCount = drl["核定班數"].ToString();
+                        CoverRecR.ApprovedStudentCount = drl["核定學生數"].ToString();
+                        CoverRecR.ActualClassCount = drl["實招班數"].ToString();
+                        CoverRecR.ActualStudentCount = drl["實招新生數"].ToString();
+                        if (drl["名冊類別"].ToString() == "新生名冊_2021版")
+                            CoverRecR.OriginalStudentCount = drl["實招新生數"].ToString();
+                        else
+                            CoverRecR.OriginalStudentCount = drl["現有學生數"].ToString();
+                        CoverRecR.NonApplyExtendedStudentCount = drl["未申請延修學生數"].ToString();
+                        CoverRecR.TutoringExtendedStudentCount = drl["輔導延修學生數"].ToString();
+                        CoverRecR.ReportType = drl["名冊類別"].ToString();
+                        //延修生年級依應畢業年度來記錄，封面人數的年級亦是,異動名冊不同年度,年級必須升級
+                        if (Global._GUpdateBatchType.Contains("延修生"))
+                            CoverRecR.grYear = drl["年級"].ToString();
+                        else
+                            CoverRecR.grYear = (int.Parse(drl["年級"].ToString()) + (int.Parse(Global._GSchoolYear) - int.Parse(drl["school_year"].ToString()))).ToString();
+                        if (!CoverData.ContainsKey(key))
+                            CoverData.Add(key, CoverRecR);
+                    }
+                }
+            }
+            //#region  2021-10 因調整XML結構，故先註解「找舊名冊封面填入」的程式碼
 
-            //2018/02/09 穎驊新增
-            //若本次異動名冊為初次產生，則尋找之前對應的異動名冊，將相關資料帶到封面
+            ////2018/02/09 穎驊新增
+            ////若本次異動名冊為初次產生，則尋找之前對應的異動名冊，將相關資料帶到封面
 
             //List<SHUpdateRecordBatchRecord> recBatch_list = new List<SHUpdateRecordBatchRecord>();
 
-            ////當學年度的
-            ////List<SHUpdateRecordBatchRecord> recBatch_list = SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear), int.Parse(Global._GSemester));
+            //////當學年度的
+            //recBatch_list = SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear), int.Parse(Global._GSemester));
 
-            //以現在的學年度往回去翻最多兩學年
+            ////以現在的學年度往回去翻最多兩學年
             //for (int schoolyear_index = 0; schoolyear_index < 2; schoolyear_index++)
             //{
             //    recBatch_list.AddRange(SHUpdateRecordBatch.SelectBySchoolYearAndSemester(int.Parse(Global._GSchoolYear) - schoolyear_index, int.Parse(Global._GSemester)));
@@ -511,7 +669,7 @@ namespace UpdateRecordModule_SH_D.DAL
             //    }
             //}
 
-            #endregion
+            //#endregion
 
             XElement retVal = new XElement("異動名冊");
             retVal.SetAttributeValue("學年度", Global._GSchoolYear);
@@ -520,6 +678,9 @@ namespace UpdateRecordModule_SH_D.DAL
             retVal.SetAttributeValue("學校代號", Global._GSchoolCode);
             retVal.SetAttributeValue("學校名稱", Global._GSchoolName);
             retVal.SetAttributeValue("類別", Global._GUpdateBatchType);
+            retVal.SetAttributeValue("臨編日期", Global._TempDate);
+            retVal.SetAttributeValue("臨編學統", Global._TempDesc);
+            retVal.SetAttributeValue("臨編字號", Global._TempNumber);
 
             foreach (KeyValuePair<string, List<BL.StudUpdateRecDoc>> val in data)
             {
@@ -531,16 +692,16 @@ namespace UpdateRecordModule_SH_D.DAL
                 //
                 string[] strArray = val.Key.Split('_');
                 string grYear = strArray[0];
-                string DeptName = strArray[1];
+                string DeptCode = strArray[1];
                 string classType = strArray[2];
                 //
 
-                string DeptCode = "";
-                if (deptCodeDict.ContainsKey(DeptName))
-                    DeptCode = deptCodeDict[DeptName];
+                string DeptName = "";
+                if (deptCodeDict.ContainsKey(DeptCode))
+                    DeptName = deptCodeDict[DeptCode];
 
 
-                XElement elmGrDept = new XElement("清單");
+                XElement elmGrDept = new XElement("清單");                
                 elmGrDept.SetAttributeValue("年級", grYear);
                 elmGrDept.SetAttributeValue("科別", DeptName);
                 elmGrDept.SetAttributeValue("科別代碼", DeptCode);
@@ -585,10 +746,16 @@ namespace UpdateRecordModule_SH_D.DAL
                     elm.SetAttributeValue("國中畢業學年度", rec.GraduateSchoolYear);
                     elm.SetAttributeValue("核准日期", rec.ADDate);
                     elm.SetAttributeValue("核准文號", rec.ADNumber);
+                    elm.SetAttributeValue("臨編日期", rec.temp_date);
+                    elm.SetAttributeValue("臨編學統", rec.temp_desc);
+                    elm.SetAttributeValue("臨編字號", rec.temp_number);
                     elm.SetAttributeValue("舊科別代碼", rec.OldDepartmentCode);
                     elm.SetAttributeValue("舊班別", rec.OldClassType);
                     elm.SetAttributeValue("備查日期", rec.LastADDate);
                     elm.SetAttributeValue("備查文號", rec.LastADNumber);
+                    elm.SetAttributeValue("原臨編日期", rec.origin_temp_date);
+                    elm.SetAttributeValue("原臨編學統", rec.origin_temp_desc);
+                    elm.SetAttributeValue("原臨編字號", rec.origin_temp_number);
                     elm.SetAttributeValue("原就讀學校", rec.PreviousSchool);
                     elm.SetAttributeValue("原就讀學號", rec.PreviousStudentNumber);
                     elm.SetAttributeValue("原就讀科別", rec.PreviousDepartment);
@@ -599,7 +766,11 @@ namespace UpdateRecordModule_SH_D.DAL
                     elm.SetAttributeValue("最後異動代碼", rec.LastUpdateCode);
                     elm.SetAttributeValue("最後異動代號", rec.LastUpdateCode);
                     elm.SetAttributeValue("畢業證書字號", rec.GraduateCertificateNumber);
-                    elm.SetAttributeValue("年級", rec.GradeYear);
+                    //延修生年級依應畢業年度來記錄，封面人數的年級亦是
+                    if (Global._GUpdateBatchType.Contains("延修生"))
+                        elm.SetAttributeValue("年級", rec.ExpectGraduateSchoolYear);
+                    else
+                       elm.SetAttributeValue("年級", rec.GradeYear);
                     elm.SetAttributeValue("新資料", rec.NewData);
                     elm.SetAttributeValue("異動編號", rec.URID);
                     elm.SetAttributeValue("學生編號", rec.StudentID);
@@ -641,7 +812,29 @@ namespace UpdateRecordModule_SH_D.DAL
                 //XElement elmGrDeptCover = AutoGenerateCover(Global._GUpdateBatchType, Global._GSchoolYear, grYear, DeptCode, recBatch_list);
 
                 // 因異動封面名冊結構調整，故暫不帶入過去的封面資料
-                XElement elmGrDeptCover = AutoGenerateCover2021(Global._GUpdateBatchType);
+                //2023/09/11 金鳳新增
+                //填封面資料
+                //傳入 封面種類、目前學年、年級、科別代碼、近期的(三年內)所有異動名冊
+                //延修生名冊年級依應畢業年度
+                if (CoverData.ContainsKey(val.Key))
+                    CoverRecR = CoverData[val.Key];
+                else
+                {
+                    CoverRecR = new StudUpdateRecCoverRec();
+                    CoverRecR.ActualClassCount = "0";
+                    CoverRecR.ActualStudentCount = "0";
+                    CoverRecR.ApprovedClassCount = "0";
+                    CoverRecR.ApprovedStudentCount = "0";
+                    CoverRecR.ClassType = classType;                                
+                    CoverRecR.Department = DeptName;
+                    CoverRecR.DeptCode = DeptCode;
+                    CoverRecR.grYear = grYear;                    
+                    CoverRecR.NonApplyExtendedStudentCount = "0";
+                    CoverRecR.OriginalStudentCount = "0";
+                    CoverRecR.TutoringExtendedStudentCount = "0";
+                    CoverRecR.ReportType = "";
+                }
+                XElement elmGrDeptCover = AutoGenerateCover2021(Global._GUpdateBatchType, Global._GSchoolYear, grYear, DeptCode, CoverRecR, val.Value);
 
 
                 //加入封面
@@ -649,7 +842,40 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 retVal.Add(elmGrDept);
             }
-            return retVal;
+            //加入沒有異動紀錄之封面資料
+            foreach (KeyValuePair<string, StudUpdateRecCoverRec> val in CoverData)
+            { 
+                if (!data.ContainsKey(val.Key))
+                {
+                    //
+                    string[] strArray = val.Key.Split('_');
+                    string grYear = strArray[0];
+                    string DeptCode = strArray[1];
+                    string classType = strArray[2];
+                    //
+
+                    string DeptName = "";
+                    if (deptCodeDict.ContainsKey(DeptCode))
+                        DeptName = deptCodeDict[DeptCode];
+
+
+                    XElement elmGrDept = new XElement("清單");
+                    elmGrDept.SetAttributeValue("年級", grYear);
+                    elmGrDept.SetAttributeValue("科別", DeptName);
+                    elmGrDept.SetAttributeValue("科別代碼", DeptCode);
+                    elmGrDept.SetAttributeValue("科別代號", DeptCode);
+                    elmGrDept.SetAttributeValue("班別", classType);
+                    
+                    CoverRecR = val.Value;
+                    XElement elmGrDeptCover = AutoGenerateCover2021(Global._GUpdateBatchType, Global._GSchoolYear, grYear, DeptCode, CoverRecR,new  List < UpdateRecordModule_SH_D.BL.StudUpdateRecDoc > ());
+
+                    //加入封面
+                    elmGrDept.Add(elmGrDeptCover);
+
+                    retVal.Add(elmGrDept);
+                }
+            }
+                return retVal;
         }
 
 
@@ -662,10 +888,12 @@ namespace UpdateRecordModule_SH_D.DAL
                 return null;
 
             BL.StudUpdateRecBatchRec surbr = new UpdateRecordModule_SH_D.BL.StudUpdateRecBatchRec();
+            //SHUpdateRecordBatchRecord recBatch = SHUpdateRecordBatch.SelectByID(ID);
             SHUpdateRecordBatchRecord recBatch = SHUpdateRecordBatch.SelectByID(ID);
             surbr.ID = recBatch.ID;
             surbr.ADDate = recBatch.ADDate;
             surbr.ADNumber = recBatch.ADNumber;
+            
             surbr.Name = recBatch.Name;
             surbr.SchoolYear = recBatch.SchoolYear;
             surbr.Semester = recBatch.Semester;
@@ -689,6 +917,16 @@ namespace UpdateRecordModule_SH_D.DAL
                     case "類別":
                         surbr.UpdateType = xx.Value;
                         break;
+                    case "臨編日期":
+                        if (DateTime.TryParse(xx.Value,out DateTime abc))
+                            surbr.TempDate = DateTime.Parse(xx.Value);
+                        break;
+                    case "臨編學統":
+                        surbr.TempDesc = xx.Value;
+                        break;
+                    case "臨編字號":
+                        surbr.TempNumber = xx.Value;
+                        break;
                 }
             }
             return surbr;
@@ -698,7 +936,7 @@ namespace UpdateRecordModule_SH_D.DAL
         /// 儲存異動名冊
         /// </summary>
         /// <param name="StudUpdateRecBRec"></param>
-        public static void SetStudUpdateRecBatchRec(BL.StudUpdateRecBatchRec StudUpdateRecBRec, bool isInsert)
+        public static void SetStudUpdateRecBatchRec(BL.StudUpdateRecBatchRec StudUpdateRecBRec, bool isInsert,string PeopleFrom)
         {
             SHUpdateRecordBatchRecord shurbr = new SHUpdateRecordBatchRecord();
 
@@ -708,6 +946,9 @@ namespace UpdateRecordModule_SH_D.DAL
             {
                 shurbr.ADDate = StudUpdateRecBRec.ADDate;
                 shurbr.ADNumber = StudUpdateRecBRec.ADNumber;
+                Global._TempDate = StudUpdateRecBRec.TempDate.ToString();
+                Global._TempDesc = StudUpdateRecBRec.TempDesc;
+                Global._TempNumber = StudUpdateRecBRec.TempNumber;
                 Global._GSchoolCode = K12.Data.School.Code;
                 Global._GSchoolName = K12.Data.School.ChineseName;
                 Global._GUpdateBatchType = StudUpdateRecBRec.UpdateType;
@@ -716,8 +957,10 @@ namespace UpdateRecordModule_SH_D.DAL
                 Global._GDocName = StudUpdateRecBRec.Name;
 
                 // 將 XElement 轉型 XmlElement
-                shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(StudUpdateRecBRec.StudUpdateRecDocList).CreateReader()) as XmlElement;
-
+                shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(StudUpdateRecBRec.StudUpdateRecDocList, PeopleFrom).CreateReader()) as XmlElement;
+                shurbr.Content.SetAttribute("臨編日期", StudUpdateRecBRec.TempDate.ToString());
+                shurbr.Content.SetAttribute("臨編學統", StudUpdateRecBRec.TempDesc);
+                shurbr.Content.SetAttribute("臨編字號", StudUpdateRecBRec.TempNumber);
                 shurbr.ID = StudUpdateRecBRec.ID;
                 shurbr.Name = StudUpdateRecBRec.Name;
                 shurbr.SchoolYear = StudUpdateRecBRec.SchoolYear;
@@ -730,6 +973,9 @@ namespace UpdateRecordModule_SH_D.DAL
             {
                 shurbr.ADDate = StudUpdateRecBRec.ADDate;
                 shurbr.ADNumber = StudUpdateRecBRec.ADNumber;
+                Global._TempDate = StudUpdateRecBRec.TempDate.ToString();
+                Global._TempDesc = StudUpdateRecBRec.TempDesc;
+                Global._TempNumber = StudUpdateRecBRec.TempNumber;
                 Global._GSchoolCode = K12.Data.School.Code;
                 Global._GSchoolName = K12.Data.School.ChineseName;
                 Global._GUpdateBatchType = StudUpdateRecBRec.UpdateType;
@@ -743,7 +989,9 @@ namespace UpdateRecordModule_SH_D.DAL
                 doc.LoadXml(SHUpdateRecordBatch.SelectByID(StudUpdateRecBRec.ID).Content.InnerXml);
 
                 shurbr.Content = doc.DocumentElement;
-
+                shurbr.Content.SetAttribute("臨編日期", StudUpdateRecBRec.TempDate.ToString());
+                shurbr.Content.SetAttribute("臨編學統", StudUpdateRecBRec.TempDesc);
+                shurbr.Content.SetAttribute("臨編字號", StudUpdateRecBRec.TempNumber);
                 shurbr.ID = StudUpdateRecBRec.ID;
                 shurbr.Name = StudUpdateRecBRec.Name;
                 shurbr.SchoolYear = StudUpdateRecBRec.SchoolYear;
@@ -804,8 +1052,24 @@ namespace UpdateRecordModule_SH_D.DAL
         {
             // 取得異動 ID            
             List<SHUpdateRecordRecord> updateRecs = SHUpdateRecord.SelectByIDs(studURIDList);
+            List<SHUpdateRecordRecord> updateRecsLast = new List<SHUpdateRecordRecord>();
             foreach (SHUpdateRecordRecord rec in updateRecs)
             {
+                updateRecsLast = SHUpdateRecord.SelectByStudentID(rec.StudentID);
+                //更正該生之前的最後備查文號及備查日期                
+                //若使用者輸入錯的文號日期影響了之前的異動,若使用者更正後可以一併更正
+                if (rec.ADNumber != "")
+                     {
+                    foreach (SHUpdateRecordRecord recStu in updateRecsLast)
+                    {
+                        if (recStu.LastADDate == rec.ADDate && recStu.LastADNumber == rec.ADNumber)
+                        {
+                            recStu.LastADDate = ADDate;
+                            recStu.LastADNumber = ADNumber;
+                            SHUpdateRecord.Update(recStu);
+                        }
+                    }
+                }
                 rec.ADDate = ADDate;
                 rec.ADNumber = ADNumber;
             }
@@ -813,7 +1077,38 @@ namespace UpdateRecordModule_SH_D.DAL
             // 更新異動資料
             SHUpdateRecord.Update(updateRecs);
         }
+        public static void SetStudsUpdateRecTempData(string TempDate,string TempDesc, string TempNumber, List<string> studURIDList)
+        {
+            // 取得異動 ID            
+            List<SHUpdateRecordRecord> updateRecs = SHUpdateRecord.SelectByIDs(studURIDList);
+            List<SHUpdateRecordRecord> updateRecsLast = new List<SHUpdateRecordRecord>();
+            
+                foreach (SHUpdateRecordRecord rec in updateRecs)
+                {
+                    updateRecsLast = SHUpdateRecord.SelectByStudentID(rec.StudentID);
+                //更正該生之前的最後備查文號及備查日期                
+                //若使用者輸入錯的文號日期影響了之前的異動,若使用者更正後可以一併更正
+                if (rec.TempNumber != "")
+                {
+                    foreach (SHUpdateRecordRecord recStu in updateRecsLast)
+                    {
+                        if (recStu.OriginalTempDate == rec.TempDate && recStu.OriginalTempNumber == rec.TempNumber)
+                        {
+                            recStu.OriginalTempDate = TempDate;
+                            recStu.OriginalTempNumber = TempNumber;
+                            recStu.OriginalTempDesc = TempDesc;
+                            SHUpdateRecord.Update(recStu);
+                        }
+                    }
+                }
+                rec.TempDate = TempDate;
+                rec.TempDesc = TempDesc;
+                rec.TempNumber = TempNumber;
+            }
 
+            // 更新異動資料
+            SHUpdateRecord.Update(updateRecs);
+        }
 
         /// <summary>
         /// 將報表 XML 轉成報表用 List
@@ -936,6 +1231,14 @@ namespace UpdateRecordModule_SH_D.DAL
 
                 // 備查文號
                 val.LastADNum = GetNumAndSrt2(Record.GetAttribute("備查文號"));
+                // 原臨編日期
+                val.origin_temp_date = GetBirthdateWithoutSlash(Record.GetAttribute("原臨編日期"));
+
+                // 原臨編學統
+                val.origin_temp_desc = Record.GetAttribute("原臨編學統");
+
+                // 原臨編字號
+                val.origin_temp_number = Record.GetAttribute("原臨編字號");
 
                 // 畢業證書字號
                 val.GraduateCertificateNumber = Record.GetAttribute("畢業證書字號");
@@ -1277,7 +1580,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     if (!hasOldUpdateRecordBatchRecord)
                     {
                         uploadTime = new DateTime();
-
+                        int tempYear = 0;
                         foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
                         {
                             System.Xml.XmlElement source;
@@ -1297,7 +1600,8 @@ namespace UpdateRecordModule_SH_D.DAL
 
                                 // 如果要找對照的新生名冊 一年級找 當學年 - (1-1 ) 的學年 的新生名冊 、二年級找 當學年 - (2-1 ) 的學年 的新生名冊 三年級找 當學年 - (3-1 ) 的學年 的新生名冊
                                 // ex : 現在學年度107-1 二年級 建立異動名冊時要找新生名冊 ， 要去找106 學年度時的新生名冊資料
-                                if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
+                                if (int.TryParse(schoolYear,out tempYear) && int.TryParse(gradeYear, out tempYear) && int.TryParse(school_year, out tempYear))
+                                            if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
                                 {
                                     foreach (XmlNode list in source.SelectNodes("清單"))
                                     {
@@ -1340,6 +1644,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     elmGrDeptCover.SetAttributeValue("名冊別", "4");
                     elmGrDeptCover.SetAttributeValue("班別", "");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("更正學生數", "");
                     elmGrDeptCover.SetAttributeValue("核定班數", "");
                     elmGrDeptCover.SetAttributeValue("核定學生數", "");
                     elmGrDeptCover.SetAttributeValue("實招班數", "");
@@ -1381,9 +1686,11 @@ namespace UpdateRecordModule_SH_D.DAL
                                     {
                                         foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                         {
-                                            elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                                            //110學年度畢業生名冊改為8
+                                            elmGrDeptCover.SetAttributeValue("名冊別", "8");
                                             elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
                                             elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                            elmGrDeptCover.SetAttributeValue("更正學生數", "");
                                             elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
                                             elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
                                             elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
@@ -1408,7 +1715,7 @@ namespace UpdateRecordModule_SH_D.DAL
                         foreach (SHUpdateRecordBatchRecord batch_record in recBatch_list)
                         {
                             System.Xml.XmlElement source;
-
+                            int tempYear = 0;
                             source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
 
                             string school_code = source.SelectSingleNode("@學校代號").InnerText;
@@ -1424,7 +1731,8 @@ namespace UpdateRecordModule_SH_D.DAL
 
                                 // 如果要找對照的新生名冊 一年級找 當學年 - (1-1 ) 的學年 的新生名冊 、二年級找 當學年 - (2-1 ) 的學年 的新生名冊 三年級找 當學年 - (3-1 ) 的學年 的新生名冊
                                 // ex : 現在學年度107-1 二年級 建立異動名冊時要找新生名冊 ， 要去找106 學年度時的新生名冊資料
-                                if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
+                                if (int.TryParse(schoolYear, out tempYear) && int.TryParse(gradeYear, out tempYear) && int.TryParse(school_year, out tempYear))
+                                    if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
                                 {
                                     foreach (XmlNode list in source.SelectNodes("清單"))
                                     {
@@ -1432,9 +1740,11 @@ namespace UpdateRecordModule_SH_D.DAL
                                         {
                                             foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                                             {
-                                                elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                                                //110學年度畢業生名冊別更正為8
+                                                elmGrDeptCover.SetAttributeValue("名冊別", "8");
                                                 elmGrDeptCover.SetAttributeValue("班別", st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText : "");
                                                 elmGrDeptCover.SetAttributeValue("上傳類別", st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "");
+                                                elmGrDeptCover.SetAttributeValue("更正學生數", "");
                                                 elmGrDeptCover.SetAttributeValue("核定班數", st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "");
                                                 elmGrDeptCover.SetAttributeValue("核定學生數", st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "");
                                                 elmGrDeptCover.SetAttributeValue("實招班數", st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "");
@@ -1449,11 +1759,6 @@ namespace UpdateRecordModule_SH_D.DAL
                             }
                         }
                     }
-
-
-
-
-
                     break;
 
                 case "延修生畢業名冊":
@@ -1514,7 +1819,7 @@ namespace UpdateRecordModule_SH_D.DAL
                             System.Xml.XmlElement source;
 
                             source = (XmlElement)batch_record.Content.SelectSingleNode("異動名冊");
-
+                            int tempYear;
                             string school_code = source.SelectSingleNode("@學校代號").InnerText;
                             string school_year = source.SelectSingleNode("@學年度").InnerText;
                             string school_semester = source.SelectSingleNode("@學期").InnerText;
@@ -1528,7 +1833,8 @@ namespace UpdateRecordModule_SH_D.DAL
 
                                 // 如果要找對照的新生名冊 一年級找 當學年 - (1-1 ) 的學年 的新生名冊 、二年級找 當學年 - (2-1 ) 的學年 的新生名冊 三年級找 當學年 - (3-1 ) 的學年 的新生名冊
                                 // ex : 現在學年度107-1 二年級 建立異動名冊時要找新生名冊 ， 要去找106 學年度時的新生名冊資料
-                                if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
+                                if (int.TryParse(schoolYear, out tempYear) && int.TryParse(gradeYear, out tempYear) && int.TryParse(school_year, out tempYear))
+                                    if (int.Parse(schoolYear) - (int.Parse(gradeYear) - 1) == int.Parse(school_year))
                                 {
                                     foreach (XmlNode list in source.SelectNodes("清單"))
                                     {
@@ -1580,7 +1886,7 @@ namespace UpdateRecordModule_SH_D.DAL
                     //rptBuild = new TemporaryStudentList();
 
                     #region 基本值
-                    elmGrDeptCover.SetAttributeValue("名冊別", "a");
+                    elmGrDeptCover.SetAttributeValue("名冊別", "b");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
                     elmGrDeptCover.SetAttributeValue("因參加國家代表隊選手培集訓申請借讀學生數", "");
                     elmGrDeptCover.SetAttributeValue("因災害申請借讀學生數", "");
@@ -1589,11 +1895,6 @@ namespace UpdateRecordModule_SH_D.DAL
                     #endregion
                     break;
             }
-
-
-
-
-
 
             return elmGrDeptCover;
         }
@@ -1605,117 +1906,186 @@ namespace UpdateRecordModule_SH_D.DAL
         /// 因改XML結構的關係，舊的異動名冊和新的異動名冊封面結構不一樣，若要傳入之前的封面資料，會爆掉，故先只填入封面基本值
         /// <param name="_GUpdateBatchType"></param>
         /// <returns></returns>
-        private static XElement AutoGenerateCover2021(string _GUpdateBatchType)
+        private static XElement AutoGenerateCover2021(string _GUpdateBatchType, string schoolYear, string gradeYear, string deptCode, StudUpdateRecCoverRec CoverRecR, List< BL.StudUpdateRecDoc> lstUpdRec)
         {
-            XElement elmGrDeptCover = new XElement("異動名冊封面");
+            XElement elmGrDeptCover = new XElement("異動名冊封面");            
+            int PeopleAdd = 0;
+            int PeopleRed = 0;
+            int PeopleCor = 0;
+            int PeopleAdd1 = 0;
+            int PeopleAdd2 = 0;
+            int PeopleNow = 0;
+            int PeopleOrignP = 0;
+            if (!int.TryParse(CoverRecR.OriginalStudentCount, out PeopleOrignP))
+                PeopleOrignP=0;
 
+            List<string> PeopleRedNo = new List<string>() { "371", "372", "375", "377", "380" };            
             switch (_GUpdateBatchType)
             {
-                case "新生名冊_2021版":
-
+                case "新生名冊_2021版":                    
                     elmGrDeptCover.SetAttributeValue("名冊別", "1");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
                     elmGrDeptCover.SetAttributeValue("核定班數", "");
                     elmGrDeptCover.SetAttributeValue("核定學生數", "");
                     elmGrDeptCover.SetAttributeValue("實招班數", "");
-                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
+                    elmGrDeptCover.SetAttributeValue("實招新生數", lstUpdRec.Count);
                     elmGrDeptCover.SetAttributeValue("註1", "");
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "延修生學籍異動名冊_2021版":
+                   foreach (BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "1" || UpdRec.UpdateCode.Substring(0, 1) == "2")
+                            PeopleAdd += 1;
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "4")
+                            PeopleCor += 1;
+                        if (!PeopleRedNo.Contains(UpdRec.UpdateCode) && UpdRec.UpdateCode.Substring(0, 1) == "3")
+                            PeopleRed += 1;
+                    }
+                    PeopleNow = PeopleOrignP - PeopleRed + PeopleAdd;
                     elmGrDeptCover.SetAttributeValue("名冊別", "6");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
-                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("減少學生數", "");
-                    elmGrDeptCover.SetAttributeValue("更正學生數", "");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", gradeYear);                   
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", CoverRecR.TutoringExtendedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", CoverRecR.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("減少學生數", PeopleRed.ToString());
+                    elmGrDeptCover.SetAttributeValue("更正學生數", PeopleCor.ToString());
+                    elmGrDeptCover.SetAttributeValue("現有學生數",PeopleNow.ToString());
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
-                case "學籍異動名冊_2021版":
+                case "學籍異動名冊_2021版": 
+                    foreach(BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "1" || UpdRec.UpdateCode.Substring(0, 1)=="2")
+                            PeopleAdd += 1;
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "4")
+                            PeopleCor += 1;
+                        if (!PeopleRedNo.Contains(UpdRec.UpdateCode) && UpdRec.UpdateCode.Substring(0, 1) == "3")
+                            PeopleRed += 1;
+                    }
+                    PeopleNow = PeopleOrignP - PeopleRed + PeopleAdd;
                     elmGrDeptCover.SetAttributeValue("名冊別", "3");
-                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("核定班數", "");
-                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
-                    elmGrDeptCover.SetAttributeValue("實招班數", "");
-                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("增加學生數", "");
-                    elmGrDeptCover.SetAttributeValue("減少學生數", "");
-                    elmGrDeptCover.SetAttributeValue("更正學生數", "");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");                    
+                    elmGrDeptCover.SetAttributeValue("核定班數", CoverRecR.ApprovedClassCount);
+                    elmGrDeptCover.SetAttributeValue("核定學生數", CoverRecR.ApprovedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("實招班數", CoverRecR.ActualClassCount);
+                    elmGrDeptCover.SetAttributeValue("實招新生數", CoverRecR.ActualStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", CoverRecR.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("增加學生數", PeopleAdd.ToString());
+                    elmGrDeptCover.SetAttributeValue("減少學生數", PeopleRed.ToString());
+                    elmGrDeptCover.SetAttributeValue("更正學生數", PeopleCor.ToString());
+                    elmGrDeptCover.SetAttributeValue("現有學生數", PeopleNow.ToString());  
                     elmGrDeptCover.SetAttributeValue("註1", "");
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "畢業名冊_2021版":
-                    elmGrDeptCover.SetAttributeValue("名冊別", "4");
+                    elmGrDeptCover.SetAttributeValue("名冊別", "8");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("核定班數", "");
-                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
-                    elmGrDeptCover.SetAttributeValue("實招班數", "");
-                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("畢業學生數", "");
+                    elmGrDeptCover.SetAttributeValue("核定班數", CoverRecR.ApprovedClassCount);
+                    elmGrDeptCover.SetAttributeValue("核定學生數", CoverRecR.ApprovedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("實招班數", CoverRecR.ActualClassCount);
+                    elmGrDeptCover.SetAttributeValue("實招新生數", CoverRecR.ActualStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", CoverRecR.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("畢業學生數", lstUpdRec.Count);
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
-                    break;
-
+                  
+                    break;                
                 case "延修生畢業名冊_2021版":
                     elmGrDeptCover.SetAttributeValue("名冊別", "7");
-                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", gradeYear);
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
-                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("畢業學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", CoverRecR.TutoringExtendedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", CoverRecR.NonApplyExtendedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", CoverRecR.OriginalStudentCount);
+                    PeopleNow = PeopleOrignP - lstUpdRec.Count;
+                    elmGrDeptCover.SetAttributeValue("現有學生數", PeopleNow.ToString());
+                    elmGrDeptCover.SetAttributeValue("畢業學生數", lstUpdRec.Count);
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "延修生名冊_2021版":
+                    foreach (BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "1" || UpdRec.UpdateCode.Substring(0, 1) == "2")
+                            PeopleAdd += 1;                        
+                    }
+                    PeopleNow = PeopleOrignP + PeopleAdd;
                     elmGrDeptCover.SetAttributeValue("名冊別", "5");
-                    elmGrDeptCover.SetAttributeValue("應畢業學年度", "");
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", gradeYear);
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", "");
-                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("增加學生數", "");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", CoverRecR.TutoringExtendedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", CoverRecR.NonApplyExtendedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", CoverRecR.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("增加學生數", PeopleAdd);
+                    elmGrDeptCover.SetAttributeValue("現有學生數", PeopleNow.ToString());
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
                 case "轉入學生名冊_2021版":
+                    foreach (BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode.Substring(0, 1) == "1" || UpdRec.UpdateCode.Substring(0, 1) == "2")
+                            PeopleAdd += 1;
+                    }
+                    PeopleNow = PeopleOrignP + PeopleAdd;
                     elmGrDeptCover.SetAttributeValue("名冊別", "2");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("核定班數", "");
-                    elmGrDeptCover.SetAttributeValue("核定學生數", "");
-                    elmGrDeptCover.SetAttributeValue("實招班數", "");
-                    elmGrDeptCover.SetAttributeValue("實招新生數", "");
-                    elmGrDeptCover.SetAttributeValue("原有學生數", "");
-                    elmGrDeptCover.SetAttributeValue("轉入學生數", "");
-                    elmGrDeptCover.SetAttributeValue("現有學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("核定班數", CoverRecR.ApprovedClassCount);
+                    elmGrDeptCover.SetAttributeValue("核定學生數", CoverRecR.ApprovedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("實招班數", CoverRecR.ActualClassCount);
+                    elmGrDeptCover.SetAttributeValue("實招新生數", CoverRecR.ActualStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數",CoverRecR.OriginalStudentCount );
+                    elmGrDeptCover.SetAttributeValue("轉入學生數", PeopleAdd.ToString());
+                    elmGrDeptCover.SetAttributeValue("現有學生數", PeopleNow.ToString());
                     elmGrDeptCover.SetAttributeValue("註1", "");
+                    elmGrDeptCover.SetAttributeValue("備註說明", "");                    
+                    break;
+
+                case "新生保留錄取資格名冊_2021版":                    
+                    foreach (BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode == "601" || UpdRec.UpdateCode == "602")
+                            PeopleAdd += 1;
+                        if (UpdRec.UpdateCode == "603" )
+                            PeopleAdd1 += 1;
+                        if (UpdRec.UpdateCode == "604")
+                            PeopleAdd2 += 1;
+                    }
+                    elmGrDeptCover.SetAttributeValue("名冊別", "a");
+                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("因病須長期療養或懷孕申請保留學生數", PeopleAdd);
+                    elmGrDeptCover.SetAttributeValue("因服兵役申請保留學生數", PeopleAdd1);
+                    elmGrDeptCover.SetAttributeValue("因病申請保留錄取資格期間復受徵召服役者申請學生數", PeopleAdd2);
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
 
-                case "新生保留錄取資格名冊_2021版":
+                case "借讀學生名冊_2021版":                    
+                    foreach (BL.StudUpdateRecDoc UpdRec in lstUpdRec)
+                    {
+                        if (UpdRec.UpdateCode == "703" )
+                            PeopleAdd += 1;
+                        if (UpdRec.UpdateCode == "701")
+                            PeopleAdd1 += 1;
+                        if (UpdRec.UpdateCode == "702")
+                            PeopleAdd2 += 1;
+                    }
                     elmGrDeptCover.SetAttributeValue("名冊別", "a");
                     elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("因病須長期療養或懷孕申請保留學生數", "");
-                    elmGrDeptCover.SetAttributeValue("因服兵役申請保留學生數", "");
-                    elmGrDeptCover.SetAttributeValue("因病申請保留錄取資格期間復受徵召服役者申請學生數", "");
-                    elmGrDeptCover.SetAttributeValue("備註說明", "");
-                    break;
-
-                case "借讀學生名冊_2021版":
-                    elmGrDeptCover.SetAttributeValue("名冊別", "a");
-                    elmGrDeptCover.SetAttributeValue("上傳類別", "");
-                    elmGrDeptCover.SetAttributeValue("因參加國家代表隊選手培集訓申請借讀學生數", "");
-                    elmGrDeptCover.SetAttributeValue("因災害申請借讀學生數", "");
-                    elmGrDeptCover.SetAttributeValue("因適應不良申請借讀學生數", "");
+                    elmGrDeptCover.SetAttributeValue("班別", CoverRecR.ClassType);
+                    elmGrDeptCover.SetAttributeValue("因參加國家代表隊選手培集訓申請借讀學生數", PeopleAdd);
+                    elmGrDeptCover.SetAttributeValue("因災害申請借讀學生數", PeopleAdd1);
+                    elmGrDeptCover.SetAttributeValue("因適應不良申請借讀學生數", PeopleAdd2);
                     elmGrDeptCover.SetAttributeValue("備註說明", "");
                     break;
             }

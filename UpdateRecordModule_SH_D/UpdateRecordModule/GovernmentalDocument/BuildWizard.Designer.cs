@@ -47,6 +47,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelEx3 = new DevComponents.DotNetBar.PanelEx();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cboPeopleFrom = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboItem1 = new DevComponents.Editors.ComboItem();
+            this.comboItem2 = new DevComponents.Editors.ComboItem();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.lblMsg = new DevComponents.DotNetBar.LabelX();
             this.dtEndDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dtBeginDate = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
@@ -54,9 +59,11 @@
             this.btnCreateDoc = new DevComponents.DotNetBar.ButtonX();
             this.btnFW3Exit = new DevComponents.DotNetBar.ButtonX();
             this.listView2 = new SmartSchool.Common.ListViewEX();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -68,7 +75,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lvSorter1 = new IntelliSchool.DSA.ClientFramework.ControlCommunication.LVSorter();
             this.lvViewManager1 = new IntelliSchool.DSA.ClientFramework.ControlCommunication.LVViewManager();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstCourseKind = new DevComponents.DotNetBar.Controls.ListViewEx();
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
             this.panelEx3.SuspendLayout();
@@ -86,6 +94,7 @@
             this.panelEx1.Controls.Add(this.listView1);
             this.panelEx1.Controls.Add(this.label1);
             this.panelEx1.Location = new System.Drawing.Point(12, 14);
+            this.panelEx1.MaximumSize = new System.Drawing.Size(326, 242);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(326, 242);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -280,6 +289,10 @@
             // 
             this.panelEx3.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.panelEx3.Controls.Add(this.lstCourseKind);
+            this.panelEx3.Controls.Add(this.label9);
+            this.panelEx3.Controls.Add(this.cboPeopleFrom);
+            this.panelEx3.Controls.Add(this.labelX1);
             this.panelEx3.Controls.Add(this.lblMsg);
             this.panelEx3.Controls.Add(this.dtEndDate);
             this.panelEx3.Controls.Add(this.dtBeginDate);
@@ -291,8 +304,9 @@
             this.panelEx3.Controls.Add(this.label7);
             this.panelEx3.Controls.Add(this.label6);
             this.panelEx3.Location = new System.Drawing.Point(300, 12);
+            this.panelEx3.MaximumSize = new System.Drawing.Size(1005, 600);
             this.panelEx3.Name = "panelEx3";
-            this.panelEx3.Size = new System.Drawing.Size(734, 510);
+            this.panelEx3.Size = new System.Drawing.Size(1005, 600);
             this.panelEx3.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx3.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx3.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -302,6 +316,54 @@
             this.panelEx3.Style.GradientAngle = 90;
             this.panelEx3.TabIndex = 0;
             // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(533, 576);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(112, 17);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "名冊人數統計來源";
+            // 
+            // cboPeopleFrom
+            // 
+            this.cboPeopleFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboPeopleFrom.DisplayMember = "Text";
+            this.cboPeopleFrom.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboPeopleFrom.FormattingEnabled = true;
+            this.cboPeopleFrom.ItemHeight = 19;
+            this.cboPeopleFrom.Items.AddRange(new object[] {
+            this.comboItem1,
+            this.comboItem2});
+            this.cboPeopleFrom.Location = new System.Drawing.Point(663, 570);
+            this.cboPeopleFrom.Name = "cboPeopleFrom";
+            this.cboPeopleFrom.Size = new System.Drawing.Size(131, 25);
+            this.cboPeopleFrom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cboPeopleFrom.TabIndex = 10;
+            this.cboPeopleFrom.Text = "核准日期";
+            // 
+            // comboItem1
+            // 
+            this.comboItem1.Text = "核准日期";
+            // 
+            // comboItem2
+            // 
+            this.comboItem2.Text = "學統臨編日期";
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(21, 33);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(73, 19);
+            this.labelX1.TabIndex = 9;
+            this.labelX1.Text = "課程類型";
+            // 
             // lblMsg
             // 
             // 
@@ -309,9 +371,9 @@
             // 
             this.lblMsg.BackgroundStyle.Class = "";
             this.lblMsg.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblMsg.Location = new System.Drawing.Point(428, 29);
+            this.lblMsg.Location = new System.Drawing.Point(528, 63);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(269, 23);
+            this.lblMsg.Size = new System.Drawing.Size(318, 23);
             this.lblMsg.TabIndex = 7;
             // 
             // dtEndDate
@@ -324,7 +386,7 @@
             this.dtEndDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtEndDate.ButtonDropDown.Visible = true;
             this.dtEndDate.IsPopupCalendarOpen = false;
-            this.dtEndDate.Location = new System.Drawing.Point(267, 29);
+            this.dtEndDate.Location = new System.Drawing.Point(780, 25);
             // 
             // 
             // 
@@ -383,7 +445,7 @@
             this.dtBeginDate.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtBeginDate.ButtonDropDown.Visible = true;
             this.dtBeginDate.IsPopupCalendarOpen = false;
-            this.dtBeginDate.Location = new System.Drawing.Point(100, 29);
+            this.dtBeginDate.Location = new System.Drawing.Point(613, 25);
             // 
             // 
             // 
@@ -447,7 +509,7 @@
             this.btnCreateDoc.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCreateDoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateDoc.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCreateDoc.Location = new System.Drawing.Point(586, 480);
+            this.btnCreateDoc.Location = new System.Drawing.Point(857, 570);
             this.btnCreateDoc.Name = "btnCreateDoc";
             this.btnCreateDoc.Size = new System.Drawing.Size(65, 23);
             this.btnCreateDoc.TabIndex = 3;
@@ -459,7 +521,7 @@
             this.btnFW3Exit.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnFW3Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFW3Exit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnFW3Exit.Location = new System.Drawing.Point(657, 480);
+            this.btnFW3Exit.Location = new System.Drawing.Point(928, 570);
             this.btnFW3Exit.Name = "btnFW3Exit";
             this.btnFW3Exit.Size = new System.Drawing.Size(65, 23);
             this.btnFW3Exit.TabIndex = 3;
@@ -478,6 +540,7 @@
             this.listView2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.listView2.CheckBoxes = true;
             this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
             this.columnHeader6,
             this.columnHeader5,
             this.columnHeader1,
@@ -489,15 +552,20 @@
             this.columnHeader8});
             this.listView2.FullRowSelect = true;
             this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(12, 63);
+            this.listView2.Location = new System.Drawing.Point(12, 103);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(710, 411);
+            this.listView2.Size = new System.Drawing.Size(1030, 464);
             this.listView2.SmallImageList = this.imageList2;
             this.listView2.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView2.TabIndex = 2;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
             this.listView2.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView2_ItemChecked);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "部別";
+            this.columnHeader10.Width = 120;
             // 
             // columnHeader6
             // 
@@ -512,6 +580,10 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "年級";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "班別";
             // 
             // columnHeader2
             // 
@@ -536,6 +608,7 @@
             // columnHeader8
             // 
             this.columnHeader8.Text = "學生狀態";
+            this.columnHeader8.Width = 80;
             // 
             // imageList2
             // 
@@ -547,7 +620,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(239, 34);
+            this.label8.Location = new System.Drawing.Point(752, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(21, 17);
             this.label8.TabIndex = 0;
@@ -556,7 +629,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 34);
+            this.label7.Location = new System.Drawing.Point(521, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 17);
             this.label7.TabIndex = 0;
@@ -588,18 +661,41 @@
             this.lvViewManager1.EnableTile = false;
             this.lvViewManager1.TargetListView = this.listView2;
             // 
-            // columnHeader9
+            // lstCourseKind
             // 
-            this.columnHeader9.Text = "班別";
+            // 
+            // 
+            // 
+            this.lstCourseKind.Border.Class = "ListViewBorder";
+            this.lstCourseKind.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lstCourseKind.CheckBoxes = true;
+            this.lstCourseKind.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader11});
+            this.lstCourseKind.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lstCourseKind.HideSelection = false;
+            this.lstCourseKind.Location = new System.Drawing.Point(83, 29);
+            this.lstCourseKind.Name = "lstCourseKind";
+            this.lstCourseKind.Size = new System.Drawing.Size(431, 65);
+            this.lstCourseKind.TabIndex = 17;
+            this.lstCourseKind.UseCompatibleStateImageBehavior = false;
+            this.lstCourseKind.View = System.Windows.Forms.View.List;
+            this.lstCourseKind.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lstCourseKind_ItemChecked);
+            this.lstCourseKind.SelectedIndexChanged += new System.EventHandler(this.lstCourseKind_SelectedIndexChanged);
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "課程類型";
+            this.columnHeader11.Width = 200;
             // 
             // BuildWizard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1028, 626);
+            this.ClientSize = new System.Drawing.Size(1302, 646);
             this.Controls.Add(this.panelEx3);
             this.Controls.Add(this.panelEx2);
             this.Controls.Add(this.panelEx1);
             this.DoubleBuffered = true;
+            this.MaximizeBox = true;
             this.Name = "BuildWizard";
             this.Text = "建立名冊";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BuildWizard_FormClosed);
@@ -658,6 +754,14 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private DevComponents.DotNetBar.LabelX lblMsg;
         private System.Windows.Forms.ColumnHeader columnHeader9;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.Label label9;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cboPeopleFrom;
+        private DevComponents.Editors.ComboItem comboItem1;
+        private DevComponents.Editors.ComboItem comboItem2;
+        private DevComponents.DotNetBar.Controls.ListViewEx lstCourseKind;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
     }
 
 }

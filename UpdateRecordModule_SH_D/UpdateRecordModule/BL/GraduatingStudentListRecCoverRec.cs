@@ -34,6 +34,10 @@ namespace UpdateRecordModule_SH_D.BL
         /// </summary>
         public string ClassType { get; set; }
         /// <summary>
+        /// 更正學生數
+        /// </summary>
+        public string ModifiedStudentCount { get; set; }
+        /// <summary>
         /// 上傳類別
         /// </summary>
         public string UpdateType { get; set; }

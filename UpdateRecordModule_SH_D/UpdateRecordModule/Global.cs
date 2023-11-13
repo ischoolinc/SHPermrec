@@ -58,6 +58,19 @@ namespace UpdateRecordModule_SH_D
         /// 學生異動暫存
         /// </summary>
         public static Dictionary<string, string> _StudentUpdateRecordTemp = new Dictionary<string, string>();
+        /// <summary>
+        /// 臨編日期
+        /// </summary>
+        public static string _TempDate { get; set; }
+        /// <summary>
+        /// 臨編學統
+        /// </summary>
+        public static string _TempDesc { get; set; }
+        /// <summary>
+        /// 臨編字號
+        /// </summary>
+        public static string _TempNumber { get; set; }
+
     }
 }
  

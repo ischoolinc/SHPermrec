@@ -42,12 +42,22 @@
       <Validate AutoCorrect="False" Description="「備查日期」格式錯誤。" ErrorType="Error" Validator="合法日期" When="" />
     </Field>
     <Field Required="False" Name="備查文號"></Field>
+    <Field Required="False" Name="原臨編日期" EmptyAlsoValidate="False">
+      <Validate AutoCorrect="False" Description="「原臨編日期」格式錯誤。" ErrorType="Error" Validator="合法日期" When="" />
+    </Field>
+    <Field Required="False" Name="原臨編學統"></Field>
+    <Field Required="False" Name="原臨編字號"></Field>
     <Field Required="False" Name="最後異動代碼"></Field>
     <Field Required="False" Name="畢業證書字號"></Field>
     <Field Required="False" Name="核准日期" EmptyAlsoValidate="False">
       <Validate AutoCorrect="False" Description="「核准日期」格式錯誤。" ErrorType="Error" Validator="合法日期" When="" />
     </Field>
-    <Field Required="False" Name="核准文號"></Field>
+    <Field Required="False" Name="核准文號"></Field>    
+    <Field Required="False" Name="臨編日期" EmptyAlsoValidate="False">
+      <Validate AutoCorrect="False" Description="「臨編日期」格式錯誤。" ErrorType="Error" Validator="合法日期" When="" />
+    </Field>
+    <Field Required="False" Name="臨編學統"></Field>
+    <Field Required="False" Name="臨編字號"></Field>
     <Field Required="False" Name="特殊身分代碼"></Field>
     <Field Required="False" Name="應畢業學年度"></Field>
   </FieldList>

@@ -157,7 +157,7 @@ namespace UpdateRecordModule_SH_D.Batch
 
                     // 性別
                     rec.Gender = _StudentDict[sid].Gender;                    
-
+                    
                     if (_StudLastupdateRecDict.ContainsKey(sid))
                     {
                         // 備查日期
@@ -168,6 +168,12 @@ namespace UpdateRecordModule_SH_D.Batch
 
                         // 最後異動代碼
                         rec.LastUpdateCode = _StudLastupdateRecDict[sid].UpdateCode;
+                        // 原臨編日期
+                        rec.OriginalTempDate = _StudLastupdateRecDict[sid].TempDate;
+                        // 原臨編學統
+                        rec.OriginalTempDesc = _StudLastupdateRecDict[sid].TempDesc;
+                        // 原臨編字號
+                        rec.OriginalTempNumber = _StudLastupdateRecDict[sid].TempNumber;
                     }
                     // 畢業證書字號
                     if (_LeaveInfoRecordDict.ContainsKey(sid))

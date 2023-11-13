@@ -19,10 +19,10 @@ namespace UpdateRecordModule_SH_D.Properties {
     // 類別透過 ResGen 或 Visual Studio 這類工具。
     // 若要加入或移除成員，請編輯您的 .ResX 檔，然後重新執行 ResGen
     // (利用 /str 選項)，或重建您的 VS 專案。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///   傳回這個類別使用的快取的 ResourceManager 執行個體。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("UpdateRecordModule_SH_D.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///   使用這個強類型資源類別的資源查閱。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap btnItemNameList_Image {
+        public static System.Drawing.Bitmap btnItemNameList_Image {
             get {
                 object obj = ResourceManager.GetObject("btnItemNameList_Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap btnItemNameList_Image1 {
+        public static System.Drawing.Bitmap btnItemNameList_Image1 {
             get {
                 object obj = ResourceManager.GetObject("btnItemNameList_Image1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap demographic_reload_64 {
+        public static System.Drawing.Bitmap demographic_reload_64 {
             get {
                 object obj = ResourceManager.GetObject("demographic_reload_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] EnrollmentListTemplate {
+        public static byte[] EnrollmentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("EnrollmentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -103,7 +103,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類似 (圖示) 的類型 System.Drawing.Icon 當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Icon error {
+        public static System.Drawing.Icon error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -113,7 +113,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] ExtendingGraduatingStudentListTemplate {
+        public static byte[] ExtendingGraduatingStudentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("ExtendingGraduatingStudentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -123,7 +123,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] ExtendingStudentListTemplate {
+        public static byte[] ExtendingStudentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("ExtendingStudentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -133,7 +133,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] ExtendingStudentUpdateRecordListTemplate {
+        public static byte[] ExtendingStudentUpdateRecordListTemplate {
             get {
                 object obj = ResourceManager.GetObject("ExtendingStudentUpdateRecordListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -143,7 +143,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] GraduatingStudentListTemplate {
+        public static byte[] GraduatingStudentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("GraduatingStudentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -151,9 +151,19 @@ namespace UpdateRecordModule_SH_D.Properties {
         }
         
         /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        public static byte[] GraduatingStudentListTemplate2023 {
+            get {
+                object obj = ResourceManager.GetObject("GraduatingStudentListTemplate2023", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap history_save_64 {
+        public static System.Drawing.Bitmap history_save_64 {
             get {
                 object obj = ResourceManager.GetObject("history_save_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -177,7 +187,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「學號」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot; /&gt;
         ///    &lt;/Field [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string ImportEnrollmentListVal {
+        public static string ImportEnrollmentListVal {
             get {
                 return ResourceManager.GetString("ImportEnrollmentListVal", resourceCulture);
             }
@@ -200,7 +210,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「學號」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot; /&gt;
         ///    &lt;/Field [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string ImportGraduateListVal {
+        public static string ImportGraduateListVal {
             get {
                 return ResourceManager.GetString("ImportGraduateListVal", resourceCulture);
             }
@@ -223,7 +233,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「學號」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot; /&gt;
         ///    &lt;/Field [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string ImportStudUpdateRecordListVal {
+        public static string ImportStudUpdateRecordListVal {
             get {
                 return ResourceManager.GetString("ImportStudUpdateRecordListVal", resourceCulture);
             }
@@ -246,26 +256,25 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「學號」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot; /&gt;
         ///    &lt;/Field [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string ImportTransferListVal {
+        public static string ImportTransferListVal {
             get {
                 return ResourceManager.GetString("ImportTransferListVal", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查詢類似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;國中代碼&gt;
-        ///	&lt;學校 代碼=&quot;011503&quot; 名稱=&quot;私立裕德國中(小)&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014501&quot; 名稱=&quot;市立板橋國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014503&quot; 名稱=&quot;市立重慶國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014504&quot; 名稱=&quot;市立江翠國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014505&quot; 名稱=&quot;市立中山國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014506&quot; 名稱=&quot;市立新埔國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014507&quot; 名稱=&quot;市立新莊國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014508&quot; 名稱=&quot;市立新泰國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///	&lt;學校 代碼=&quot;014509&quot; 名稱=&quot;市立福營國中&quot; 所在地=&quot;新北市&quot; 所在地代碼= [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///   查詢類似 &lt;國中代碼&gt;
+        ///  &lt;!--&lt;學校 代碼=&quot;010301&quot; 名稱=&quot;國立華僑高級中等學校附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011301&quot; 名稱=&quot;私立淡江高中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011302&quot; 名稱=&quot;私立康橋高中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011306&quot; 名稱=&quot;私立金陵女中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011307&quot; 名稱=&quot;新北市裕德高級中等學校附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011309&quot; 名稱=&quot;財團法人南山高中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011310&quot; 名稱=&quot;財團法人恆毅高中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011311&quot; 名稱=&quot;私立聖心女中附設國中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011312&quot; 名稱=&quot;私 [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string JHSchoolList {
+        public static string JHSchoolList {
             get {
                 return ResourceManager.GetString("JHSchoolList", resourceCulture);
             }
@@ -274,7 +283,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] RetaintoStudentListTemplate {
+        public static byte[] RetaintoStudentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("RetaintoStudentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -282,19 +291,19 @@ namespace UpdateRecordModule_SH_D.Properties {
         }
         
         /// <summary>
-        ///   查詢類似 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;高中代碼&gt;
-        ///  &lt;學校 代碼=&quot;010301&quot; 名稱=&quot;國立華僑中學&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011301&quot; 名稱=&quot;私立淡江高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011302&quot; 名稱=&quot;私立康橋高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011306&quot; 名稱=&quot;私立金陵女中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011309&quot; 名稱=&quot;財團法人南山高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011310&quot; 名稱=&quot;財團法人恆毅高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011311&quot; 名稱=&quot;私立聖心女中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011312&quot; 名稱=&quot;私立崇義高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot;/&gt;
-        ///  &lt;學校 代碼=&quot;011314&quot; 名稱=&quot;財團法人中華高中&quot; 所在地= [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///   查詢類似 &lt;高中代碼&gt;
+        ///  &lt;學校 代碼=&quot;010301&quot; 名稱=&quot;國立華僑高級中等學校&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011301&quot; 名稱=&quot;私立淡江高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011302&quot; 名稱=&quot;私立康橋高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011306&quot; 名稱=&quot;私立金陵女中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011307&quot; 名稱=&quot;新北市裕德高級中等學校&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011309&quot; 名稱=&quot;財團法人南山高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011310&quot; 名稱=&quot;財團法人恆毅高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011311&quot; 名稱=&quot;私立聖心女中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 代碼=&quot;011312&quot; 名稱=&quot;私立崇義高中&quot; 所在地=&quot;新北市&quot; 所在地代碼=&quot;1&quot; /&gt;
+        ///  &lt;學校 [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string SHSchoolList {
+        public static string SHSchoolList {
             get {
                 return ResourceManager.GetString("SHSchoolList", resourceCulture);
             }
@@ -303,7 +312,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] StudentUpdateRecordListTemplate {
+        public static byte[] StudentUpdateRecordListTemplate {
             get {
                 object obj = ResourceManager.GetObject("StudentUpdateRecordListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -313,7 +322,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] TemporaryStudentListTemplate {
+        public static byte[] TemporaryStudentListTemplate {
             get {
                 object obj = ResourceManager.GetObject("TemporaryStudentListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -323,7 +332,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類型 System.Byte[] 的當地語系化資源。
         /// </summary>
-        internal static byte[] TransferringStudentUpdateRecordListTemplate {
+        public static byte[] TransferringStudentUpdateRecordListTemplate {
             get {
                 object obj = ResourceManager.GetObject("TransferringStudentUpdateRecordListTemplate", resourceCulture);
                 return ((byte[])(obj));
@@ -359,7 +368,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         ///    &lt;分類&gt;新生異動&lt;/分類&gt;
         ///  &lt;/ [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string UpdateCode_SHD {
+        public static string UpdateCode_SHD {
             get {
                 return ResourceManager.GetString("UpdateCode_SHD", resourceCulture);
             }
@@ -368,7 +377,7 @@ namespace UpdateRecordModule_SH_D.Properties {
         /// <summary>
         ///   查詢類似 (圖示) 的類型 System.Drawing.Icon 當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Icon warning {
+        public static System.Drawing.Icon warning {
             get {
                 object obj = ResourceManager.GetObject("warning", resourceCulture);
                 return ((System.Drawing.Icon)(obj));

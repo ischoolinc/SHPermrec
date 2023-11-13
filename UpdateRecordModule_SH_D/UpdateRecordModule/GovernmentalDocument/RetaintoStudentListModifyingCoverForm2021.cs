@@ -144,7 +144,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             Global._GSchoolYear = _BRec.SchoolYear.ToString();
             Global._GSemester = _BRec.Semester.ToString();
             Global._GDocName = _BRec.Name;
-
+            Global._TempDate = _BRec.TempDate.ToString();
+            Global._TempDesc = _BRec.TempDesc;
+            Global._TempNumber = _BRec.TempNumber;
             // 將 XElement 轉型 XmlElement
             shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(_BRec.StudUpdateRecDocList).CreateReader()) as XmlElement;
 

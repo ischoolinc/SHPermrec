@@ -70,6 +70,11 @@
     </Field>
     <Field Required="False" Name="核准文號">      
     </Field>
+     <Field Required="False" Name="臨編日期" EmptyAlsoValidate="False">
+      <Validate AutoCorrect="False" Description="「臨編日期」格式錯誤。" ErrorType="Error" Validator="合法日期" When="" />
+    </Field>
+    <Field Required="False" Name="臨編學統"></Field>
+    <Field Required="False" Name="臨編字號"></Field>
 	  <Field Required="False" Name="建教僑生專班學生國別"></Field>
   </FieldList>
   <ValidatorList>

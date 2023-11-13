@@ -165,6 +165,9 @@ namespace UpdateRecordModule_SH_D
                 updateRec.LastADDate = UpdList[0].ADDate;
                 updateRec.LastADNumber = UpdList[0].ADNumber;
                 updateRec.LastUpdateCode =UpdList[0].UpdateCode;
+                updateRec.OriginalTempDate = UpdList[0].TempDate;
+                updateRec.OriginalTempDesc = UpdList[0].TempDesc;
+                updateRec.OriginalTempNumber = UpdList[0].TempNumber;
             }
 
             updateRec.StudentID = studRec.ID;

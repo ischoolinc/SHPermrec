@@ -5,7 +5,7 @@ using System.Xml;
 using Aspose.Cells;
 using System.Linq;
 using UpdateRecordModule_SH_D.BL;
-
+using System.Windows.Forms;
 namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 {
     public class StudentUpdateRecordList2021 : ReportBuilder
@@ -13,17 +13,19 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         List<string> UpdateDataCodes = new List<string>() { "401", "402", "403", "404", "405", "407", "408", "409", "499" };
         //List<string> NewStudentNumberCodes = new List<string>() { "211", "221", "222", "223", "224", "231", "232", "233", "234", "401" };
         List<string> NewStudentNumberCodes = new List<string>() { "211", "212", "221", "222", "223", "224", "225", "226", "231", "232", "233", "234", "237", "238", "239", "240", "241" };
+
+        
         protected override void Build(System.Xml.XmlElement source, string location)
         {
             #region 建立 Excel
 
             //從 Resources 將學籍異動名冊template讀出來
             Workbook template = new Workbook();
-            template.Open(new MemoryStream(Properties.Resources.StudentUpdateRecordListTemplate), FileFormatType.Excel2003);
+            template.Open(new MemoryStream(Properties.Resources.StudentUpdateRecordListTemplate), FileFormatType.Xlsx);
 
             //產生 excel
             Workbook wb = new Aspose.Cells.Workbook();
-            wb.Open(new MemoryStream(Properties.Resources.StudentUpdateRecordListTemplate), FileFormatType.Excel2003);
+            wb.Open(new MemoryStream(Properties.Resources.StudentUpdateRecordListTemplate), FileFormatType.Xlsx);
 
             #endregion
 
@@ -107,7 +109,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                         Range range = template.Worksheets[0].Cells.CreateRange(0, 28, false);
                         int t = j * 28;
                         wb.Worksheets[0].Cells.CreateRange(t, 28, false).Copy(range);
-
+                        wb.Worksheets[0].Cells.CreateRange(t, 28, false).CopyData(range);
+                        wb.Worksheets[0].Cells.CreateRange(t, 28, false).CopyStyle(range);
                         #endregion
 
                         #region 填入學校資料
@@ -182,7 +185,15 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                     wb.Worksheets[0].Cells[rowj, 3].PutValue(st.SelectSingleNode("@姓名").InnerText);
                     wb.Worksheets[0].Cells[rowj, 4].PutValue(st.SelectSingleNode("@身分證號").InnerText);
-                    wb.Worksheets[0].Cells[rowj, 8].PutValue(Util.ConvertDateStr2(st.SelectSingleNode("@備查日期").InnerText) + "\n" + st.SelectSingleNode("@備查文號").InnerText);
+                    //if (st.SelectSingleNode("@原臨編字號").InnerText == "")
+                    //{
+                        wb.Worksheets[0].Cells[rowj, 8].PutValue(Util.ConvertDateStr2(st.SelectSingleNode("@備查日期").InnerText) + "\n" + st.SelectSingleNode("@備查文號").InnerText);
+                    //}
+                    //else
+                    //{
+                    //    wb.Worksheets[0].Cells[rowj, 8].PutValue(Util.ConvertDateStr2(st.SelectSingleNode("@原臨編`日期").InnerText) + "\n" + st.SelectSingleNode("@原臨編學統").InnerText + st.SelectSingleNode("@原臨編字號").InnerText);
+                    //}
+                    
                     wb.Worksheets[0].Cells[rowj, 11].PutValue(st.SelectSingleNode("@異動代號").InnerText);
 
                     //wb.Worksheets[0].Cells[rowj, 12].PutValue(st.SelectSingleNode("@原因及事項").InnerText + (string.IsNullOrEmpty(st.GetAttribute("更正後資料")) ? "" : "\n" + st.GetAttribute("更正後資料")));
@@ -260,7 +271,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     Range range = template.Worksheets[0].Cells.CreateRange(0, 28, false);
                     int t = j * 28;
                     wb.Worksheets[0].Cells.CreateRange(t, 28, false).Copy(range);
-
+                    wb.Worksheets[0].Cells.CreateRange(t, 28, false).CopyData(range);
+                    wb.Worksheets[0].Cells.CreateRange(t, 28, false).CopyStyle(range);
                     #endregion
 
                     #region 填入學校資料
@@ -333,8 +345,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 107新格式 結束行要 有End 字樣
             Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
             //拷貝range_H
-            DyWb.Cells.CreateRange(0, 1, false).Copy(range_H);
-
+            DyWb.Cells.CreateRange(0, 1, false).CopyData(range_H);
+            DyWb.Cells.CreateRange(0, 1, false).CopyStyle(range_H);
             int DyWb_index = 0;
             // 遇到特殊異動代碼要處理
             List<string> spcCode = new List<string>();
@@ -352,7 +364,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             {
                 DyWb_index++;
                 //每增加一行,複製一次
-                DyWb.Cells.CreateRange(DyWb_index, 1, false).Copy(range_R);
+                DyWb.Cells.CreateRange(DyWb_index, 1, false).CopyStyle(range_R);
 
                 //班別
                 DyWb.Cells[DyWb_index, 0].PutValue(rec.ClassType);
@@ -388,13 +400,24 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 // 異動順序
                 DyWb.Cells[DyWb_index, 13].PutValue(rec.Order);
 
-                //備查日期
-                DyWb.Cells[DyWb_index, 14].PutValue(rec.LastADDate);
-                //備查文字
-                DyWb.Cells[DyWb_index, 15].PutValue(rec.LastADDoc);
-                //備查文號
-                DyWb.Cells[DyWb_index, 16].PutValue(rec.LastADNum);
-
+                //if (rec.temp_number == "")
+                //{
+                    //備查日期
+                    DyWb.Cells[DyWb_index, 14].PutValue(rec.LastADDate);
+                    //備查文字
+                    DyWb.Cells[DyWb_index, 15].PutValue(rec.LastADDoc);
+                    //備查文號
+                    DyWb.Cells[DyWb_index, 16].PutValue(rec.LastADNum);
+                //}
+                //else
+                //{
+                //    //原臨編日期
+                //    DyWb.Cells[DyWb_index, 14].PutValue(rec.origin_temp_date);
+                //    //原臨編文字
+                //    DyWb.Cells[DyWb_index, 15].PutValue(rec.origin_temp_desc);
+                //    //原臨編字號
+                //    DyWb.Cells[DyWb_index, 16].PutValue(rec.origin_temp_number);
+                //}
 
                 //更正後資料
                 string strUpdateData = string.Empty;
@@ -438,8 +461,127 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             }
 
             // 資料末底 加End
-            DyWb.Cells.CreateRange(DyWb_index+1, 1, false).Copy(range_R_EndRow);
+            DyWb.Cells.CreateRange(DyWb_index+1, 1, false).CopyData(range_R_EndRow);
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).CopyStyle(range_R_EndRow);
+            DyWb.AutoFitColumns();
+            #endregion
+            #region 學籍異動電子格式_含臨編
+            //範本
+            TemplateWb = wb.Worksheets["電子格式範本_含臨編"];
+            //實做頁面
+            DyWb = wb.Worksheets[wb.Worksheets.Add()];
+            //名稱
+            DyWb.Name = "異動名冊_含臨編";
+            //範圍
+            range_H = TemplateWb.Cells.CreateRange(0, 1, false);
+            range_R = TemplateWb.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
+            //拷貝range_H
+            DyWb.Cells.CreateRange(0, 1, false).CopyData(range_H);
+            DyWb.Cells.CreateRange(0, 1, false).CopyStyle(range_H);
+            DyWb_index = 0;
+            
+            foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data)
+            {
+                DyWb_index++;
+                //每增加一行,複製一次
+                DyWb.Cells.CreateRange(DyWb_index, 1, false).CopyStyle(range_R);
 
+                //班別
+                DyWb.Cells[DyWb_index, 0].PutValue(rec.ClassType);
+                //科別代碼
+                DyWb.Cells[DyWb_index, 1].PutValue(rec.DeptCode);
+
+                // 2 放上傳類別，請使用者自填 
+
+                //學號
+                DyWb.Cells[DyWb_index, 3].PutValue(rec.StudentNumber);
+                //姓名
+                DyWb.Cells[DyWb_index, 4].PutValue(rec.Name);
+                //身分證字號
+                DyWb.Cells[DyWb_index, 5].PutValue(rec.IDNumber);
+
+                //註1
+                DyWb.Cells[DyWb_index, 6].PutValue(rec.Comment1);
+
+                //性別代碼
+                DyWb.Cells[DyWb_index, 7].PutValue(rec.GenderCode);
+                //出生日期
+                DyWb.Cells[DyWb_index, 8].PutValue(rec.Birthday);
+
+                //特殊身份代碼
+                DyWb.Cells[DyWb_index, 9].PutValue(rec.SpecialStatusCode);
+                //年級
+                DyWb.Cells[DyWb_index, 10].PutValue(rec.GradeYear);
+                //異動原因代碼
+                DyWb.Cells[DyWb_index, 11].PutValue(rec.UpdateCode);
+                //異動日期
+                DyWb.Cells[DyWb_index, 12].PutValue(rec.UpdateDate);
+
+                // 異動順序
+                DyWb.Cells[DyWb_index, 13].PutValue(rec.Order);
+
+               
+                //備查日期
+                DyWb.Cells[DyWb_index, 14].PutValue(rec.LastADDate);
+                //備查文字
+                DyWb.Cells[DyWb_index, 15].PutValue(rec.LastADDoc);
+                //備查文號
+                DyWb.Cells[DyWb_index, 16].PutValue(rec.LastADNum);
+               
+                
+                
+
+                //更正後資料
+                string strUpdateData = string.Empty;
+
+                //若是更正後資料有值則填入更正後資料
+                if (!string.IsNullOrEmpty(rec.NewData))
+                    strUpdateData = rec.NewData;
+
+                //若是新學號中有值則填入新學號
+                //判斷strUpdateData是否已有值，若是已有值則加入斷行符號
+                if (!string.IsNullOrEmpty(rec.NewStudNumber))
+                    strUpdateData += string.IsNullOrEmpty(strUpdateData) ? rec.NewStudNumber : "\n" + rec.NewStudNumber;
+
+                DyWb.Cells[DyWb_index, 17].PutValue(strUpdateData);
+
+                // 註2
+                DyWb.Cells[DyWb_index, 18].PutValue(rec.Comment2);
+
+                //雙學籍編號 
+                DyWb.Cells[DyWb_index, 19].PutValue(rec.ReplicatedSchoolRollNumber);
+
+                //建教僑生專班學生異動因素代碼 
+
+                //備註說明
+                DyWb.Cells[DyWb_index, 21].PutValue(rec.Comment);
+                //原臨編日期
+                DyWb.Cells[DyWb_index, 22].PutValue(rec.origin_temp_date);
+                //原臨編文字
+                DyWb.Cells[DyWb_index, 23].PutValue(rec.origin_temp_desc);
+                //原臨編字號
+                DyWb.Cells[DyWb_index, 24].PutValue(rec.origin_temp_number);
+                // 2011 新承辦單位修正，轉科讀取新學號
+                if (NewStudentNumberCodes.Contains(rec.UpdateCode))
+                {
+                    List<string> ids = new List<string>();
+                    ids.Add(rec.StudentID);
+                    SHSchool.Data.SHStudent.RemoveByIDs(ids);
+                    SHSchool.Data.SHStudentRecord studRec = SHSchool.Data.SHStudent.SelectByID(rec.StudentID);
+                    if (studRec != null)
+                        DyWb.Cells[DyWb_index, 3].PutValue(studRec.StudentNumber);
+                    DyWb.Cells[DyWb_index, 17].PutValue("");
+                }
+
+
+
+            }
+
+            // 資料末底 加End
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).CopyData(range_R_EndRow);
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).CopyStyle(range_R_EndRow);
             DyWb.AutoFitColumns();
 
             //範本
@@ -459,8 +601,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
 
             //range_H_Cover
-            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
-
+            cover.Cells.CreateRange(0, 1, false).CopyData(range_H_Cover);
+            cover.Cells.CreateRange(0, 1, false).CopyStyle(range_H_Cover);
             Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
             // 107新格式 結束行要 有End 字樣
             Range range_R_cover_EndRow = TemplateWb_Cover.Cells.CreateRange(2, 1, false);
@@ -472,7 +614,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
                 //每增加一行,複製一次
-                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+                cover.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_cover);
 
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
@@ -541,8 +683,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             }
 
             // 資料末底 加End
-            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
-
+            cover.Cells.CreateRange(cover_row_counter, 1, false).CopyData(range_R_cover_EndRow);
+            cover.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_cover_EndRow);
+            wb.Worksheets.RemoveAt("電子格式範本_含臨編");
             wb.Worksheets.RemoveAt("電子格式範本");
             wb.Worksheets.RemoveAt("異動名冊封面範本");
 
@@ -550,7 +693,16 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
             wb.Worksheets.ActiveSheetIndex = 0;
             //儲存 Excel
-            wb.Save(location, FileFormatType.Excel2003);
+            try
+            {
+                wb.Save(location, SaveFormat.Xlsx);
+                System.Diagnostics.Process.Start(location);
+            }
+            catch
+            {
+                MessageBox.Show("檔案儲存失敗");
+            }
+
         }
 
         private int GYear(string str)

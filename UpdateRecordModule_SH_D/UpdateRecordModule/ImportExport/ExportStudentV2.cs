@@ -385,8 +385,8 @@ namespace UpdateRecordModule_SH_D.ImportExport
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Title = "另存新檔";
-            saveFileDialog1.FileName = "" + _Title + ".xls";
-            saveFileDialog1.Filter = "Excel (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+            saveFileDialog1.FileName = "" + _Title + ".xlsx";
+            saveFileDialog1.Filter = "Excel (*.xlsx)|*.xls|所有檔案 (*.*)|*.*";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 List<string> idlist = new List<string>();
@@ -547,6 +547,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
             SmartSchool.Customization.PlugIn.Global.SetStatusBarMessage("" + e.UserState, e.ProgressPercentage);
         }
 
+        
         void bkwNotPassComputer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             SmartSchool.Customization.PlugIn.Global.SetStatusBarMessage(_Title + " 檔案儲存中。", 100);
@@ -596,8 +597,8 @@ namespace UpdateRecordModule_SH_D.ImportExport
                 {
                     SaveFileDialog sd = new SaveFileDialog();
                     sd.Title = "另存新檔";
-                    sd.FileName = Path.GetFileNameWithoutExtension(path) + ".xls";
-                    sd.Filter = "Excel檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+                    sd.FileName = Path.GetFileNameWithoutExtension(path) + ".xlsx";
+                    sd.Filter = "Excel檔案 (*.xlsx)|*.xlsx|所有檔案 (*.*)|*.*";
                     if (sd.ShowDialog() == DialogResult.OK)
                     {
                         try
@@ -612,7 +613,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
                         }
                     }
                 }
-                report.Save(path, FileFormatType.Excel2003);
+                report.Save(path, FileFormatType.Xlsx);
                 #endregion
                 SmartSchool.Customization.PlugIn.Global.SetStatusBarMessage(_Title + "完成。");
                 if (overLimit)

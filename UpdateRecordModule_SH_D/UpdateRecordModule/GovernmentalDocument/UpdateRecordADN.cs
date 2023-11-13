@@ -62,7 +62,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             }
 
             // 回存名冊
-            DAL.DALTransfer.SetStudUpdateRecBatchRec(GovDoc, false);
+            string PeopleFrom = "";
+            DAL.DALTransfer.SetStudUpdateRecBatchRec(GovDoc, false, PeopleFrom);
 
             // 修改學生身上的相對異動記錄核准日期文號
             DAL.DALTransfer.SetStudsUpdateRecADdata(dtADDate.Value.ToShortDateString(), txtNumber.Text, updateRecIDList);

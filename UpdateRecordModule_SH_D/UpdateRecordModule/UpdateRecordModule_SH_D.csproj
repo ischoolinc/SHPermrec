@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UpdateRecordModule_SH_D</RootNamespace>
     <AssemblyName>UpdateRecordModule_SH_D</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -42,13 +42,14 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\1campus_desktop_x64\modules\SHDayPermrec_D\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,11 +59,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Aspose.Cells, Version=4.3.0.0, Culture=neutral, PublicKeyToken=9a40d5a4b59e5256, processorArchitecture=MSIL">
+    <Reference Include="Aspose.Cells_201402, Version=7.7.1.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\Aspose.Cells.dll</HintPath>
+      <HintPath>..\..\..\..\Ischool_AE\modules\Campus\Aspose.Cells_201402.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Campus.DocumentValidator, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
@@ -165,7 +167,7 @@
       <HintPath>Library\ReportHelper.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SHSchool.Data, Version=2.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SHSchool.Data, Version=2.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\SHSchool.Data.dll</HintPath>
       <Private>False</Private>
@@ -425,6 +427,12 @@
     <Compile Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm2021.Designer.cs">
       <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
     </Compile>
+    <Compile Include="GovernmentalDocument\UpdateRecordTempDN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GovernmentalDocument\UpdateRecordTempDN.Designer.cs">
+      <DependentUpon>UpdateRecordTempDN.cs</DependentUpon>
+    </Compile>
     <Compile Include="GovernmentalDocument\UpdateRecordADN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -550,6 +558,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteUpdateRecordForm.resx">
       <DependentUpon>DeleteUpdateRecordForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\BuildWizard.resx">
       <DependentUpon>BuildWizard.cs</DependentUpon>
@@ -565,6 +574,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.resx">
       <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm2021.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\GraduatingStudentListModifyingCoverForm2021.resx">
       <DependentUpon>GraduatingStudentListModifyingCoverForm2021.cs</DependentUpon>
@@ -586,6 +596,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.resx">
       <DependentUpon>ExtendingStudentUpdateRecordListCoverRecModifyingCoverForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\ExtendingStudentGraduateListCoverRecModifyingCoverForm.resx">
       <DependentUpon>ExtendingStudentGraduateListCoverRecModifyingCoverForm.cs</DependentUpon>
@@ -598,6 +609,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\EnrollmentListModifyingCoverForm.resx">
       <DependentUpon>EnrollmentListModifyingCoverForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\TemporaryStudentListModifyingCoverForm2021.resx">
       <DependentUpon>TemporaryStudentListModifyingCoverForm2021.cs</DependentUpon>
@@ -611,6 +623,9 @@
     <EmbeddedResource Include="GovernmentalDocument\TransferingStudentUpdateRecordListModifyingCoverForm2021.resx">
       <DependentUpon>TransferingStudentUpdateRecordListModifyingCoverForm2021.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GovernmentalDocument\UpdateRecordTempDN.resx">
+      <DependentUpon>UpdateRecordTempDN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\UpdateRecordADN.resx">
       <DependentUpon>UpdateRecordADN.cs</DependentUpon>
     </EmbeddedResource>
@@ -622,8 +637,9 @@
       <DependentUpon>ImportStudentV2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateRecordItem.resx">
       <DependentUpon>UpdateRecordItem.cs</DependentUpon>
@@ -657,20 +673,33 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Resources\EnrollmentListTemplate.xls" />
+    <None Include="Resources\EnrollmentListTemplate.xlsx" />
     <None Include="Resources\ExtendingGraduatingStudentListTemplate.xls" />
+    <None Include="Resources\ExtendingGraduatingStudentListTemplate.xlsx" />
     <None Include="Resources\ExtendingStudentListTemplate.xls" />
+    <None Include="Resources\ExtendingStudentListTemplate.xlsx" />
     <None Include="Resources\ExtendingStudentUpdateRecordListTemplate.xls" />
+    <None Include="Resources\ExtendingStudentUpdateRecordListTemplate.xlsx" />
     <None Include="Resources\GraduatingStudentListTemplate.xls" />
+    <None Include="Resources\GraduatingStudentListTemplate.xlsx" />
+    <None Include="Resources\GraduatingStudentListTemplate2023.xlsx" />
     <None Include="Resources\JHSchoolList.xml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\RetaintoStudentListTemplate.xls" />
+    <None Include="Resources\RetaintoStudentListTemplate.xlsx" />
     <None Include="Resources\StudentUpdateRecordListTemplate.xls" />
+    <None Include="Resources\StudentUpdateRecordListTemplate.xlsx" />
     <None Include="Resources\TemporaryStudentListTemplate.xls" />
+    <None Include="Resources\TemporaryStudentListTemplate.xlsx" />
     <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xls" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xlsx" />
     <None Include="Resources\UpdateCode_SHD.xml">
       <SubType>Designer</SubType>
     </None>
@@ -680,8 +709,8 @@
     <Content Include="ImportExport\ImportGraduateListVal.xml" />
     <Content Include="ImportExport\ImportStudUpdateRecordListVal.xml" />
     <Content Include="ImportExport\ImportTransferListVal.xml" />
-    <Content Include="Library\Aspose.Cells.dll" />
-    <Content Include="Library\Aspose.Cells.xml" />
+    <Content Include="Library\Aspose.Cells_201402.dll" />
+    <Content Include="Library\Aspose.Cells_201402.xml" />
     <Content Include="Library\Campus.DocumentValidator.dll" />
     <Content Include="Library\Campus.DocumentValidator.pdb" />
     <Content Include="Library\Campus.Import.dll" />

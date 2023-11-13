@@ -82,8 +82,7 @@ namespace UpdateRecordModule_SH_D.BL
 
                 case "畢業名冊_2021版":
                     rptBuild = new GraduatingStudentList2021();
-                    break;
-
+                    break;                
                 case "延修生畢業名冊_2021版":
                     rptBuild = new ExtendingStudentGraduateList2021();
                     break;

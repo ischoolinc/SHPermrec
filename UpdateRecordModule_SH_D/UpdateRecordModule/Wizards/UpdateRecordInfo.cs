@@ -13,14 +13,16 @@ using SmartSchool.ApplicationLog;
 using SmartSchool.Common;
 using SmartSchool.Feature;
 using System.Xml.Linq;
-
+//修改本程式注意事項
+//1.新增欄位時，控制項的Tag須設定與Field_name相同
+//2.新增欄位時，Save()程序存檔時須加入 ContextInfo的xml節點內，否則系統將不會儲存
 namespace UpdateRecordModule_SH_D.Wizards
 {
     public enum UpdateRecordType { 學籍異動, 新生異動, 轉入異動, 畢業異動 }
     public enum UpdateRecordAction { Insert, Update, None }
     public partial class UpdateRecordInfo : UserControl
     {
-        private List<string> _DateFields = new List<string>(new string[] { "ADDate", "UpdateDate", "Birthdate", "LastADDate", "PreviousSchoolLastADDate" });
+        private List<string> _DateFields = new List<string>(new string[] { "ADDate", "UpdateDate", "Birthdate", "LastADDate", "PreviousSchoolLastADDate","temp_date", "origin_temp_date" });
 
         private List<string> _NonNullFields = new List<string>(new string[] { "UpdateDate", "UpdateCode" });
 
@@ -389,6 +391,9 @@ namespace UpdateRecordModule_SH_D.Wizards
             _EnChDict.Add("Department", "科別");
             _EnChDict.Add("ADDate", "核准日期");
             _EnChDict.Add("ADNumber", "核准文號");
+            _EnChDict.Add("TempDate", "臨編日期");
+            _EnChDict.Add("TempDesc", "臨編學統");
+            _EnChDict.Add("TempNumber", "臨編字號");
             _EnChDict.Add("UpdateDate", "異動日期");
             _EnChDict.Add("UpdateCode", "異動代號");
             _EnChDict.Add("UpdateDescription", "原因及事項");
@@ -400,6 +405,9 @@ namespace UpdateRecordModule_SH_D.Wizards
             _EnChDict.Add("GradeYear", "年級");
             _EnChDict.Add("LastADDate", "備查日期");
             _EnChDict.Add("LastADNumber", "備查文號");
+            _EnChDict.Add("OriginalTempDate", "原臨編日期");
+            _EnChDict.Add("OriginalTempDesc", "原臨編學統");
+            _EnChDict.Add("OriginalTempNumber", "原臨編字號");
             _EnChDict.Add("Comment", "備註");
             _EnChDict.Add("LastUpdateCode", "最後異動代號");
             _EnChDict.Add("NewStudentNumber", "新學號");
@@ -791,7 +799,32 @@ namespace UpdateRecordModule_SH_D.Wizards
         /// </summary>
         public string GraduateComment { get{ return GetValue("GraduateComment");}  set{ SetValue("GraduateComment",value);} }
         #endregion
-
+        #region 2023年新制增加臨編學統
+        /// <summary>
+        /// 原臨編日期 
+        /// </summary>
+        public string OriginalTempDate { get { return GetValue("OriginalTempDate"); } set { SetValue("OriginalTempDate", value); } }
+        /// <summary>
+        /// 原臨編學統
+        /// </summary>
+        public string OriginalTempDesc { get { return GetValue("OriginalTempDesc"); } set { SetValue("OriginalTempDesc", value); } }
+        /// <summary>
+        /// 原臨編字號
+        /// </summary>
+        public string OriginalTempNumber { get { return GetValue("OriginalTempNumber"); } set { SetValue("OriginalTempNumber", value); } }
+        /// <summary>
+        /// 臨編日期 
+        /// </summary>
+        public string TempDate { get { return GetValue("TempDate"); } set { SetValue("TempDate", value); } }
+        /// <summary>
+        /// 臨編學統
+        /// </summary>
+        public string TempDesc { get { return GetValue("TempDesc"); } set { SetValue("TempDesc", value); } }
+        /// <summary>
+        /// 臨編字號
+        /// </summary>
+        public string TempNumber { get { return GetValue("TempNumber"); } set { SetValue("TempNumber", value); } }
+        #endregion
         #endregion
         public XmlElement GetElement()
         {
@@ -951,7 +984,32 @@ namespace UpdateRecordModule_SH_D.Wizards
             rootElement.AppendChild(infoElement);
 
             #endregion
-
+            #region 2023年新制新增
+            //原臨編日期
+            infoElement = doc.CreateElement("OriginalTempDate");
+            infoElement.InnerText = GetValue("OriginalTempDate");
+            rootElement.AppendChild(infoElement);
+            //原臨編學統
+            infoElement = doc.CreateElement("OriginalTempDesc");
+            infoElement.InnerText = GetValue("OriginalTempDesc");
+            rootElement.AppendChild(infoElement);
+            //原臨編字號
+            infoElement = doc.CreateElement("OriginalTempNumber");
+            infoElement.InnerText = GetValue("OriginalTempNumber");
+            rootElement.AppendChild(infoElement);
+            //臨編日期
+            infoElement = doc.CreateElement("TempDate");
+            infoElement.InnerText = GetValue("TempDate");
+            rootElement.AppendChild(infoElement);
+            //臨編學統
+            infoElement = doc.CreateElement("TempDesc");
+            infoElement.InnerText = GetValue("TempDesc");
+            rootElement.AppendChild(infoElement);
+            //臨編字號
+            infoElement = doc.CreateElement("TempNumber");
+            infoElement.InnerText = GetValue("TempNumber");
+            rootElement.AppendChild(infoElement);
+            #endregion
             return rootElement;
         }
 
@@ -1176,17 +1234,29 @@ namespace UpdateRecordModule_SH_D.Wizards
             DateTime lastADDate = DateTime.MinValue;
             string lastADNumber = "";
             string lastUpdateCode = "";
-
+            DateTime OriginTempDate = DateTime.MinValue;
+            string OriginTempNumber = "";
+            string OriginTempDesc = "";
             foreach (SHUpdateRecordRecord var in SHUpdateRecord.SelectByStudentID(studentRec.ID))
             {
-                DateTime d1;
+                DateTime d1,d2;
                 if (DateTime.TryParse(var.ADDate, out d1) && d1 > lastADDate)
                 {
                     lastADDate = d1;
                     lastADNumber = var.ADNumber;
                     lastUpdateCode = var.UpdateCode;
                 }
+                //原臨編學統
+                if (DateTime.TryParse(var.TempDate, out d2) && d2 > OriginTempDate)
+                {
+                    OriginTempDate = d2;
+                    OriginTempNumber = var.TempNumber;
+                    OriginTempDesc = var.TempDesc;
+                }
             }
+            SetValue("OriginalTempDate", OriginTempNumber == "" ? "" : OriginTempDate.ToShortDateString());
+            SetValue("OriginalTempDesc", OriginTempDesc);
+            SetValue("OriginalTempNumber", OriginTempNumber);
             SetValue("LastADDate", lastADNumber == "" ? "" : lastADDate.ToShortDateString());
             SetValue("LastADNumber", lastADNumber);
             SetValue("LastUpdateCode", lastUpdateCode);
@@ -1293,7 +1363,13 @@ namespace UpdateRecordModule_SH_D.Wizards
                 //* 舊科別代碼（OldDepartmentCode）
                 //* 國中畢業年度（GraduateSchoolYear）
                 //* 入學資格備註（註2）（GraduateComment）
-
+                //2023年新制新增欄位
+                //* 原臨編日期(OriginalTempDate)
+                //* 原臨編學統(OriginalTempDesc)
+                //* 原臨編文號(OriginalTempNumber)
+                //* 臨編日期(TempDate)
+                //* 臨編學統(TempDesc)
+                //* 臨編文號(TempNumber)
                 if (node.Name.StartsWith("Previous") ||
                     node.Name.StartsWith("Graduate") ||
                     node.Name == "NewStudentNumber" ||
@@ -1305,7 +1381,13 @@ namespace UpdateRecordModule_SH_D.Wizards
                     node.Name == "OldClassType" ||
                     node.Name == "OldDepartmentCode" ||
                     node.Name == "GraduateSchoolYear" ||
-                    node.Name == "GraduateComment"
+                    node.Name == "GraduateComment"||
+                    node.Name== "OriginalTempDate" ||
+                    node.Name == "OriginalTempDesc"||
+                    node.Name == "OriginalTempNumber" ||
+                    node.Name == "TempDate" ||
+                    node.Name == "TempDesc" ||
+                    node.Name == "TempNumber" 
                     )
                 {
                     XmlNode importNode = node.Clone();
@@ -1320,7 +1402,7 @@ namespace UpdateRecordModule_SH_D.Wizards
 
             // 將 contextInfo 這個 document 的資料塞進 ContextInfo 的 CdataSection 裡
             helper.AddXmlString("UpdateRecord/Field/ContextInfo", root.OuterXml);
-
+            
             if (_Action == UpdateRecordAction.Update)
             {
                 // 補上條件

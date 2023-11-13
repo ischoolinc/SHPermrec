@@ -34,8 +34,20 @@ namespace UpdateRecordModule_SH_D.BL
         public DateTime? ADDate { get; set; }
         /// <summary>
         /// 核准文號
-        /// </summary>
+        /// </summary /// <summary>
         public string ADNumber { get; set; }
+        /// 臨編日期
+        /// </summary>
+        public DateTime? TempDate { get; set; }
+        /// <summary>
+        /// 臨編學統
+        /// </summary>
+        public string TempDesc { get; set; }
+        /// <summary>
+        /// 臨編字號
+        /// </summary>
+
+        public string TempNumber { get; set; }
         /// <summary>
         /// 名冊內異動資料
         /// </summary>

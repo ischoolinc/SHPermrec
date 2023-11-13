@@ -115,6 +115,9 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             txtIJHGradeYear = _faldn.SetFormData(_UpdateRec.GraduateSchoolYear, txtIJHGradeYear, "國中畢業年度");
             dtADDate = _faldn.SetFormData(_UpdateRec.ADDate, dtADDate, "核准日期");
             txtADDocNo = _faldn.SetFormData(_UpdateRec.ADNumber, txtADDocNo, "核准文號");
+            dtTempDate = _faldn.SetFormData(_UpdateRec.TempDate, dtTempDate, "臨編日期");
+            txtTempDesc = _faldn.SetFormData(_UpdateRec.TempDesc, txtTempDesc, "臨編學統");
+            txtTempNumber = _faldn.SetFormData(_UpdateRec.TempNumber, txtTempNumber, "臨編字號");
             txtGradeDoc = _faldn.SetFormData(_UpdateRec.GraduateDocument, txtGradeDoc, "入學資格證明文件");          
             txtOverseasChineseStudentCountryCode = _faldn.SetFormData(_UpdateRec.OverseasChineseStudentCountryCode, txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
         }
@@ -150,6 +153,9 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.GraduateSchoolYear= _faldn.GetFormData( txtIJHGradeYear, "國中畢業年度");            
             _UpdateRec.ADDate = _faldn.GetFormData(dtADDate, "核准日期");
             _UpdateRec.ADNumber =_faldn.GetFormData(txtADDocNo, "核准文號");
+            _UpdateRec.TempDate = _faldn.GetFormData(dtTempDate, "臨編日期");
+            _UpdateRec.TempDesc = _faldn.GetFormData(txtTempDesc, "臨編學統");
+            _UpdateRec.TempNumber = _faldn.GetFormData(txtTempNumber, "臨編字號");
             _UpdateRec.GraduateDocument = _faldn.GetFormData(txtGradeDoc, "入學資格證明文件");
             _UpdateRec.GraduateSchoolCode = _faldn.GetFormData(txtISchoolCode, "畢業國中學校代號");
             _UpdateRec.OverseasChineseStudentCountryCode = _faldn.GetFormData(txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");

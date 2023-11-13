@@ -44,7 +44,10 @@ namespace UpdateRecordModule_SH_D.ImportExport
             _ExportList.Add("畢業國中學校代碼");
             _ExportList.Add("國中畢業學年度");
             _ExportList.Add("核准日期");
-            _ExportList.Add("核准文號");            
+            _ExportList.Add("核准文號");
+            _ExportList.Add("臨編日期");
+            _ExportList.Add("臨編學統");
+            _ExportList.Add("臨編字號");
             _ExportList.Add("入學資格證明文件");
             _ExportList.Add("建教僑生專班學生國別");
             _ExportList.Add("狀態");
@@ -100,6 +103,9 @@ namespace UpdateRecordModule_SH_D.ImportExport
                             case "畢業國中入學資格註記": row.Add(field, rec.GraduateComment); break;
                             case "核准日期": row.Add(field, rec.ADDate); break;
                             case "核准文號": row.Add(field, rec.ADNumber); break;
+                            case "臨編日期": row.Add(field, rec.TempDate); break;
+                            case "臨編學統": row.Add(field, rec.TempDesc); break;
+                            case "臨編字號": row.Add(field, rec.TempNumber); break;
                             case "建教僑生專班學生國別": row.Add(field, rec.OverseasChineseStudentCountryCode); break;
 
                             case "狀態": 
