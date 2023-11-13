@@ -29,6 +29,16 @@ namespace UpdateRecordViewForm
         public UpdateRecordViewForm()
         {
             InitializeComponent();
+            List<SHDeptGroupRecord> lstdeptgroup = SHSchool.Data.SHDeptGroup.SelectAll();
+
+            cboDeptGroup.Items.Clear();
+            cboDeptGroup.Items.Add("全部");
+            foreach (SHDeptGroupRecord deptGroup in lstdeptgroup)
+            {
+
+                cboDeptGroup.Items.Add(deptGroup.Name);
+
+            }
             _typeForm = new UpdateTypeForm();
             students = new Dictionary<string, SHStudentRecord>();
             _StudUpdateRecList = new List<SHUpdateRecordRecord>();
@@ -81,41 +91,66 @@ namespace UpdateRecordViewForm
             try
             {                
                 dataGridViewX1.SuspendLayout();
+                Dictionary<string, string> deptGroupNameDict = new Dictionary<string, string>();
+                List<SHDepartmentRecord> lstdeptgroup = SHSchool.Data.SHDepartment.SelectAll();
+                
+                foreach (SHDepartmentRecord rec in lstdeptgroup)
+                {
+                    if (rec.RefDeptGroupID!="")
+                        if (!deptGroupNameDict.ContainsKey(rec.FullName))
+                            deptGroupNameDict.Add(rec.FullName, SHDeptGroup.SelectByID(rec.RefDeptGroupID).Name);
+                    
+                }
+
                 foreach (SHUpdateRecordRecord UpdateRec in _StudUpdateRecList)
                 {
-                    SHStudentRecord student = new SHStudentRecord();
+                    
+                    string DeptGroupName="";
+                    if (deptGroupNameDict.ContainsKey(UpdateRec.Department))
+                        DeptGroupName = deptGroupNameDict[UpdateRec.Department];
+                    if (cboDeptGroup.Text == "全部" || DeptGroupName == cboDeptGroup.Text)
+                    {
 
-                    if (students.ContainsKey(UpdateRec.StudentID))
-                        student = students[UpdateRec.StudentID];
 
-                    string SeatNo = string.Empty, ClassName = string.Empty, Gender = string.Empty;
+                        SHStudentRecord student = new SHStudentRecord();
+                        if (students.ContainsKey(UpdateRec.StudentID))
+                            student = students[UpdateRec.StudentID];
 
-                    if (student.SeatNo.HasValue)
-                        SeatNo = student.SeatNo.Value + "";
+                        string SeatNo = string.Empty, ClassName = string.Empty, Gender = string.Empty;
 
-                    if (student.Class != null)
-                        ClassName = student.Class.Name;
+                        if (student.SeatNo.HasValue)
+                            SeatNo = student.SeatNo.Value + "";
 
-                    if (!string.IsNullOrEmpty(student.Gender))
-                        Gender = student.Gender;
+                        if (student.Class != null)
+                            ClassName = student.Class.Name;
 
-                    DataGridViewRow row = new DataGridViewRow();
-                    row.CreateCells(dataGridViewX1,
-                        UpdateRec.ID,
-                        UpdateRec.UpdateDate,
-                        ClassName,
-                        SeatNo,
-                        student.StudentNumber,
-                        student.Name,
-                        Gender,
-                        UpdateRec.UpdateCode,
-                        UpdateRec.UpdateDescription,
-                        "",
-                        "",
-                        UpdateRec.ADNumber
-                    );
-                    row.Tag = UpdateRec.StudentID;
-                    dataGridViewX1.Rows.Add(row);             
+                        if (!string.IsNullOrEmpty(student.Gender))
+                            Gender = student.Gender;
+
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(dataGridViewX1,
+                            UpdateRec.ID,
+                            DeptGroupName,
+                            UpdateRec.UpdateDate,
+                            ClassName,
+                            SeatNo,
+                            student.StudentNumber,
+                            student.Name,
+                            Gender,
+                            UpdateRec.UpdateCode,
+                            UpdateRec.UpdateDescription,
+                            UpdateRec.SchoolYear.ToString(),
+                            UpdateRec.Semester.ToString(),
+                            UpdateRec.LastADDate,
+                            UpdateRec.LastADNumber,
+                            UpdateRec.OriginalTempDate,
+                            UpdateRec.OriginalTempDesc + UpdateRec.OriginalTempNumber,
+                            UpdateRec.ADDate,
+                            UpdateRec.ADNumber
+                        );
+                        row.Tag = UpdateRec.StudentID;
+                        dataGridViewX1.Rows.Add(row);
+                    }
                 }
                 dataGridViewX1.ResumeLayout();
             }

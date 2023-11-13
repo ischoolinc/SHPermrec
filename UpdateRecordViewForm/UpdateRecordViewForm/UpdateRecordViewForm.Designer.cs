@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.btnExit = new DevComponents.DotNetBar.ButtonX();
             this.btnRefresh = new DevComponents.DotNetBar.ButtonX();
@@ -46,6 +46,7 @@
             this.dtEnd = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.btnSetUpCode = new DevComponents.DotNetBar.ButtonX();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeptGroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUpdateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSeatNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +57,14 @@
             this.colUpdateDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSchoolYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastADDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastADNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastTempADDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastTempADNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colADDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colADNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboDeptGroup = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStart)).BeginInit();
@@ -68,16 +76,17 @@
             this.dataGridViewX1.AllowUserToAddRows = false;
             this.dataGridViewX1.AllowUserToDeleteRows = false;
             this.dataGridViewX1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.AliceBlue;
-            this.dataGridViewX1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.dataGridViewX1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewX1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewX1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
+            this.DeptGroupName,
             this.colUpdateDate,
             this.colClassName,
             this.colSeatNo,
@@ -88,15 +97,20 @@
             this.colUpdateDesc,
             this.colSchoolYear,
             this.colSemester,
+            this.colLastADDate,
+            this.colLastADNumber,
+            this.colLastTempADDate,
+            this.colLastTempADNumber,
+            this.colADDate,
             this.colADNumber});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(9, 53);
             this.dataGridViewX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -104,7 +118,7 @@
             this.dataGridViewX1.RowHeadersWidth = 25;
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(758, 447);
+            this.dataGridViewX1.Size = new System.Drawing.Size(1202, 447);
             this.dataGridViewX1.TabIndex = 5;
             // 
             // btnExit
@@ -113,7 +127,7 @@
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnExit.Location = new System.Drawing.Point(692, 508);
+            this.btnExit.Location = new System.Drawing.Point(1084, 509);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 26);
@@ -124,11 +138,10 @@
             // btnRefresh
             // 
             this.btnRefresh.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRefresh.BackColor = System.Drawing.Color.Transparent;
             this.btnRefresh.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnRefresh.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRefresh.Location = new System.Drawing.Point(667, 15);
+            this.btnRefresh.Location = new System.Drawing.Point(877, 13);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 26);
@@ -138,10 +151,14 @@
             // 
             // labelX2
             // 
-            this.labelX2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelX2.AutoSize = true;
             this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            this.labelX2.Location = new System.Drawing.Point(224, 17);
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(477, 16);
             this.labelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(56, 20);
@@ -150,10 +167,14 @@
             // 
             // labelX1
             // 
-            this.labelX1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelX1.AutoSize = true;
             this.labelX1.BackColor = System.Drawing.Color.Transparent;
-            this.labelX1.Location = new System.Drawing.Point(7, 17);
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(260, 16);
             this.labelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(56, 20);
@@ -202,6 +223,11 @@
             // 
             this.labelX4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelX4.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX4.BackgroundStyle.Class = "";
+            this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.Location = new System.Drawing.Point(309, 508);
             this.labelX4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelX4.Name = "labelX4";
@@ -230,9 +256,11 @@
             // 
             // 
             this.dtStart.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtStart.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtStart.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtStart.ButtonDropDown.Visible = true;
-            this.dtStart.Location = new System.Drawing.Point(65, 15);
+            this.dtStart.IsPopupCalendarOpen = false;
+            this.dtStart.Location = new System.Drawing.Point(318, 14);
             this.dtStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             // 
             // 
@@ -242,6 +270,8 @@
             // 
             // 
             this.dtStart.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtStart.MonthCalendar.BackgroundStyle.Class = "";
+            this.dtStart.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtStart.MonthCalendar.ClearButtonVisible = true;
             // 
             // 
@@ -252,6 +282,8 @@
             this.dtStart.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
             this.dtStart.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
             this.dtStart.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtStart.MonthCalendar.CommandsBackgroundStyle.Class = "";
+            this.dtStart.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtStart.MonthCalendar.DayNames = new string[] {
         "日",
         "一",
@@ -269,6 +301,8 @@
             this.dtStart.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.dtStart.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
             this.dtStart.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtStart.MonthCalendar.NavigationBackgroundStyle.Class = "";
+            this.dtStart.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtStart.MonthCalendar.TodayButtonVisible = true;
             this.dtStart.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtStart.Name = "dtStart";
@@ -282,9 +316,11 @@
             // 
             // 
             this.dtEnd.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtEnd.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtEnd.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown;
             this.dtEnd.ButtonDropDown.Visible = true;
-            this.dtEnd.Location = new System.Drawing.Point(280, 15);
+            this.dtEnd.IsPopupCalendarOpen = false;
+            this.dtEnd.Location = new System.Drawing.Point(533, 14);
             this.dtEnd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             // 
             // 
@@ -294,6 +330,8 @@
             // 
             // 
             this.dtEnd.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtEnd.MonthCalendar.BackgroundStyle.Class = "";
+            this.dtEnd.MonthCalendar.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtEnd.MonthCalendar.ClearButtonVisible = true;
             // 
             // 
@@ -304,6 +342,8 @@
             this.dtEnd.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
             this.dtEnd.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
             this.dtEnd.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtEnd.MonthCalendar.CommandsBackgroundStyle.Class = "";
+            this.dtEnd.MonthCalendar.CommandsBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtEnd.MonthCalendar.DayNames = new string[] {
         "日",
         "一",
@@ -321,6 +361,8 @@
             this.dtEnd.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
             this.dtEnd.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
             this.dtEnd.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtEnd.MonthCalendar.NavigationBackgroundStyle.Class = "";
+            this.dtEnd.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.dtEnd.MonthCalendar.TodayButtonVisible = true;
             this.dtEnd.MonthCalendar.WeeklyMarkedDays = new System.DayOfWeek[0];
             this.dtEnd.Name = "dtEnd";
@@ -330,11 +372,10 @@
             // btnSetUpCode
             // 
             this.btnSetUpCode.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnSetUpCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSetUpCode.BackColor = System.Drawing.Color.Transparent;
             this.btnSetUpCode.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSetUpCode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSetUpCode.Location = new System.Drawing.Point(528, 15);
+            this.btnSetUpCode.Location = new System.Drawing.Point(738, 13);
             this.btnSetUpCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSetUpCode.Name = "btnSetUpCode";
             this.btnSetUpCode.Size = new System.Drawing.Size(100, 26);
@@ -348,6 +389,11 @@
             this.colID.Name = "colID";
             this.colID.ReadOnly = true;
             this.colID.Visible = false;
+            // 
+            // DeptGroupName
+            // 
+            this.DeptGroupName.HeaderText = "部別";
+            this.DeptGroupName.Name = "DeptGroupName";
             // 
             // colUpdateDate
             // 
@@ -431,6 +477,41 @@
             this.colSemester.Visible = false;
             this.colSemester.Width = 57;
             // 
+            // colLastADDate
+            // 
+            this.colLastADDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colLastADDate.HeaderText = "原備查日期";
+            this.colLastADDate.Name = "colLastADDate";
+            this.colLastADDate.Width = 93;
+            // 
+            // colLastADNumber
+            // 
+            this.colLastADNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colLastADNumber.HeaderText = "原備查文號";
+            this.colLastADNumber.Name = "colLastADNumber";
+            this.colLastADNumber.Width = 93;
+            // 
+            // colLastTempADDate
+            // 
+            this.colLastTempADDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colLastTempADDate.HeaderText = "原備查臨編日期";
+            this.colLastTempADDate.Name = "colLastTempADDate";
+            this.colLastTempADDate.Width = 117;
+            // 
+            // colLastTempADNumber
+            // 
+            this.colLastTempADNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colLastTempADNumber.HeaderText = "原備查臨編文號";
+            this.colLastTempADNumber.Name = "colLastTempADNumber";
+            this.colLastTempADNumber.Width = 117;
+            // 
+            // colADDate
+            // 
+            this.colADDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colADDate.HeaderText = "核准日期";
+            this.colADDate.Name = "colADDate";
+            this.colADDate.Width = 81;
+            // 
             // colADNumber
             // 
             this.colADNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -438,11 +519,39 @@
             this.colADNumber.Name = "colADNumber";
             this.colADNumber.Width = 81;
             // 
+            // cboDeptGroup
+            // 
+            this.cboDeptGroup.DisplayMember = "Text";
+            this.cboDeptGroup.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboDeptGroup.FormattingEnabled = true;
+            this.cboDeptGroup.ItemHeight = 17;
+            this.cboDeptGroup.Location = new System.Drawing.Point(60, 13);
+            this.cboDeptGroup.Name = "cboDeptGroup";
+            this.cboDeptGroup.Size = new System.Drawing.Size(156, 23);
+            this.cboDeptGroup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cboDeptGroup.TabIndex = 25;
+            // 
+            // labelX3
+            // 
+            this.labelX3.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX3.BackgroundStyle.Class = "";
+            this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX3.Location = new System.Drawing.Point(22, 17);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(52, 19);
+            this.labelX3.TabIndex = 26;
+            this.labelX3.Text = "部別";
+            // 
             // UpdateRecordViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 540);
+            this.ClientSize = new System.Drawing.Size(1215, 535);
+            this.Controls.Add(this.cboDeptGroup);
+            this.Controls.Add(this.labelX3);
             this.Controls.Add(this.btnSetUpCode);
             this.Controls.Add(this.dtEnd);
             this.Controls.Add(this.dtStart);
@@ -455,14 +564,14 @@
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dataGridViewX1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = true;
-            this.MaximumSize = new System.Drawing.Size(787, 574);
             this.Name = "UpdateRecordViewForm";
             this.Text = "異動資料檢視";
-            this.Load += new System.EventHandler(this.UpdateRecordViewForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateRecord_FormClosing);
+            this.Load += new System.EventHandler(this.UpdateRecordViewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtStart)).EndInit();
@@ -489,6 +598,7 @@
         private DevComponents.Editors.DateTimeAdv.DateTimeInput dtEnd;
         private DevComponents.DotNetBar.ButtonX btnSetUpCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeptGroupName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUpdateDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colClassName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSeatNo;
@@ -499,6 +609,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUpdateDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSchoolYear;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSemester;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastADDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastADNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastTempADDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastTempADNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colADDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colADNumber;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cboDeptGroup;
+        private DevComponents.DotNetBar.LabelX labelX3;
     }
 }

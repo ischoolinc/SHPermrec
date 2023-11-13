@@ -10,3 +10,16 @@ D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\Update
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.pdb
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm\UpdateRecordViewForm\bin\Debug\UpdateRecordViewForm.dll
 D:\TFS2010\ischoolteam\ischool_Senior with FISCA\Modules\SHSchool.Permrec\UpdateRecordViewForm\UpdateRecordViewForm\bin\Debug\UpdateRecordViewForm.pdb
+D:\程式開發\Ischool_AE\modules\SHDayPermrec_D\UpdateRecordViewForm.dll
+D:\程式開發\Ischool_AE\modules\SHDayPermrec_D\UpdateRecordViewForm.pdb
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.CompleteForm.resources
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.UpdateRecordViewForm.resources
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.UpdateTypeForm.resources
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.csproj.GenerateResource.cache
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.csproj.CoreCompileInputs.cache
+D:\程式開發\1campus_desktop_x64\modules\SHDayPermrec_D\UpdateRecordViewForm.dll
+D:\程式開發\1campus_desktop_x64\modules\SHDayPermrec_D\UpdateRecordViewForm.pdb
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.csprojAssemblyReference.cache
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.csproj.CopyComplete
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.dll
+D:\程式開發\ISchoolPlugIn\SHPermrec\UpdateRecordViewForm\UpdateRecordViewForm\obj\Debug\UpdateRecordViewForm.pdb
