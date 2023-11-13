@@ -38,6 +38,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 try
                 {
                     // 使用學號排序
+                    
                     upRecList = (from elm in d1Elm.Elements("異動紀錄") orderby elm.Attribute("學號").Value select elm).ToList();
 
                     //2018/2/5 穎驊 新增異動封面的處理

@@ -3,22 +3,23 @@ using System.Xml;
 using Aspose.Cells;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Windows.Forms;
 
 namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 {
     public class TransferringStudentUpdateRecordList : ReportBuilder
     {
+       
         protected override void Build(XmlElement source, string location)
         {
             Workbook template = new Workbook();
 
             //從Resources把Template讀出來
-            template.Open(new MemoryStream(Properties.Resources.TransferringStudentUpdateRecordListTemplate), FileFormatType.Excel2003);
+            template.Open(new MemoryStream(Properties.Resources.TransferringStudentUpdateRecordListTemplate), FileFormatType.Xlsx);
 
             //要產生的excel檔
             Workbook wb = new Aspose.Cells.Workbook();
-            wb.Open(new MemoryStream(Properties.Resources.TransferringStudentUpdateRecordListTemplate), FileFormatType.Excel2003);
+            wb.Open(new MemoryStream(Properties.Resources.TransferringStudentUpdateRecordListTemplate), FileFormatType.Xlsx);
 
             Worksheet ws = wb.Worksheets[0];
 
@@ -45,7 +46,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             {
                 //產生清單第一頁
                 ws.Cells.CreateRange(index, next, false).Copy(tempRange);
-
+                ws.Cells.CreateRange(index, next, false).CopyData(tempRange);
+                ws.Cells.CreateRange(index, next, false).CopyStyle(tempRange);
+                
                 //Page
                 int currentPage = 1;
                 int totalPage = (list.ChildNodes.Count / dataRow) + 1;
@@ -69,6 +72,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     if (currentPage + 1 <= totalPage)
                     {
                         ws.Cells.CreateRange(index + next, next, false).Copy(tempRange);
+                        ws.Cells.CreateRange(index + next, next, false).CopyData(tempRange);
+                        ws.Cells.CreateRange(index + next, next, false).CopyStyle(tempRange);
                     }
 
                     //填入資料 (2018/3/6 穎驊註解，list.ChildNodes.Count-1 因為要扣掉一個 異動名冊封面 資料)
@@ -141,7 +146,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 107新格式 結束行要 有End 字樣
             Range range_R_EndRow = TemplateWb.Cells.CreateRange(2, 1, false);
 
-            DyWb.Cells.CreateRange(0, 1, false).Copy(range_H);
+            DyWb.Cells.CreateRange(0, 1, false).CopyData(range_H);
+            DyWb.Cells.CreateRange(0, 1, false).CopyStyle(range_H);
 
             int DyWb_index = 0;
             DAL.DALTransfer DALTranser = new DAL.DALTransfer();
@@ -156,7 +162,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             {
                 DyWb_index++;
                 //每增加一行,複製一次
-                DyWb.Cells.CreateRange(DyWb_index, 1, false).Copy(range_R);
+                DyWb.Cells.CreateRange(DyWb_index, 1, false).CopyStyle(range_R);
 
                 //班別
                 DyWb.Cells[DyWb_index, 0].PutValue(rec.ClassType);
@@ -218,8 +224,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             }
 
             // 資料末底 加End
-            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).Copy(range_R_EndRow);
-
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).CopyData(range_R_EndRow);
+            DyWb.Cells.CreateRange(DyWb_index + 1, 1, false).CopyStyle(range_R_EndRow);
             DyWb.AutoFitColumns();
 
             wb.Worksheets.RemoveAt("電子格式範本");
@@ -245,7 +251,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             Range range_H_Cover = TemplateWb_Cover.Cells.CreateRange(0, 1, false);
 
             //range_H_Cover
-            cover.Cells.CreateRange(0, 1, false).Copy(range_H_Cover);
+            cover.Cells.CreateRange(0, 1, false).CopyData(range_H_Cover);
+            cover.Cells.CreateRange(0, 1, false).CopyStyle(range_H_Cover);
 
             Range range_R_cover = TemplateWb_Cover.Cells.CreateRange(1, 1, false);
             // 107新格式 結束行要 有End 字樣
@@ -256,7 +263,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             foreach (XmlNode list in source.SelectNodes("清單"))
             {
                 //每增加一行,複製一次
-                cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover);
+                cover.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_cover);
 
                 string gradeYear = list.SelectSingleNode("@年級").InnerText;
                 string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
@@ -316,14 +323,23 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             }
 
             // 資料末底 加End
-            cover.Cells.CreateRange(cover_row_counter, 1, false).Copy(range_R_cover_EndRow);
-
+            cover.Cells.CreateRange(cover_row_counter, 1, false).CopyData(range_R_cover_EndRow);
+            cover.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_cover_EndRow);
             wb.Worksheets.RemoveAt("轉入生名冊封面範本");
 
             wb.Worksheets.ActiveSheetIndex = 0;
 
             //儲存
-            wb.Save(location, FileFormatType.Excel2003);
+            try
+            {
+                wb.Save(location, SaveFormat.Xlsx);
+                System.Diagnostics.Process.Start(location);
+            }
+            catch
+            {
+                MessageBox.Show("檔案儲存失敗");
+            }
+
         }
 
 

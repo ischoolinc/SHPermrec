@@ -157,20 +157,24 @@ namespace UpdateRecordModule_SH_D.Wizards
                 helper.AddElement("Student/Field", "StudentNumber", textBoxX1.Text);
             }
             ClassRecord classRec = (ClassRecord)cboClass.SelectedItem;
-            if ( classRec.Department + ( ( "" + classRec.Fields["SubDepartment"] ) == "" ? "" : ":" + classRec.Fields["SubDepartment"] ) != cboDept.Text )
+            if (classRec != null)
             {
-                desc.AppendLine("科別由「" + stu.Department + "」變更為「" + cboDept.Text + "」");
-                helper.AddElement("Student/Field", "OverrideDeptID", _DeptIDList[cboDept.Text]);
-            }
-            else
-            {
-                desc.AppendLine("科別由「" + stu.Department + "」變更為「" + cboDept.Text + "」");
-                helper.AddElement("Student/Field", "OverrideDeptID", "");
-            }
-            if ( classRec != stu.RefClass )
-            {
-                desc.AppendLine("班級由「" + ( stu.RefClass == null ? "" : stu.RefClass.ClassName ) + "」變更為「" + classRec.ClassName + "」");
-                helper.AddElement("Student/Field", "RefClassID", classRec.ClassID);
+                if (classRec.Department + (("" + classRec.Fields["SubDepartment"]) == "" ? "" : ":" + classRec.Fields["SubDepartment"]) != cboDept.Text)
+                {
+                    desc.AppendLine("科別由「" + stu.Department + "」變更為「" + cboDept.Text + "」");
+                    helper.AddElement("Student/Field", "OverrideDeptID", _DeptIDList[cboDept.Text]);
+                }
+                else
+                {
+                    desc.AppendLine("科別由「" + stu.Department + "」變更為「" + cboDept.Text + "」");
+                    helper.AddElement("Student/Field", "OverrideDeptID", "");
+                }
+
+                if (classRec != stu.RefClass)
+                {
+                    desc.AppendLine("班級由「" + (stu.RefClass == null ? "" : stu.RefClass.ClassName) + "」變更為「" + classRec.ClassName + "」");
+                    helper.AddElement("Student/Field", "RefClassID", classRec.ClassID);
+                }
             }
             desc.AppendLine("座號由「" + ( stu.SeatNo) + "」變更為「" + cboSeatNo.Text + "」");
             helper.AddElement("Student/Field", "SeatNo", cboSeatNo.Text);

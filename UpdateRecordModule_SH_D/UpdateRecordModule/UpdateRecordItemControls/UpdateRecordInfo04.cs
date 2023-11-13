@@ -81,10 +81,16 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             cbxGender = _faldn.SetFormData(_UpdateRec.Gender, cbxGender, "性別");
             dtLastUpdateDate = _faldn.SetFormData(_UpdateRec.LastADDate, dtLastUpdateDate, "備查日期");
             txtLastDocNo = _faldn.SetFormData(_UpdateRec.LastADNumber, txtLastDocNo, "備查文號");
+            dtOriginTempDate = _faldn.SetFormData(_UpdateRec.OriginalTempDate, dtOriginTempDate, "原臨編日期");
+            txtOriginTempDesc = _faldn.SetFormData(_UpdateRec.OriginalTempDesc, txtOriginTempDesc, "原臨編學統");
+            txtOriginTempNumber = _faldn.SetFormData(_UpdateRec.OriginalTempNumber, txtOriginTempNumber, "原臨編字號");
             txtLastUpdateCode = _faldn.SetFormData(_UpdateRec.LastUpdateCode, txtLastUpdateCode, "最後異動代號");
             txtGradeDocNo = _faldn.SetFormData(_UpdateRec.GraduateCertificateNumber, txtGradeDocNo, "畢業證書字號");
             dtADDate = _faldn.SetFormData(_UpdateRec.ADDate, dtADDate, "核准日期");
             txtADDocNo = _faldn.SetFormData(_UpdateRec.ADNumber, txtADDocNo, "核准文號");
+            dtTempDate = _faldn.SetFormData(_UpdateRec.TempDate, dtTempDate, "臨編日期");
+            txtTempDesc = _faldn.SetFormData(_UpdateRec.TempDesc, txtTempDesc, "臨編學統");
+            txtTempNumber = _faldn.SetFormData(_UpdateRec.TempNumber, txtTempNumber, "臨編字號");
             txtSpecial = _faldn.SetFormData(_UpdateRec.SpecialStatus, txtSpecial, "特殊身分代碼");
             txtSHSchoolYear = _faldn.SetFormData(_UpdateRec.ExpectGraduateSchoolYear, txtSHSchoolYear, "應畢業學年度");
         }
@@ -115,10 +121,16 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.Gender = _faldn.GetFormData(cbxGender, "性別");
             _UpdateRec.LastADDate = _faldn.GetFormData(dtLastUpdateDate, "備查日期");
             _UpdateRec.LastADNumber = _faldn.GetFormData( txtLastDocNo, "備查文號");
+            _UpdateRec.OriginalTempDate = _faldn.GetFormData(dtOriginTempDate, "原臨編日期");
+            _UpdateRec.OriginalTempDesc = _faldn.GetFormData(txtOriginTempDesc, "原臨編學統");
+            _UpdateRec.OriginalTempNumber = _faldn.GetFormData(txtOriginTempNumber, "原臨編字號");
             _UpdateRec.LastUpdateCode = _faldn.GetFormData( txtLastUpdateCode, "最後異動代號");
             _UpdateRec.GraduateCertificateNumber = _faldn.GetFormData( txtGradeDocNo, "畢業證書字號");
             _UpdateRec.ADDate = _faldn.GetFormData(dtADDate, "核准日期");
             _UpdateRec.ADNumber = _faldn.GetFormData(txtADDocNo, "核准文號");
+            _UpdateRec.TempDate = _faldn.GetFormData(dtTempDate, "臨編日期");
+            _UpdateRec.TempDesc = _faldn.GetFormData(txtTempDesc, "臨編學統");
+            _UpdateRec.TempNumber = _faldn.GetFormData(txtTempNumber, "臨編字號");
             _UpdateRec.SpecialStatus = _faldn.GetFormData(txtSpecial, "特殊身分代碼");
             _UpdateRec.ExpectGraduateSchoolYear = _faldn.GetFormData(txtSHSchoolYear, "應畢業學年度");
 

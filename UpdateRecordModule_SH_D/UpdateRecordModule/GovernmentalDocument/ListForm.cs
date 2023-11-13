@@ -40,14 +40,17 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             lblADName1.Text = "";
             lblADName2.Text = "";
             lblADName3.Text = "";
+            lblTempADInfo.Text = "";
             lblADInfo.Text = "";
             lblADCounter.Text = "";
             lblADName3.Text = "";
             // 還不能用的控制項 disabled
             btnDelete.Enabled = false;
             btnAD.Enabled = false;
+            btnADTempDN.Enabled = false;
             lblListContent.Text = "";
             lblAD.Text = "";
+            lblTempAD.Text = "";
             listView.Clear();
             
             cboSchoolYear.SelectedItem = null;
@@ -140,6 +143,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             {
                 btnDelete.Enabled = true;
                 btnAD.Enabled = true;
+                btnADTempDN.Enabled = true;
                 SetSelectUpdateBatchID();
                 //ButtonItem item = sender as ButtonItem;
                 string id = BL.Get.UpdateBatchSelectID();
@@ -196,6 +200,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                     //lblADInfo.Text = "【" + rec.ADNumber + "】 核准文號";
                     lblADInfo.Text = "【" + rec.Name + "】 核准文號";
+                    lblTempADInfo.Text = "【" + rec.Name + "】 臨編文號";
                     btnEReport1.Visible = true;
                     btnEReport2.Visible = true;
 
@@ -232,9 +237,19 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     lblADName1.Text = rec.Name;
                     lblADName2.Text = rec.Name;
                     lblADName3.Text = rec.Name;
-
-                    // 處理核准日期與文號
+                    // 處理臨編學統日期與文號
                     string adString = "";
+                    if (!string.IsNullOrEmpty(rec.TempNumber))
+                    {
+                        adString = "臨編學統文號 <font color='red'>" + rec.TempDesc + rec.TempNumber + "</font>";
+                        if (rec.TempDate.HasValue)
+                            adString += "臨編日期　<font color='red'>" + rec.TempDate.Value.ToShortDateString() + "</font>";
+                    }
+                    else
+                        adString = "<font color='red'>未登錄</font>";
+                    lblTempAD.Text = adString;
+                    // 處理核准日期與文號
+                    adString = "";
                     if (!string.IsNullOrEmpty(rec.ADNumber))
                     {
                         adString += "核准文號　<font color='red'>" + rec.ADNumber + "</font>　";
@@ -303,6 +318,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             {
                 btnDelete.Enabled = false;
                 btnAD.Enabled = false;
+                btnADTempDN.Enabled = false;
             }
 
             this.itemPanel1.RecalcLayout();
@@ -316,11 +332,6 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         }
 
 
-
-        private void ListForm_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void cboSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -359,6 +370,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
    
         }
         private UpdateRecordADN _adnForm;
+        private UpdateRecordTempDN _adnTempForm;
         private void btnAD_Click(object sender, EventArgs e)
         {
             
@@ -451,8 +463,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                     case "畢業名冊_2021版":
                         btnModifyCover.Enabled = true;
-                        break;
-
+                        break;                    
                     case "延修生畢業名冊_2021版":
                         btnModifyCover.Enabled = true;
                         break;
@@ -499,7 +510,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     path = Path.Combine(Application.StartupPath, "Reports");
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
-                    path = Path.Combine(path, _SelectBRec.UpdateType + ".xls");
+                    path = Path.Combine(path, _SelectBRec.UpdateType + ".xlsx");
 
                     if (File.Exists(path))
                     {
@@ -522,8 +533,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     {
                         SaveFileDialog sd = new SaveFileDialog();
                         sd.Title = "另存新檔";
-                        sd.FileName = Path.GetFileNameWithoutExtension(path) + ".xls";
-                        sd.Filter = "Excel檔案 (*.xls)|*.xls|所有檔案 (*.*)|*.*";
+                        sd.FileName = Path.GetFileNameWithoutExtension(path) + ".xlsx";
+                        sd.Filter = "Excel檔案 (*.xlsx)|*.xlsx|所有檔案 (*.*)|*.*";
                         if (sd.ShowDialog() == DialogResult.OK)
                         {
                             try
@@ -668,8 +679,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 case "畢業名冊_2021版":
                     GraduatingStudentListModifyingCoverForm2021 gslmcf2021 = new GraduatingStudentListModifyingCoverForm2021(_SelectBRec);
                     gslmcf2021.ShowDialog();
-                    break;
-
+                    break;               
                 case "延修生畢業名冊_2021版":
                     ExtendingStudentGraduateListCoverRecModifyingCoverForm2021 esglcrmcf2021 = new ExtendingStudentGraduateListCoverRecModifyingCoverForm2021(_SelectBRec);
                     esglcrmcf2021.ShowDialog();
@@ -699,6 +709,12 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             
 
          
+        }
+
+        private void btnADTempDN_Click(object sender, EventArgs e)
+        {
+            _adnTempForm = new UpdateRecordTempDN(BL.Get.UpdateBatchSelectID());
+            _adnTempForm.ShowDialog();
         }
     }
 }

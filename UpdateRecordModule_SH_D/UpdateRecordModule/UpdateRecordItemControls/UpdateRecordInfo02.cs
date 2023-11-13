@@ -67,8 +67,12 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             txtSGradYear = _faldn.SetFormData(_UpdateRec.PreviousGradeYear, txtSGradYear, "原就讀年級");
             dtSLastUpdateDate = _faldn.SetFormData(_UpdateRec.PreviousSchoolLastADDate, dtSLastUpdateDate, "原就讀備查日期");
             txtSLastDocNo = _faldn.SetFormData(_UpdateRec.PreviousSchoolLastADNumber, txtSLastDocNo, "原就讀備查文號");
+           
             dtADDate = _faldn.SetFormData(_UpdateRec.ADDate, dtADDate, "核准日期");
             txtADDocNo = _faldn.SetFormData(_UpdateRec.ADNumber, txtADDocNo, "核准文號");
+            dtTempDate = _faldn.SetFormData(_UpdateRec.TempDate, dtTempDate, "臨編日期");
+            txtTempDesc = _faldn.SetFormData(_UpdateRec.TempDesc, txtTempDesc, "臨編學統");
+            txtTempNumber = _faldn.SetFormData(_UpdateRec.TempNumber, txtTempNumber, "臨編字號");
             txtSSemester = _faldn.SetFormData(_UpdateRec.PreviousSemester, txtSSemester, "原就讀學期");
             txtComment2 = _faldn.SetFormData(_UpdateRec.Comment2, txtComment2, "轉入身分別代碼");
             txtOverseasChineseStudentCountryCode = _faldn.SetFormData(_UpdateRec.OverseasChineseStudentCountryCode, txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
@@ -111,11 +115,14 @@ namespace UpdateRecordModule_SH_D.UpdateRecordItemControls
             _UpdateRec.PreviousDepartment = _faldn.GetFormData(txtSDept, "原就讀科別");
             _UpdateRec.PreviousGradeYear = _faldn.GetFormData(txtSGradYear, "原就讀年級");
             _UpdateRec.PreviousSchoolLastADDate = _faldn.GetFormData( dtSLastUpdateDate, "原就讀備查日期");
-            _UpdateRec.PreviousSchoolLastADNumber = _faldn.GetFormData( txtSLastDocNo, "原就讀備查文號");
+            _UpdateRec.PreviousSchoolLastADNumber = _faldn.GetFormData( txtSLastDocNo, "原就讀備查文號");           
             _UpdateRec.PreviousSemester = _faldn.GetFormData(txtSSemester, "原就讀學期");
             _UpdateRec.Comment2 = _faldn.GetFormData(txtComment2, "轉入身分別代碼");
             _UpdateRec.ADDate = _faldn.GetFormData(dtADDate, "核准日期");
             _UpdateRec.ADNumber = _faldn.GetFormData(txtADDocNo, "核准文號");
+            _UpdateRec.TempDate = _faldn.GetFormData(dtTempDate, "臨編日期");
+            _UpdateRec.TempDesc = _faldn.GetFormData(txtTempDesc, "臨編學統");
+            _UpdateRec.TempNumber = _faldn.GetFormData(txtTempNumber, "臨編字號");
             _UpdateRec.OverseasChineseStudentCountryCode = _faldn.GetFormData(txtOverseasChineseStudentCountryCode, "建教僑生專班學生國別");
 
             _prlp = _faldn.GetLogData();

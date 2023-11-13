@@ -219,6 +219,31 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         /// <summary>
         /// 建教僑生專班學生國別
         /// </summary>
-        public string OverseasChineseStudentCountryCode { get; set; }
+        public string OverseasChineseStudentCountryCode { get; set; }       
+
+        /// <summary>
+        /// 臨編日期
+        /// </summary>
+        public string temp_date { get; set; }
+        /// <summary>
+        /// 臨編字號
+        /// </summary>
+        public string temp_number { get; set; }
+        /// <summary>
+        /// 臨編文字
+        /// </summary>
+        public string temp_desc { get; set; }
+        /// <summary>
+        /// 原臨編日期
+        /// </summary>
+        public string origin_temp_date { get; set; }
+        /// <summary>
+        /// 原臨編字號
+        /// </summary>
+        public string origin_temp_number { get; set; }
+        /// <summary>
+        /// 原臨編文字
+        /// </summary>
+        public string origin_temp_desc { get; set; }
     }
 }

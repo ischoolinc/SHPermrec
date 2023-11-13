@@ -13,7 +13,7 @@ namespace UpdateRecordModule_SH_D.DAL
     public class StudUpdateRecBatchCreator
     {
         /// 2021-10 Cynthia 調整異動名冊XML結構，為避免調整前產生的名冊打不開，故不變動之前的名冊，而是新增調整後的名冊，命名為2021版。
-        public enum UpdateRecBatchType { 新生名冊, 畢業名冊, 轉入學生名冊, 學籍異動名冊, 延修生名冊, 延修生畢業名冊, 延修生學籍異動名冊,新生保留錄取資格名冊, 借讀學生名冊, 新生名冊_2021版, 畢業名冊_2021版, 轉入學生名冊_2021版, 學籍異動名冊_2021版, 延修生名冊_2021版, 延修生畢業名冊_2021版, 延修生學籍異動名冊_2021版, 新生保留錄取資格名冊_2021版, 借讀學生名冊_2021版 }
+        public enum UpdateRecBatchType { 新生名冊, 畢業名冊, 轉入學生名冊, 學籍異動名冊, 延修生名冊, 延修生畢業名冊, 延修生學籍異動名冊,新生保留錄取資格名冊, 借讀學生名冊, 新生名冊_2021版, 畢業名冊_2021版,  轉入學生名冊_2021版, 學籍異動名冊_2021版, 延修生名冊_2021版, 延修生畢業名冊_2021版, 延修生學籍異動名冊_2021版, 新生保留錄取資格名冊_2021版, 借讀學生名冊_2021版 }
 
         private UpdateRecBatchType _UpdateRecBatchType;
         private List<BL.StudUpdateRecDoc> _StudUpdateRecDocList;        
@@ -37,7 +37,8 @@ namespace UpdateRecordModule_SH_D.DAL
             List<string> ExtendCodeList = new List<string>();
             ExtendCodeList.Add("235");
             ExtendCodeList.Add("236");
-
+            ExtendCodeList.Add("243");
+            ExtendCodeList.Add("244");
             // 新生保留代碼
             List<string> chkCodeList1 = new List<string>();
             chkCodeList1.Add("601");
@@ -128,11 +129,17 @@ updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where 
                     // 取得畢業異動代碼
                     CodeList = (from elm in elms.Elements("異動") where elm.Element("分類").Value == "畢業異動" select elm.Element("代號").Value).ToList();
                     updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where StudentIDList.Contains(data.StudentID) && data.GradeYear != "延修生" && data.ADNumber.Trim() == "" select data).ToList();
-                    break;
-
+                    break;               
                 case UpdateRecBatchType.學籍異動名冊_2021版:
                     // 取得學籍異動代碼
-                    CodeList = (from elm in elms.Elements("異動") where elm.Element("分類").Value == "學籍異動" select elm.Element("代號").Value).ToList();
+                    CodeList = (from elm in elms.Elements("異動") where elm.Element("分類").Value == "學籍異動"select elm.Element("代號").Value).ToList();
+                    //延修生專用代碼
+                    CodeList.Remove("236");
+                    CodeList.Remove("235");
+                    CodeList.Remove("243");
+                    CodeList.Remove("244");
+                    CodeList.Remove("365");
+                    CodeList.Remove("372");                    
                     updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where StudentIDList.Contains(data.StudentID) && data.GradeYear != "延修生" && data.ADNumber.Trim() == "" select data).ToList();
                     break;
 
@@ -188,7 +195,7 @@ updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where 
         /// <param name="Semester"></param>
         /// <param name="DocName"></param>
         /// <param name="dataList"></param>
-        public void CreateUpdateRecBatchDoc(string SchoolYear, string Semester, string DocName, List<BL.StudUpdateRecDoc> dataList)
+        public void CreateUpdateRecBatchDoc(string SchoolYear, string Semester, string DocName, List<BL.StudUpdateRecDoc> dataList,string PeopleFrom)
         {
             int sy, ss;
             BL.StudUpdateRecBatchRec StudUpdateRecBRec = new UpdateRecordModule_SH_D.BL.StudUpdateRecBatchRec();
@@ -202,7 +209,7 @@ updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where 
             StudUpdateRecBRec.UpdateType= _UpdateRecBatchType.ToString ();
             StudUpdateRecBRec.Name = DocName;
             StudUpdateRecBRec.StudUpdateRecDocList = dataList;
-            DAL.DALTransfer.SetStudUpdateRecBatchRec(StudUpdateRecBRec,true);
+            DAL.DALTransfer.SetStudUpdateRecBatchRec(StudUpdateRecBRec,true,PeopleFrom);
         
         }
 

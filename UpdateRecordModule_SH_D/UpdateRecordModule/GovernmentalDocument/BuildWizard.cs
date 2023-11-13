@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using DevComponents.DotNetBar.Controls;
 using IntelliSchool.DSA.ClientFramework.ControlCommunication;
-
+using SHSchool.Data;
 namespace UpdateRecordModule_SH_D.GovernmentalDocument
 {
     public partial class BuildWizard : FISCA.Presentation.Controls.BaseForm 
@@ -27,7 +28,17 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             // 設定學年度學期
             cbxSemester.Items.Add("1");
             cbxSemester.Items.Add("2");
+            List<SHDeptGroupRecord> lstdeptgroup = SHSchool.Data.SHDeptGroup.SelectAll();
+            
+            lstCourseKind.Items.Clear();
+            //var newItem = new ComboBoxItem();
+            foreach (SHDeptGroupRecord branch in lstdeptgroup)
+            {
+                ListViewItem lvi = new ListViewItem(branch.Name);
 
+                lstCourseKind.Items.Add(lvi);
+
+            }
             int scYear;
             // 加入學年度初始值
             if (int.TryParse(K12.Data.School.DefaultSchoolYear, out scYear))
@@ -55,7 +66,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.新生名冊_2021版);
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.學籍異動名冊_2021版);
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.轉入學生名冊_2021版);
-            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊_2021版);
+            NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.畢業名冊_2021版);            
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生名冊_2021版);
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生學籍異動名冊_2021版);
             NameList.Add(DAL.StudUpdateRecBatchCreator.UpdateRecBatchType.延修生畢業名冊_2021版);
@@ -176,25 +187,36 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
         void _BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (!e.Cancelled)            {
-
+            if (!e.Cancelled)         
+            {
                 pictureBox1.Visible = false;
                 listView2.SuspendLayout();
+                //List<SHDepartmentRecord> lstDept = SHDepartment.SelectAll();
+                //Dictionary<string, string> DeptDic = new Dictionary<string, string>();
+                
+                //foreach (SHDepartmentRecord dept in lstDept)
+                //{
+                //    if (!DeptDic.ContainsKey(dept.FullName))
+                //        DeptDic.Add(dept.FullName,dept.)
+                //}
                 foreach (BL.StudUpdateRecDoc var in _StudUpdateRecBatchCreator.GetSHUpdateRecordRecordList())
                 {
-                    ListViewItem item = new ListViewItem(new string[] { 
-                            var.UpdateCode,
-                            var.UpdateDate,
-                            var.GradeYear,
-                            var.ClassType,
-                            var.Department,
-                            var.StudentNumber,
-                            var.StudentName,
-                            var.UpdateDescription,
-                            var.StudStatus 
-                        });
+                    
+                    ListViewItem item = new ListViewItem(new string[] {
+                        var.DeptGroupName,
+                        var.UpdateCode,
+                        var.UpdateDate,
+                        var.GradeYear,
+                        var.ClassType,
+                        var.Department,
+                        var.StudentNumber,
+                        var.StudentName,
+                        var.UpdateDescription,
+                        var.StudStatus
+                    });
                     item.Tag = var;
-                    listView2.Items.Add(item);
+                    listView2.Items.Add(item);                       
+                    
                 }
                 AutoCheckByDate();
                 listView2.ResumeLayout();
@@ -286,24 +308,29 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
         private void btnCreateDoc_Click(object sender, EventArgs e)
         {
-            List<BL.StudUpdateRecDoc> list = new List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>();
-            foreach (ListViewItem var in listView2.Items)
+            if (cboPeopleFrom.Text != "")
             {
-                if (var.Checked)
-                    list.Add((BL.StudUpdateRecDoc)var.Tag);
-            }
+                List<BL.StudUpdateRecDoc> list = new List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>();
+                foreach (ListViewItem var in listView2.Items)
+                {
+                    if (var.Checked)
+                        list.Add((BL.StudUpdateRecDoc)var.Tag);
+                }
 
-            try
-            {
-                _StudUpdateRecBatchCreator.CreateUpdateRecBatchDoc(cbxSchoolYear.Text, cbxSemester.Text,txtNameListName.Text, list);                
+                try
+                {
+                    _StudUpdateRecBatchCreator.CreateUpdateRecBatchDoc(cbxSchoolYear.Text, cbxSemester.Text, txtNameListName.Text, list, cboPeopleFrom.Text);
+                }
+                catch (Exception ex)
+                {
+                    FISCA.Presentation.Controls.MsgBox.Show("產生名冊XML發生錯誤：" + ex.Message);
+                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-            catch (Exception ex)
-            {
-                FISCA.Presentation.Controls.MsgBox.Show("產生名冊XML發生錯誤：" + ex.Message);
-            }
+            else
+                MessageBox.Show("請選擇封面資料統計來源順序");
             
-            this.DialogResult = DialogResult.OK;
-            this.Close();
 
         }
 
@@ -312,6 +339,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             DateTime begin = DateTime.Now;
             DateTime end = DateTime.Now;
             DateTime updateDate = DateTime.Now;
+            List<string> CourseNames = new List<string>();
+            for (int i = 0; i < lstCourseKind.Items.Count; i++)
+                if (lstCourseKind.Items[i].Checked == true)
+                    CourseNames.Add(lstCourseKind.Items[i].SubItems[0].Text);
             if (DateTime.TryParse(dtBeginDate.Text, out begin) && DateTime.TryParse(dtEndDate.Text, out end))
             {
                 foreach (ListViewItem var in listView2.Items)
@@ -320,8 +351,16 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                     if (DateTime.TryParse(rec.UpdateDate, out updateDate) && updateDate >= begin && updateDate <= end)
                     {
-                        var.ForeColor = Color.Blue;
-                        var.Checked = true;
+                        if (CourseNames.Contains(rec.DeptGroupName))
+                        {
+                            var.ForeColor = Color.Blue;
+                            var.Checked = true;
+                        }
+                        else
+                        {
+                            var.ForeColor = listView2.ForeColor;
+                            var.Checked = false;
+                        }
                     }
                     else
                     {
@@ -351,6 +390,18 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         private void cbxSchoolYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             setDefaultNameListName();
+        }
+
+       
+
+        private void lstCourseKind_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AutoCheckByDate();
+        }
+
+        private void lstCourseKind_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            AutoCheckByDate();
         }
 
         private void cbxSemester_SelectedIndexChanged(object sender, EventArgs e)

@@ -144,6 +144,14 @@
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(211)))), ((int)(((byte)(239))))), 0F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(212)))), ((int)(((byte)(240))))), 0.4F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(201)))), ((int)(((byte)(234))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(224)))), ((int)(((byte)(245))))), 1F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(211)))), ((int)(((byte)(239))))), 0F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(212)))), ((int)(((byte)(240))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(201)))), ((int)(((byte)(234))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(224)))), ((int)(((byte)(245))))), 1F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(211)))), ((int)(((byte)(239))))), 0F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(212)))), ((int)(((byte)(240))))), 0.4F),
+            new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(201)))), ((int)(((byte)(234))))), 0.4F),
             new DevComponents.DotNetBar.BackgroundColorBlend(System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(224)))), ((int)(((byte)(245))))), 1F)});
             this.office2007StyleWizard1.HeaderStyle.BackColorGradientAngle = 90;
             this.office2007StyleWizard1.HeaderStyle.BorderBottom = DevComponents.DotNetBar.eStyleBorderType.Solid;
@@ -381,6 +389,9 @@
             this.updateRecordInfo2.NewStudentNumberVisible = false;
             this.updateRecordInfo2.OldClassType = "";
             this.updateRecordInfo2.OldDepartmentCode = "";
+            this.updateRecordInfo2.OriginalTempDate = "";
+            this.updateRecordInfo2.OriginalTempDesc = "";
+            this.updateRecordInfo2.OriginalTempNumber = "";
             this.updateRecordInfo2.PreviousDepartment = "";
             this.updateRecordInfo2.PreviousGradeYear = "";
             this.updateRecordInfo2.PreviousSchool = "";
@@ -393,6 +404,9 @@
             this.updateRecordInfo2.StudentNumber = "";
             this.updateRecordInfo2.Style = UpdateRecordModule_SH_D.Wizards.UpdateRecordType.學籍異動;
             this.updateRecordInfo2.TabIndex = 0;
+            this.updateRecordInfo2.TempDate = "";
+            this.updateRecordInfo2.TempDesc = "";
+            this.updateRecordInfo2.TempNumber = "";
             this.updateRecordInfo2.UpdateCode = "";
             this.updateRecordInfo2.UpdateDate = "";
             this.updateRecordInfo2.UpdateDescription = "";
@@ -426,6 +440,9 @@
             this.updateRecordInfo1.NewStudentNumberVisible = false;
             this.updateRecordInfo1.OldClassType = "";
             this.updateRecordInfo1.OldDepartmentCode = "";
+            this.updateRecordInfo1.OriginalTempDate = "";
+            this.updateRecordInfo1.OriginalTempDesc = "";
+            this.updateRecordInfo1.OriginalTempNumber = "";
             this.updateRecordInfo1.PreviousDepartment = "";
             this.updateRecordInfo1.PreviousGradeYear = "";
             this.updateRecordInfo1.PreviousSchool = "";
@@ -438,6 +455,9 @@
             this.updateRecordInfo1.StudentNumber = "";
             this.updateRecordInfo1.Style = UpdateRecordModule_SH_D.Wizards.UpdateRecordType.學籍異動;
             this.updateRecordInfo1.TabIndex = 0;
+            this.updateRecordInfo1.TempDate = "";
+            this.updateRecordInfo1.TempDesc = "";
+            this.updateRecordInfo1.TempNumber = "";
             this.updateRecordInfo1.UpdateCode = "";
             this.updateRecordInfo1.UpdateDate = "";
             this.updateRecordInfo1.UpdateDescription = "";

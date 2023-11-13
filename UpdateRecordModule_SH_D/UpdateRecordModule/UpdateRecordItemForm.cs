@@ -408,7 +408,7 @@ namespace UpdateRecordModule_SH_D
                         }
 
                     // 休學，學生狀態是一般，輸入異動代碼是休學，問使用者是否轉成休學。
-                    if (intUpdateCode >= 340 && intUpdateCode <= 349 && studRec.Status == K12.Data.StudentRecord.StudentStatus.一般)
+                    if (intUpdateCode >= 340 && intUpdateCode <= 350 && studRec.Status == K12.Data.StudentRecord.StudentStatus.一般)
                         if (FISCA.Presentation.Controls.MsgBox.Show("請問是否將學生狀態變更成休學？", "提醒", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             if (AllStudRec == null)

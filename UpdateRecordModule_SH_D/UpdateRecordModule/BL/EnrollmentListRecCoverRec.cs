@@ -37,6 +37,7 @@ namespace UpdateRecordModule_SH_D.BL
         /// 上傳類別
         /// </summary>
         public string UpdateType { get; set; }
+        
         /// <summary>
         /// 核定班數
         /// </summary>

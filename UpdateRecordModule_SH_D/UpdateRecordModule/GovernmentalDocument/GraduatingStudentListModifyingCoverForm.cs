@@ -56,7 +56,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
                 {
                     //string reportType = st.SelectSingleNode("@名冊別").InnerText;
-                    string reportType = "4";// 畢業名冊 固定為4 
+                    string reportType = "8";// 畢業名冊 固定為4 名冊別原為4>修改為8(110年度更改)
                     string classType = st.SelectSingleNode("@班別") != null ? st.SelectSingleNode("@班別").InnerText :"";
                     string updateType = st.SelectSingleNode("@上傳類別") != null ? st.SelectSingleNode("@上傳類別").InnerText : "";
                     string approvedClassCount = st.SelectSingleNode("@核定班數") != null ? st.SelectSingleNode("@核定班數").InnerText : "";
@@ -145,7 +145,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             Global._GSchoolYear = _BRec.SchoolYear.ToString();
             Global._GSemester = _BRec.Semester.ToString();
             Global._GDocName = _BRec.Name;
-
+            Global._TempDate = _BRec.TempDate.ToString();
+            Global._TempDesc = _BRec.TempDesc;
+            Global._TempNumber = _BRec.TempNumber;
             // 將 XElement 轉型 XmlElement
             shurbr.Content = new XmlDocument().ReadNode(ConvertStudUpdateRecDocToXML(_BRec.StudUpdateRecDocList).CreateReader()) as XmlElement;
 

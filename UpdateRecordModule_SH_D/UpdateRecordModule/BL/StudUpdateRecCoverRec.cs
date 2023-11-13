@@ -94,5 +94,15 @@ namespace UpdateRecordModule_SH_D.BL
         /// </summary>
         public string Department { get; set; }
 
+        /// <summary>
+        /// 輔導延修人數
+        /// </summary>
+        public string TutoringExtendedStudentCount { get; set; }
+
+        /// <summary>
+        /// 未申請延修人數
+        /// </summary>
+        public string NonApplyExtendedStudentCount { get; set; }
+
     }
 }
