@@ -20,6 +20,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         StudUpdateRecBatchRec _BRec;
 
         List<ExtendingStudentCoverRec> coverDataList = new List<ExtendingStudentCoverRec>();
+        List<ExtendingStudentCoverRec> coverDataListA = new List<ExtendingStudentCoverRec>();
 
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
@@ -191,8 +192,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
             foreach (BL.StudUpdateRecDoc val in updateRecList)
             {
-                //string key = val.GradeYear + "_" + val.Department + "_";
-                string key = val.GradeYear + "_" + val.Department + "_" + val.ClassType;
+                //string key = val.ExpectGraduateSchoolYear + "_" + val.Department + "_";
+                string key = val.ExpectGraduateSchoolYear + "_" + val.Department + "_" + val.ClassType;
                 if (data.ContainsKey(key))
                     data[key].Add(val);
                 else
@@ -210,7 +211,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             retVal.SetAttributeValue("學校代號", Global._GSchoolCode);
             retVal.SetAttributeValue("學校名稱", Global._GSchoolName);
             retVal.SetAttributeValue("類別", Global._GUpdateBatchType);
-
+            coverDataListA.Clear();
             foreach (KeyValuePair<string, List<BL.StudUpdateRecDoc>> val in data)
             {
                 // 解析年級科別
@@ -319,15 +320,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                     elmGrDept.Add(elm);
                 }
-
-
                 //2018/2/5 穎驊增加 處理封面資料
+                
                 foreach (ExtendingStudentCoverRec coverRec in coverDataList)
                 {
                     //假如整理好的封面資料 只要科別代碼 與 現在的資料相同， 則配對
                     // 2018/2/8 穎驊特別備註因為延修生名冊不需分年級，都是"延修生"年級，因此只要科別能對齊，資料就是對的。
                     //if (coverRec.DeptCode == DeptCode)
-                    if (coverRec.Department == DeptName && coverRec.ClassType == classType)
+                    if (coverRec.Department == DeptName && coverRec.ClassType == classType && coverRec.ScheduledGraduateYear == grYear)
                     {
                         XElement elmGrDeptCover = new XElement("異動名冊封面");
 
@@ -336,17 +336,52 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         //elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
                         elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
                         elmGrDeptCover.SetAttributeValue("輔導延修學生數", coverRec.ApprovedExtendingStudentCount);
-                        elmGrDeptCover.SetAttributeValue("未申請延修學生數", coverRec.WaitingExtendingStudentCount);                        
+                        elmGrDeptCover.SetAttributeValue("未申請延修學生數", coverRec.WaitingExtendingStudentCount);
                         elmGrDeptCover.SetAttributeValue("原有學生數", coverRec.OriginalStudentCount);
-                        elmGrDeptCover.SetAttributeValue("增加學生數", coverRec.IncreaseStudentCount);                        
-                        elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);                        
+                        elmGrDeptCover.SetAttributeValue("增加學生數", coverRec.IncreaseStudentCount);
+                        elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);
+                        coverDataListA.Add(coverRec);
                     }
-                }               
+                }
 
-                retVal.Add(elmGrDept);                
+                retVal.Add(elmGrDept);
+            }
+            //找出沒有異動記錄的封面
+            foreach (ExtendingStudentCoverRec coverRec in coverDataList)
+            {
+                Boolean find = false;
+                foreach (ExtendingStudentCoverRec coverRecA in coverDataListA)
+                    if (coverRecA.Department == coverRec.Department && coverRec.ClassType == coverRecA.ClassType && coverRec.ScheduledGraduateYear == coverRecA.ScheduledGraduateYear)
+                        find = true;
+                if (find == false)
+                { 
+                    XElement elmGrDept = new XElement("清單");
+                    elmGrDept.SetAttributeValue("年級", coverRec.ScheduledGraduateYear);
+                    elmGrDept.SetAttributeValue("科別", coverRec.Department);
+                    elmGrDept.SetAttributeValue("科別代碼", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("科別代號", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("班別", coverRec.ClassType);
+
+                    XElement elmGrDeptCover = new XElement("異動名冊封面");
+
+                    elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
+                    elmGrDeptCover.SetAttributeValue("應畢業學年度", coverRec.ScheduledGraduateYear);
+                    //elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
+                    elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
+                    elmGrDeptCover.SetAttributeValue("輔導延修學生數", coverRec.ApprovedExtendingStudentCount);
+                    elmGrDeptCover.SetAttributeValue("未申請延修學生數", coverRec.WaitingExtendingStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", coverRec.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("增加學生數", coverRec.IncreaseStudentCount);
+                    elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);
+                    elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
+                    //加入封面
+                    elmGrDept.Add(elmGrDeptCover);
+
+                    retVal.Add(elmGrDept);
+                 }
             }
             return retVal;
         }

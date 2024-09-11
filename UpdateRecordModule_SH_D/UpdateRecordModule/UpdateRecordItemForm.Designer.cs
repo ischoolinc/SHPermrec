@@ -61,7 +61,7 @@
             this.UpdateRecordEditorPanle.CanvasColor = System.Drawing.SystemColors.Control;
             this.UpdateRecordEditorPanle.Location = new System.Drawing.Point(9, 45);
             this.UpdateRecordEditorPanle.Name = "UpdateRecordEditorPanle";
-            this.UpdateRecordEditorPanle.Size = new System.Drawing.Size(515, 608);
+            this.UpdateRecordEditorPanle.Size = new System.Drawing.Size(515, 728);
             this.UpdateRecordEditorPanle.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.UpdateRecordEditorPanle.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
             this.UpdateRecordEditorPanle.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
@@ -77,7 +77,7 @@
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(454, 659);
+            this.btnExit.Location = new System.Drawing.Point(454, 784);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(65, 23);
             this.btnExit.TabIndex = 4;
@@ -90,7 +90,7 @@
             this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
             this.btnConfirm.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnConfirm.Location = new System.Drawing.Point(384, 659);
+            this.btnConfirm.Location = new System.Drawing.Point(384, 784);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(64, 23);
             this.btnConfirm.TabIndex = 3;
@@ -173,7 +173,7 @@
             this.integerInput2.Location = new System.Drawing.Point(364, 11);
             this.integerInput2.Name = "integerInput2";
             this.integerInput2.ShowUpDown = true;
-            this.integerInput2.Size = new System.Drawing.Size(67, 22);
+            this.integerInput2.Size = new System.Drawing.Size(67, 29);
             this.integerInput2.TabIndex = 7;
             // 
             // lablex11
@@ -206,7 +206,7 @@
             this.AcceptButton = this.btnConfirm;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(532, 691);
+            this.ClientSize = new System.Drawing.Size(532, 816);
             this.Controls.Add(this.cbxGradeYear);
             this.Controls.Add(this.lablex11);
             this.Controls.Add(this.labelX2);

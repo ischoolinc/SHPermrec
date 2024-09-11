@@ -116,7 +116,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     if (currentPage == totalPage)
                     {
                         ws.Cells.CreateRange(dataIndex, 0, 1, 2).Merge();
-                        ws.Cells[dataIndex, 0].PutValue("合計 " + list.ChildNodes.Count.ToString() + " 名");
+                        ws.Cells[dataIndex, 0].PutValue("合計 " + (list.ChildNodes.Count-1).ToString() + " 名");
                     }
 
                     //分頁

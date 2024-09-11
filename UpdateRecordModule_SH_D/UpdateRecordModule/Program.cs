@@ -19,6 +19,7 @@ namespace UpdateRecordModule_SH_D
     {
 
         public const string UpdateRecordGovDocsCode = "Button06303";
+        public const string UpdateRecordGovApproved = "49d79b4b-61b4-5670-b6e3-395f20e00529";
         public const string UpdateRecordContentCode = "Content0140";
         public const string BeforeEnrollmentContentCode = "SHSchool.Student.BeforeEnrollmentItem";
         /// <summary>
@@ -44,7 +45,8 @@ namespace UpdateRecordModule_SH_D
             detail.Add(new DetailItemFeature(typeof(BeforeEnrollmentItem)));
             Catalog ribbon = RoleAclSource.Instance["教務作業"]["功能按鈕"];
             ribbon.Add(new RibbonFeature(UpdateRecordGovDocsCode, "函報名冊"));
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmartSchool.Others.RibbonBars.NameList));
+            ribbon.Add(new RibbonFeature(UpdateRecordGovApproved, "核班人數維護"));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SmartSchool.Others.RibbonBars.NameList));            
             var btnItemNameList = MotherForm.RibbonBarItems["教務作業", "批次作業/檢視"]["異動作業"];
             btnItemNameList.Image = Properties.Resources.history_save_64;
             btnItemNameList.Size = RibbonBarButton.MenuButtonSize.Large;
@@ -53,7 +55,12 @@ namespace UpdateRecordModule_SH_D
             {
                 new GovernmentalDocument.ListForm().ShowDialog();
             };
-            
+            btnItemNameList["核班人數維護"].Enable = FISCA.Permission.UserAcl.Current[UpdateRecordGovApproved].Executable;
+            btnItemNameList["核班人數維護"].Click += delegate
+            {
+                frmGovApprovedNumOfClass frmGov = new frmGovApprovedNumOfClass();
+                frmGov.ShowDialog();
+            };
             // 匯出新生異動
             RibbonBarButton rbEnrollmentListExport = MotherForm.RibbonBarItems["學生", "資料統計"]["匯出"];
             rbEnrollmentListExport["異動相關匯出"]["匯出新生異動"].Enable = FISCA.Permission.UserAcl.Current["Button0200"].Executable;
@@ -180,6 +187,7 @@ namespace UpdateRecordModule_SH_D
             // 加入權限代碼
             ribbon2.Add(new RibbonFeature("SHSchool.Student.UpdateRecordForm.Button01", "轉科"));
             ribbon2.Add(new RibbonFeature("SHSchool.Student.UpdateRecordForm.Button02", "學籍更正"));
+            ribbon2.Add(new RibbonFeature("SHSchool.Student.UpdateRecordForm.Button03", "批次學籍異動"));
 
             var btnStudentUR = K12.Presentation.NLDPanels.Student.RibbonBarItems["教務"]["異動作業"];
             btnStudentUR.Image = Properties.Resources.demographic_reload_64;
@@ -190,15 +198,19 @@ namespace UpdateRecordModule_SH_D
             var btnChangeInfo = btnStudentUR["學籍更正"];
             btnChangeInfo.Click += new EventHandler(btnChangeInfo_Click);
             btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1;
+            var btnBatchUpdate = btnStudentUR["批次學籍異動"];
+            btnBatchUpdate.Click += new EventHandler(btnBatchUpdate_Click);
+            btnBatchUpdate.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count >= 1;
 
             K12.Presentation.NLDPanels.Student.SelectedSourceChanged += delegate
             {
                 btnChangeDept.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button01"].Executable;
-                btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button02"].Executable;              
-            };
+                btnChangeInfo.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count == 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button02"].Executable;
+                btnBatchUpdate.Enable = K12.Presentation.NLDPanels.Student.SelectedSource.Count >= 1 && FISCA.Permission.UserAcl.Current["SHSchool.Student.UpdateRecordForm.Button03"].Executable;
 
+            };
             // 加入權限代碼
-            ribbon2.Add(new RibbonFeature("SHSchool.Student.DeleteUpdateRecordForm", "刪除異動資料"));
+                ribbon2.Add(new RibbonFeature("SHSchool.Student.DeleteUpdateRecordForm", "刪除異動資料"));
 
             // 刪除異動資料            
             K12.Presentation.NLDPanels.Student.ListPaneContexMenu["刪除異動資料"].Enable = UserAcl.Current["SHSchool.Student.DeleteUpdateRecordForm"].Executable;
@@ -223,6 +235,11 @@ namespace UpdateRecordModule_SH_D
         static void btnChangeDept_Click(object sender, EventArgs e)
         {
             new UpdateRecordModule_SH_D.Wizards.ChangeDeptProcess(new AccessHelper().StudentHelper.GetSelectedStudent()[0].StudentID).ShowDialog();
+        }
+        static void btnBatchUpdate_Click(object sender, EventArgs e)
+        {
+            Batch.BatchUpdateRec bgrf = new Batch.BatchUpdateRec();
+            bgrf.ShowDialog();
         }
 
 

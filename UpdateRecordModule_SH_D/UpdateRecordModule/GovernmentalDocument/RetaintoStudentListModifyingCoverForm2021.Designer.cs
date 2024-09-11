@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,6 +36,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnClose = new DevComponents.DotNetBar.ButtonX();
@@ -79,14 +82,14 @@
             this.因病申請保留錄取資格期間復受徵召服役者申請學生數,
             this.備註說明,
             this.科別});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 69);
             this.dataGridViewX1.Name = "dataGridViewX1";
@@ -221,18 +224,27 @@
             // 
             // 因病須長期療養或懷孕申請保留學生數
             // 
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.因病須長期療養或懷孕申請保留學生數.DefaultCellStyle = dataGridViewCellStyle8;
             this.因病須長期療養或懷孕申請保留學生數.HeaderText = "因病須長期療養或懷孕申請保留學生數";
             this.因病須長期療養或懷孕申請保留學生數.Name = "因病須長期療養或懷孕申請保留學生數";
             this.因病須長期療養或懷孕申請保留學生數.Width = 200;
             // 
             // 因服兵役申請保留學生數
             // 
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.因服兵役申請保留學生數.DefaultCellStyle = dataGridViewCellStyle9;
             this.因服兵役申請保留學生數.HeaderText = "因服兵役申請保留學生數";
             this.因服兵役申請保留學生數.Name = "因服兵役申請保留學生數";
             this.因服兵役申請保留學生數.Width = 200;
             // 
             // 因病申請保留錄取資格期間復受徵召服役者申請學生數
             // 
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.因病申請保留錄取資格期間復受徵召服役者申請學生數.DefaultCellStyle = dataGridViewCellStyle10;
             this.因病申請保留錄取資格期間復受徵召服役者申請學生數.HeaderText = "因病申請保留錄取資格期間復受徵召服役者申請學生數";
             this.因病申請保留錄取資格期間復受徵召服役者申請學生數.Name = "因病申請保留錄取資格期間復受徵召服役者申請學生數";
             this.因病申請保留錄取資格期間復受徵召服役者申請學生數.Width = 200;
@@ -250,7 +262,7 @@
             this.科別.ReadOnly = true;
             this.科別.Visible = false;
             // 
-            // RetaintoStudentListModifyingCoverForm
+            // RetaintoStudentListModifyingCoverForm2021
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -261,7 +273,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridViewX1);
             this.DoubleBuffered = true;
-            this.Name = "RetaintoStudentListModifyingCoverForm";
+            this.Name = "RetaintoStudentListModifyingCoverForm2021";
             this.Text = "調整新生保留錄取資格名冊封面資料";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);

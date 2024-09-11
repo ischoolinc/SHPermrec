@@ -298,9 +298,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             //  <年級,<班別,科別>>
             Dictionary<string, Dictionary<string, List<string>>> cover_row_dict = new Dictionary<string, Dictionary<string, List<string>>>();
 
-            // 排序 (依 班別、年級、科別代碼、異動代碼)
-            _data = (from data in _data orderby data.ClassType, data.DeptCode, data.UpdateCode select data).ToList();
-
+            
+            // 排序 (依 班別、年級、科別代碼、異動代碼、學號)
+            _data = (from data in _data orderby data.ClassType, data.DeptCode, data.UpdateCode, data.StudentNumber select data).ToList();
             foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data)
             {
                 mdws_index++;

@@ -195,7 +195,7 @@ updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where 
         /// <param name="Semester"></param>
         /// <param name="DocName"></param>
         /// <param name="dataList"></param>
-        public void CreateUpdateRecBatchDoc(string SchoolYear, string Semester, string DocName, List<BL.StudUpdateRecDoc> dataList,string PeopleFrom)
+        public void CreateUpdateRecBatchDoc(string SchoolYear, string Semester, string DocName, List<BL.StudUpdateRecDoc> dataList,string PeopleFrom,string ClassTypeU)
         {
             int sy, ss;
             BL.StudUpdateRecBatchRec StudUpdateRecBRec = new UpdateRecordModule_SH_D.BL.StudUpdateRecBatchRec();
@@ -209,7 +209,7 @@ updatRecList = (from data in SHUpdateRecord.SelectByUpdateCodes(CodeList) where 
             StudUpdateRecBRec.UpdateType= _UpdateRecBatchType.ToString ();
             StudUpdateRecBRec.Name = DocName;
             StudUpdateRecBRec.StudUpdateRecDocList = dataList;
-            DAL.DALTransfer.SetStudUpdateRecBatchRec(StudUpdateRecBRec,true,PeopleFrom);
+            DAL.DALTransfer.SetStudUpdateRecBatchRec(StudUpdateRecBRec,true,PeopleFrom,ClassTypeU);
         
         }
 

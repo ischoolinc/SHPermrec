@@ -249,7 +249,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 0);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(511, 589);
+            this.panelEx1.Size = new System.Drawing.Size(511, 628);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -261,9 +261,9 @@
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 573);
+            this.panel3.Location = new System.Drawing.Point(0, 581);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(511, 16);
+            this.panel3.Size = new System.Drawing.Size(511, 47);
             this.panel3.TabIndex = 0;
             // 
             // 學籍異動
@@ -274,7 +274,7 @@
             this.學籍異動.Dock = System.Windows.Forms.DockStyle.Fill;
             this.學籍異動.Location = new System.Drawing.Point(0, 0);
             this.學籍異動.Name = "學籍異動";
-            this.學籍異動.Size = new System.Drawing.Size(511, 589);
+            this.學籍異動.Size = new System.Drawing.Size(511, 628);
             this.學籍異動.TabIndex = 4;
             // 
             // groupPanel1
@@ -337,7 +337,7 @@
             this.txtTempNumber.Location = new System.Drawing.Point(306, 64);
             this.txtTempNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTempNumber.Name = "txtTempNumber";
-            this.txtTempNumber.Size = new System.Drawing.Size(185, 25);
+            this.txtTempNumber.Size = new System.Drawing.Size(185, 29);
             this.txtTempNumber.TabIndex = 120;
             this.txtTempNumber.Tag = "TempNumber";
             // 
@@ -351,7 +351,7 @@
             this.txtTempDesc.Location = new System.Drawing.Point(100, 66);
             this.txtTempDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTempDesc.Name = "txtTempDesc";
-            this.txtTempDesc.Size = new System.Drawing.Size(128, 25);
+            this.txtTempDesc.Size = new System.Drawing.Size(128, 29);
             this.txtTempDesc.TabIndex = 121;
             this.txtTempDesc.Tag = "TempDesc";
             // 
@@ -542,7 +542,7 @@
             this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX1.Location = new System.Drawing.Point(307, 4);
             this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.Size = new System.Drawing.Size(185, 25);
+            this.textBoxX1.Size = new System.Drawing.Size(185, 29);
             this.textBoxX1.TabIndex = 1;
             this.textBoxX1.TabStop = false;
             this.textBoxX1.Tag = "ADNumber";
@@ -666,7 +666,7 @@
             this.textBoxX27.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX27.Location = new System.Drawing.Point(362, 98);
             this.textBoxX27.Name = "textBoxX27";
-            this.textBoxX27.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX27.Size = new System.Drawing.Size(130, 29);
             this.textBoxX27.TabIndex = 11;
             this.textBoxX27.Tag = "SpecialStatus";
             // 
@@ -740,7 +740,7 @@
             this.labelX42.ForeColor = System.Drawing.Color.Black;
             this.labelX42.Location = new System.Drawing.Point(253, 100);
             this.labelX42.Name = "labelX42";
-            this.labelX42.Size = new System.Drawing.Size(101, 21);
+            this.labelX42.Size = new System.Drawing.Size(138, 28);
             this.labelX42.TabIndex = 8;
             this.labelX42.Text = "特殊身份代碼：";
             // 
@@ -755,7 +755,7 @@
             this.labelX20.ForeColor = System.Drawing.Color.Black;
             this.labelX20.Location = new System.Drawing.Point(49, 102);
             this.labelX20.Name = "labelX20";
-            this.labelX20.Size = new System.Drawing.Size(47, 21);
+            this.labelX20.Size = new System.Drawing.Size(64, 28);
             this.labelX20.TabIndex = 6;
             this.labelX20.Text = "班別：";
             // 
@@ -780,7 +780,7 @@
             this.textBoxX28.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX28.Location = new System.Drawing.Point(362, 34);
             this.textBoxX28.Name = "textBoxX28";
-            this.textBoxX28.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX28.Size = new System.Drawing.Size(130, 29);
             this.textBoxX28.TabIndex = 3;
             this.textBoxX28.Tag = "Comment";
             // 
@@ -793,7 +793,7 @@
             this.textBoxX29.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX29.Location = new System.Drawing.Point(262, 3);
             this.textBoxX29.Name = "textBoxX29";
-            this.textBoxX29.Size = new System.Drawing.Size(230, 25);
+            this.textBoxX29.Size = new System.Drawing.Size(230, 29);
             this.textBoxX29.TabIndex = 1;
             this.textBoxX29.Tag = "UpdateDescription";
             // 
@@ -808,7 +808,7 @@
             this.labelX33.ForeColor = System.Drawing.Color.Black;
             this.labelX33.Location = new System.Drawing.Point(307, 70);
             this.labelX33.Name = "labelX33";
-            this.labelX33.Size = new System.Drawing.Size(47, 21);
+            this.labelX33.Size = new System.Drawing.Size(64, 28);
             this.labelX33.TabIndex = 0;
             this.labelX33.Text = "科別：";
             // 
@@ -835,7 +835,7 @@
             this.labelX45.ForeColor = System.Drawing.Color.Black;
             this.labelX45.Location = new System.Drawing.Point(50, 72);
             this.labelX45.Name = "labelX45";
-            this.labelX45.Size = new System.Drawing.Size(47, 21);
+            this.labelX45.Size = new System.Drawing.Size(64, 28);
             this.labelX45.TabIndex = 0;
             this.labelX45.Text = "年級：";
             // 
@@ -850,7 +850,7 @@
             this.labelX46.ForeColor = System.Drawing.Color.Black;
             this.labelX46.Location = new System.Drawing.Point(307, 38);
             this.labelX46.Name = "labelX46";
-            this.labelX46.Size = new System.Drawing.Size(47, 21);
+            this.labelX46.Size = new System.Drawing.Size(64, 28);
             this.labelX46.TabIndex = 0;
             this.labelX46.Text = "備註：";
             // 
@@ -865,7 +865,7 @@
             this.labelX47.ForeColor = System.Drawing.Color.Black;
             this.labelX47.Location = new System.Drawing.Point(23, 40);
             this.labelX47.Name = "labelX47";
-            this.labelX47.Size = new System.Drawing.Size(74, 21);
+            this.labelX47.Size = new System.Drawing.Size(101, 28);
             this.labelX47.TabIndex = 0;
             this.labelX47.Text = "異動日期：";
             // 
@@ -880,7 +880,7 @@
             this.labelX48.ForeColor = System.Drawing.Color.Black;
             this.labelX48.Location = new System.Drawing.Point(179, 7);
             this.labelX48.Name = "labelX48";
-            this.labelX48.Size = new System.Drawing.Size(87, 21);
+            this.labelX48.Size = new System.Drawing.Size(120, 28);
             this.labelX48.TabIndex = 0;
             this.labelX48.Text = "原因及事項：";
             // 
@@ -895,7 +895,7 @@
             this.labelX49.ForeColor = System.Drawing.Color.Black;
             this.labelX49.Location = new System.Drawing.Point(-4, 7);
             this.labelX49.Name = "labelX49";
-            this.labelX49.Size = new System.Drawing.Size(101, 21);
+            this.labelX49.Size = new System.Drawing.Size(138, 28);
             this.labelX49.TabIndex = 0;
             this.labelX49.Text = "異動原因代碼：";
             // 
@@ -974,7 +974,7 @@
             this.textBoxX30.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX30.Location = new System.Drawing.Point(346, 10);
             this.textBoxX30.Name = "textBoxX30";
-            this.textBoxX30.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX30.Size = new System.Drawing.Size(130, 29);
             this.textBoxX30.TabIndex = 1;
             this.textBoxX30.Tag = "StudentNumber";
             // 
@@ -988,7 +988,7 @@
             this.txtOriginTempNumber.Location = new System.Drawing.Point(346, 192);
             this.txtOriginTempNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOriginTempNumber.Name = "txtOriginTempNumber";
-            this.txtOriginTempNumber.Size = new System.Drawing.Size(140, 25);
+            this.txtOriginTempNumber.Size = new System.Drawing.Size(140, 29);
             this.txtOriginTempNumber.TabIndex = 114;
             this.txtOriginTempNumber.Tag = "OriginalTempNumber";
             // 
@@ -1002,7 +1002,7 @@
             this.txtOriginTempDesc.Location = new System.Drawing.Point(95, 194);
             this.txtOriginTempDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtOriginTempDesc.Name = "txtOriginTempDesc";
-            this.txtOriginTempDesc.Size = new System.Drawing.Size(140, 25);
+            this.txtOriginTempDesc.Size = new System.Drawing.Size(140, 29);
             this.txtOriginTempDesc.TabIndex = 115;
             this.txtOriginTempDesc.Tag = "OriginalTempDesc";
             // 
@@ -1231,7 +1231,7 @@
             this.lblOldClassType.ForeColor = System.Drawing.Color.Black;
             this.lblOldClassType.Location = new System.Drawing.Point(34, 100);
             this.lblOldClassType.Name = "lblOldClassType";
-            this.lblOldClassType.Size = new System.Drawing.Size(60, 21);
+            this.lblOldClassType.Size = new System.Drawing.Size(83, 28);
             this.lblOldClassType.TabIndex = 13;
             this.lblOldClassType.Text = "舊班別：";
             // 
@@ -1244,7 +1244,7 @@
             this.textBoxX12.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX12.Location = new System.Drawing.Point(99, 68);
             this.textBoxX12.Name = "textBoxX12";
-            this.textBoxX12.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX12.Size = new System.Drawing.Size(130, 29);
             this.textBoxX12.TabIndex = 11;
             this.textBoxX12.Tag = "IDNumberComment";
             // 
@@ -1273,7 +1273,7 @@
             this.textBoxX33.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX33.Location = new System.Drawing.Point(346, 132);
             this.textBoxX33.Name = "textBoxX33";
-            this.textBoxX33.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX33.Size = new System.Drawing.Size(130, 29);
             this.textBoxX33.TabIndex = 5;
             this.textBoxX33.Tag = "LastADNumber";
             // 
@@ -1302,7 +1302,7 @@
             this.labelX50.ForeColor = System.Drawing.Color.Black;
             this.labelX50.Location = new System.Drawing.Point(22, 132);
             this.labelX50.Name = "labelX50";
-            this.labelX50.Size = new System.Drawing.Size(74, 21);
+            this.labelX50.Size = new System.Drawing.Size(101, 28);
             this.labelX50.TabIndex = 0;
             this.labelX50.Text = "備查日期：";
             // 
@@ -1317,7 +1317,7 @@
             this.labelX51.ForeColor = System.Drawing.Color.Black;
             this.labelX51.Location = new System.Drawing.Point(307, 10);
             this.labelX51.Name = "labelX51";
-            this.labelX51.Size = new System.Drawing.Size(47, 21);
+            this.labelX51.Size = new System.Drawing.Size(64, 28);
             this.labelX51.TabIndex = 0;
             this.labelX51.Text = "學號：";
             // 
@@ -1332,7 +1332,7 @@
             this.labelX52.ForeColor = System.Drawing.Color.Black;
             this.labelX52.Location = new System.Drawing.Point(50, 10);
             this.labelX52.Name = "labelX52";
-            this.labelX52.Size = new System.Drawing.Size(47, 21);
+            this.labelX52.Size = new System.Drawing.Size(64, 28);
             this.labelX52.TabIndex = 0;
             this.labelX52.Text = "姓名：";
             // 
@@ -1345,7 +1345,7 @@
             this.txtNewData.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtNewData.Location = new System.Drawing.Point(346, 41);
             this.txtNewData.Name = "txtNewData";
-            this.txtNewData.Size = new System.Drawing.Size(130, 25);
+            this.txtNewData.Size = new System.Drawing.Size(130, 29);
             this.txtNewData.TabIndex = 3;
             this.txtNewData.Tag = "NewData";
             this.txtNewData.Visible = false;
@@ -1359,7 +1359,7 @@
             this.txtNewStudentNumber.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtNewStudentNumber.Location = new System.Drawing.Point(350, 41);
             this.txtNewStudentNumber.Name = "txtNewStudentNumber";
-            this.txtNewStudentNumber.Size = new System.Drawing.Size(130, 25);
+            this.txtNewStudentNumber.Size = new System.Drawing.Size(130, 29);
             this.txtNewStudentNumber.TabIndex = 3;
             this.txtNewStudentNumber.Tag = "NewStudentNumber";
             this.txtNewStudentNumber.Visible = false;
@@ -1373,7 +1373,7 @@
             this.textBoxX31.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX31.Location = new System.Drawing.Point(100, 38);
             this.textBoxX31.Name = "textBoxX31";
-            this.textBoxX31.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX31.Size = new System.Drawing.Size(130, 29);
             this.textBoxX31.TabIndex = 2;
             this.textBoxX31.Tag = "IDNumber";
             // 
@@ -1388,7 +1388,7 @@
             this.lblNewStudentNumber.ForeColor = System.Drawing.Color.Black;
             this.lblNewStudentNumber.Location = new System.Drawing.Point(294, 43);
             this.lblNewStudentNumber.Name = "lblNewStudentNumber";
-            this.lblNewStudentNumber.Size = new System.Drawing.Size(60, 21);
+            this.lblNewStudentNumber.Size = new System.Drawing.Size(83, 28);
             this.lblNewStudentNumber.TabIndex = 0;
             this.lblNewStudentNumber.Text = "新學號：";
             // 
@@ -1401,7 +1401,7 @@
             this.textBoxX32.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX32.Location = new System.Drawing.Point(100, 7);
             this.textBoxX32.Name = "textBoxX32";
-            this.textBoxX32.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX32.Size = new System.Drawing.Size(130, 29);
             this.textBoxX32.TabIndex = 0;
             this.textBoxX32.Tag = "Name";
             // 
@@ -1416,7 +1416,7 @@
             this.labelX54.ForeColor = System.Drawing.Color.Black;
             this.labelX54.Location = new System.Drawing.Point(10, 41);
             this.labelX54.Name = "labelX54";
-            this.labelX54.Size = new System.Drawing.Size(87, 21);
+            this.labelX54.Size = new System.Drawing.Size(120, 28);
             this.labelX54.TabIndex = 0;
             this.labelX54.Text = "身分證字號：";
             // 
@@ -1444,7 +1444,7 @@
             this.新生名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.新生名冊.Location = new System.Drawing.Point(0, 0);
             this.新生名冊.Name = "新生名冊";
-            this.新生名冊.Size = new System.Drawing.Size(511, 589);
+            this.新生名冊.Size = new System.Drawing.Size(511, 628);
             this.新生名冊.TabIndex = 1;
             // 
             // groupPanel4
@@ -1505,7 +1505,7 @@
             this.textBoxX8.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX8.Location = new System.Drawing.Point(118, 4);
             this.textBoxX8.Name = "textBoxX8";
-            this.textBoxX8.Size = new System.Drawing.Size(112, 25);
+            this.textBoxX8.Size = new System.Drawing.Size(112, 29);
             this.textBoxX8.TabIndex = 0;
             this.textBoxX8.Tag = "GraduateSchool";
             // 
@@ -1543,7 +1543,7 @@
             this.textBoxX22.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX22.Location = new System.Drawing.Point(359, 38);
             this.textBoxX22.Name = "textBoxX22";
-            this.textBoxX22.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX22.Size = new System.Drawing.Size(130, 29);
             this.textBoxX22.TabIndex = 4;
             this.textBoxX22.Tag = "GraduateComment";
             // 
@@ -1558,7 +1558,7 @@
             this.labelX43.ForeColor = System.Drawing.Color.Black;
             this.labelX43.Location = new System.Drawing.Point(-3, 38);
             this.labelX43.Name = "labelX43";
-            this.labelX43.Size = new System.Drawing.Size(101, 21);
+            this.labelX43.Size = new System.Drawing.Size(138, 28);
             this.labelX43.TabIndex = 3;
             this.labelX43.Text = "國中畢業年度：";
             // 
@@ -1571,7 +1571,7 @@
             this.textBoxX13.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX13.Location = new System.Drawing.Point(100, 37);
             this.textBoxX13.Name = "textBoxX13";
-            this.textBoxX13.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX13.Size = new System.Drawing.Size(130, 29);
             this.textBoxX13.TabIndex = 2;
             this.textBoxX13.Tag = "GraduateSchoolYear";
             // 
@@ -1586,7 +1586,7 @@
             this.labelX15.ForeColor = System.Drawing.Color.Black;
             this.labelX15.Location = new System.Drawing.Point(271, 7);
             this.labelX15.Name = "labelX15";
-            this.labelX15.Size = new System.Drawing.Size(87, 21);
+            this.labelX15.Size = new System.Drawing.Size(120, 28);
             this.labelX15.TabIndex = 0;
             this.labelX15.Text = "所在地代碼：";
             // 
@@ -1615,7 +1615,7 @@
             this.textBoxX9.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX9.Location = new System.Drawing.Point(359, 3);
             this.textBoxX9.Name = "textBoxX9";
-            this.textBoxX9.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX9.Size = new System.Drawing.Size(130, 29);
             this.textBoxX9.TabIndex = 1;
             this.textBoxX9.Tag = "GraduateSchoolLocationCode";
             // 
@@ -1680,7 +1680,7 @@
             this.textBoxX11.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX11.Location = new System.Drawing.Point(100, 61);
             this.textBoxX11.Name = "textBoxX11";
-            this.textBoxX11.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX11.Size = new System.Drawing.Size(130, 29);
             this.textBoxX11.TabIndex = 11;
             this.textBoxX11.Tag = "IDNumberComment";
             // 
@@ -1770,7 +1770,7 @@
             this.labelX11.ForeColor = System.Drawing.Color.Black;
             this.labelX11.Location = new System.Drawing.Point(308, 66);
             this.labelX11.Name = "labelX11";
-            this.labelX11.Size = new System.Drawing.Size(47, 21);
+            this.labelX11.Size = new System.Drawing.Size(64, 28);
             this.labelX11.TabIndex = 0;
             this.labelX11.Text = "性別：";
             // 
@@ -1785,7 +1785,7 @@
             this.labelX13.ForeColor = System.Drawing.Color.Black;
             this.labelX13.Location = new System.Drawing.Point(309, 8);
             this.labelX13.Name = "labelX13";
-            this.labelX13.Size = new System.Drawing.Size(47, 21);
+            this.labelX13.Size = new System.Drawing.Size(64, 28);
             this.labelX13.TabIndex = 0;
             this.labelX13.Text = "學號：";
             // 
@@ -1800,7 +1800,7 @@
             this.labelX9.ForeColor = System.Drawing.Color.Black;
             this.labelX9.Location = new System.Drawing.Point(50, 8);
             this.labelX9.Name = "labelX9";
-            this.labelX9.Size = new System.Drawing.Size(47, 21);
+            this.labelX9.Size = new System.Drawing.Size(64, 28);
             this.labelX9.TabIndex = 0;
             this.labelX9.Text = "姓名：";
             // 
@@ -1813,7 +1813,7 @@
             this.textBoxX7.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX7.Location = new System.Drawing.Point(360, 6);
             this.textBoxX7.Name = "textBoxX7";
-            this.textBoxX7.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX7.Size = new System.Drawing.Size(130, 29);
             this.textBoxX7.TabIndex = 1;
             this.textBoxX7.Tag = "StudentNumber";
             // 
@@ -1826,7 +1826,7 @@
             this.textBoxX6.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX6.Location = new System.Drawing.Point(100, 33);
             this.textBoxX6.Name = "textBoxX6";
-            this.textBoxX6.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX6.Size = new System.Drawing.Size(130, 29);
             this.textBoxX6.TabIndex = 2;
             this.textBoxX6.Tag = "IDNumber";
             // 
@@ -1853,7 +1853,7 @@
             this.labelX12.ForeColor = System.Drawing.Color.Black;
             this.labelX12.Location = new System.Drawing.Point(309, 36);
             this.labelX12.Name = "labelX12";
-            this.labelX12.Size = new System.Drawing.Size(47, 21);
+            this.labelX12.Size = new System.Drawing.Size(64, 28);
             this.labelX12.TabIndex = 0;
             this.labelX12.Text = "生日：";
             // 
@@ -1866,7 +1866,7 @@
             this.textBoxX5.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX5.Location = new System.Drawing.Point(100, 5);
             this.textBoxX5.Name = "textBoxX5";
-            this.textBoxX5.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX5.Size = new System.Drawing.Size(130, 29);
             this.textBoxX5.TabIndex = 0;
             this.textBoxX5.Tag = "Name";
             // 
@@ -1881,7 +1881,7 @@
             this.labelX10.ForeColor = System.Drawing.Color.Black;
             this.labelX10.Location = new System.Drawing.Point(8, 35);
             this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(87, 21);
+            this.labelX10.Size = new System.Drawing.Size(120, 28);
             this.labelX10.TabIndex = 0;
             this.labelX10.Text = "身分證字號：";
             // 
@@ -1948,7 +1948,7 @@
             this.textBoxX23.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX23.Location = new System.Drawing.Point(99, 91);
             this.textBoxX23.Name = "textBoxX23";
-            this.textBoxX23.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX23.Size = new System.Drawing.Size(130, 29);
             this.textBoxX23.TabIndex = 13;
             this.textBoxX23.Tag = "SpecialStatus";
             // 
@@ -2022,7 +2022,7 @@
             this.labelX44.ForeColor = System.Drawing.Color.Black;
             this.labelX44.Location = new System.Drawing.Point(-2, 91);
             this.labelX44.Name = "labelX44";
-            this.labelX44.Size = new System.Drawing.Size(101, 21);
+            this.labelX44.Size = new System.Drawing.Size(138, 28);
             this.labelX44.TabIndex = 10;
             this.labelX44.Text = "特殊身份代碼：";
             // 
@@ -2037,7 +2037,7 @@
             this.labelX40.ForeColor = System.Drawing.Color.Black;
             this.labelX40.Location = new System.Drawing.Point(49, 64);
             this.labelX40.Name = "labelX40";
-            this.labelX40.Size = new System.Drawing.Size(47, 21);
+            this.labelX40.Size = new System.Drawing.Size(64, 28);
             this.labelX40.TabIndex = 8;
             this.labelX40.Text = "班別：";
             // 
@@ -2062,7 +2062,7 @@
             this.textBoxX3.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX3.Location = new System.Drawing.Point(362, 30);
             this.textBoxX3.Name = "textBoxX3";
-            this.textBoxX3.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX3.Size = new System.Drawing.Size(130, 29);
             this.textBoxX3.TabIndex = 3;
             this.textBoxX3.Tag = "Comment";
             // 
@@ -2075,7 +2075,7 @@
             this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX2.Location = new System.Drawing.Point(262, 1);
             this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.Size = new System.Drawing.Size(230, 25);
+            this.textBoxX2.Size = new System.Drawing.Size(230, 29);
             this.textBoxX2.TabIndex = 1;
             this.textBoxX2.Tag = "UpdateDescription";
             // 
@@ -2090,7 +2090,7 @@
             this.labelX8.ForeColor = System.Drawing.Color.Black;
             this.labelX8.Location = new System.Drawing.Point(311, 64);
             this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(47, 21);
+            this.labelX8.Size = new System.Drawing.Size(64, 28);
             this.labelX8.TabIndex = 0;
             this.labelX8.Text = "科別：";
             // 
@@ -2129,7 +2129,7 @@
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(285, 33);
             this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(74, 21);
+            this.labelX7.Size = new System.Drawing.Size(101, 28);
             this.labelX7.TabIndex = 0;
             this.labelX7.Text = "備註說明：";
             // 
@@ -2144,7 +2144,7 @@
             this.labelX4.ForeColor = System.Drawing.Color.Black;
             this.labelX4.Location = new System.Drawing.Point(23, 35);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(74, 21);
+            this.labelX4.Size = new System.Drawing.Size(101, 28);
             this.labelX4.TabIndex = 0;
             this.labelX4.Text = "異動日期：";
             // 
@@ -2159,7 +2159,7 @@
             this.labelX6.ForeColor = System.Drawing.Color.Black;
             this.labelX6.Location = new System.Drawing.Point(179, 3);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(87, 21);
+            this.labelX6.Size = new System.Drawing.Size(120, 28);
             this.labelX6.TabIndex = 0;
             this.labelX6.Text = "原因及事項：";
             // 
@@ -2174,7 +2174,7 @@
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(23, 7);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(74, 21);
+            this.labelX3.Size = new System.Drawing.Size(101, 28);
             this.labelX3.TabIndex = 0;
             this.labelX3.Text = "資格代碼：";
             // 
@@ -2185,7 +2185,7 @@
             this.畢業名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.畢業名冊.Location = new System.Drawing.Point(0, 0);
             this.畢業名冊.Name = "畢業名冊";
-            this.畢業名冊.Size = new System.Drawing.Size(511, 589);
+            this.畢業名冊.Size = new System.Drawing.Size(511, 628);
             this.畢業名冊.TabIndex = 2;
             // 
             // groupPanel13
@@ -2375,7 +2375,7 @@
             this.textBoxX10.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX10.Location = new System.Drawing.Point(100, 63);
             this.textBoxX10.Name = "textBoxX10";
-            this.textBoxX10.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX10.Size = new System.Drawing.Size(130, 29);
             this.textBoxX10.TabIndex = 11;
             this.textBoxX10.Tag = "IDNumberComment";
             // 
@@ -2406,7 +2406,7 @@
             this.labelX62.ForeColor = System.Drawing.Color.Black;
             this.labelX62.Location = new System.Drawing.Point(312, 66);
             this.labelX62.Name = "labelX62";
-            this.labelX62.Size = new System.Drawing.Size(47, 21);
+            this.labelX62.Size = new System.Drawing.Size(64, 28);
             this.labelX62.TabIndex = 0;
             this.labelX62.Text = "性別：";
             // 
@@ -2421,7 +2421,7 @@
             this.labelX68.ForeColor = System.Drawing.Color.Black;
             this.labelX68.Location = new System.Drawing.Point(22, 94);
             this.labelX68.Name = "labelX68";
-            this.labelX68.Size = new System.Drawing.Size(74, 21);
+            this.labelX68.Size = new System.Drawing.Size(101, 28);
             this.labelX68.TabIndex = 0;
             this.labelX68.Text = "備查日期：";
             // 
@@ -2436,7 +2436,7 @@
             this.labelX63.ForeColor = System.Drawing.Color.Black;
             this.labelX63.Location = new System.Drawing.Point(312, 8);
             this.labelX63.Name = "labelX63";
-            this.labelX63.Size = new System.Drawing.Size(47, 21);
+            this.labelX63.Size = new System.Drawing.Size(64, 28);
             this.labelX63.TabIndex = 0;
             this.labelX63.Text = "學號：";
             // 
@@ -2449,7 +2449,7 @@
             this.textBoxX41.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX41.Location = new System.Drawing.Point(100, 150);
             this.textBoxX41.Name = "textBoxX41";
-            this.textBoxX41.Size = new System.Drawing.Size(202, 25);
+            this.textBoxX41.Size = new System.Drawing.Size(202, 29);
             this.textBoxX41.TabIndex = 8;
             this.textBoxX41.Tag = "GraduateCertificateNumber";
             // 
@@ -2464,7 +2464,7 @@
             this.labelX70.ForeColor = System.Drawing.Color.Black;
             this.labelX70.Location = new System.Drawing.Point(-2, 123);
             this.labelX70.Name = "labelX70";
-            this.labelX70.Size = new System.Drawing.Size(101, 21);
+            this.labelX70.Size = new System.Drawing.Size(138, 28);
             this.labelX70.TabIndex = 0;
             this.labelX70.Text = "最後異動代號：";
             // 
@@ -2479,7 +2479,7 @@
             this.labelX64.ForeColor = System.Drawing.Color.Black;
             this.labelX64.Location = new System.Drawing.Point(50, 8);
             this.labelX64.Name = "labelX64";
-            this.labelX64.Size = new System.Drawing.Size(47, 21);
+            this.labelX64.Size = new System.Drawing.Size(64, 28);
             this.labelX64.TabIndex = 0;
             this.labelX64.Text = "姓名：";
             // 
@@ -2492,7 +2492,7 @@
             this.textBoxX43.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX43.Location = new System.Drawing.Point(359, 91);
             this.textBoxX43.Name = "textBoxX43";
-            this.textBoxX43.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX43.Size = new System.Drawing.Size(130, 29);
             this.textBoxX43.TabIndex = 7;
             this.textBoxX43.Tag = "LastADNumber";
             // 
@@ -2505,7 +2505,7 @@
             this.textBoxX38.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX38.Location = new System.Drawing.Point(360, 5);
             this.textBoxX38.Name = "textBoxX38";
-            this.textBoxX38.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX38.Size = new System.Drawing.Size(130, 29);
             this.textBoxX38.TabIndex = 1;
             this.textBoxX38.Tag = "StudentNumber";
             // 
@@ -2518,7 +2518,7 @@
             this.textBoxX39.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX39.Location = new System.Drawing.Point(100, 33);
             this.textBoxX39.Name = "textBoxX39";
-            this.textBoxX39.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX39.Size = new System.Drawing.Size(130, 29);
             this.textBoxX39.TabIndex = 2;
             this.textBoxX39.Tag = "IDNumber";
             // 
@@ -2533,7 +2533,7 @@
             this.labelX67.ForeColor = System.Drawing.Color.Black;
             this.labelX67.Location = new System.Drawing.Point(-4, 152);
             this.labelX67.Name = "labelX67";
-            this.labelX67.Size = new System.Drawing.Size(101, 21);
+            this.labelX67.Size = new System.Drawing.Size(138, 28);
             this.labelX67.TabIndex = 0;
             this.labelX67.Text = "畢業證書字號：";
             // 
@@ -2559,7 +2559,7 @@
             this.textBoxX42.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX42.Location = new System.Drawing.Point(99, 120);
             this.textBoxX42.Name = "textBoxX42";
-            this.textBoxX42.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX42.Size = new System.Drawing.Size(130, 29);
             this.textBoxX42.TabIndex = 5;
             this.textBoxX42.Tag = "LastUpdateCode";
             // 
@@ -2574,7 +2574,7 @@
             this.labelX65.ForeColor = System.Drawing.Color.Black;
             this.labelX65.Location = new System.Drawing.Point(312, 36);
             this.labelX65.Name = "labelX65";
-            this.labelX65.Size = new System.Drawing.Size(47, 21);
+            this.labelX65.Size = new System.Drawing.Size(64, 28);
             this.labelX65.TabIndex = 0;
             this.labelX65.Text = "生日：";
             // 
@@ -2589,7 +2589,7 @@
             this.labelX69.ForeColor = System.Drawing.Color.Black;
             this.labelX69.Location = new System.Drawing.Point(285, 94);
             this.labelX69.Name = "labelX69";
-            this.labelX69.Size = new System.Drawing.Size(74, 21);
+            this.labelX69.Size = new System.Drawing.Size(101, 28);
             this.labelX69.TabIndex = 0;
             this.labelX69.Text = "備查文號：";
             // 
@@ -2602,7 +2602,7 @@
             this.textBoxX40.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX40.Location = new System.Drawing.Point(100, 5);
             this.textBoxX40.Name = "textBoxX40";
-            this.textBoxX40.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX40.Size = new System.Drawing.Size(130, 29);
             this.textBoxX40.TabIndex = 0;
             this.textBoxX40.Tag = "Name";
             // 
@@ -2617,7 +2617,7 @@
             this.labelX66.ForeColor = System.Drawing.Color.Black;
             this.labelX66.Location = new System.Drawing.Point(9, 35);
             this.labelX66.Name = "labelX66";
-            this.labelX66.Size = new System.Drawing.Size(87, 21);
+            this.labelX66.Size = new System.Drawing.Size(120, 28);
             this.labelX66.TabIndex = 0;
             this.labelX66.Text = "身分證字號：";
             // 
@@ -2745,7 +2745,7 @@
             this.labelX21.ForeColor = System.Drawing.Color.Black;
             this.labelX21.Location = new System.Drawing.Point(49, 94);
             this.labelX21.Name = "labelX21";
-            this.labelX21.Size = new System.Drawing.Size(47, 21);
+            this.labelX21.Size = new System.Drawing.Size(64, 28);
             this.labelX21.TabIndex = 8;
             this.labelX21.Text = "班別：";
             // 
@@ -2770,7 +2770,7 @@
             this.textBoxX36.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX36.Location = new System.Drawing.Point(361, 31);
             this.textBoxX36.Name = "textBoxX36";
-            this.textBoxX36.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX36.Size = new System.Drawing.Size(130, 29);
             this.textBoxX36.TabIndex = 3;
             this.textBoxX36.Tag = "Comment";
             // 
@@ -2783,7 +2783,7 @@
             this.textBoxX37.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX37.Location = new System.Drawing.Point(261, 0);
             this.textBoxX37.Name = "textBoxX37";
-            this.textBoxX37.Size = new System.Drawing.Size(230, 25);
+            this.textBoxX37.Size = new System.Drawing.Size(230, 29);
             this.textBoxX37.TabIndex = 1;
             this.textBoxX37.Tag = "UpdateDescription";
             // 
@@ -2798,7 +2798,7 @@
             this.labelX56.ForeColor = System.Drawing.Color.Black;
             this.labelX56.Location = new System.Drawing.Point(313, 64);
             this.labelX56.Name = "labelX56";
-            this.labelX56.Size = new System.Drawing.Size(47, 21);
+            this.labelX56.Size = new System.Drawing.Size(64, 28);
             this.labelX56.TabIndex = 0;
             this.labelX56.Text = "科別：";
             // 
@@ -2837,7 +2837,7 @@
             this.labelX57.ForeColor = System.Drawing.Color.Black;
             this.labelX57.Location = new System.Drawing.Point(49, 64);
             this.labelX57.Name = "labelX57";
-            this.labelX57.Size = new System.Drawing.Size(47, 21);
+            this.labelX57.Size = new System.Drawing.Size(64, 28);
             this.labelX57.TabIndex = 0;
             this.labelX57.Text = "年級：";
             // 
@@ -2852,7 +2852,7 @@
             this.labelX58.ForeColor = System.Drawing.Color.Black;
             this.labelX58.Location = new System.Drawing.Point(312, 35);
             this.labelX58.Name = "labelX58";
-            this.labelX58.Size = new System.Drawing.Size(47, 21);
+            this.labelX58.Size = new System.Drawing.Size(64, 28);
             this.labelX58.TabIndex = 0;
             this.labelX58.Text = "備註：";
             // 
@@ -2867,7 +2867,7 @@
             this.labelX59.ForeColor = System.Drawing.Color.Black;
             this.labelX59.Location = new System.Drawing.Point(23, 35);
             this.labelX59.Name = "labelX59";
-            this.labelX59.Size = new System.Drawing.Size(74, 21);
+            this.labelX59.Size = new System.Drawing.Size(101, 28);
             this.labelX59.TabIndex = 0;
             this.labelX59.Text = "異動日期：";
             // 
@@ -2882,7 +2882,7 @@
             this.labelX60.ForeColor = System.Drawing.Color.Black;
             this.labelX60.Location = new System.Drawing.Point(179, 4);
             this.labelX60.Name = "labelX60";
-            this.labelX60.Size = new System.Drawing.Size(87, 21);
+            this.labelX60.Size = new System.Drawing.Size(120, 28);
             this.labelX60.TabIndex = 0;
             this.labelX60.Text = "原因及事項：";
             // 
@@ -2897,7 +2897,7 @@
             this.labelX61.ForeColor = System.Drawing.Color.Black;
             this.labelX61.Location = new System.Drawing.Point(22, 6);
             this.labelX61.Name = "labelX61";
-            this.labelX61.Size = new System.Drawing.Size(74, 21);
+            this.labelX61.Size = new System.Drawing.Size(101, 28);
             this.labelX61.TabIndex = 0;
             this.labelX61.Text = "異動代碼：";
             // 
@@ -2921,7 +2921,7 @@
             this.轉入名冊.Dock = System.Windows.Forms.DockStyle.Fill;
             this.轉入名冊.Location = new System.Drawing.Point(0, 0);
             this.轉入名冊.Name = "轉入名冊";
-            this.轉入名冊.Size = new System.Drawing.Size(511, 589);
+            this.轉入名冊.Size = new System.Drawing.Size(511, 628);
             this.轉入名冊.TabIndex = 3;
             // 
             // groupPanel8
@@ -3044,7 +3044,7 @@
             this.textBoxX25.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX25.Location = new System.Drawing.Point(100, 0);
             this.textBoxX25.Name = "textBoxX25";
-            this.textBoxX25.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX25.Size = new System.Drawing.Size(130, 29);
             this.textBoxX25.TabIndex = 0;
             this.textBoxX25.Tag = "PreviousSchool";
             this.textBoxX25.WatermarkText = "學校代號+校名";
@@ -3058,7 +3058,7 @@
             this.textBoxX19.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX19.Location = new System.Drawing.Point(100, 26);
             this.textBoxX19.Name = "textBoxX19";
-            this.textBoxX19.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX19.Size = new System.Drawing.Size(130, 29);
             this.textBoxX19.TabIndex = 2;
             this.textBoxX19.Tag = "PreviousDepartment";
             // 
@@ -3071,7 +3071,7 @@
             this.textBoxX26.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX26.Location = new System.Drawing.Point(358, 52);
             this.textBoxX26.Name = "textBoxX26";
-            this.textBoxX26.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX26.Size = new System.Drawing.Size(130, 29);
             this.textBoxX26.TabIndex = 5;
             this.textBoxX26.Tag = "PreviousSchoolLastADNumber";
             // 
@@ -3084,7 +3084,7 @@
             this.textBoxX20.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX20.Location = new System.Drawing.Point(358, 26);
             this.textBoxX20.Name = "textBoxX20";
-            this.textBoxX20.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX20.Size = new System.Drawing.Size(130, 29);
             this.textBoxX20.TabIndex = 3;
             this.textBoxX20.Tag = "PreviousGradeYear";
             this.textBoxX20.WatermarkText = "一上、一下...";
@@ -3098,7 +3098,7 @@
             this.textBoxX21.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX21.Location = new System.Drawing.Point(358, 0);
             this.textBoxX21.Name = "textBoxX21";
-            this.textBoxX21.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX21.Size = new System.Drawing.Size(130, 29);
             this.textBoxX21.TabIndex = 1;
             this.textBoxX21.Tag = "PreviousStudentNumber";
             // 
@@ -3113,7 +3113,7 @@
             this.labelX34.ForeColor = System.Drawing.Color.Black;
             this.labelX34.Location = new System.Drawing.Point(280, 52);
             this.labelX34.Name = "labelX34";
-            this.labelX34.Size = new System.Drawing.Size(74, 21);
+            this.labelX34.Size = new System.Drawing.Size(101, 28);
             this.labelX34.TabIndex = 0;
             this.labelX34.Text = "備查文號：";
             // 
@@ -3128,7 +3128,7 @@
             this.labelX35.ForeColor = System.Drawing.Color.Black;
             this.labelX35.Location = new System.Drawing.Point(23, 55);
             this.labelX35.Name = "labelX35";
-            this.labelX35.Size = new System.Drawing.Size(74, 21);
+            this.labelX35.Size = new System.Drawing.Size(101, 28);
             this.labelX35.TabIndex = 0;
             this.labelX35.Text = "備查日期：";
             // 
@@ -3143,7 +3143,7 @@
             this.labelX36.ForeColor = System.Drawing.Color.Black;
             this.labelX36.Location = new System.Drawing.Point(307, 26);
             this.labelX36.Name = "labelX36";
-            this.labelX36.Size = new System.Drawing.Size(47, 21);
+            this.labelX36.Size = new System.Drawing.Size(64, 28);
             this.labelX36.TabIndex = 0;
             this.labelX36.Text = "年級：";
             // 
@@ -3158,7 +3158,7 @@
             this.labelX37.ForeColor = System.Drawing.Color.Black;
             this.labelX37.Location = new System.Drawing.Point(50, 29);
             this.labelX37.Name = "labelX37";
-            this.labelX37.Size = new System.Drawing.Size(47, 21);
+            this.labelX37.Size = new System.Drawing.Size(64, 28);
             this.labelX37.TabIndex = 0;
             this.labelX37.Text = "科別：";
             // 
@@ -3173,7 +3173,7 @@
             this.labelX38.ForeColor = System.Drawing.Color.Black;
             this.labelX38.Location = new System.Drawing.Point(307, 0);
             this.labelX38.Name = "labelX38";
-            this.labelX38.Size = new System.Drawing.Size(47, 21);
+            this.labelX38.Size = new System.Drawing.Size(64, 28);
             this.labelX38.TabIndex = 0;
             this.labelX38.Text = "學號：";
             // 
@@ -3188,7 +3188,7 @@
             this.labelX39.ForeColor = System.Drawing.Color.Black;
             this.labelX39.Location = new System.Drawing.Point(10, 3);
             this.labelX39.Name = "labelX39";
-            this.labelX39.Size = new System.Drawing.Size(87, 21);
+            this.labelX39.Size = new System.Drawing.Size(120, 28);
             this.labelX39.TabIndex = 0;
             this.labelX39.Text = "原就讀學校：";
             // 
@@ -3312,7 +3312,7 @@
             this.textBoxX4.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX4.Location = new System.Drawing.Point(100, 55);
             this.textBoxX4.Name = "textBoxX4";
-            this.textBoxX4.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX4.Size = new System.Drawing.Size(130, 29);
             this.textBoxX4.TabIndex = 9;
             this.textBoxX4.Tag = "IDNumberComment";
             // 
@@ -3343,7 +3343,7 @@
             this.labelX28.ForeColor = System.Drawing.Color.Black;
             this.labelX28.Location = new System.Drawing.Point(307, 54);
             this.labelX28.Name = "labelX28";
-            this.labelX28.Size = new System.Drawing.Size(47, 21);
+            this.labelX28.Size = new System.Drawing.Size(64, 28);
             this.labelX28.TabIndex = 6;
             this.labelX28.Text = "性別：";
             // 
@@ -3358,7 +3358,7 @@
             this.labelX29.ForeColor = System.Drawing.Color.Black;
             this.labelX29.Location = new System.Drawing.Point(307, 0);
             this.labelX29.Name = "labelX29";
-            this.labelX29.Size = new System.Drawing.Size(47, 21);
+            this.labelX29.Size = new System.Drawing.Size(64, 28);
             this.labelX29.TabIndex = 8;
             this.labelX29.Text = "學號：";
             // 
@@ -3373,7 +3373,7 @@
             this.labelX30.ForeColor = System.Drawing.Color.Black;
             this.labelX30.Location = new System.Drawing.Point(50, 4);
             this.labelX30.Name = "labelX30";
-            this.labelX30.Size = new System.Drawing.Size(47, 21);
+            this.labelX30.Size = new System.Drawing.Size(64, 28);
             this.labelX30.TabIndex = 3;
             this.labelX30.Text = "姓名：";
             // 
@@ -3386,7 +3386,7 @@
             this.textBoxX16.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX16.Location = new System.Drawing.Point(358, 0);
             this.textBoxX16.Name = "textBoxX16";
-            this.textBoxX16.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX16.Size = new System.Drawing.Size(130, 29);
             this.textBoxX16.TabIndex = 1;
             this.textBoxX16.Tag = "StudentNumber";
             // 
@@ -3399,7 +3399,7 @@
             this.textBoxX17.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX17.Location = new System.Drawing.Point(100, 28);
             this.textBoxX17.Name = "textBoxX17";
-            this.textBoxX17.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX17.Size = new System.Drawing.Size(130, 29);
             this.textBoxX17.TabIndex = 2;
             this.textBoxX17.Tag = "IDNumber";
             // 
@@ -3427,7 +3427,7 @@
             this.labelX31.ForeColor = System.Drawing.Color.Black;
             this.labelX31.Location = new System.Drawing.Point(307, 27);
             this.labelX31.Name = "labelX31";
-            this.labelX31.Size = new System.Drawing.Size(47, 21);
+            this.labelX31.Size = new System.Drawing.Size(64, 28);
             this.labelX31.TabIndex = 4;
             this.labelX31.Text = "生日：";
             // 
@@ -3440,7 +3440,7 @@
             this.textBoxX18.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX18.Location = new System.Drawing.Point(100, 1);
             this.textBoxX18.Name = "textBoxX18";
-            this.textBoxX18.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX18.Size = new System.Drawing.Size(130, 29);
             this.textBoxX18.TabIndex = 0;
             this.textBoxX18.Tag = "Name";
             // 
@@ -3455,7 +3455,7 @@
             this.labelX32.ForeColor = System.Drawing.Color.Black;
             this.labelX32.Location = new System.Drawing.Point(23, 31);
             this.labelX32.Name = "labelX32";
-            this.labelX32.Size = new System.Drawing.Size(87, 21);
+            this.labelX32.Size = new System.Drawing.Size(120, 28);
             this.labelX32.TabIndex = 7;
             this.labelX32.Text = "身分證字號：";
             // 
@@ -3524,7 +3524,7 @@
             this.textBoxX24.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX24.Location = new System.Drawing.Point(359, 87);
             this.textBoxX24.Name = "textBoxX24";
-            this.textBoxX24.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX24.Size = new System.Drawing.Size(130, 29);
             this.textBoxX24.TabIndex = 13;
             this.textBoxX24.Tag = "SpecialStatus";
             // 
@@ -3598,7 +3598,7 @@
             this.labelX71.ForeColor = System.Drawing.Color.Black;
             this.labelX71.Location = new System.Drawing.Point(253, 93);
             this.labelX71.Name = "labelX71";
-            this.labelX71.Size = new System.Drawing.Size(101, 21);
+            this.labelX71.Size = new System.Drawing.Size(138, 28);
             this.labelX71.TabIndex = 10;
             this.labelX71.Text = "特殊身份代碼：";
             // 
@@ -3613,7 +3613,7 @@
             this.labelX41.ForeColor = System.Drawing.Color.Black;
             this.labelX41.Location = new System.Drawing.Point(49, 94);
             this.labelX41.Name = "labelX41";
-            this.labelX41.Size = new System.Drawing.Size(47, 21);
+            this.labelX41.Size = new System.Drawing.Size(64, 28);
             this.labelX41.TabIndex = 8;
             this.labelX41.Text = "班別：";
             // 
@@ -3650,7 +3650,7 @@
             this.textBoxX14.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX14.Location = new System.Drawing.Point(359, 33);
             this.textBoxX14.Name = "textBoxX14";
-            this.textBoxX14.Size = new System.Drawing.Size(130, 25);
+            this.textBoxX14.Size = new System.Drawing.Size(130, 29);
             this.textBoxX14.TabIndex = 3;
             this.textBoxX14.Tag = "Comment";
             // 
@@ -3663,7 +3663,7 @@
             this.textBoxX15.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.textBoxX15.Location = new System.Drawing.Point(259, 3);
             this.textBoxX15.Name = "textBoxX15";
-            this.textBoxX15.Size = new System.Drawing.Size(230, 25);
+            this.textBoxX15.Size = new System.Drawing.Size(230, 29);
             this.textBoxX15.TabIndex = 1;
             this.textBoxX15.Tag = "UpdateDescription";
             // 
@@ -3678,7 +3678,7 @@
             this.labelX22.ForeColor = System.Drawing.Color.Black;
             this.labelX22.Location = new System.Drawing.Point(307, 62);
             this.labelX22.Name = "labelX22";
-            this.labelX22.Size = new System.Drawing.Size(47, 21);
+            this.labelX22.Size = new System.Drawing.Size(64, 28);
             this.labelX22.TabIndex = 0;
             this.labelX22.Text = "科別：";
             // 
@@ -3717,7 +3717,7 @@
             this.labelX23.ForeColor = System.Drawing.Color.Black;
             this.labelX23.Location = new System.Drawing.Point(50, 63);
             this.labelX23.Name = "labelX23";
-            this.labelX23.Size = new System.Drawing.Size(47, 21);
+            this.labelX23.Size = new System.Drawing.Size(64, 28);
             this.labelX23.TabIndex = 0;
             this.labelX23.Text = "年級：";
             // 
@@ -3732,7 +3732,7 @@
             this.labelX24.ForeColor = System.Drawing.Color.Black;
             this.labelX24.Location = new System.Drawing.Point(282, 37);
             this.labelX24.Name = "labelX24";
-            this.labelX24.Size = new System.Drawing.Size(74, 21);
+            this.labelX24.Size = new System.Drawing.Size(101, 28);
             this.labelX24.TabIndex = 0;
             this.labelX24.Text = "備註說明：";
             // 
@@ -3747,7 +3747,7 @@
             this.labelX25.ForeColor = System.Drawing.Color.Black;
             this.labelX25.Location = new System.Drawing.Point(23, 37);
             this.labelX25.Name = "labelX25";
-            this.labelX25.Size = new System.Drawing.Size(74, 21);
+            this.labelX25.Size = new System.Drawing.Size(101, 28);
             this.labelX25.TabIndex = 0;
             this.labelX25.Text = "異動日期：";
             // 
@@ -3762,7 +3762,7 @@
             this.labelX26.ForeColor = System.Drawing.Color.Black;
             this.labelX26.Location = new System.Drawing.Point(179, 4);
             this.labelX26.Name = "labelX26";
-            this.labelX26.Size = new System.Drawing.Size(87, 21);
+            this.labelX26.Size = new System.Drawing.Size(120, 28);
             this.labelX26.TabIndex = 0;
             this.labelX26.Text = "原因及事項：";
             // 
@@ -3777,7 +3777,7 @@
             this.labelX27.ForeColor = System.Drawing.Color.Black;
             this.labelX27.Location = new System.Drawing.Point(-3, 8);
             this.labelX27.Name = "labelX27";
-            this.labelX27.Size = new System.Drawing.Size(101, 21);
+            this.labelX27.Size = new System.Drawing.Size(138, 28);
             this.labelX27.TabIndex = 0;
             this.labelX27.Text = "異動原因代碼：";
             // 
@@ -3787,7 +3787,7 @@
             this.Controls.Add(this.panelEx1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "UpdateRecordInfo";
-            this.Size = new System.Drawing.Size(511, 589);
+            this.Size = new System.Drawing.Size(511, 628);
             this.panelEx1.ResumeLayout(false);
             this.學籍異動.ResumeLayout(false);
             this.groupPanel1.ResumeLayout(false);

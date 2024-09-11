@@ -153,7 +153,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     #region 填入學生資料
                     
                         //將學生資料填入適當的位置內
-                        wb.Worksheets[0].Cells[rowj, 1].PutValue(st.SelectSingleNode("@學號").InnerText);
+                        wb.Worksheets[0].Cells[rowj, 1].PutValue(st.SelectSingleNode("@學號").InnerText);                        
                         wb.Worksheets[0].Cells[rowj, 3].PutValue(st.SelectSingleNode("@姓名").InnerText);
                         wb.Worksheets[0].Cells[rowj, 4].PutValue(st.SelectSingleNode("@身分證號").InnerText);
                         wb.Worksheets[0].Cells[rowj, 8].PutValue(Util.ConvertDateStr2(st.SelectSingleNode("@備查日期").InnerText) + "\n" + st.SelectSingleNode("@備查文號").InnerText);
@@ -384,7 +384,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("應畢業學年度"));
                 mdws.Cells[mdws_index, 1].PutValue(record.GetAttribute("班別"));
                 mdws.Cells[mdws_index, 2].PutValue((record.ParentNode as XmlElement).GetAttribute("科別代號"));
-                mdws.Cells[mdws_index, 3].PutValue("");
+                mdws.Cells[mdws_index, 3].PutValue((record.ParentNode as XmlElement).GetAttribute("上傳類別"));
 
                 mdws.Cells[mdws_index, 4].PutValue(record.GetAttribute("學號"));
                 mdws.Cells[mdws_index, 5].PutValue(record.GetAttribute("姓名"));
@@ -452,7 +452,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("應畢業學年度"));
                 mdws.Cells[mdws_index, 1].PutValue(record.GetAttribute("班別"));
                 mdws.Cells[mdws_index, 2].PutValue((record.ParentNode as XmlElement).GetAttribute("科別代號"));
-                mdws.Cells[mdws_index, 3].PutValue("");
+                mdws.Cells[mdws_index, 3].PutValue((record.ParentNode as XmlElement).GetAttribute("上傳類別"));
 
                 mdws.Cells[mdws_index, 4].PutValue(record.GetAttribute("學號"));
                 mdws.Cells[mdws_index, 5].PutValue(record.GetAttribute("姓名"));

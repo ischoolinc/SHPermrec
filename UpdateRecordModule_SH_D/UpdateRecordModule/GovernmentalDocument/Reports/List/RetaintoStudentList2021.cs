@@ -332,7 +332,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("班別"));
                 mdws.Cells[mdws_index, 1].PutValue((record.ParentNode as XmlElement).GetAttribute("科別代號"));
-                mdws.Cells[mdws_index, 2].PutValue("");                
+                mdws.Cells[mdws_index, 2].PutValue(record.GetAttribute("上傳類別"));                
                 mdws.Cells[mdws_index, 3].PutValue(record.GetAttribute("姓名"));
                 mdws.Cells[mdws_index, 4].PutValue(record.GetAttribute("身分證號"));
                 mdws.Cells[mdws_index, 5].PutValue(record.GetAttribute("註1"));

@@ -19,7 +19,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         StudUpdateRecBatchRec _BRec;
 
         List<StudUpdateRecCoverRec> coverDataList = new List<StudUpdateRecCoverRec>();
-
+        List<StudUpdateRecCoverRec> coverDataListA = new List<StudUpdateRecCoverRec>();
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
         public StudentUpdateRecordListModifyingCoverForm2021(StudUpdateRecBatchRec BRec)
@@ -231,7 +231,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             retVal.SetAttributeValue("學校代號", Global._GSchoolCode);
             retVal.SetAttributeValue("學校名稱", Global._GSchoolName);
             retVal.SetAttributeValue("類別", Global._GUpdateBatchType);
-
+            coverDataListA.Clear();
             foreach (KeyValuePair<string, List<BL.StudUpdateRecDoc>> val in data)
             {
                 // 解析年級科別
@@ -343,6 +343,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
                 //2018/2/5 穎驊增加 處理封面資料
+                
                 foreach (StudUpdateRecCoverRec coverRec in coverDataList)
                 {
                     //假如整理好的封面資料 其年級、科別代碼 與 現在的資料相同， 則配對
@@ -367,10 +368,51 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);
+                        coverDataListA.Add(coverRec);
                     }
                 }               
 
                 retVal.Add(elmGrDept);                
+            }
+            //找出沒有異動記錄的封面
+            foreach (StudUpdateRecCoverRec coverRec in coverDataList)
+            {
+                Boolean find = false;
+                foreach (StudUpdateRecCoverRec coverRecA in coverDataListA)
+                {
+                    if (coverRecA.Department == coverRec.Department && coverRec.ClassType == coverRecA.ClassType && coverRec.grYear == coverRecA.grYear)
+                        find = true;
+                }
+                if (find == false)
+                {
+                    XElement elmGrDept = new XElement("清單");
+                    elmGrDept.SetAttributeValue("年級", coverRec.grYear);
+                    elmGrDept.SetAttributeValue("科別", coverRec.Department);
+                    elmGrDept.SetAttributeValue("科別代碼", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("科別代號", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("班別", coverRec.ClassType);
+
+                    XElement elmGrDeptCover = new XElement("異動名冊封面");
+
+                    elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
+                    //elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
+                    elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
+                    elmGrDeptCover.SetAttributeValue("核定班數", coverRec.ApprovedClassCount);
+                    elmGrDeptCover.SetAttributeValue("核定學生數", coverRec.ApprovedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("實招班數", coverRec.ActualClassCount);
+                    elmGrDeptCover.SetAttributeValue("實招新生數", coverRec.ActualStudentCount);
+                    elmGrDeptCover.SetAttributeValue("原有學生數", coverRec.OriginalStudentCount);
+                    elmGrDeptCover.SetAttributeValue("增加學生數", coverRec.IncreaseStudentCount);
+                    elmGrDeptCover.SetAttributeValue("減少學生數", coverRec.DecreaseStudentCount);
+                    elmGrDeptCover.SetAttributeValue("更正學生數", coverRec.ModifiedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("現有學生數", coverRec.CurrentStudentCount);
+                    elmGrDeptCover.SetAttributeValue("註1", coverRec.Remarks1);
+                    elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
+                    //加入封面
+                    elmGrDept.Add(elmGrDeptCover);
+
+                    retVal.Add(elmGrDept);
+                }
             }
             return retVal;
         }

@@ -127,7 +127,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     if (currentPage == totalPage)
                     {
                         ws.Cells[index + 22, 0].PutValue("合計");
-                        ws.Cells[index + 22, 1].PutValue(list.ChildNodes.Count.ToString());
+                        ws.Cells[index + 22, 1].PutValue(updateCount.ToString());
                     }
 
                     //分頁
@@ -253,8 +253,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 格式轉換
             List<GovernmentalDocument.Reports.List.rpt_UpdateRecord> _data = DALTranser.ConvertRptUpdateRecord(source);
 
-            // 排序 (依 班別、年級、科別代碼、異動代碼)
-            _data = (from data in _data orderby data.ClassType, data.DeptCode, data.UpdateCode select data).ToList();
+            // 排序 (依 班別、年級、科別代碼、異動代碼、畢業證書字號)
+            _data = (from data in _data orderby data.ClassType, data.DeptCode, data.UpdateCode,data.GraduateCertificateNumber select data).ToList();
 
             foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data)
             {
@@ -270,7 +270,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 //科別代碼
                 mdws.Cells[mdws_index, 2].PutValue(rec.DeptCode);
 
-                // 2 放上傳類別，請使用者自填 
+                // 2 放上傳類別
+                //上傳類別
+                mdws.Cells[mdws_index, 3].PutValue(rec.UpdateType);
 
                 //學號
                 mdws.Cells[mdws_index, 4].PutValue(rec.StudentNumber);
@@ -364,7 +366,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 mdws.Cells[mdws_index, 2].PutValue(rec.DeptCode);
 
                 // 2 放上傳類別，請使用者自填 
-
+                //上傳類別
+                mdws.Cells[mdws_index, 3].PutValue(rec.UpdateType);
                 //學號
                 mdws.Cells[mdws_index, 4].PutValue(rec.StudentNumber);
                 //姓名

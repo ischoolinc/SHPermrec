@@ -182,9 +182,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 0].PutValue(Record.GetAttribute("班別"));
                 //科別代碼
                 DyWb.Cells[DyWb_index, 1].PutValue((Record.ParentNode as XmlElement).GetAttribute("科別代號"));
-                
+
                 // 上傳類別
-                
+                DyWb.Cells[DyWb_index, 2].PutValue(Record.GetAttribute("上傳類別"));
                 //學號
                 DyWb.Cells[DyWb_index, 3].PutValue(Record.GetAttribute("學號"));
                 //姓名
@@ -280,7 +280,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 1].PutValue((Record.ParentNode as XmlElement).GetAttribute("科別代號"));
 
                 // 上傳類別
-
+                
+                DyWb.Cells[DyWb_index, 2].PutValue(Record.GetAttribute("上傳類別"));
                 //學號
                 DyWb.Cells[DyWb_index, 3].PutValue(Record.GetAttribute("學號"));
                 //姓名

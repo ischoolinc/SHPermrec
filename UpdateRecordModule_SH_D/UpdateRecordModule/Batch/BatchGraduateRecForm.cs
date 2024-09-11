@@ -51,6 +51,7 @@ namespace UpdateRecordModule_SH_D.Batch
         public BatchGraduateRecForm()
         {
             InitializeComponent();
+           
             _StudentIDList = K12.Presentation.NLDPanels.Student.SelectedSource;
             _bgWorkerLoad = new BackgroundWorker();
             _bgWorkerLoad.DoWork += new DoWorkEventHandler(_bgWorkerLoad_DoWork);
@@ -76,7 +77,8 @@ namespace UpdateRecordModule_SH_D.Batch
                 _bgWorkerRun.ReportProgress(1);
                 // 刪除舊資料
                 List<SHUpdateRecordRecord> _oldDataList = _StudHasGraduateRecDict.Values.ToList();
-                SHUpdateRecord.Delete(_oldDataList);
+                if (_oldDataList.Count>0)
+                   SHUpdateRecord.Delete(_oldDataList);
 
                 int SchoolYear = int.Parse(K12.Data.School.DefaultSchoolYear);
                 int Semester = int.Parse(K12.Data.School.DefaultSemester);
@@ -342,13 +344,6 @@ namespace UpdateRecordModule_SH_D.Batch
                 _bgWorkerRun.RunWorkerAsync();
         }
 
-        private void BatchGraduateRecForm_Load(object sender, EventArgs e)
-        {
-            this.btnRun.Enabled = false;
-            dtUpdate.Value = DateTime.Now;
-            _bgWorkerLoad.RunWorkerAsync();
-        }
-
         private void cbxClassType_DropDown(object sender, EventArgs e)
         {
             cbxClassType.Items.Clear();
@@ -364,6 +359,14 @@ namespace UpdateRecordModule_SH_D.Batch
                 cbxClassType.Items.Add(code);
                 cbxClassType.Text = code;
             }
+        }
+
+        private void BatchGraduateRecForm_Load(object sender, EventArgs e)
+        {
+            this.btnRun.Enabled = false;
+            dtUpdate.Value = DateTime.Now;            
+            iptSchoolYear.Value = int.Parse(K12.Data.School.DefaultSchoolYear.Trim());
+            _bgWorkerLoad.RunWorkerAsync();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         StudUpdateRecBatchRec _BRec;
 
         List<RetaintoStudentListRecCoverRec> coverDataList = new List<RetaintoStudentListRecCoverRec>();
-
+        List<RetaintoStudentListRecCoverRec> coverDataListA = new List<RetaintoStudentListRecCoverRec>();
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
         public RetaintoStudentListModifyingCoverForm2021(StudUpdateRecBatchRec BRec)
@@ -211,7 +211,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             retVal.SetAttributeValue("學校代號", Global._GSchoolCode);
             retVal.SetAttributeValue("學校名稱", Global._GSchoolName);
             retVal.SetAttributeValue("類別", Global._GUpdateBatchType);
-
+            coverDataListA.Clear();
             foreach (KeyValuePair<string, List<BL.StudUpdateRecDoc>> val in data)
             {
                 // 解析年級科別
@@ -323,6 +323,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
                 //2018/2/5 穎驊增加 處理封面資料
+                
                 foreach (RetaintoStudentListRecCoverRec coverRec in coverDataList)
                 {
                     //假如整理好的封面資料 其年級、科別代碼 與 現在的資料相同， 則配對
@@ -341,10 +342,43 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);
+                        coverDataListA.Add(coverRec);
                     }
                 }               
 
                 retVal.Add(elmGrDept);                
+            }
+            //找出沒有異動記錄的封面
+            foreach (RetaintoStudentListRecCoverRec coverRec in coverDataList)
+            {
+                Boolean find = false;
+                foreach (RetaintoStudentListRecCoverRec coverRecA in coverDataListA)
+                    if (coverRecA.Department == coverRec.Department && coverRec.ClassType == coverRecA.ClassType && coverRec.grYear == coverRecA.grYear)
+                        find = true;
+                if (find == false)
+                {
+                    XElement elmGrDept = new XElement("清單");
+                    elmGrDept.SetAttributeValue("年級", coverRec.grYear);
+                    elmGrDept.SetAttributeValue("科別", coverRec.Department);
+                    elmGrDept.SetAttributeValue("科別代碼", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("科別代號", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("班別", coverRec.ClassType);
+
+                    XElement elmGrDeptCover = new XElement("異動名冊封面");
+
+                    elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
+                    //elmGrDeptCover.SetAttributeValue("班別", coverRec.ClassType);
+                    elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
+                    elmGrDeptCover.SetAttributeValue("因病須長期療養或懷孕申請保留學生數", coverRec.LongTermCareStudentCount);
+                    elmGrDeptCover.SetAttributeValue("因服兵役申請保留學生數", coverRec.MilitaryStudentCount);
+                    elmGrDeptCover.SetAttributeValue("因病申請保留錄取資格期間復受徵召服役者申請學生數", coverRec.ReCallStudentCount);
+
+                    elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
+                    //加入封面
+                    elmGrDept.Add(elmGrDeptCover);
+
+                    retVal.Add(elmGrDept);
+                }
             }
             return retVal;
         }

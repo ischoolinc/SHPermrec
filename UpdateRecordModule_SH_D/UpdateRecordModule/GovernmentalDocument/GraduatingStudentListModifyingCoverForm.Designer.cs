@@ -28,13 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.btnClose = new DevComponents.DotNetBar.ButtonX();
@@ -82,14 +88,14 @@
             this.原有學生數,
             this.畢業學生數,
             this.備註說明});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 69);
             this.dataGridViewX1.Name = "dataGridViewX1";
@@ -221,33 +227,45 @@
             // 
             // 核定班數
             // 
+            dataGridViewCellStyle7.Format = "N0";
+            this.核定班數.DefaultCellStyle = dataGridViewCellStyle7;
             this.核定班數.HeaderText = "核定班數";
             this.核定班數.Name = "核定班數";
             this.核定班數.Width = 90;
             // 
             // 核定學生數
             // 
+            dataGridViewCellStyle8.Format = "N0";
+            this.核定學生數.DefaultCellStyle = dataGridViewCellStyle8;
             this.核定學生數.HeaderText = "核定學生數";
             this.核定學生數.Name = "核定學生數";
             // 
             // 實招班數
             // 
+            dataGridViewCellStyle9.Format = "N0";
+            this.實招班數.DefaultCellStyle = dataGridViewCellStyle9;
             this.實招班數.HeaderText = "實招班數";
             this.實招班數.Name = "實招班數";
             this.實招班數.Width = 90;
             // 
             // 實招新生數
             // 
+            dataGridViewCellStyle10.Format = "N0";
+            this.實招新生數.DefaultCellStyle = dataGridViewCellStyle10;
             this.實招新生數.HeaderText = "實招新生數";
             this.實招新生數.Name = "實招新生數";
             // 
             // 原有學生數
             // 
+            dataGridViewCellStyle11.Format = "N0";
+            this.原有學生數.DefaultCellStyle = dataGridViewCellStyle11;
             this.原有學生數.HeaderText = "原有學生數";
             this.原有學生數.Name = "原有學生數";
             // 
             // 畢業學生數
             // 
+            dataGridViewCellStyle12.Format = "N0";
+            this.畢業學生數.DefaultCellStyle = dataGridViewCellStyle12;
             this.畢業學生數.HeaderText = "畢業學生數";
             this.畢業學生數.Name = "畢業學生數";
             // 

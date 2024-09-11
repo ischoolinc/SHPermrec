@@ -115,7 +115,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     if (currentPage == totalPage)
                     {
                         ws.Cells.CreateRange(dataIndex, 0, 1, 2).Merge();
-                        ws.Cells[dataIndex, 0].PutValue("合計 " + list.ChildNodes.Count.ToString() + " 名");
+                        ws.Cells[dataIndex, 0].PutValue("合計 " + (list.ChildNodes.Count-1).ToString() + " 名");
                     }
 
                     //分頁
@@ -167,9 +167,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 //科別代碼
                 DyWb.Cells[DyWb_index, 1].PutValue(rec.DeptCode);
 
-
+                //上傳類別
+                DyWb.Cells[DyWb_index, 2].PutValue(rec.UpdateType);
                 //學號
-                if(string.IsNullOrEmpty(rec.NewStudNumber))
+                if (string.IsNullOrEmpty(rec.NewStudNumber))
                     DyWb.Cells[DyWb_index, 3].PutValue(rec.StudentNumber);
                 else
                     DyWb.Cells[DyWb_index, 3].PutValue(rec.NewStudNumber);

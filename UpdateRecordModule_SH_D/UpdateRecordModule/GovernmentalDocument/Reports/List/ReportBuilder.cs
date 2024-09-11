@@ -38,8 +38,17 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         {
             XmlElement source = (XmlElement)(((object[])e.Argument)[0]);
             string location = (string)(((object[])e.Argument)[1]);
-            // 依學號排序
-            source = UtilXml.SortByStudentNumber(source);
+            //若為畢業名冊，則依畢業證書字號排序
+            if (location.Contains("畢業"))
+            {
+                //依畢業證書字號
+                source = UtilXml.SortByGraduateCertificateNumber(source);
+            }
+            else
+            {
+                // 依學號排序
+                source = UtilXml.SortByStudentNumber(source);
+            }
             Build(source, location);
         }
 

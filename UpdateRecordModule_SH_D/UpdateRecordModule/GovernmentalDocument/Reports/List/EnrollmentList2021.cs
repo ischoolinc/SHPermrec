@@ -340,7 +340,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
 
                 mdws.Cells[mdws_index, 0].PutValue(record.GetAttribute("班別"));
                 mdws.Cells[mdws_index, 1].PutValue((record.ParentNode as XmlElement).GetAttribute("科別代號"));
-                mdws.Cells[mdws_index, 2].PutValue("");
+                mdws.Cells[mdws_index, 2].PutValue(record.GetAttribute("上傳類別"));
                 mdws.Cells[mdws_index, 3].PutValue(record.GetAttribute("學號"));
                 mdws.Cells[mdws_index, 4].PutValue(record.GetAttribute("姓名"));
                 mdws.Cells[mdws_index, 5].PutValue(record.GetAttribute("身分證號"));
@@ -459,6 +459,108 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             cover.Cells.CreateRange(cover_row_counter, 1, false).CopyData(range_R_cover_EndRow);
             cover.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_cover_EndRow);
             wb.Worksheets.RemoveAt("新生名冊封面範本");
+            //範本
+            Worksheet TemplateWb_Static = wb.Worksheets["新生人數統計表範本"];
+
+            //實做頁面
+            Worksheet StaticSheet = wb.Worksheets[wb.Worksheets.Add()];
+
+            //名稱
+            StaticSheet.Name = "新生人數統計表";
+
+          
+
+            //範圍
+            range_H_Cover = TemplateWb_Static.Cells.CreateRange(0, 1, false);
+
+            //range_H_Cover
+            StaticSheet.Cells.CreateRange(0, 1, false).CopyData(range_H_Cover);
+            StaticSheet.Cells.CreateRange(0, 1, false).CopyStyle(range_H_Cover);
+
+            Range range_R_StaticSheet = TemplateWb_Static.Cells.CreateRange(1, 1, false);
+            // 107新格式 結束行要 有End 字樣
+            Range range_R_StaticSheet_EndRow = TemplateWb_Static.Cells.CreateRange(2, 1, false);
+
+            cover_row_counter = 1;
+
+            //統計表(特殊入學人數無法統計待續....
+
+            foreach (XmlNode list in source.SelectNodes("清單"))
+            {
+                //每增加一行,複製一次
+                StaticSheet.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_StaticSheet);
+
+               
+                string deptCode = list.SelectSingleNode("@科別代碼").InnerText;
+                string classType = list.SelectSingleNode("@班別") != null ? list.SelectSingleNode("@班別").InnerText : "";
+
+
+               
+
+                foreach (XmlElement st in list.SelectNodes("異動名冊封面"))
+                {
+                   
+                    string updateType = st.SelectSingleNode("@上傳類別").InnerText;
+                    string actualStudentCount = st.SelectSingleNode("@實招新生數").InnerText;
+                    string approvedClassCount = st.SelectSingleNode("@核定班數").InnerText;
+                    string approvedStudentCount = st.SelectSingleNode("@核定學生數").InnerText;
+                    long temp = 0;
+                    string School_Type = "";
+                    if (long.TryParse(school_code,out temp))                        
+                        School_Type = "日間部";
+                    else
+                        School_Type = "夜間部";
+                    string extraStudent1 = st.SelectSingleNode("@外加錄取原住民") != null ? st.SelectSingleNode("@外加錄取原住民").InnerText:"0";
+                    string extraStudent2 = st.SelectSingleNode("@外加錄取身心障礙生") != null ? st.SelectSingleNode("@外加錄取身心障礙生").InnerText:"0";
+                    string extraStudent3 = st.SelectSingleNode("@外加錄取其他") != null ? st.SelectSingleNode("@外加錄取其他").InnerText : "0";
+                    string extraStudent4 = st.SelectSingleNode("@建教班僑生數") != null ? st.SelectSingleNode("@建教班僑生數").InnerText : "0";
+                    
+                    int in_temp = 0;
+                    int extra = 0;
+                    int generalStudentCount = 0;
+                    if (int.TryParse(extraStudent1, out in_temp))
+                        extra += in_temp;
+                    if (int.TryParse(extraStudent2, out in_temp))
+                        extra += in_temp;
+                    if (int.TryParse(extraStudent3, out in_temp))
+                        extra += in_temp;
+                    if (int.TryParse(actualStudentCount, out in_temp))
+                        generalStudentCount=in_temp-extra;
+                    if (int.TryParse(approvedClassCount, out in_temp) && int.TryParse(approvedStudentCount, out in_temp))
+                        extra = generalStudentCount - int.Parse(approvedClassCount) * int.Parse(approvedStudentCount);
+                    if (extra < 0)
+                        extra = 0;
+                    //班別
+                    StaticSheet.Cells[cover_row_counter, 0].PutValue(classType);
+                    //日夜部
+                    StaticSheet.Cells[cover_row_counter, 1].PutValue(School_Type);
+                    //科別代碼
+                    StaticSheet.Cells[cover_row_counter, 2].PutValue(deptCode);
+                    //上傳類別
+                    StaticSheet.Cells[cover_row_counter, 3].PutValue(updateType);
+
+                    //一般生
+                    StaticSheet.Cells[cover_row_counter, 4].PutValue(generalStudentCount);
+                    //外加錄取原住民
+                    StaticSheet.Cells[cover_row_counter, 5].PutValue(extraStudent1);
+                    //外加錄取身心障礙生
+                    StaticSheet.Cells[cover_row_counter, 6].PutValue(extraStudent2);
+                    //外加錄取其他
+                    StaticSheet.Cells[cover_row_counter, 7].PutValue(extraStudent3);
+                    //超收學生數
+                    StaticSheet.Cells[cover_row_counter, 8].PutValue(extra);
+                    //建教班僑生數
+                    StaticSheet.Cells[cover_row_counter, 10].PutValue(extraStudent4);
+
+
+                }
+                cover_row_counter++;
+            }
+
+            // 資料末底 加End
+            StaticSheet.Cells.CreateRange(cover_row_counter, 1, false).CopyData(range_R_StaticSheet_EndRow);
+            StaticSheet.Cells.CreateRange(cover_row_counter, 1, false).CopyStyle(range_R_StaticSheet_EndRow);
+            wb.Worksheets.RemoveAt("新生人數統計表範本");
 
             #endregion
 

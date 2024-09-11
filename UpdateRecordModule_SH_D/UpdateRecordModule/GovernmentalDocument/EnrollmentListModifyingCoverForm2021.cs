@@ -20,7 +20,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         StudUpdateRecBatchRec _BRec;
 
         List<EnrollmentListRecCoverRec> coverDataList = new List<EnrollmentListRecCoverRec>();
-
+        List<EnrollmentListRecCoverRec> coverDataListA = new List<EnrollmentListRecCoverRec>();
 
         //2018/2/5 穎驊新增 提供使用者 可以自行調整 異動名冊封面的資料
         public EnrollmentListModifyingCoverForm2021(StudUpdateRecBatchRec BRec)
@@ -66,6 +66,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     string approvedStudentCount = st.SelectSingleNode("@核定學生數") != null ? st.SelectSingleNode("@核定學生數").InnerText : "";
                     string actualClassCount = st.SelectSingleNode("@實招班數") != null ? st.SelectSingleNode("@實招班數").InnerText : "";
                     string actualStudentCount = st.SelectSingleNode("@實招新生數") != null ? st.SelectSingleNode("@實招新生數").InnerText : "";
+                    string ExtraAboCount = st.SelectSingleNode("@外加錄取原住民") != null ? st.SelectSingleNode("@外加錄取原住民").InnerText : "";
+                    string ExtraDisabilityCount = st.SelectSingleNode("@外加錄取身心障礙生") != null ? st.SelectSingleNode("@外加錄取身心障礙生").InnerText : "";
+                    string ExtraOtherCount = st.SelectSingleNode("@外加錄取其他") != null ? st.SelectSingleNode("@外加錄取其他").InnerText : "";
+                    string ActualForeignCount = st.SelectSingleNode("@建教班僑生數") != null ? st.SelectSingleNode("@建教班僑生數").InnerText : "";
                     string remarks1 = st.SelectSingleNode("@註1") != null ? st.SelectSingleNode("@註1").InnerText : "";
                     string remarksContent = st.SelectSingleNode("@備註說明") != null ? st.SelectSingleNode("@備註說明").InnerText : "";
 
@@ -93,6 +97,14 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     row_data.Add(actualClassCount);
                     //實招新生數
                     row_data.Add(actualStudentCount);
+                    //外加原住民
+                    row_data.Add(ExtraAboCount);
+                    //外加身心障礙
+                    row_data.Add(ExtraDisabilityCount);
+                    //外加其他
+                    row_data.Add(ExtraOtherCount);
+                    //建教班僑生
+                    row_data.Add(ActualForeignCount);
                     //註1
                     row_data.Add(remarks1);
                     //備註說明
@@ -109,7 +121,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             }
             #endregion
 
-            List<int> cols = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+            List<int> cols = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15 };
             DataGridViewImeDecorator dec = new DataGridViewImeDecorator(this.dataGridViewX1, cols);
 
 
@@ -133,6 +145,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 coverData.ApprovedStudentCount = "" + dr.Cells["核定學生數"].Value;
                 coverData.ActualClassCount = "" + dr.Cells["實招班數"].Value;
                 coverData.ActualStudentCount = "" + dr.Cells["實招新生數"].Value;
+                coverData.ExtraAboCount = "" + dr.Cells["外加原住民"].Value;
+                coverData.ExtraDisabilityCount = "" + dr.Cells["外加身心障礙"].Value;
+                coverData.ExtraOtherCount = "" + dr.Cells["外加其他"].Value;
+                coverData.ActualForeignCount = "" + dr.Cells["建教班僑生數"].Value;
                 coverData.Remarks1 = "" + dr.Cells["註1"].Value;
                 coverData.RemarksContent = "" + dr.Cells["備註說明"].Value;
                 coverData.Department = "" + dr.Cells["科別"].Value;
@@ -217,7 +233,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
             retVal.SetAttributeValue("學校代號", Global._GSchoolCode);
             retVal.SetAttributeValue("學校名稱", Global._GSchoolName);
             retVal.SetAttributeValue("類別", Global._GUpdateBatchType);
-
+            coverDataListA.Clear();
             foreach (KeyValuePair<string, List<BL.StudUpdateRecDoc>> val in data)
             {
                 // 解析年級科別
@@ -332,6 +348,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
 
                 //2018/2/5 穎驊增加 處理封面資料
+                
                 foreach (EnrollmentListRecCoverRec coverRec in coverDataList)
                 {
                     //假如整理好的封面資料 其年級、科別 與 現在的資料相同， 則配對
@@ -348,14 +365,55 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                         elmGrDeptCover.SetAttributeValue("核定學生數", coverRec.ApprovedStudentCount);
                         elmGrDeptCover.SetAttributeValue("實招班數", coverRec.ActualClassCount);
                         elmGrDeptCover.SetAttributeValue("實招新生數", coverRec.ActualStudentCount);
+                        elmGrDeptCover.SetAttributeValue("外加錄取原住民", coverRec.ExtraAboCount);
+                        elmGrDeptCover.SetAttributeValue("外加錄取身心障礙生", coverRec.ExtraDisabilityCount);
+                        elmGrDeptCover.SetAttributeValue("外加錄取其他", coverRec.ExtraOtherCount);
+                        elmGrDeptCover.SetAttributeValue("建教班僑生數", coverRec.ActualForeignCount);
                         elmGrDeptCover.SetAttributeValue("註1", coverRec.Remarks1);
                         elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
                         //加入封面
                         elmGrDept.Add(elmGrDeptCover);
+                        coverDataListA.Add(coverRec);
                     }
                 }
 
                 retVal.Add(elmGrDept);
+            }
+            //找出沒有異動記錄的封面
+            foreach (EnrollmentListRecCoverRec coverRec in coverDataList)
+            {
+                Boolean find = false;
+                foreach (EnrollmentListRecCoverRec coverRecA in coverDataListA)
+                    if (coverRecA.Department == coverRec.Department && coverRec.ClassType == coverRecA.ClassType && coverRec.grYear == coverRecA.grYear)
+                        find = true;
+                if (find == false)
+                {
+                    XElement elmGrDept = new XElement("清單");
+                    elmGrDept.SetAttributeValue("年級", coverRec.grYear);
+                    elmGrDept.SetAttributeValue("科別", coverRec.Department);
+                    elmGrDept.SetAttributeValue("科別代碼", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("科別代號", coverRec.DeptCode);
+                    elmGrDept.SetAttributeValue("班別", coverRec.ClassType);
+
+                    XElement elmGrDeptCover = new XElement("異動名冊封面");
+
+                    elmGrDeptCover.SetAttributeValue("名冊別", coverRec.ReportType);
+                    elmGrDeptCover.SetAttributeValue("上傳類別", coverRec.UpdateType);
+                    elmGrDeptCover.SetAttributeValue("核定班數", coverRec.ApprovedClassCount);
+                    elmGrDeptCover.SetAttributeValue("核定學生數", coverRec.ApprovedStudentCount);
+                    elmGrDeptCover.SetAttributeValue("實招班數", coverRec.ActualClassCount);
+                    elmGrDeptCover.SetAttributeValue("實招新生數", coverRec.ActualStudentCount);
+                    elmGrDeptCover.SetAttributeValue("外加錄取原住民", coverRec.ExtraAboCount);
+                    elmGrDeptCover.SetAttributeValue("外加錄取身心障礙生", coverRec.ExtraDisabilityCount);
+                    elmGrDeptCover.SetAttributeValue("外加錄取其他", coverRec.ExtraOtherCount);
+                    elmGrDeptCover.SetAttributeValue("建教班僑生數", coverRec.ActualForeignCount);
+                    elmGrDeptCover.SetAttributeValue("註1", coverRec.Remarks1);
+                    elmGrDeptCover.SetAttributeValue("備註說明", coverRec.RemarksContent);
+                    //加入封面
+                    elmGrDept.Add(elmGrDeptCover);
+
+                    retVal.Add(elmGrDept);
+                }
             }
             return retVal;
         }

@@ -64,7 +64,7 @@
             this.btnRun.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnRun.Location = new System.Drawing.Point(58, 142);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 25);
+            this.btnRun.Size = new System.Drawing.Size(75, 35);
             this.btnRun.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnRun.TabIndex = 1;
             this.btnRun.Text = "產生";
@@ -142,7 +142,7 @@
             this.btnExit.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnExit.Location = new System.Drawing.Point(141, 142);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 25);
+            this.btnExit.Size = new System.Drawing.Size(75, 35);
             this.btnExit.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "取消";

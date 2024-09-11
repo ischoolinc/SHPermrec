@@ -12,10 +12,14 @@
     <AssemblyName>UpdateRecordModule_SH_D</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -42,7 +46,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\1campus_desktop_x64\modules\SHDayPermrec_D\</OutputPath>
+    <OutputPath>D:\程式開發\1campus_desktop_x64\modules\SHDayPermrec_D\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -94,7 +98,7 @@
     </Reference>
     <Reference Include="FISCA, Version=2.1.4.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\FISCA.dll</HintPath>
+      <HintPath>..\..\..\..\1campus_desktop_x64\kernel\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Authentication, Version=1.9.0.16, Culture=neutral, processorArchitecture=MSIL">
@@ -110,6 +114,10 @@
     <Reference Include="FISCA.Deployment, Version=1.0.0.13, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\FISCA.Deployment.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAClient">
+      <HintPath>..\..\..\..\1campus_desktop_x64\kernel\FISCA.DSAClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAUtil, Version=3.9.0.10, Culture=neutral, processorArchitecture=MSIL">
@@ -169,7 +177,7 @@
     </Reference>
     <Reference Include="SHSchool.Data, Version=2.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\SHSchool.Data.dll</HintPath>
+      <HintPath>..\..\..\..\1campus_desktop_x64\modules\OfficialReport\SHSchool.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="SmartSchool.API.PlugIn, Version=0.0.0.3, Culture=neutral, processorArchitecture=MSIL">
@@ -234,6 +242,12 @@
     <Compile Include="Batch\BatchGraduateRecForm.Designer.cs">
       <DependentUpon>BatchGraduateRecForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Batch\BatchUpdateRec_WarningForm .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Batch\BatchUpdateRec_WarningForm .Designer.cs">
+      <DependentUpon>BatchUpdateRec_WarningForm .cs</DependentUpon>
+    </Compile>
     <Compile Include="Batch\BatchGraduateRec_WarningForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +261,12 @@
       <DependentUpon>BatchNewStudUpdateRecForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Batch\BatchNewStudUpdateRecManager.cs" />
+    <Compile Include="Batch\BatchUpdateRec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Batch\BatchUpdateRec.Designer.cs">
+      <DependentUpon>BatchUpdateRec.cs</DependentUpon>
+    </Compile>
     <Compile Include="Batch\WarningForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +302,12 @@
     </Compile>
     <Compile Include="DeleteUpdateRecordForm.Designer.cs">
       <DependentUpon>DeleteUpdateRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGovApprovedNumOfClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGovApprovedNumOfClass.Designer.cs">
+      <DependentUpon>frmGovApprovedNumOfClass.cs</DependentUpon>
     </Compile>
     <Compile Include="GovernmentalDocument\BuildWizard.cs">
       <SubType>Form</SubType>
@@ -461,6 +487,13 @@
     <Compile Include="ImportExport\ImportTransferList.cs" />
     <Compile Include="ImportExport\ImportUpdateRecCode100.cs" />
     <Compile Include="ImportExport\ImportUtil.cs" />
+    <Compile Include="CopyApprovedOfClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyApprovedOfClass.Designer.cs">
+      <DependentUpon>CopyApprovedOfClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDT\GovApprovedNumOfClass.cs" />
     <Compile Include="UpdateRecordItemControls\IUpdateRecordInfo.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="PermRecLogProcess.cs" />
@@ -543,12 +576,19 @@
     <EmbeddedResource Include="Batch\BatchGraduateRecForm.resx">
       <DependentUpon>BatchGraduateRecForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Batch\BatchUpdateRec_WarningForm .resx">
+      <DependentUpon>BatchUpdateRec_WarningForm .cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Batch\BatchGraduateRec_WarningForm.resx">
       <DependentUpon>BatchGraduateRec_WarningForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Batch\BatchNewStudUpdateRecForm.resx">
       <DependentUpon>BatchNewStudUpdateRecForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Batch\BatchUpdateRec.resx">
+      <DependentUpon>BatchUpdateRec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Batch\WarningForm.resx">
       <DependentUpon>WarningForm.cs</DependentUpon>
@@ -559,6 +599,9 @@
     <EmbeddedResource Include="DeleteUpdateRecordForm.resx">
       <DependentUpon>DeleteUpdateRecordForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGovApprovedNumOfClass.resx">
+      <DependentUpon>frmGovApprovedNumOfClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GovernmentalDocument\BuildWizard.resx">
       <DependentUpon>BuildWizard.cs</DependentUpon>
@@ -635,6 +678,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImportExport\ImportStudentV2.resx">
       <DependentUpon>ImportStudentV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CopyApprovedOfClass.resx">
+      <DependentUpon>CopyApprovedOfClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

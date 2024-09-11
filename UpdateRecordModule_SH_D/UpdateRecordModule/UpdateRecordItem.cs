@@ -28,7 +28,7 @@ namespace UpdateRecordModule_SH_D
         {
             InitializeComponent();
             Group = "異動資料";
-
+            
             BGWorker = new BackgroundWorker();
             BGWorker.DoWork += new DoWorkEventHandler(BGWorker_DoWork);
             BGWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BGWorker_RunWorkerCompleted);

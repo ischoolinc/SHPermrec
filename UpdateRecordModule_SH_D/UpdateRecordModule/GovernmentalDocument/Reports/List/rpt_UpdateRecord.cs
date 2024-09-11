@@ -119,6 +119,10 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
         /// 班別
         /// </summary> 
         public string ClassType { get; set; }
+        /// <summary>
+        /// 上傳類別
+        /// </summary> 
+        public string UpdateType { get; set; }
 
         /// <summary>
         /// 異動日期

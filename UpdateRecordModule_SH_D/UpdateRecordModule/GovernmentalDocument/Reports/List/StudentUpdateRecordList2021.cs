@@ -357,8 +357,8 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
             // 格式轉換
             List<GovernmentalDocument.Reports.List.rpt_UpdateRecord> _data = DALTranser.ConvertRptUpdateRecord(source);
            
-            // 排序 (依 班別、年級、科別代碼、異動代碼)
-            _data = (from data in _data orderby data.ClassType, GYear(data.GradeYear), data.DeptCode, data.UpdateCode select data).ToList();
+            // 排序 (依 班別、年級、科別代碼、異動代碼,學號)
+            _data = (from data in _data orderby data.ClassType, GYear(data.GradeYear), data.DeptCode, data.UpdateCode , data.StudentNumber select data).ToList();
 
             foreach (GovernmentalDocument.Reports.List.rpt_UpdateRecord rec in _data)
             {
@@ -372,6 +372,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 1].PutValue(rec.DeptCode);
 
                 // 2 放上傳類別，請使用者自填 
+                DyWb.Cells[DyWb_index, 2].PutValue(rec.UpdateType);
 
                 //學號
                 DyWb.Cells[DyWb_index, 3].PutValue(rec.StudentNumber);
@@ -494,7 +495,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                 DyWb.Cells[DyWb_index, 1].PutValue(rec.DeptCode);
 
                 // 2 放上傳類別，請使用者自填 
-
+                DyWb.Cells[DyWb_index, 2].PutValue(rec.UpdateType);
                 //學號
                 DyWb.Cells[DyWb_index, 3].PutValue(rec.StudentNumber);
                 //姓名

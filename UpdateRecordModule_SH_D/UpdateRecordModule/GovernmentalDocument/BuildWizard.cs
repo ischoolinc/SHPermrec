@@ -308,7 +308,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
         private void btnCreateDoc_Click(object sender, EventArgs e)
         {
-            if (cboPeopleFrom.Text != "")
+            if (cboPeopleFrom.Text != "" && cbxClassType.Text!="")
             {
                 List<BL.StudUpdateRecDoc> list = new List<UpdateRecordModule_SH_D.BL.StudUpdateRecDoc>();
                 foreach (ListViewItem var in listView2.Items)
@@ -319,7 +319,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
 
                 try
                 {
-                    _StudUpdateRecBatchCreator.CreateUpdateRecBatchDoc(cbxSchoolYear.Text, cbxSemester.Text, txtNameListName.Text, list, cboPeopleFrom.Text);
+                    _StudUpdateRecBatchCreator.CreateUpdateRecBatchDoc(cbxSchoolYear.Text, cbxSemester.Text, txtNameListName.Text, list, cboPeopleFrom.Text,cbxClassType.Text);
                 }
                 catch (Exception ex)
                 {
@@ -329,7 +329,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                 this.Close();
             }
             else
-                MessageBox.Show("請選擇封面資料統計來源順序");
+                MessageBox.Show("請選擇封面資料統計來源順序及上傳類別");
             
 
         }
@@ -407,6 +407,22 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
         private void cbxSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
             setDefaultNameListName();
+        }
+        private void cbxClassType_DropDown(object sender, EventArgs e)
+        {
+            cbxClassType.Items.Clear();
+            cbxClassType.Items.AddRange(DAL.DALTransfer.GetClassTypeUpList().ToArray());
+        }
+
+        private void cbxClassType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cbxClassType.Text.IndexOf("-");
+            if (idx > 0)
+            {
+                string code = cbxClassType.Text.Substring(0, idx);
+                cbxClassType.Items.Add(code);
+                cbxClassType.Text = code;
+            }
         }
     }
 }

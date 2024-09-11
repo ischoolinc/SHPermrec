@@ -54,7 +54,23 @@ namespace UpdateRecordModule_SH_D.BL
         /// 實招新生數
         /// </summary>
         public string ActualStudentCount { get; set; }
-      
+        /// <summary>
+        /// 外加原住民
+        /// </summary>
+        public string ExtraAboCount { get; set; }
+        /// <summary>
+        /// 外加身心障礙
+        /// </summary>
+        public string ExtraDisabilityCount { get; set; }
+        /// <summary>
+        /// 外加其他
+        /// </summary>
+        public string ExtraOtherCount { get; set; }
+        /// <summary>
+        /// 僑生新生數
+        /// </summary>
+        public string ActualForeignCount { get; set; }
+
         /// <summary>
         /// 註1
         /// </summary>
