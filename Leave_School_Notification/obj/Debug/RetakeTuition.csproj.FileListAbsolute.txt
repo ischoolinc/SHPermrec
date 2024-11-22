@@ -1,0 +1,16 @@
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.csproj.GenerateResource.cache
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.csproj.CoreCompileInputs.cache
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\RetakeTuition.dll
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\RetakeTuition.pdb
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.dll
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.pdb
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.重補修繳費單.resources
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.Properties.Resources.resources
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.ConfigForm.resources
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\Aspose.Words_201402.dll
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\Aspose.Words_201402.xml
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.csproj.CopyComplete
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\Campus.ePaperCloud.dll
+D:\程式開發\ISchoolPlugIn\RetakeTuition\bin\Debug\Campus.ePaperCloud.pdb
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.csprojAssemblyReference.cache
+D:\程式開發\ISchoolPlugIn\RetakeTuition\obj\Debug\RetakeTuition.OutList.resources
