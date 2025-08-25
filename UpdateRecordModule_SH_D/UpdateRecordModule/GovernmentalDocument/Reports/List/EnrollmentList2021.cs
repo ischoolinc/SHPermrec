@@ -516,20 +516,29 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     string extraStudent4 = st.SelectSingleNode("@建教班僑生數") != null ? st.SelectSingleNode("@建教班僑生數").InnerText : "0";
                     
                     int in_temp = 0;
-                    int extra = 0;
-                    int generalStudentCount = 0;
+                    int extraStudents = 0;        // 外加學生總數
+                    int overEnrollment = 0;      // 超收學生數
+                    
+                    // 計算外加學生總數
                     if (int.TryParse(extraStudent1, out in_temp))
-                        extra += in_temp;
+                        extraStudents += in_temp;
                     if (int.TryParse(extraStudent2, out in_temp))
-                        extra += in_temp;
+                        extraStudents += in_temp;
                     if (int.TryParse(extraStudent3, out in_temp))
-                        extra += in_temp;
-                    if (int.TryParse(actualStudentCount, out in_temp))
-                        generalStudentCount=in_temp-extra;
-                    if (int.TryParse(approvedClassCount, out in_temp) && int.TryParse(approvedStudentCount, out in_temp))
-                        extra = generalStudentCount - int.Parse(approvedClassCount) * int.Parse(approvedStudentCount);
-                    if (extra < 0)
-                        extra = 0;
+                        extraStudents += in_temp;
+                    
+                    // 直接計算超收學生數（使用正確公式）
+                    if (int.TryParse(actualStudentCount, out in_temp) && 
+                        int.TryParse(approvedClassCount, out int approvedClass) && 
+                        int.TryParse(approvedStudentCount, out int approvedStudent))
+                    {
+                        // 正確公式：實招新生數 - 外加錄取原住民 - 外加錄取身心障礙生 - 外加錄取其他 - 核定班數 × 核定學生數
+                        overEnrollment = in_temp - extraStudents - (approvedClass * approvedStudent);
+                    }
+                    
+                    // 確保超收數不為負數
+                    if (overEnrollment < 0)
+                        overEnrollment = 0;
                     //班別
                     StaticSheet.Cells[cover_row_counter, 0].PutValue(classType);
                     //日夜部
@@ -539,8 +548,6 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     //上傳類別
                     StaticSheet.Cells[cover_row_counter, 3].PutValue(updateType);
 
-                    //一般生
-                    StaticSheet.Cells[cover_row_counter, 4].PutValue(generalStudentCount);
                     //外加錄取原住民
                     StaticSheet.Cells[cover_row_counter, 5].PutValue(extraStudent1);
                     //外加錄取身心障礙生
@@ -548,7 +555,7 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     //外加錄取其他
                     StaticSheet.Cells[cover_row_counter, 7].PutValue(extraStudent3);
                     //超收學生數
-                    StaticSheet.Cells[cover_row_counter, 8].PutValue(extra);
+                    StaticSheet.Cells[cover_row_counter, 8].PutValue(overEnrollment);
                     //建教班僑生數
                     StaticSheet.Cells[cover_row_counter, 10].PutValue(extraStudent4);
 
