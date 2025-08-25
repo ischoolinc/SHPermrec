@@ -548,6 +548,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     //上傳類別
                     StaticSheet.Cells[cover_row_counter, 3].PutValue(updateType);
 
+                    //一般生
+                    StaticSheet.Cells[cover_row_counter, 4].PutValue(in_temp);
+
                     //外加錄取原住民
                     StaticSheet.Cells[cover_row_counter, 5].PutValue(extraStudent1);
                     //外加錄取身心障礙生
