@@ -507,9 +507,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     long temp = 0;
                     string School_Type = "";
                     if (long.TryParse(school_code,out temp))                        
-                        School_Type = "日間部";
+                        School_Type = "D";
                     else
-                        School_Type = "夜間部";
+                        School_Type = "N";
                     string extraStudent1 = st.SelectSingleNode("@外加錄取原住民") != null ? st.SelectSingleNode("@外加錄取原住民").InnerText:"0";
                     string extraStudent2 = st.SelectSingleNode("@外加錄取身心障礙生") != null ? st.SelectSingleNode("@外加錄取身心障礙生").InnerText:"0";
                     string extraStudent3 = st.SelectSingleNode("@外加錄取其他") != null ? st.SelectSingleNode("@外加錄取其他").InnerText : "0";
