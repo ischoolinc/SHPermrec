@@ -2167,7 +2167,7 @@ SELECT
                         {
                             switch (dr["full_name"].ToString())
                             {
-                                case "入學身分:外加錄取--原住民":
+                                case "入學身分:外加錄取--原住民生":
                                     Admission_M01 += 1;
                                     break;
                                 case "入學身分:外加錄取--身心障礙生":
