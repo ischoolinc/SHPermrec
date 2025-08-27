@@ -559,8 +559,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument.Reports.List
                     StaticSheet.Cells[cover_row_counter, 7].PutValue(extraStudent3);
                     //超收學生數
                     StaticSheet.Cells[cover_row_counter, 8].PutValue(overEnrollment);
-                    //建教班僑生數
-                    StaticSheet.Cells[cover_row_counter, 10].PutValue(extraStudent4);
+                                        
+                    //建教班僑生數，2025/8/27，保留空白不必填
+                    //StaticSheet.Cells[cover_row_counter, 10].PutValue(extraStudent4);
 
 
                 }
