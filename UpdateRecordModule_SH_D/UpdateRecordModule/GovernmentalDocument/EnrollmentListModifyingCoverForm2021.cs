@@ -103,8 +103,9 @@ namespace UpdateRecordModule_SH_D.GovernmentalDocument
                     row_data.Add(ExtraDisabilityCount);
                     //外加其他
                     row_data.Add(ExtraOtherCount);
-                    //建教班僑生
-                    row_data.Add(ActualForeignCount);
+                    //建教班僑生，2025/8/28 要保留空白
+                    //row_data.Add(ActualForeignCount);
+                    row_data.Add("");
                     //註1
                     row_data.Add(remarks1);
                     //備註說明
