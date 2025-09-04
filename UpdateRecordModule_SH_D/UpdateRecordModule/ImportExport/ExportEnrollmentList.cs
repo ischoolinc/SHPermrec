@@ -81,7 +81,7 @@ namespace UpdateRecordModule_SH_D.ImportExport
                             case "學期":
                                 if(rec.Semester.HasValue )
                                     row.Add(field, rec.Semester.Value.ToString ()); break;
-                            case "年級": row.Add(field, rec.GradeYear); break;
+                            case "異動年級": row.Add(field, rec.GradeYear); break;
                             case "異動代碼": row.Add(field, rec.UpdateCode); break;
                             case "原因及事項": row.Add(field, rec.UpdateDescription); break;
                             case "異動日期": row.Add(field, rec.UpdateDate); break;
