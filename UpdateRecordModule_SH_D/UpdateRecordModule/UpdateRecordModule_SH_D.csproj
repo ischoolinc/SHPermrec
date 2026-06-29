@@ -746,9 +746,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TransferringStudentUpdateRecordListTemplate.xlsx" />
-    <None Include="Resources\UpdateCode_SHD.xml">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ImportExport\ImportEnrollmentListVal.xml" />
@@ -824,6 +821,7 @@
     <Content Include="Resources\SHSchoolList.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\UpdateCode_SHD.xml" />
     <Content Include="Resources\warning.ico" />
     <None Include="Resources\history_save_64.png" />
   </ItemGroup>
