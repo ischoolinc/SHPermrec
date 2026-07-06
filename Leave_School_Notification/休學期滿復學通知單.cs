@@ -15,6 +15,7 @@ using FISCA.Data;
 using System.Xml.Linq;
 using K12.Data;
 using FISCA.UDT;
+using Aspose.Cells;
 using Aspose.Words;
 using Campus.ePaperCloud;
 using SHSchool.Data;
@@ -582,7 +583,13 @@ namespace Leave_School_Notification
 
             int leavetime = 0;
             List<string> BackSchoolCode = new List<string>() { "221", "222", "223", "224", "237", "238", "239", "240", "242" };
-            List<string> QuitCode = new List<string>() { "361", "367", "369", "371", "374", "375", "376", "377", "378", "379", "380", "381" };
+            List<string> QuitCode = new List<string>()
+            {
+                "301", "302",
+                "310", "311", "312", "313", "314", "316",
+                "361", "367", "369", "371", "374", "375",
+                "376", "377", "378", "379", "380", "381"
+            };
             string LastStatu = "";
             DataTable UpRecList = new DataTable();
             lstStudent.Items.Clear();
@@ -694,6 +701,54 @@ namespace Leave_School_Notification
                 lstStudent.Items.Add(lvi);
             }
             lblCount.Text = "共" + lstStudent.Items.Count.ToString() + "筆";
+        }
+
+        private void btnExportStudent_Click(object sender, EventArgs e)
+        {
+            if (lstStudent.Items.Count <= 0)
+            {
+                MessageBox.Show("清單內沒有學生，無法匯出");
+                return;
+            }
+
+            try
+            {
+                btnExportStudent.Enabled = false;
+                Workbook wb = new Workbook();
+                Worksheet ws = wb.Worksheets[0];
+                ws.Name = "學生清單";
+
+                for (int col = 0; col < lstStudent.Columns.Count; col++)
+                {
+                    ws.Cells[0, col].PutValue(lstStudent.Columns[col].Text);
+                }
+
+                for (int row = 0; row < lstStudent.Items.Count; row++)
+                {
+                    ListViewItem item = lstStudent.Items[row];
+
+                    for (int col = 0; col < lstStudent.Columns.Count; col++)
+                    {
+                        string value = "";
+
+                        if (col < item.SubItems.Count)
+                            value = item.SubItems[col].Text;
+
+                        ws.Cells[row + 1, col].PutValue(value);
+                    }
+                }
+
+                ws.AutoFitColumns();
+                Utility.ExportXls(cboReportKind.Text + "學生清單", wb);
+            }
+            catch (Exception ex)
+            {
+                FISCA.Presentation.Controls.MsgBox.Show("匯出發生錯誤:\n" + ex.Message);
+            }
+            finally
+            {
+                btnExportStudent.Enabled = true;
+            }
         }
     }
 }

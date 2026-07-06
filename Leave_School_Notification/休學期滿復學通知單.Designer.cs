@@ -56,9 +56,10 @@ namespace Leave_School_Notification
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnExportStudent = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.intSemester)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDeadline)).BeginInit();
@@ -166,7 +167,7 @@ namespace Leave_School_Notification
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.labelX4.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.labelX4.ForeColor = System.Drawing.Color.DarkRed;
             this.labelX4.Location = new System.Drawing.Point(302, 5);
             this.labelX4.Name = "labelX4";
@@ -497,11 +498,6 @@ namespace Leave_School_Notification
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader6.Width = 100;
             // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "系統編號";
-            this.columnHeader10.Width = 0;
-            // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "休學日期";
@@ -512,11 +508,30 @@ namespace Leave_School_Notification
             this.columnHeader2.Text = "休學原因";
             this.columnHeader2.Width = 200;
             // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "系統編號";
+            this.columnHeader10.Width = 0;
+            // 
+            // btnExportStudent
+            // 
+            this.btnExportStudent.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnExportStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportStudent.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnExportStudent.Location = new System.Drawing.Point(12, 345);
+            this.btnExportStudent.Name = "btnExportStudent";
+            this.btnExportStudent.Size = new System.Drawing.Size(110, 23);
+            this.btnExportStudent.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnExportStudent.TabIndex = 39;
+            this.btnExportStudent.Text = "匯出學生清單";
+            this.btnExportStudent.Click += new System.EventHandler(this.btnExportStudent_Click);
+            // 
             // 休學期滿復學通知單
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 550);
+            this.Controls.Add(this.btnExportStudent);
             this.Controls.Add(this.lstStudent);
             this.Controls.Add(this.chkBulkMail_S);
             this.Controls.Add(this.chkBulkMail_R);
@@ -583,5 +598,6 @@ namespace Leave_School_Notification
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader10;
+        private DevComponents.DotNetBar.ButtonX btnExportStudent;
     }
 }
